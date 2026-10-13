@@ -1,0 +1,103 @@
+{
+  "status": "passed",
+  "date": "2026-10-13",
+  "feature": "Native Dodongo anatomy, motion and explosive-swallow integration",
+  "scope": "Original ACTOR_EN_DODONGO with native rig, attack AI and collision rules; new custom species remain deferred.",
+  "art": {
+    "source_sha256": "fb2055d11cbe156fd248b31afd3532fb1e11ea93c14c23f4973fd0a51a4fef52",
+    "vertices": 5027,
+    "triangles": 7491,
+    "parts": 39,
+    "subpixel_triangles_removed": 35,
+    "triangles_per_actor": {
+      "0": 7491
+    },
+    "materials": [
+      "skin",
+      "scute",
+      "belly",
+      "groove",
+      "horn",
+      "eye",
+      "pupil",
+      "mouth"
+    ],
+    "space": "Native joint-local XYZ, positions x100; native normals retained; authoring-pose transforms omitted"
+  },
+  "animation": {
+    "status": "passed",
+    "native_animation_frames": 405,
+    "native_visible_limbs": 12,
+    "joint_anchor_checks": 2835,
+    "maximum_anchor_gap_authoring_units": 0.0,
+    "maximum_envelope_extension_world_units": 9.01119638125242,
+    "normal_actor_scale": 0.01875,
+    "procedural_swelling_checks": 18,
+    "rig": "Original upper head, lower jaw, torso, three-part tail and two three-part legs; native draw-time torso/tail swelling retained"
+  },
+  "portable": {
+    "cmake_build": "/tmp/arpg-dodongo-portable",
+    "ctest": "arpg_dodongo_geometry",
+    "result": "passed",
+    "asan_ubsan": "passed; AppleClang address/undefined sanitizers on geometry, leak detection disabled"
+  },
+  "runtime": {
+    "checks": 91,
+    "render_frames": 1089,
+    "fire_frames": 33,
+    "tail_frames": 16,
+    "ice_frames": 35,
+    "swelling_frames": 21,
+    "native_creature_defeats": 4,
+    "results": "tests/arpg/dodongo-runtime-results-macos.json",
+    "qa_profile": "/tmp/soh-arpg-qa-creatures-dodongo03",
+    "coverage": "Original room population coexists with practice placement. All twelve meshes, cache identity, native scale/colliders, off gates and distance fallback. Live walk/footstep alternation, natural fire attack, head armor, body damage, tail sweep damage/blur, utility stun/recovery, ice effects and native death explosion. Bomb, bomb flower and Bombchu capture/consumption, native belly/tail swelling, one reward per death and scene teardown. Padded real-layout Bombchu regression detects the old out-of-bounds fuse write.",
+    "limits": "Damage/armor checks inject native collider flags and damage records. Explosives are spawned at the mouth for deterministic native capture; this does not verify manual throws or every Bombchu approach angle. Geometry runs under ASAN/UBSAN; the full game runtime does not. The Deku Tree fixture is not a full dungeon, age, regional or crowded-performance acceptance test."
+  },
+  "fixes": [
+    "Use the actual explosive actor type for fuse access; only accept native bombs, bomb flowers and Bombchus. Captured Bombchus use the existing actor freeze timer until consumed.",
+    "Practice occupancy accounts for height, so distant overhead enemies do not block ground placement. Check the broad footprint and headroom before spawning."
+  ],
+  "visual": {
+    "blender": "Final studio and native fire, tail-sweep and walk poses inspected; all thirteen native animation clips remain in the editable source.",
+    "native": "Model inspected in the native Metal renderer with original skin texture detail, scene light/fog, separately moving jaw, grounded feet and segmented tail.",
+    "production": "Normal build summon succeeded with original room enemies present. Dodongo approached Link and fire caused visible damage/burning. Equipment journal pause was verified; the production test application subsequently exited with status 0.",
+    "practice_path": "More / Arsenal & enemy counters / Practice encounters / Upgraded Dodongos"
+  },
+  "build": {
+    "production": "/tmp/soh-dodongo/production",
+    "production_sha256": "ec49ab8542756bb7131dff2732f2bde6e60da315cbb9f45ef60c005c554b1b0e",
+    "qa": "/tmp/soh-dodongo/qa",
+    "qa_sha256": "e2a714bbd133ae0d9f13249785e50c74b3888073747e19eff4575400e2534b43",
+    "app": "/tmp/soh-dodongo-playtest/Dodongo Adventure.app",
+    "app_executable_sha256": "d0c0a22c558630904db93c1bc6ee6fd275d85d0b0f7cabece863688e30524401",
+    "launcher": "/tmp/soh-dodongo-production.py",
+    "profile": "/tmp/soh-dodongo-playtest/profiles/arpg-testing",
+    "production_has_no_qa_harness": true,
+    "scope": "Isolated snapshot from the previously verified Bubble build. Added the dedicated Dodongo renderer and recompiled practice controls, native Dodongo and optional harness. Concurrent shared-worktree material/gear changes are not claimed as rebuilt. Shared Ninja builds and other users of the working tree were left alone.",
+    "compiled_source_sha256": {
+      "soh/soh/Enhancements/arpg/DodongoVisuals.cpp": "913b345dd56fe67257bf25f11adf1a05cd0ac2f5a0f4a5cb780017654203a425",
+      "soh/soh/Enhancements/arpg/DodongoVisuals.h": "dff43c4e0189405aee168840e63edb4edb07c7010575a056d11f1dae33d77cf0",
+      "soh/soh/Enhancements/arpg/DodongoGeometry.h": "72c1b938ee64689373824f1ec5f9ad36c0eecc061254f50834f1fc07c24da937",
+      "soh/soh/Enhancements/arpg/DodongoBlenderData.h": "03ce88425f68c8aa8b08f1a9692fad37cbaf739a12c87ad7ff34cb393684db5a",
+      "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "5de1cff8f99a4de54be9d5c97a5875710d63215476a58453ae2e52dbcf11fbc5",
+      "soh/soh/Enhancements/arpg/CreatureSystem.h": "f999b1a75f890a1fed5fd7fa131dc23fc39845af3e56d1413fd52c7191c2ae01",
+      "soh/src/overlays/actors/ovl_En_Dodongo/z_en_dodongo.c": "a7e75125c9e30153f9a66be9c5c4e826d8b627fd15c649c7bcf2707e60e0c1bc",
+      "tests/arpg/dodongo_runtime_test.cpp": "104f0e9bced9e120bbb06edd89845be7864b33f7998e959e55d337c63f865820"
+    },
+    "qa_exit_status": 0,
+    "production_exit_status": 0
+  },
+  "save": {
+    "path": "/Users/alec/Library/Application Support/shipofharkinian/profiles/player1/Save/file1.sav",
+    "before_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "after_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "unchanged": true
+  },
+  "blender": {
+    "authoring": "Installed Blender 5.1.2 in separate background factory-startup processes. Live MCP connection unavailable.",
+    "editable_source": "art/arpg/dodongos/dodongos.blend",
+    "user_project_modified": false
+  },
+  "remaining": "Other original enemy families, broader dungeon/age/terrain acceptance, original-material detail refinement and crowded-scene performance remain in the full active replayability goal."
+}

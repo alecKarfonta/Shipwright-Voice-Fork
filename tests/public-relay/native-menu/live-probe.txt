@@ -1,0 +1,1 @@
+PASS: TLS/WebSocket public discovery, canonical campaign metadata, two-client joining, party scaling and six shared kills.

@@ -1,0 +1,22 @@
+[0/2] Re-checking globbed directories...
+[1/4] Creating OSX icons ...
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_16x16.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_16x16@2x.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_32x32.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_32x32@2x.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_128x128.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_128x128@2x.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_256x256.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_256x256@2x.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_512x512.png
+[2/4] Building CXX object soh/CMakeFiles/soh.dir/soh/Network/Anchor/ServerBrowserWindow.cpp.o
+[3/4] Linking CXX executable soh/soh-macos; Copying asset ymls...

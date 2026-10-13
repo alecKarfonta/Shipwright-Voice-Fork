@@ -1,3 +1,5 @@
+#include "soh/Enhancements/arpg/ARPGBridge.h"
+#include "soh/Enhancements/EnemyDifficulty/EnemyDifficulty.h"
 #include "global.h"
 #include "vt.h"
 
@@ -1300,6 +1302,10 @@ void Actor_UpdateVelocityXZGravity(Actor* actor) {
     f32 speedModifier = 1.0f;
     if (actor->id == ACTOR_PLAYER && !inCutscene) {
         speedModifier = GameInteractor_MovementSpeedMultiplier();
+    }
+    // [TIME] | [INFO] | Actor_UpdateVelocityXZGravity | Apply movement bonuses once, preserving the actor's requested speed.
+    if (!inCutscene) {
+        speedModifier *= EnemyDifficulty_MovementMultiplier(actor) * ARPG_ActorMovementMultiplier(actor);
     }
     actor->velocity.x = Math_SinS(actor->world.rot.y) * actor->speedXZ * speedModifier;
     actor->velocity.z = Math_CosS(actor->world.rot.y) * actor->speedXZ * speedModifier;
@@ -2694,7 +2700,20 @@ void Actor_UpdateAll(PlayState* play, ActorContext* actorCtx) {
                         actor->colorFilterTimer--;
                     }
                     if (GameInteractor_ShouldActorUpdate(actor)) {
+                        Actor* arpgTarget = ARPG_EnemyTarget(actor, play);
+                        if (arpgTarget != &player->actor) {
+                            actor->xzDistToPlayer = Actor_WorldDistXZToActor(actor, arpgTarget);
+                            actor->yDistToPlayer = Actor_HeightDiff(actor, arpgTarget);
+                            actor->xyzDistToPlayerSq = SQ(actor->xzDistToPlayer) + SQ(actor->yDistToPlayer);
+                            actor->yawTowardsPlayer = Actor_WorldYawTowardActor(actor, arpgTarget);
+                        }
                         actor->update(actor, play);
+                        if (arpgTarget != &player->actor) {
+                            actor->xzDistToPlayer = Actor_WorldDistXZToActor(actor, &player->actor);
+                            actor->yDistToPlayer = Actor_HeightDiff(actor, &player->actor);
+                            actor->xyzDistToPlayerSq = SQ(actor->xzDistToPlayer) + SQ(actor->yDistToPlayer);
+                            actor->yawTowardsPlayer = Actor_WorldYawTowardActor(actor, &player->actor);
+                        }
                         GameInteractor_ExecuteOnActorUpdate(actor);
                     }
                     func_8003F8EC(play, &play->colCtx.dyna, actor);

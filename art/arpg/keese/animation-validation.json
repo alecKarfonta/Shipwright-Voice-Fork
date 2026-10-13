@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "native_frames": 8,
+  "variant_count": 3,
+  "hinge_checks": 192,
+  "maximum_hinge_center_gap_world_units": 0.018631653516298963,
+  "native_envelope_tolerance_world_units": 1.5,
+  "note": "Original wing hinges and actor-sized bounds verified using exported, quantized geometry; visual game checks remain required."
+}

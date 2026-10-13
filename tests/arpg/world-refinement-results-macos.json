@@ -1,0 +1,222 @@
+{
+  "checks": [
+    "Region populates multiple bounded packs without walking toward them",
+    "Region includes enemies more than the old 2400-unit despawn distance away",
+    "Distant enemies complete emergence and retain extended draw distance",
+    "Ranch and castle approaches each receive two native watch NPCs",
+    "Unassisted NPC combat cannot award player XP or loot",
+    "Multiple distant enemies travel at least 100 units while Link stays still",
+    "Watch patrols engage monsters without Link approaching",
+    "Monsters retaliate through native collision and damage the watch",
+    "Watch spear collisions damage living monsters without player attacks",
+    "Distant regional actors persist beyond the old director cleanup interval",
+    "No replacement waves spawn around an idle player",
+    "Joining a monster fight enables normal player rewards",
+    "Idle watchmen patrol more than 100 units after a battle clears",
+    "Watch partners remain available after the skirmish",
+    "A watchman helps a nearby wounded partner",
+    "Disabling population cleans up monsters and watchmen",
+    "Re-enabling populations rebuilds the region once",
+    "A second wilderness region populates from its own collision",
+    "Field watchmen are replaced by the destination region expedition",
+    "Destination has a safe resident fixture location",
+    "Native resident fixture initializes without pack membership",
+    "Existing native residents wake with the region population",
+    "Disabling living populations restores native residents without deleting them"
+  ],
+  "error": "",
+  "observations": [
+    {
+      "distance": 3379.3359375,
+      "enemy": 2,
+      "scaleY": 0.01600000075995922,
+      "x": 1362.388916015625,
+      "y": 394.50372314453125,
+      "z": 4441.80517578125
+    },
+    {
+      "distance": 2865.41845703125,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 1560.3203125,
+      "y": 283.2294616699219,
+      "z": 3753.472900390625
+    },
+    {
+      "distance": 2967.857421875,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 578.0866088867188,
+      "y": 255.39703369140625,
+      "z": 4255.99169921875
+    },
+    {
+      "distance": 4476.54541015625,
+      "enemy": 2,
+      "scaleY": 0.01600000075995922,
+      "x": -361.5244445800781,
+      "y": 202.39559936523438,
+      "z": 5797.9443359375
+    },
+    {
+      "distance": 4217.93115234375,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -550.6831665039062,
+      "y": 224.65133666992188,
+      "z": 5516.736328125
+    },
+    {
+      "distance": 4518.05859375,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -819.3724365234375,
+      "y": 171.07208251953125,
+      "z": 5776.96630859375
+    },
+    {
+      "distance": 223.78994750976562,
+      "enemy": 2,
+      "scaleY": 0.01600000075995922,
+      "x": -176.67916870117188,
+      "y": 0.0,
+      "z": 1227.5882568359375
+    },
+    {
+      "distance": 161.3656768798828,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -122.99784851074219,
+      "y": 0.0,
+      "z": 1259.4541015625
+    },
+    {
+      "distance": 151.8386993408203,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -49.90792465209961,
+      "y": 0.0,
+      "z": 1203.843017578125
+    },
+    {
+      "distance": 4912.48486328125,
+      "enemy": 2,
+      "scaleY": 0.01600000075995922,
+      "x": -2442.25,
+      "y": 313.0,
+      "z": 5593.125
+    },
+    {
+      "distance": 4876.68017578125,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -2380.7109375,
+      "y": 313.0,
+      "z": 5587.04833984375
+    },
+    {
+      "distance": 4970.79931640625,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -2398.367431640625,
+      "y": 313.0,
+      "z": 5685.03759765625
+    },
+    {
+      "guard": 179,
+      "health": 24,
+      "x": 104.04345703125,
+      "y": -0.0,
+      "z": 1264.0989990234375
+    },
+    {
+      "guard": 179,
+      "health": 24,
+      "x": -95.5045166015625,
+      "y": 0.0,
+      "z": 1329.81591796875
+    },
+    {
+      "guard": 179,
+      "health": 8,
+      "x": -2341.47900390625,
+      "y": 313.0,
+      "z": 5553.33251953125
+    },
+    {
+      "guard": 179,
+      "health": 24,
+      "x": -2457.909423828125,
+      "y": 313.0,
+      "z": 5760.0029296875
+    },
+    {
+      "bgFlags": 129,
+      "freeze": 0,
+      "gravity": -1.0,
+      "guardTravel": 215.2291259765625,
+      "health": 24,
+      "speed": 2.5,
+      "velocityX": 2.459028959274292,
+      "velocityY": -4.0
+    },
+    {
+      "bgFlags": 129,
+      "freeze": 0,
+      "gravity": -1.0,
+      "guardTravel": 314.4325256347656,
+      "health": 20,
+      "speed": 2.5,
+      "velocityX": -0.7483901977539062,
+      "velocityY": -4.0
+    },
+    {
+      "bgFlags": 129,
+      "freeze": 0,
+      "gravity": -1.0,
+      "guardTravel": 413.76397705078125,
+      "health": 8,
+      "speed": 2.5,
+      "velocityX": -2.477187395095825,
+      "velocityY": -4.0
+    },
+    {
+      "bgFlags": 129,
+      "freeze": 0,
+      "gravity": -1.0,
+      "guardTravel": 410.83740234375,
+      "health": 0,
+      "speed": 1.7999999523162842,
+      "velocityX": 0.6843042969703674,
+      "velocityY": -4.0
+    },
+    {
+      "movingDistantEnemies": 9,
+      "movingGuards": 4
+    },
+    {
+      "hurtWatchmen": 3,
+      "remaining": 12,
+      "watchAttacks": 24,
+      "watchHits": 11
+    },
+    {
+      "idleGuardTravel": 332.4996337890625
+    },
+    {
+      "idleGuardTravel": 275.8807373046875
+    },
+    {
+      "idleGuardTravel": 493.6931457519531
+    },
+    {
+      "idleGuardTravel": 333.3576965332031
+    }
+  ],
+  "status": "passed",
+  "verification": {
+    "date": "2026-10-12",
+    "platform": "macOS arm64",
+    "scope": "Encounter patrol variation, guard reactions and partner aid; native damage, travel, rewards, cleanup and resident restoration"
+  }
+}

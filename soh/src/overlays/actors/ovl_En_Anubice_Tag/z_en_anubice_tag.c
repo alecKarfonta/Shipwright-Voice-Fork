@@ -47,6 +47,18 @@ void EnAnubiceTag_Init(Actor* thisx, PlayState* play) {
 }
 
 void EnAnubiceTag_Destroy(Actor* thisx, PlayState* play) {
+    EnAnubiceTag* this = (EnAnubiceTag*)thisx;
+    // [TIME] | [INFO] | AnubisTag.Destroy | Detach an owned live body safely; a burning body must finish its native death and drop.
+    for (s32 category = 0; category < ACTORCAT_MAX; category++) {
+        for (Actor* child = play->actorCtx.actorLists[category].head; child != NULL; child = child->next) {
+            if (child == (Actor*)this->anubis && child->id == ACTOR_EN_ANUBICE && child->parent == thisx) {
+                child->parent = NULL;
+                if (child->category != ACTORCAT_PROP) Actor_Kill(child);
+            }
+        }
+    }
+    this->anubis = NULL;
+    this->actor.child = NULL;
 }
 
 void EnAnubiceTag_SpawnAnubis(EnAnubiceTag* this, PlayState* play) {
@@ -63,8 +75,15 @@ void EnAnubiceTag_ManageAnubis(EnAnubiceTag* this, PlayState* play) {
     EnAnubice* anubis;
     Vec3f offset;
 
-    if (this->anubis != NULL) {
-        anubis = this->anubis;
+    // [TIME] | [INFO] | AnubisTag.Manage | Validate membership before touching a cached child; interrupted actor removal must not leave a dangling controller.
+    anubis = NULL;
+    for (s32 category = 0; category < ACTORCAT_MAX; category++) {
+        for (Actor* child = play->actorCtx.actorLists[category].head; child != NULL; child = child->next) {
+            if (child == (Actor*)this->anubis && child->id == ACTOR_EN_ANUBICE) anubis = (EnAnubice*)child;
+        }
+    }
+    this->anubis = anubis;
+    if (anubis != NULL) {
         if (anubis->actor.update == NULL) {
             return;
         }

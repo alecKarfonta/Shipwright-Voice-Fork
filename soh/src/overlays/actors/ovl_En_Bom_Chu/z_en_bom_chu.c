@@ -1,4 +1,5 @@
 #include "z_en_bom_chu.h"
+#include "soh/Enhancements/arpg/ARPGBridge.h"
 #include "overlays/actors/ovl_En_Bom/z_en_bom.h"
 #include "objects/gameplay_keep/gameplay_keep.h"
 
@@ -111,6 +112,7 @@ void EnBomChu_Explode(EnBomChu* this, PlayState* play) {
                                this->actor.world.pos.z, 0, 0, 0, BOMB_BODY);
     if (bomb != NULL) {
         bomb->timer = 0;
+        ARPG_AdventureCopy(&bomb->actor, &this->actor);
     }
 
     this->timer = 1;
@@ -235,7 +237,8 @@ void EnBomChu_WaitForRelease(EnBomChu* this, PlayState* play) {
         this->axisLeft.y = 0;
         this->axisLeft.z = Math_CosS(this->actor.shape.rot.y + 0x4000);
 
-        this->actor.speedXZ = 8.0f;
+        ARPG_RelicSteerBombchu(&this->actor);
+    this->actor.speedXZ = 8.0f;
         //! @bug there is no NULL check on the floor poly.  If the player is out of bounds the floor poly will be NULL
         //! and will cause a crash inside this function.
         EnBomChu_UpdateFloorPoly(this, this->actor.floorPoly, play);
@@ -257,6 +260,7 @@ void EnBomChu_Move(EnBomChu* this, PlayState* play) {
     Vec3f posSide;
     Vec3f posUpDown;
 
+    ARPG_RelicSteerBombchu(&this->actor);
     this->actor.speedXZ = 8.0f;
     lineLength = this->actor.speedXZ * 2.0f;
 

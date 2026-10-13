@@ -1,4 +1,5 @@
 #include "z_en_skb.h"
+#include "soh/Enhancements/arpg/StalchildVisuals.h"
 #include "overlays/actors/ovl_En_Encount1/z_en_encount1.h"
 #include "objects/object_skb/object_skb.h"
 #include "soh/Enhancements/game-interactor/GameInteractor_Hooks.h"
@@ -174,6 +175,21 @@ void EnSkb_Init(Actor* thisx, PlayState* play) {
     func_80AFCDF8(this);
 }
 
+// [TIME] | [INFO] | EnSkb.ReleaseDebris | Interrupted head breaks and scene exits release only buffers still owned by this actor.
+void EnSkb_ReleaseDebris(EnSkb* this) {
+    if (this->bodyBreak.val != BODYBREAK_STATUS_FINISHED) {
+        ZELDA_ARENA_FREE_DEBUG(this->bodyBreak.matrices);
+        ZELDA_ARENA_FREE_DEBUG(this->bodyBreak.dLists);
+        ZELDA_ARENA_FREE_DEBUG(this->bodyBreak.objectIds);
+    }
+    this->bodyBreak.matrices = NULL;
+    this->bodyBreak.dLists = NULL;
+    this->bodyBreak.objectIds = NULL;
+    this->bodyBreak.count = 0;
+    this->bodyBreak.prevLimbIndex = 0;
+    this->bodyBreak.val = BODYBREAK_STATUS_FINISHED;
+}
+
 void EnSkb_Destroy(Actor* thisx, PlayState* play) {
     EnSkb* this = (EnSkb*)thisx;
 
@@ -186,6 +202,7 @@ void EnSkb_Destroy(Actor* thisx, PlayState* play) {
             }
         }
     }
+    EnSkb_ReleaseDebris(this);
     Collider_DestroyJntSph(play, &this->collider);
 }
 
@@ -414,6 +431,7 @@ void func_80AFD7B4(EnSkb* this, PlayState* play) {
     }
     this->actionState = 1;
     this->actor.flags &= ~ACTOR_FLAG_ATTENTION_ENABLED;
+    EnSkb_ReleaseDebris(this);
     BodyBreak_Alloc(&this->bodyBreak, 18, play);
     this->breakFlags |= 4;
     EffectSsDeadSound_SpawnStationary(play, &this->actor.projectedPos, NA_SE_EN_STALKID_DEAD, 1, 1, 0x28);
@@ -487,6 +505,7 @@ void func_80AFD968(EnSkb* this, PlayState* play) {
                             ((this->actor.colChkInfo.damageEffect == 0xE) &&
                              ((player->meleeWeaponAnimation >= 4 && player->meleeWeaponAnimation <= 11) ||
                               (player->meleeWeaponAnimation == 20 || player->meleeWeaponAnimation == 21)))) {
+                            EnSkb_ReleaseDebris(this);
                             BodyBreak_Alloc(&this->bodyBreak, 2, play);
                             this->breakFlags = 1;
                         }
@@ -539,6 +558,7 @@ s32 EnSkb_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* p
     } else if ((limbIndex == 12) && ((this->breakFlags & 2) != 0)) {
         *dList = NULL;
     }
+    ARPG_OverrideStalchildLimb(play, &this->actor, limbIndex, dList);
     return 0;
 }
 

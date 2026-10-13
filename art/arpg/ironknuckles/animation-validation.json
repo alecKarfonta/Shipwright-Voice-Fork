@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "geometry_variants": 1,
+  "armor_palettes": 3,
+  "native_animation_clips_per_variant": 12,
+  "native_animation_frames_per_variant": 279,
+  "visible_limbs_in_rig": 24,
+  "bridges": 8,
+  "posed_bridge_endpoint_checks": 53568,
+  "maximum_quantized_endpoint_error_world_units": 0.00843156402636709,
+  "maximum_posed_envelope_extension_world_units": 4.939127824677163,
+  "actor_scale": 0.012,
+  "scope": "Full native animation poses; quantized endpoints follow their assigned native joints. Native source vertices with mixed flex matrices are transformed under their own joints. Rigid armor plates are visually reviewed in attack, run, block, wake and death poses; no claim of watertight topology."
+}

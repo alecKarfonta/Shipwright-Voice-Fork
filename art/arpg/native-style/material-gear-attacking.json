@@ -1,0 +1,11 @@
+{
+  "animation": "__OTR__objects/gameplay_keep/gPlayerAnim_link_fighter_Lside_kiru",
+  "attackFrames": 3,
+  "drawFrames": 1801,
+  "mode": 7,
+  "movingFrames": 1,
+  "rollingFrames": 18,
+  "scene": 0,
+  "status": "captured-attack",
+  "swimmingFrames": 0
+}

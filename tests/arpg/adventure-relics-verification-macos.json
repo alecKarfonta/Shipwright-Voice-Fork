@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-12T21:54:38.105147-04:00",
+  "status": "passed",
+  "platform": "macOS arm64 / Metal",
+  "unique_ids": [
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "loot_slots": 16,
+  "adventure_slots": 12,
+  "save_version": 14,
+  "native": {
+    "relics": {
+      "status": "passed",
+      "checks": 54,
+      "result": "adventure-relics-runtime-results-macos.json"
+    },
+    "previous_items": {
+      "status": "passed",
+      "checks": 60,
+      "result": "adventure-relics-regression-results-macos.json"
+    }
+  },
+  "portable": {
+    "suites": 21,
+    "status": "passed",
+    "sanitizers": "Adventure relics and adventure items passed AddressSanitizer + UndefinedBehaviorSanitizer"
+  },
+  "ui": [
+    "OoT journal theme retained",
+    "Twelve adventure slots displayed as a four-column, three-row grid",
+    "All twelve new relics present in the backpack",
+    "Armor relic descriptions now use the unique-power inspector"
+  ],
+  "launcher": {
+    "path": "/Users/alec/git/z64-romhack-tutorials/soh/build-cmake/soh/soh-macos",
+    "sha256": "377e8969ab73da6581502872f018a4d084d2b0ef5d9a3b5e206241b4fb15b677",
+    "backup": "/tmp/soh-before-adventure-relics-c8c2129912e6",
+    "installed_atomically": true
+  },
+  "validation_scope": [
+    "Scripted native collision, effect, movement, consumption, save and render checks; not a full-game balance playthrough",
+    "Enemy control effects are limited to susceptible arsenal enemies; bosses retain native movement and phase rules",
+    "All runtime save writes used isolated temporary QA profiles"
+  ],
+  "source_sha256": {
+    "soh/soh/Enhancements/arpg/AdventureRelics.cpp": "44eebf5cbb15a145d7d39659998a42dd1b6c9b3502d92b526d94ac27711cc0b0",
+    "soh/soh/Enhancements/arpg/AdventureRelics.h": "a886e167e7c6c1dbf97433e1e3c72ce5a32cc81baec112e3e7c7bcde8dfbcb81",
+    "soh/soh/Enhancements/arpg/AdventureRelicRules.h": "7d75eff575aa83a3b97d30976d91104f161903eaa833c1e76892ee9a226f615a",
+    "soh/soh/Enhancements/arpg/ARPGTypes.h": "d7b093a4a60348e808f91058aa81ad5946926e3aeaf0b11d124dccdcd4d0d292",
+    "soh/soh/Enhancements/arpg/LootCatalog.h": "6dbca266b8676af06eaf5cd19a97fddfb900a34f5bceef4e775356988870d23d",
+    "soh/soh/Enhancements/arpg/ARPGSave.cpp": "39664d1395fd414eb9701176d990df6dd8c58c892e1cd01ab7c576e1e5225ee5",
+    "soh/soh/Enhancements/arpg/ARPGSaveCodec.h": "ee2488e57e5c5a8fbfc75aa5d0c63ab1d9aed5cb5ba15f3433c160e6a6ea029b",
+    "soh/soh/Enhancements/arpg/ItemModifierSystem.cpp": "542cbcf7159de8635efe7656889c6f6acf0b1e232d17915ed7b67dcb77fc22dd",
+    "soh/soh/Enhancements/arpg/ArsenalSystem.cpp": "37acfa89b84758448daf29880907dc5dc21127b6c7bd4cb215b435fb81a362fb",
+    "soh/soh/Enhancements/arpg/ARPGInventoryWindow.cpp": "0d18bef044487fb8d5ec9483ca0edd9f115e3bd113adfd797bba1416b75330b7",
+    "soh/soh/Enhancements/arpg/ItemAppearance.h": "555e78a49807f41350d19a3e325faf414d3b70f56226663f3f95813a2cd84d4d",
+    "tests/arpg/adventure_relics_test.cpp": "5f71549b9b8850b51497f89b2a69e05c3f56b8c0fbcc349d441d0ca531a2df15",
+    "tests/arpg/adventure_relics_runtime_test.cpp": "9be22b2db2607387cb81bb2232314b46e6c75844f4a51f90140e48bc4998eaa7"
+  }
+}

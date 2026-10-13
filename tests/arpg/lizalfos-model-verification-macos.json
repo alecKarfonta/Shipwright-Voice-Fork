@@ -1,0 +1,91 @@
+{
+  "status": "passed",
+  "date": "2026-10-12T15:07:03.949019",
+  "scope": "Blender-authored Lizalfos and Dinolfos replacement meshes; 20 limbs, three ranks, drawn/stored weapons. Stalfos and Wolfos retain their earlier geometry pending the same art-direction revision.",
+  "authoring": "Local Blender MCP 5.1.2; safe mode retained; original connected Blender file unchanged; standalone .blend and GLB packaged locally.",
+  "geometry": {
+    "source_sha256": "7b92cd5b4f600a5f65dfc03393bb8e0d008c3b1fc95011c92efcc440bb6832c0",
+    "vertices": 29854,
+    "triangles": 59678,
+    "parts": 212,
+    "subpixel_triangles_removed": 10,
+    "triangles_per_actor": {
+      "0:0": 28381,
+      "0:1": 29215,
+      "0:2": 29483,
+      "1:0": 28831,
+      "1:1": 29735,
+      "1:2": 30003
+    },
+    "materials": [
+      "skin",
+      "belly",
+      "scale",
+      "armor",
+      "trim",
+      "leather",
+      "claw",
+      "eye",
+      "steel",
+      "edge",
+      "mouth",
+      "pupil",
+      "scute"
+    ],
+    "space": "Native joint-local XYZ, positions x100; native normals retained; authoring-pose transforms omitted"
+  },
+  "portable_checks": "lizalfos-model-portable-results-macos.json",
+  "native_checks": {
+    "reptiles": {
+      "file": "lizalfos-model-runtime-results-macos.json",
+      "count": 26
+    },
+    "stalfos": {
+      "file": "lizalfos-stalfos-regression-runtime-results-macos.json",
+      "count": 18
+    },
+    "wolfos": {
+      "file": "lizalfos-wolfos-regression-runtime-results-macos.json",
+      "count": 26
+    },
+    "scope": "Native suites passed on the Blender body/weapon export and shared renderer. Subsequent scapular armor and cleaver tooth fit refinements were revalidated by normal and sanitized geometry checks; release visual check recorded separately.",
+    "runtime_qa_binary_sha256": "c5d493e0ca636161c28a6b83058cea9154a10bca82d0538677d0a26a6c3c2975"
+  },
+  "visual_checks": [
+    "Blender front, profile, three-quarter and rear inspection",
+    "Added fitted back armor after rear-angle review",
+    "Native six-enemy combat with Blender models, rank colors and native sword trails",
+    "Native pair review with forced Dinolfos alpha 115 confirmed translucent rendering",
+    "Release38 elite Dinolfos spawned through normal Testing shortcuts; daylight review identified and led to repair of a floating cleaver tooth",
+    "Final release40: elite Dinolfos Lv 16 Grimscar spawned through Testing shortcuts; corrected cleaver teeth remain fitted during native combat",
+    "Release40 paused in the Equipment journal at the updated encounter"
+  ],
+  "normal_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "source_sha256": {
+    "art/arpg/reptiles/build_reptiles.py": "90a80ce5a9ce41f4a715ea5ed95b75cf3869bb020230df422d938a22b6275d0f",
+    "art/arpg/reptiles/reptiles.glb": "7b92cd5b4f600a5f65dfc03393bb8e0d008c3b1fc95011c92efcc440bb6832c0",
+    "art/arpg/reptiles/reptiles.blend": "195a3539c6b9c1efa3fa6cfbe402ddd72e707e98f925efb3a53f098c7cb67092",
+    "art/arpg/reptiles/export_runtime.py": "2d2d313f79afbb22ce8e90ae4a2b46ba1a14e27c216887e8722527664e583f58",
+    "soh/soh/Enhancements/arpg/LizalfosGeometry.h": "d0ca21c4afc1e0d9b37fbf05145864da199eddc19e0540c96c1cdab084c5cbb4",
+    "soh/soh/Enhancements/arpg/LizalfosBlenderData.h": "438c3d2ed7287eaef9a00db1778039c45c4687ff5e74a41e84028618c6104ebe",
+    "soh/soh/Enhancements/arpg/EnemyVisuals.cpp": "f43d9a523ec2c0b188965d2c47f8c74897590e361080bb51010a1b11b5845b13",
+    "soh/src/overlays/actors/ovl_En_Zf/z_en_zf.c": "b4316e645c8b9b7c54c9e68c18a0925f672133c496f66242f8e73270fcf45ad6",
+    "tests/arpg/lizalfos_geometry_test.cpp": "b7c9c3583c94d4086df08fd1ea85159fb3daac2aa71ab95269be44dd1beba45c",
+    "tests/arpg/lizalfos_models_runtime_test.cpp": "a19fa264305edc1ac88b0b4fca52a3b3cdbae2a79e401eec3da711854a0e63fe"
+  },
+  "limitations": [
+    "Native rigs only; custom skeleton packs not tested",
+    "Paired Dodongo Cavern miniboss encounter not played through; native sheathing override checked directly",
+    "Semantic solid colors and scene-lit normals in game; Blender metallic/roughness studio render is not a PBR runtime shader",
+    "Wider age/scene coverage and long-run crowded-scene performance not measured",
+    "Other enemy families still need the Blender shape and material pass"
+  ],
+  "build_notes": [
+    "The checkout is shared with concurrent edits. Frozen test and release binaries prevent later rebuilds from silently changing the running QA version.",
+    "Added the missing OTRGlobals.h include to the concurrent Sprint.cpp source after its default modifier-button constant failed to compile; no sprint behavior changed."
+  ],
+  "build_runtime_tests": "OFF",
+  "build_sha256": "7328960ead2e0e9ef5d2b0410a79d9d3b181bbeed4f0be70df6bbd51560e69e3",
+  "preview": "/tmp/soh-arpg-inventory-preview-20261011-40/Ship ARPG Inventory.app",
+  "binary_asset_check": "All 29,854 packed Blender vertices byte-matched in the frozen final release executable; runtime QA entry point absent."
+}

@@ -1,0 +1,21 @@
+{
+  "source_sha256": "fb2055d11cbe156fd248b31afd3532fb1e11ea93c14c23f4973fd0a51a4fef52",
+  "vertices": 5027,
+  "triangles": 7491,
+  "parts": 39,
+  "subpixel_triangles_removed": 35,
+  "triangles_per_actor": {
+    "0": 7491
+  },
+  "materials": [
+    "skin",
+    "scute",
+    "belly",
+    "groove",
+    "horn",
+    "eye",
+    "pupil",
+    "mouth"
+  ],
+  "space": "Native joint-local XYZ, positions x100; native normals retained; authoring-pose transforms omitted"
+}

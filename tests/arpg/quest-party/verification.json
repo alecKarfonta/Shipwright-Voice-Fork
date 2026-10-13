@@ -1,0 +1,155 @@
+{
+  "date": "2026-10-13T14:01:58.744309+00:00",
+  "status": "passed",
+  "platform": "macOS arm64, native Metal game clients",
+  "campaign_quests": 58,
+  "features": [
+    "Opt-in quest sharing with prerequisite-aware invitations, catch-up, member/reward status and shared progress display.",
+    "Hunt and recovery counts add ceil(base/2) per additional joined participant up to eight; combat bounty XP and rupees add 25% per additional participant.",
+    "Named quest packs share three persistent identities, positions and defeats; health floor grows by 50% per additional participant without double-counting room HP scaling.",
+    "High-water party size persists through saves and reconnects; first reward claim freezes relay contract size.",
+    "Individual NPC reward claims remain personal and wait for outstanding contribution acknowledgements.",
+    "Shared collection, restoration, deliveries, songs, surveys, completed continuous vigils, story milestones and visits."
+  ],
+  "validation": {
+    "native_two_client": {
+      "status": "passed",
+      "checks": 70,
+      "checks_per_client": [
+        35,
+        35
+      ],
+      "evidence": [
+        "native-a.json",
+        "native-b.json"
+      ],
+      "coverage": [
+        "Real native enemy death callbacks",
+        "Concurrent contributions from both clients",
+        "Gathered nodes and canonical world positions",
+        "World restoration",
+        "Shared named pack health and defeat identities",
+        "Independent NPC reward claims and duplicate protection",
+        "Save serialization",
+        "Native disconnect and reconnect"
+      ]
+    },
+    "portable_sanitizers": {
+      "status": "passed",
+      "checks": 493,
+      "quests": 58,
+      "sanitizers": [
+        "AddressSanitizer",
+        "UndefinedBehaviorSanitizer"
+      ],
+      "evidence": "sanitizer-results.txt"
+    },
+    "portable_regression": {
+      "status": "passed",
+      "suites": 47,
+      "evidence": "portable-results.txt",
+      "note": "Earlier complete suite run in this pass; unrelated art source was being edited concurrently."
+    },
+    "focused_final": {
+      "status": "passed",
+      "tests": [
+        "arpg_quests",
+        "arpg_quest_party",
+        "arpg_quest_party_catalog"
+      ],
+      "evidence": "catalog-results.txt"
+    },
+    "relay": {
+      "status": "passed",
+      "command": "go test -race ./...",
+      "evidence": "relay-race-results.txt",
+      "coverage": [
+        "Real TCP paths for all 58 quest definitions",
+        "Simultaneous contributions",
+        "Duplicate and invalid events",
+        "Team separation",
+        "Ordered objectives",
+        "First accepted site wins",
+        "Events sent before consuming join acknowledgement",
+        "Continuous vigils",
+        "Late join and reconnect",
+        "Personal reward state"
+      ]
+    },
+    "ui": {
+      "status": "passed",
+      "resolutions": [
+        "1024x768",
+        "640x480"
+      ],
+      "evidence": [
+        "compact-invitation.png",
+        "compact-shared-progress.png",
+        "party-board.png"
+      ],
+      "manual_actions": [
+        "Observed prerequisite-blocked invitation on compact display",
+        "Satisfied prerequisite in isolated fixture; clicked Join quest",
+        "Verified invitation removed, quest joined and Track / Open quest functional",
+        "Verified both clients display 0/9, two participants, and 350 XP / 37 rupees for the same recovery bounty"
+      ]
+    },
+    "production": {
+      "status": "passed",
+      "evidence": [
+        "release-build.txt",
+        "production-startup.png"
+      ],
+      "qa_compile_flags": {
+        "SOH_ARPG_QUEST_PARTY_TESTS": "OFF",
+        "SOH_ARPG_RUNTIME_TESTS": "OFF",
+        "SOH_ARPG_JOURNAL_TESTS": "OFF"
+      },
+      "qa_role_string_absent_from_binary": true,
+      "smoke": "Normal title and empty file selection reached in a new isolated profile without QA environment variables."
+    }
+  },
+  "installed_artifacts": [
+    {
+      "artifact": "game",
+      "source": "/tmp/soh-quests-build/soh/soh-macos",
+      "installed": "/Users/alec/git/z64-romhack-tutorials/soh/build-cmake/soh/soh-macos",
+      "backup": "/tmp/before-quest-party-20261013-095954-game",
+      "sha256": "3b9333e6e2c88bfb11a91cc542717f40974e22e1fe374bd2785c1e328148f2ea"
+    },
+    {
+      "artifact": "relay",
+      "source": "/tmp/quest-party-relay-production",
+      "installed": "/Users/alec/git/z64-romhack-tutorials/soh/mp-server/go-anchor",
+      "backup": "/tmp/before-quest-party-20261013-095954-relay",
+      "sha256": "423ff06774b4d0e913579d9b75381cbfc982c103d49bc5c8da2fa6c79b29c2bd"
+    }
+  ],
+  "limits": [
+    "Not a manual playthrough of all 58 campaign quests; all definitions are exercised by portable and real TCP relay tests, with representative native objectives exercised in two running games.",
+    "Enemy movement and ordinary combat remain Anchor existing simulation; this does not add an authoritative combat server.",
+    "Both players need the updated game and the host needs the updated relay. Local macOS builds installed; no remote deployment or Windows build tested.",
+    "Relay state is in memory. Saved participants repopulate quest state after room/server restart; normal saving is required."
+  ],
+  "source_sha256": {
+    "soh/soh/Enhancements/arpg/QuestParty.h": "cccf7bf268bbe5a6ea892e3282d22f21939d94bb974f2450d446f6bb8fb2b41d",
+    "soh/soh/Enhancements/arpg/QuestParty.cpp": "4f1321a0d92459c29bfeac340a734fa9ed56e0cdeb4d841fd0b2d1635d283a44",
+    "soh/soh/Enhancements/arpg/QuestPartyRules.h": "d83c24bc55de4228d7e44d12bb27693ade17c3c9d96aaf800a7d21af828733bb",
+    "soh/soh/Enhancements/arpg/QuestRules.h": "67035c9c8d0350671b120ee86afbc7c8fd6838e1790a9fb5f5c6e9784b2d881f",
+    "soh/soh/Enhancements/arpg/QuestSystem.cpp": "3dd3712d28ec15765ecf4abeabddfe5b22b28b53cf4d072439c364289ca4783e",
+    "soh/soh/Enhancements/arpg/ARPGTypes.h": "fa893c2d72c9b5db6ae6e827f3cfcedc617562d2e6ffbdbe4b49563252d27eb5",
+    "soh/soh/Enhancements/arpg/ARPGSaveCodec.h": "578fa1762e5de72a10698315b4b12e220adad6c73f9a52a59d82a7b13d710915",
+    "soh/soh/Enhancements/arpg/ARPGSave.cpp": "7e1b788466d8d67ef74e30522bd6f4d051458d9d92c5b6427d25563190223dc4",
+    "soh/soh/Enhancements/arpg/EnemySystem.h": "62a95a8ebb3b5193e1766ec9a4e6f04e9f89b4930e5cc665ef878ba7118d2190",
+    "soh/soh/Enhancements/arpg/EnemySystem.cpp": "82ce5c962395e0a611f8e7bc5b3dfa263f395f80ac14afd8f1fd2688e3125c5f",
+    "mp-server/main.go": "cbbc0c866bda0a936e0829db99a67a2332606f5d194ca4476259d5a47608b67b",
+    "mp-server/quests.go": "1c647519718131fd4878202138a75ae1ce4cefbc6922d85597a36de5cff6f882",
+    "mp-server/quests_test.go": "d5e1ce3dd43e6e3a19cfd4d91ae48c461e23882c7937826c19f5498fbcc96b7a",
+    "mp-server/quest_catalog.json": "ac446495601cc2fe81cfb9f7420e9dc757a14228722c7952360e5005c7e094a0",
+    "soh/soh/Network/Anchor/Anchor.cpp": "21286e56c6aae4f7474eba30c1e9e37bca0edeb02ced07a0816339a8b8e4695a",
+    "soh/soh/Network/Anchor/Packets/AllClientState.cpp": "80386ffb5bab6cfa882d4c107f2dfb1785ca5d696832f27a3bf572ab4736fec1",
+    "tests/arpg/quest_party_test.cpp": "c59d3a59327e725aadbceadd01689de5222e826c7c00331fea7c023015d17387",
+    "tests/arpg/quest_party_runtime_test.cpp": "463fff8e2cc6b2f10ad5c3e1cc1fddb5e6217a6601148076e01189a7b4b94fd1",
+    "tests/arpg/export_quest_party_catalog.cpp": "5e67593a8708b1c7b78bf24c979b1f986ab4e6c9810f15e1cda48f5f2145bb81"
+  }
+}

@@ -1,4 +1,5 @@
 #include "z_boss_goma.h"
+#include "soh/Enhancements/arpg/ARPGBridge.h"
 #include "textures/boss_title_cards/object_goma.h"
 #include "objects/object_goma/object_goma.h"
 #include "overlays/actors/ovl_En_Goma/z_en_goma.h"
@@ -1836,7 +1837,8 @@ void BossGoma_UpdateHit(BossGoma* this, PlayState* play) {
                 BossGoma_SetupFallStruckDown(this);
                 Audio_PlayActorSound2(&this->actor, NA_SE_EN_GOMA_DAM2);
             } else if (this->actionFunc == BossGoma_FloorStunned &&
-                       (damage = CollisionCheck_GetSwordDamage(acHitInfo->toucher.dmgFlags, play)) != 0) {
+                       (damage = ARPG_BossWeaponDamageWithWeapon(&this->actor, this->collider.elements[0].info.acHit ? this->collider.elements[0].info.acHit->actor : NULL, acHitInfo->toucher.dmgFlags,
+                                  CollisionCheck_GetSwordDamage(acHitInfo->toucher.dmgFlags, play))) != 0) {
                 this->actor.colChkInfo.health -= damage;
 
                 if ((s8)this->actor.colChkInfo.health > 0) {

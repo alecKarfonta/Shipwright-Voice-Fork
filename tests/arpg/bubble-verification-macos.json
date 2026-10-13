@@ -1,0 +1,101 @@
+{
+  "status": "passed",
+  "date": "2026-10-13",
+  "feature": "Native Bubble art and motion integration",
+  "scope": "Upgrade original blue, red, white, green and great green flying skulls on the native rig. New custom species remain deferred.",
+  "art": {
+    "source_sha256": "7d3becfdd3471aa5abbc20bd2c6e33dc203f08b1f700a6c1412f5fd2a374ab07",
+    "vertices": 1971,
+    "triangles": 3936,
+    "parts": 20,
+    "subpixel_triangles_removed": 2,
+    "triangles_per_actor": {
+      "0": 3936
+    },
+    "materials": [
+      "bone",
+      "edge",
+      "cavity",
+      "membrane",
+      "vein",
+      "eye",
+      "tooth",
+      "suture"
+    ],
+    "space": "Native joint-local XYZ, positions x100; native normals retained; authoring-pose transforms omitted"
+  },
+  "animation": {
+    "status": "passed",
+    "native_animation_frames": 28,
+    "native_visible_limbs": 6,
+    "wing_seam_checks": 504,
+    "maximum_seam_gap_world_units": 2.5121479338940403e-15,
+    "maximum_envelope_extension_world_units": 1.1788117326420604,
+    "normal_actor_scale": 0.01,
+    "great_green_actor_scale": 0.03,
+    "rig": "Original skull, snapping mandible and two articulated wing pairs"
+  },
+  "portable": {
+    "cmake_build": "/tmp/arpg-bubble-portable",
+    "ctest": "arpg_bubble_geometry",
+    "result": "passed",
+    "asan_ubsan": "passed; AppleClang address/undefined sanitizers, leak detection disabled"
+  },
+  "runtime": {
+    "checks": 102,
+    "render_frames": 2081,
+    "stun_frames_observed": 79,
+    "detached_part_frames": 606,
+    "halted_fire_frames": 61,
+    "native_creature_defeats": 5,
+    "results": "tests/arpg/bubble-runtime-results-macos.json",
+    "qa_profile": "/tmp/soh-arpg-qa-creatures-bubble02",
+    "coverage": "All five native types, six visible limbs, four stable palettes, great green scale/collision, native flight/charge/jaw/wing movement, bomb attraction, shield vulnerability, damage/stun/recovery, red ambush and five linked trails, green flame cycles, white blur and route, great green moving orbit, fire/ice deaths, retained detached meshes, one-time rewards, scene reload, both off gates and distant fallback.",
+    "limits": "Damage and shield checks inject native collider flags/hit records. White and great green follow a controlled owned four-point route in the test scene. Halting the actor update while rendering reproduces the lethal-fire failure condition; this is not an interactive full Din's Fire cutscene test. No broad scene-route audit or crowded-scene performance benchmark is claimed."
+  },
+  "fixes": [
+    "Exclude native Bubble flame trails from enemy scaling, affixes, XP, loot and kill rewards through EnemyDifficulty::IsEnemyActor.",
+    "Initialize the native fire color filter before lethal processing so drawing while updates are halted never uses a zero filter duration."
+  ],
+  "visual": {
+    "blender": "CPU studio and motion frames inspected; skull respects the tilted native head joint, mandible remains separate and wing seams remain connected.",
+    "native": "Close white Bubble inspected in the native Metal renderer, including open skull, luminous pupils, separate jaw and articulated wings.",
+    "production": "Collapsed practice menu summon succeeded in the build without the QA harness. Blue flight, charging and damage were visible at play distance. Left the dedicated test profile paused in Equipment. Manual shield deflection was not independently confirmed.",
+    "practice_path": "More / Arsenal & enemy counters / Practice encounters / Upgraded Bubbles"
+  },
+  "build": {
+    "production": "/tmp/soh-bubble/production",
+    "production_sha256": "6d195352ff95c235b75652f5485f5ba17278822b3f0149d7923cea903894e1ee",
+    "qa": "/tmp/soh-bubble/qa",
+    "qa_sha256": "0b6a20f321e530659b20ab121e9d4452d0bf651102ac08d9eb6f202fbf591309",
+    "launcher": "/tmp/soh-bubble-production.py",
+    "app": "/tmp/soh-bubble-playtest/Bubble Adventure.app",
+    "app_executable_sha256": "ed753fd2e74ff7d4f92157141a1b0cac1cc1dc9be45773ca35f80dd89e3f6f3b",
+    "profile": "/tmp/soh-bubble-playtest/profiles/arpg-testing",
+    "production_has_no_qa_harness": true,
+    "scope": "Isolated snapshot from the previously verified Skulltula build. Recompiled the renderer, practice controls, enemy classifier, native Bubble actor and optional QA harness. Concurrent shared-worktree changes are not claimed as rebuilt. Shared Ninja builds were left alone.",
+    "compiled_source_sha256": {
+      "soh/soh/Enhancements/arpg/EnemyVisuals.cpp": "0778d6cefdace806faafd6e56ad1a4a703c813bc0ff54c97cd6bcd2b7727027f",
+      "soh/soh/Enhancements/arpg/NativeMaterials.h": "50c831a1aa3b28f206c6c56a339004ee3878901947e25f7f7670f7b0184cfdac",
+      "soh/soh/Enhancements/arpg/BubbleGeometry.h": "202facae8914b1c8d75a3caecfb26888a5069735a8215bc31a1cf21bfaa24ed3",
+      "soh/soh/Enhancements/arpg/BubbleBlenderData.h": "5fc67811008c425b934303dca1194edb737d0ddc0e2bb83e1f9a7539a20ce28d",
+      "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "92fc0c74a31ccbbd357b608eedf116c53ea3b983605cf13adf97e84152e22669",
+      "soh/soh/Enhancements/arpg/CreatureSystem.h": "733daf1c88f940810fd39c1a88da6b5ee6086271211e6934c9c50575e18a3df0",
+      "soh/soh/Enhancements/EnemyDifficulty/EnemyDifficulty.cpp": "90208031604c924a9920763eaa4c224f1f914b0fc56cacd5cf5b7934d7e462ed",
+      "soh/src/overlays/actors/ovl_En_Bb/z_en_bb.c": "1398df492e8175a614b5cfb8c948bcc14bf06558be23694eb135cfa2cdb3631c",
+      "tests/arpg/bubble_runtime_test.cpp": "b4bc34a4baf80b419c8bc8a7bcb8fdd6d01d2bcc6ab4ef3d9a1931798715f8d0"
+    }
+  },
+  "save": {
+    "path": "/Users/alec/Library/Application Support/shipofharkinian/profiles/player1/Save/file1.sav",
+    "before_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "after_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "unchanged": true
+  },
+  "blender": {
+    "authoring": "Installed Blender 5.1.2 in separate background factory-startup processes. Live MCP connection unavailable.",
+    "editable_source": "art/arpg/bubbles/bubbles.blend",
+    "user_project_modified": false
+  },
+  "remaining": "Other native enemy families, original-material detail refinement, scene breadth and crowded-scene performance remain in the full active replayability goal."
+}

@@ -1,0 +1,88 @@
+{
+  "status": "passed",
+  "date": "2026-10-12T15:27:16.447036",
+  "scope": "Blender-authored brown and white Wolfos on all 19 native visible limbs. Includes ordinary, champion and elite geometry, three blink shapes and 17 mixed-matrix flex connections. Stalfos Blender revision and other enemy/environment upgrades remain unfinished.",
+  "assets": {
+    "blend": "art/arpg/wolfos/wolfos.blend",
+    "glb": "art/arpg/wolfos/wolfos.glb",
+    "preview": "art/arpg/wolfos/wolfos-preview.png",
+    "compiler": "art/arpg/wolfos/export_runtime.py"
+  },
+  "geometry": {
+    "source_sha256": "cf080312d9334d45dee4c181fdd0408b02241ce8988c74ca7617cf3d9d268c1f",
+    "vertices": 17640,
+    "triangles": 54984,
+    "parts": 129,
+    "subpixel_triangles_removed": 32,
+    "triangles_per_actor": {
+      "0:0": 26756,
+      "0:1": 27080,
+      "0:2": 27308,
+      "1:0": 26756,
+      "1:1": 27080,
+      "1:2": 27308
+    },
+    "materials": [
+      "fur",
+      "mane",
+      "muzzle",
+      "skin",
+      "claw",
+      "metal",
+      "eye",
+      "mouth",
+      "pupil",
+      "highlight",
+      "silver"
+    ],
+    "space": "Native joint-local XYZ, positions x100; per-vertex joint index preserves 17 mixed-matrix connections; authoring-pose transforms omitted"
+  },
+  "portable_checks": "wolfos-blender-portable-results-macos.json",
+  "native_checks": [
+    {
+      "file": "wolfos-blender-runtime-results-macos.json",
+      "count": 26
+    },
+    {
+      "file": "wolfos-blender-stalfos-regression-results-macos.json",
+      "count": 18
+    },
+    {
+      "file": "wolfos-blender-lizalfos-regression-results-macos.json",
+      "count": 26
+    }
+  ],
+  "visual_checks": [
+    "Blender full body and close-up head/ear review for both species; fixed intersecting inner ear by modeling a continuous inset shell.",
+    "Blender joint review exposed cylindrical cuffs; revised bridges place their parent ring inside the adjoining muscle with parent-bone orientation.",
+    "Native Metal playback of six species/rank variants during combat checks.",
+    "Native brown and white elite visual review during turning and claw attacks.",
+    "Release41 testing menu spawns elite White Wolfos (Lv 18 Bonebreaker); skull, pointed ears, swept mane, claws and fitted connections observed during a native attack.",
+    "Release41 paused in Equipment with the testing encounter ready."
+  ],
+  "build_runtime_tests": "OFF",
+  "release_sha256": "b23fd2fe2c1fc8c9944bb684809fa865d45d86976b6a55d7508bafd77b80393b",
+  "runtime_qa_binary_sha256": "91fa4355d880f9c32318465020947fd6611bf09cdd03d0e752c266698ada2064",
+  "binary_asset_check": "All 17,640 final generated vertices, including joint indices and normals, matched byte-for-byte in both frozen binaries. Release binary excludes the native QA registration.",
+  "preview_app": "/tmp/soh-arpg-inventory-preview-20261011-41/Ship ARPG Inventory.app",
+  "preview_home": "/tmp/soh-arpg-remaster-preview",
+  "normal_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "source_sha256": {
+    "art/arpg/wolfos/build_wolfos.py": "1550f422a6c67eb8f46535eab6c8ec9f0c8071e0619870d9fdf794a77b66c697",
+    "art/arpg/wolfos/export_runtime.py": "207c25d8130501fd37214fc3404e8d5d6c5ec70d1eb90e5111bddc8a1dd5a2e0",
+    "art/arpg/wolfos/wolfos.glb": "cf080312d9334d45dee4c181fdd0408b02241ce8988c74ca7617cf3d9d268c1f",
+    "art/arpg/wolfos/wolfos.blend": "ed402f7cce4baa5bf1bc48b07d11c2d81660b0d9326809bd67c9abfaafb31b02",
+    "soh/soh/Enhancements/arpg/WolfosGeometry.h": "0e11f503151113f782e723bcab92f72ae520e7cd58cad4a5e4faadd83f77b82f",
+    "soh/soh/Enhancements/arpg/WolfosBlenderData.h": "0b6a7ca7ec14da581729f5bd5222ec1f6d7ca1ef08d626e93679baf7da81e541",
+    "soh/soh/Enhancements/arpg/WolfosRig.h": "09ee02f52687316d35b10e8026c528091c655613b00e2071df5d20e07c202842",
+    "soh/soh/Enhancements/arpg/EnemyVisuals.cpp": "f43d9a523ec2c0b188965d2c47f8c74897590e361080bb51010a1b11b5845b13",
+    "tests/arpg/wolfos_geometry_test.cpp": "7bac48380276fc169a1f1ca736c2183fcc6c1d23adaa27ebf707e86ec4226cef",
+    "tests/arpg/wolfos_models_runtime_test.cpp": "49224d37a938bc63f5f74f8342972a5d9c70efd1d0efad3cdb013fd9eb1a5312"
+  },
+  "limitations": [
+    "Native skeletons only; custom skeleton packs remain unvalidated.",
+    "Runtime uses lit vertex colors and native fog, without PBR textures or normal maps.",
+    "Blender source is an editable posed limb workshop, not a separate animation rig.",
+    "Crowded-scene performance and wider scene/age coverage remain unmeasured."
+  ]
+}

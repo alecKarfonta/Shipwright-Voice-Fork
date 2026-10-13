@@ -5,6 +5,7 @@
  */
 
 #include "z_en_am.h"
+#include "soh/Enhancements/arpg/ArmosVisuals.h"
 #include "objects/object_am/object_am.h"
 #include "overlays/actors/ovl_En_Bom/z_en_bom.h"
 #include "soh/Enhancements/game-interactor/GameInteractor_Hooks.h"
@@ -251,7 +252,10 @@ void EnAm_Destroy(Actor* thisx, PlayState* play) {
     DynaPoly_DeleteBgActor(play, &play->colCtx.dyna, this->dyna.bgId);
     Collider_DestroyCylinder(play, &this->hurtCollider);
     Collider_DestroyCylinder(play, &this->blockCollider);
-    //! @bug Quad collider is not destroyed (though destroy doesnt really do anything anyway)
+    // [TIME] | [INFO] | EnAm.Destroy | Destroy the enemy-only quad without treating passive statues as attackers.
+    if (this->dyna.actor.params != ARMOS_STATUE) {
+        Collider_DestroyQuad(play, &this->hitCollider);
+    }
 }
 
 void EnAm_SpawnEffects(EnAm* this, PlayState* play) {
@@ -944,6 +948,11 @@ void EnAm_Update(Actor* thisx, PlayState* play) {
 static Vec3f sUnused1 = { 1100.0f, -700.0f, 0.0f };
 static Vec3f sUnused2 = { 0.0f, 0.0f, 0.0f };
 
+s32 EnAm_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s* rot, void* thisx) {
+    ARPG_OverrideArmosLimb(play, &((EnAm*)thisx)->dyna.actor, limbIndex, dList);
+    return false;
+}
+
 void EnAm_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, void* thisx) {
     EnAm* this = (EnAm*)thisx;
 
@@ -967,7 +976,7 @@ void EnAm_Draw(Actor* thisx, PlayState* play) {
 
     Gfx_SetupDL_25Opa(play->state.gfxCtx);
     gDPSetEnvColor(POLY_OPA_DISP++, 0, 0, 0, this->textureBlend);
-    SkelAnime_DrawSkeletonOpa(play, &this->skelAnime, NULL, EnAm_PostLimbDraw, this);
+    SkelAnime_DrawSkeletonOpa(play, &this->skelAnime, EnAm_OverrideLimbDraw, EnAm_PostLimbDraw, this);
 
     if (this->iceTimer != 0) {
         this->dyna.actor.colorFilterTimer++;

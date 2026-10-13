@@ -39,6 +39,10 @@ DEFINE_HOOK(OnActorSpawn, (void* actor));
 DEFINE_HOOK(ShouldActorUpdate, (void* actor, bool* result));
 DEFINE_HOOK(OnActorUpdate, (void* actor));
 DEFINE_HOOK(OnActorKill, (void* actor));
+// [TIME] | [INFO] | OnDamageActor | fired from CollisionCheck_ApplyDamage before
+// damage is committed to colChkInfo.damage; hooks may rescale *damage per-affix
+// (actor = damaged actor, dmgFlags = attacker damage-type bit, damage = mutable)
+DEFINE_HOOK(OnDamageActor, (void* actor, void* attacker, u32 dmgFlags, uint8_t attackType, float* damage));
 DEFINE_HOOK(ShouldActorDestroy, (void* actor, bool* result));
 DEFINE_HOOK(OnActorDestroy, (void* actor));
 DEFINE_HOOK(OnEnemyDefeat, (void* actor));

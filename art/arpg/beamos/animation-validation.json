@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "geometry_variants": 1,
+  "native_animation_clips_per_variant": 1,
+  "native_animation_frames_per_variant": 8,
+  "visible_limbs_in_rig": 4,
+  "bridges": 0,
+  "posed_bridge_endpoint_checks": 0,
+  "maximum_quantized_endpoint_error_world_units": 0.0,
+  "maximum_posed_envelope_extension_world_units": 0.29911406700637144,
+  "actor_scale": 0.01,
+  "scope": "Full native animation poses; quantized endpoints follow their assigned native joints. Native source vertices and authored connection endpoints are transformed under their assigned joints. Native root offsets translate both native and authored geometry equally. Shutters, inset eye and pedestal are reviewed in the eight native clip frames; no claim of watertight topology.",
+  "native_callback_sweep_poses": 256,
+  "swept_vertex_checks": 1218560,
+  "maximum_sweep_extension_small_world_units": 0.5150817095389328,
+  "maximum_sweep_extension_large_world_units": 0.7211143933545059,
+  "sweep_scope": "All eight shutter poses, eight head yaws and four pitches through the native attack clamp. Envelope validation does not prove per-triangle clearance or actual collision."
+}

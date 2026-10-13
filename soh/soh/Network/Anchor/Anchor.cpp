@@ -1,8 +1,13 @@
 #include <nlohmann/json.hpp>
 
 #include "Anchor.h"
+#include "Fellowship.h"
+#include "CharacterTravel.h"
+#include "CharacterPolicy.h"
+#include "soh/Enhancements/arpg/QuestParty.h"
 #include "soh/Enhancements/nametag.h"
 #include "soh/ObjectExtension/ObjectExtension.h"
+#include "soh/Enhancements/EnemyDifficulty/EnemyDifficulty.h"
 
 extern "C" {
 #include "macros.h"
@@ -13,122 +18,151 @@ extern PlayState* gPlayState;
 
 // MARK: - Overrides
 
+bool Anchor::CanSyncTeamSave() const {
+    return roomState.syncItemsAndFlags && !CharacterTravel::Enabled();
+}
+
+void Anchor::ClearPacketQueues() {
+    std::scoped_lock lock(incomingPacketQueueMutex, outgoingPacketQueueMutex);
+    incomingPacketQueue = {};
+    outgoingPacketQueue = {};
+    incomingBytes = outgoingBytes = 0;
+}
+
 void Anchor::Enable() {
+    if (isEnabled) return;
+    Network::Disable(); // Finish the prior transport before starting another server.
+    ClearPacketQueues();
+    ARPG::Quests::Party::Reset();
+    ownClientId = 0;
+    roomState = {};
+    RegisterHooks();
     Network::Enable(CVarGetString(CVAR_REMOTE_ANCHOR("Host"), "anchor.hm64.org"),
                     CVarGetInteger(CVAR_REMOTE_ANCHOR("Port"), 43383));
-    ownClientId = CVarGetInteger(CVAR_REMOTE_ANCHOR("LastClientId"), 0);
-    roomState.ownerClientId = 0;
 }
 
 void Anchor::Disable() {
     Network::Disable();
-
+    ApplyTransportState();
+    ClearPacketQueues();
+    ARPG::Quests::Party::Reset();
+    justLoadedSave = shouldRefreshActors = false;
+    EnemyDifficulty::RegisterHooks(false);
+    Fellowship::Reset();
     clients.clear();
     RefreshClientActors();
+    RegisterHooks();
 }
 
-void Anchor::OnConnected() {
-    SendPacket_Handshake();
-    RegisterHooks();
+// These callbacks run on the network thread. Game state, hooks, saves and UI
+// are touched only by ApplyTransportState on the game thread.
+void Anchor::OnConnected() { ++transportEpoch; }
+void Anchor::OnDisconnected() { ++transportEpoch; }
 
-    if (IsSaveLoaded()) {
-        SendPacket_RequestTeamState();
+void Anchor::ApplyTransportState() {
+    const auto epoch = transportEpoch.load();
+    if (epoch == appliedTransportEpoch) return;
+    appliedTransportEpoch = epoch;
+    {
+        std::lock_guard<std::mutex> lock(outgoingPacketQueueMutex);
+        outgoingPacketQueue = {};
+        outgoingBytes = 0;
     }
-}
-
-void Anchor::OnDisconnected() {
+    clients.clear();
+    ownClientId = 0;
+    roomState = {};
+    Fellowship::Reset();
+    ARPG::Quests::Party::Reset();
+    RefreshClientActors();
     RegisterHooks();
+    EnemyDifficulty::RegisterHooks(isConnected);
+    if (isConnected) {
+        SendPacket_Handshake();
+        if (IsSaveLoaded()) SendPacket_RequestTeamState();
+    }
 }
 
 void Anchor::ProcessOutgoingPackets() {
-    // Copy all queued packets while holding the lock, then send them after releasing
-    std::queue<nlohmann::json> packetsToSend;
+    std::queue<QueuedPacket> packets;
     {
         std::lock_guard<std::mutex> lock(outgoingPacketQueueMutex);
-        packetsToSend.swap(outgoingPacketQueue);
+        packets.swap(outgoingPacketQueue);
+        outgoingBytes = 0;
     }
-
-    // Send packets without holding the lock
-    while (!packetsToSend.empty()) {
-        nlohmann::json payload = packetsToSend.front();
-        packetsToSend.pop();
-
-        if (!payload.contains("quiet")) {
-            SPDLOG_DEBUG("[Anchor] Sending payload:\n{}", payload.dump());
-        }
-        Network::SendJsonToRemote(payload);
+    while (!packets.empty()) {
+        auto packet = std::move(packets.front());
+        packets.pop();
+        if (packet.epoch == transportEpoch.load() && isConnected)
+            Network::SendJsonToRemote(std::move(packet.payload));
     }
 }
 
 void Anchor::SendJsonToRemote(nlohmann::json payload) {
-    if (!isConnected) {
-        return;
-    }
-
+    if (!isConnected || appliedTransportEpoch != transportEpoch.load()) return;
+    if (CharacterTravel::Enabled() && CharacterTravel::IsLegacySavePacket(payload.value("type", std::string{}))) return;
     payload["clientId"] = ownClientId;
-    if (!payload.contains("quiet")) {
-        SPDLOG_DEBUG("[Anchor] Queuing payload:\n{}", payload.dump());
-    }
-
-    if (payload["type"] == HANDSHAKE) {
-        Network::SendJsonToRemote(payload);
+    const auto bytes = payload.dump().size();
+    std::lock_guard<std::mutex> lock(outgoingPacketQueueMutex);
+    if (outgoingPacketQueue.size() >= 1024 || outgoingBytes + bytes > 4 * 1024 * 1024) {
+        isEnabled = false;
         return;
     }
-
-    // Queue the packet to be sent on the network thread
-    std::lock_guard<std::mutex> lock(outgoingPacketQueueMutex);
-    outgoingPacketQueue.push(payload);
+    outgoingBytes += bytes;
+    outgoingPacketQueue.push({appliedTransportEpoch, std::move(payload), bytes});
 }
 
 void Anchor::OnIncomingJson(nlohmann::json payload) {
-    // If it doesn't contain a type, it's not a valid payload
-    if (!payload.contains("type")) {
+    if (!payload.is_object() || !payload.contains("type") || !payload["type"].is_string()) return;
+    const auto bytes = payload.dump().size();
+    std::lock_guard<std::mutex> lock(incomingPacketQueueMutex);
+    if (incomingPacketQueue.size() >= 1024 || incomingBytes + bytes > 4 * 1024 * 1024) {
+        isEnabled = false;
         return;
     }
-
-    // If it's not a quiet payload, log it
-    if (!payload.contains("quiet")) {
-        SPDLOG_DEBUG("[Anchor] Received payload:\n{}", payload.dump());
-    }
-
-    std::string packetType = payload["type"].get<std::string>();
-
-    // Ignore packets from mismatched clients, except for ALL_CLIENT_STATE, UPDATE_CLIENT_STATE, and PLAYER_UPDATE
-    if (packetType != ALL_CLIENT_STATE && packetType != UPDATE_CLIENT_STATE && packetType != PLAYER_UPDATE) {
-        if (payload.contains("clientId")) {
-            uint32_t clientId = payload["clientId"].get<uint32_t>();
-            if (clients.contains(clientId) && clients[clientId].clientVersion != clientVersion) {
-                return;
-            }
-        }
-    }
-
-    // Queue all packets to be processed on the game thread
-    std::lock_guard<std::mutex> lock(incomingPacketQueueMutex);
-    incomingPacketQueue.push(payload);
+    incomingBytes += bytes;
+    incomingPacketQueue.push({transportEpoch.load(), std::move(payload), bytes});
 }
 
 void Anchor::ProcessIncomingPacketQueue() {
+    ApplyTransportState();
     // Copy all queued packets while holding the lock, then process them after releasing
-    std::queue<nlohmann::json> packetsToProcess;
+    std::queue<QueuedPacket> packetsToProcess;
     {
         std::lock_guard<std::mutex> lock(incomingPacketQueueMutex);
         packetsToProcess.swap(incomingPacketQueue);
+        incomingBytes = 0;
     }
 
     // Process packets without holding the lock
-    while (!packetsToProcess.empty()) {
-        nlohmann::json payload = packetsToProcess.front();
+    while (isEnabled && !packetsToProcess.empty()) {
+        auto queued = std::move(packetsToProcess.front());
         packetsToProcess.pop();
+        if (!isConnected || queued.epoch != appliedTransportEpoch || queued.epoch != transportEpoch.load()) continue;
+        auto payload = std::move(queued.payload);
 
         std::string packetType = payload["type"].get<std::string>();
 
+        if (CharacterTravel::Enabled() && CharacterTravel::IsLegacySavePacket(packetType))
+            continue;
+
+        // The client roster is owned by this thread, including version checks.
+        if (packetType != ALL_CLIENT_STATE && packetType != UPDATE_CLIENT_STATE && packetType != PLAYER_UPDATE &&
+            payload.contains("clientId") && payload["clientId"].is_number_unsigned()) {
+            const auto id = payload["clientId"].get<uint32_t>();
+            if (clients.contains(id) && clients[id].clientVersion != clientVersion) continue;
+        }
         isProcessingIncomingPacket = true;
 
         try {
             // packetType here is a string so we can't use a switch statement
-            if (packetType == ALL_CLIENT_STATE)
+            if (packetType == "SOCIAL" || packetType == "SERVER_CAPABILITIES")
+                Fellowship::Receive(payload);
+            else if (packetType == ALL_CLIENT_STATE)
                 HandlePacket_AllClientState(payload);
+            else if (packetType == "ARPG_QUEST")
+                ARPG::Quests::Party::Receive(payload);
+            else if (packetType == ARPG_ENEMY_KILL)
+                HandlePacket_ArpgEnemyKill(payload);
             else if (packetType == DAMAGE_PLAYER)
                 HandlePacket_DamagePlayer(payload);
             else if (packetType == DISABLE_ANCHOR)

@@ -1,5 +1,7 @@
 #include "z_en_dodongo.h"
+#include "soh/Enhancements/arpg/DodongoVisuals.h"
 #include "overlays/actors/ovl_En_Bom/z_en_bom.h"
+#include "overlays/actors/ovl_En_Bom_Chu/z_en_bom_chu.h"
 #include "overlays/actors/ovl_En_Bombf/z_en_bombf.h"
 #include "objects/object_dodongo/object_dodongo.h"
 #include "soh/Enhancements/game-interactor/GameInteractor_Hooks.h"
@@ -463,10 +465,14 @@ void EnDodongo_SwallowBomb(EnDodongo* this, PlayState* play) {
         ((EnBom*)this->actor.child)->timer++;
     } else if (this->actor.parent != NULL) {
         this->actor.parent->world.pos = this->mouthPos;
-        ((EnBombf*)this->actor.parent)->timer++;
-        //! @bug An explosive can also be a bombchu, not always a bomb, which leads to a serious bug. ->timer (0x1F8) is
-        //! outside the bounds of the bombchu actor, and the memory it writes to happens to be one of the pointers in
-        //! the next arena node. When this value is written to, massive memory corruption occurs.
+        // [TIME] | [INFO] | EnDodongo.SwallowBomb | Bombchus have a different layout; extend the fuse on the actual actor type.
+        if (this->actor.parent->id == ACTOR_EN_BOM_CHU) {
+            ((EnBomChu*)this->actor.parent)->timer++;
+            // [TIME] | [INFO] | EnDodongo.SwallowBomb | Native actor freezing suspends crawling/collision until the reverse-mouth animation consumes it.
+            this->actor.parent->freezeTimer = 2;
+        } else if (this->actor.parent->id == ACTOR_EN_BOMBF) {
+            ((EnBombf*)this->actor.parent)->timer++;
+        }
     }
 
     if ((s32)this->skelAnime.curFrame == 28) {
@@ -802,6 +808,7 @@ s32 EnDodongo_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3
     if ((limbIndex == 15) || (limbIndex == 16)) {
         Matrix_Scale(this->bodyScale.x, this->bodyScale.y, this->bodyScale.z, MTXMODE_APPLY);
     }
+    ARPG_OverrideDodongoLimb(play, &this->actor, limbIndex, dList);
     return false;
 }
 
@@ -944,7 +951,8 @@ s32 EnDodongo_AteBomb(EnDodongo* this, PlayState* play) {
     f32 dz;
 
     while (actor != NULL) {
-        if ((actor->params != 0) || (actor->parent != NULL)) {
+        if ((actor->params != 0) || (actor->parent != NULL) ||
+            ((actor->id != ACTOR_EN_BOM) && (actor->id != ACTOR_EN_BOMBF) && (actor->id != ACTOR_EN_BOM_CHU))) {
             actor = actor->next;
             continue;
         }
@@ -958,6 +966,9 @@ s32 EnDodongo_AteBomb(EnDodongo* this, PlayState* play) {
                 this->actor.parent = actor;
             }
             actor->parent = &this->actor;
+            if (actor->id == ACTOR_EN_BOM_CHU) {
+                actor->freezeTimer = 2;
+            }
             return true;
         }
         actor = actor->next;

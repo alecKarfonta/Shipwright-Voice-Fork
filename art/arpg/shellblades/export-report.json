@@ -1,0 +1,20 @@
+{
+  "source_sha256": "a4c83342c0668554363c169b4d029b320ded68bc142d25367179728ee7eebc5f",
+  "vertices": 6770,
+  "triangles": 13216,
+  "parts": 12,
+  "subpixel_triangles_removed": 0,
+  "triangles_per_actor": {
+    "0": 13216
+  },
+  "materials": [
+    "shell",
+    "edge",
+    "pearl",
+    "ridge",
+    "flesh",
+    "eye",
+    "pupil"
+  ],
+  "space": "Native joint-local XYZ, positions x100; native normals retained; per-vertex native joint indices; authoring-pose transforms omitted"
+}

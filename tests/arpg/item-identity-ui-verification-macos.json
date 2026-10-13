@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-12",
+  "platform": "macOS arm64 / Metal",
+  "status": "implemented; production build running",
+  "preview": "org.shipofharkinian.arpg-inventory-preview51",
+  "pid_at_launch": 11070,
+  "preview_home": "/tmp/soh-arpg-remaster-preview",
+  "binary": "/tmp/soh-inventory-polish-release-binary",
+  "binary_sha256": "661feedafe299f54a1bc55a34125d3f27361b12bd60e51a1acefb8618bab3838",
+  "build_log": "/tmp/soh-inventory-polish-build.log",
+  "runtime_log": "/tmp/soh-arpg-inventory-ui51.log",
+  "save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "normal_save_unchanged": true,
+  "changes": [
+    "Shared 18-entry inventory/world appearance catalog; inventory-only modifier tint removed.",
+    "Six distinct blade profiles and forged guards; sword length applied consistently to pickup, hand and scabbard meshes.",
+    "Pointed wooden/root and heater-shaped knight shields with large leaf/ivory-wing relief matching painted icons.",
+    "Wind boots use pale green cuffs, gold feather fittings and green ties; tunic pickup belt and worn cloth palette brought closer to painted art.",
+    "Overview, Compare and Details inspector tabs; modifier comparison hides unchanged values.",
+    "Character totals, testing and navigation moved into focused pages; backpack filters collapse; hover and drag tooltips are compact.",
+    "Recipes now select one recipe at a time; Escape returns from utility/forge views; equipment cards show their visible appearance name."
+  ],
+  "checks": {
+    "normal_geometry": "pass: 201466 nondegenerate triangles across 72 meshes; unit normals, bounds, base length ratios and appearance/socket resolution",
+    "asan_ubsan_geometry": "pass: same suite",
+    "artwork_files": "18/18 exist",
+    "native_ui": [
+      "Equipment overview: compact stats and primary equip action visible.",
+      "Compare and Details tabs opened and displayed separately.",
+      "More page opened with character, forge, quest and testing destinations.",
+      "Character totals opened separately.",
+      "Click-to-equip swapped the selected sword and retained the old sword in backpack.",
+      "Final production More > Preview matching gear rendered matching pickups and equipped gear in Hyrule Field."
+    ],
+    "blender": "Runtime OBJ meshes inspected through local Blender MCP; standalone factory-startup review blend and rendered PNG generated."
+  },
+  "limits": [
+    "Held-button drag automation was not verified: raw SDL trace showed down/up at the source followed by unpressed movement. Existing ImGui drag path retained; experimental fallback and all temporary logging removed.",
+    "Worn tunics retain native animated body geometry with recoloring and ornaments; they are not complete replacement character costumes.",
+    "Different scene lighting affects perceived color; this is a silhouette/material identity pass, not new painted surface textures.",
+    "Final preview was left running after user interaction was observed."
+  ],
+  "source_sha256": {
+    "soh/soh/Enhancements/arpg/ARPGInventoryWindow.cpp": "b128078d4a61e5604e98c825ff68468bc1a6511f45a08adcdba54e41e1c61e42",
+    "soh/soh/Enhancements/arpg/ARPGInventoryWindow.h": "c422eeb609fd535f87239f907af5a52a5e103a82ae9b895d340363c0e4520e65",
+    "soh/soh/Enhancements/arpg/ItemAppearance.h": "475043c8f677a4fb7cd9eab9bead8598425cc4f25726f6c603a7ea2626a05c33",
+    "soh/soh/Enhancements/arpg/GearGeometry.h": "d92d88225a46dfe4bbd7de5bd647843968e5c9cd425cb59e9be03c8fa121afa9",
+    "soh/soh/Enhancements/arpg/GearVisuals.cpp": "d662267cf57efe365c20d4c26523729e5f3ff312602ff78bd8885390636a8439",
+    "tests/arpg/gear_geometry_test.cpp": "a900154177dfb9ed3844f540051bc6a40c8084c829383796a126fd43dfd5d5a0"
+  },
+  "blender_review": "art/arpg/gear/gear-identity.blend",
+  "preview_image": "art/arpg/gear/gear-identity-preview.png"
+}

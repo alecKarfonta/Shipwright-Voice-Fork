@@ -5,6 +5,8 @@
  */
 
 #include "z_en_tite.h"
+#include "soh/Enhancements/arpg/EnemyVisuals.h"
+#include "soh/Enhancements/arpg/TektiteBehavior.h"
 #include "overlays/actors/ovl_En_Encount1/z_en_encount1.h"
 #include "overlays/effects/ovl_Effect_Ss_Dead_Sound/z_eff_ss_dead_sound.h"
 #include "vt.h"
@@ -830,6 +832,9 @@ void EnTite_SetupFlipUpright(EnTite* this) {
 void EnTite_FlipUpright(EnTite* this, PlayState* play) {
     Math_SmoothStepToS(&this->actor.shape.rot.z, 0, 1, 0xFA0, 0);
     SkelAnime_Update(&this->skelAnime);
+    if (ARPG_TektiteWaterRecovery(&this->actor, play)) {
+        return;
+    }
     //! @bug flying tektite: the following condition is never met and tektite stays stuck in this action forever
     if (this->actor.bgCheckFlags & BGCHECKFLAG_GROUND_TOUCH) {
         func_80033480(play, &this->frontLeftFootPos, 1.0f, 2, 80, 15, 1);
@@ -959,6 +964,11 @@ void EnTite_Update(Actor* thisx, PlayState* play) {
     CollisionCheck_SetOC(play, &play->colChkCtx, &this->collider.base);
 }
 
+s32 EnTite_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** limbDList, Vec3f* pos, Vec3s* rot, void* thisx) {
+    ARPG_OverrideEnemyLimb(play, (Actor*)thisx, limbIndex, limbDList);
+    return false;
+}
+
 void EnTite_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** limbDList, Vec3s* rot, void* thisx) {
     EnTite* this = (EnTite*)thisx;
 
@@ -995,7 +1005,7 @@ void EnTite_Draw(Actor* thisx, PlayState* play) {
         gSPSegment(POLY_OPA_DISP++, 0x09, SEGMENTED_TO_VIRTUAL(object_tite_Tex_001F00));
         gSPSegment(POLY_OPA_DISP++, 0x0A, SEGMENTED_TO_VIRTUAL(object_tite_Tex_002100));
     }
-    SkelAnime_DrawSkeletonOpa(play, &this->skelAnime, NULL, EnTite_PostLimbDraw, thisx);
+    SkelAnime_DrawSkeletonOpa(play, &this->skelAnime, EnTite_OverrideLimbDraw, EnTite_PostLimbDraw, thisx);
     CLOSE_DISPS(play->state.gfxCtx);
 
     if (this->spawnIceTimer != 0) {

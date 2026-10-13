@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "geometry_variants": 1,
+  "native_animation_clips_per_variant": 4,
+  "native_animation_frames_per_variant": 129,
+  "visible_limbs_in_rig": 8,
+  "extra_native_draws": 1,
+  "bridges": 0,
+  "additional_rotor_squash_poses": 48,
+  "posed_bridge_endpoint_checks": 0,
+  "maximum_quantized_endpoint_error_world_units": 0.0,
+  "maximum_posed_envelope_extension_world_units": 7.10051256829347,
+  "actor_scale": 0.036,
+  "scope": "All native animation poses plus 48 independent rotor/squash samples; rigid geometry follows its assigned native joints. Native source vertices and authored connection endpoints are transformed under their assigned joints. Native root offsets translate both native and authored geometry equally. Bulb, crown, six blades and weak root are reviewed in all four clips; no claim of watertight topology."
+}

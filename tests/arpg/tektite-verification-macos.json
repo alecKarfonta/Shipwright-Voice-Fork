@@ -1,0 +1,108 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-12T22:40:35.864112-04:00",
+  "feature": "Original red and blue Tektites upgraded on their native skeleton and action controller; blue water recovery corrected",
+  "native_checks": 74,
+  "native_render_frames": 221,
+  "native_detached_part_observations": 136,
+  "native_result": "tests/arpg/tektite-runtime-results-macos.json",
+  "portable": "All 18 limb/species meshes passed integer triangle, normal, bound and render-budget checks; CMake/CTest and ASAN/UBSAN passed (LeakSanitizer disabled on macOS)",
+  "animation": {
+    "status": "passed",
+    "native_animations": {
+      "0001D4": 8,
+      "0004F8": 15,
+      "00069C": 6,
+      "00083C": 6,
+      "000A14": 8,
+      "000C70": 11,
+      "000F50": 15,
+      "0012E4": 20
+    },
+    "native_frames": 89,
+    "knee_checks": 356,
+    "variant_count": 2,
+    "maximum_knee_gap_world_units": 0,
+    "native_envelope_tolerance_world_units": 4.5,
+    "foot_anchor_tolerance_world_units": 2.6,
+    "note": "Rigid joint centers, exported integer mesh bounds and claw proximity to native foot effects checked through every native animation frame."
+  },
+  "geometry": {
+    "source_sha256": "364b10ccf31bd79ca5d5df6b9aa64760e977beb4d77bf7262ddf29867c815574",
+    "vertices": 2986,
+    "triangles": 11304,
+    "parts": 72,
+    "subpixel_triangles_removed": 0,
+    "triangles_per_actor": {
+      "0": 5612,
+      "1": 5692
+    },
+    "materials": [
+      "shell",
+      "edge",
+      "seam",
+      "belly",
+      "joint",
+      "claw",
+      "sclera",
+      "iris",
+      "pupil",
+      "glint"
+    ],
+    "space": "Native joint-local XYZ, positions x100; native normals retained; authoring-pose transforms omitted"
+  },
+  "native_scope": [
+    "Two species, nine visible limbs each and stable cached display lists",
+    "Original collider, actor scale, live crouch/jump/landing and animated leg chains",
+    "Nut stun, ice effect sequence and all four foot anchors",
+    "Real detached body parts, one-time enemy defeat and land flip recovery",
+    "Real river flotation; ARPG-off native bug reproduced; ARPG-on ballistic recovery and water landing verified",
+    "Master/model toggles, distance fallback, invisible joints and scene teardown"
+  ],
+  "water_recovery": {
+    "peak_world_units": 117.0,
+    "expected": "78 times the native position-update multiplier, 1.5 in this runtime",
+    "returned_to_surface": true
+  },
+  "visual_checks": [
+    "Blender frontal, side, top and five native animation poses inspected",
+    "Native ground encounter shows connected limbs, readable eyes and grounded claws",
+    "Production practice menu summons red and blue variants; experimental controls remain collapsed",
+    "Native approach/jumps render in the playable build with ordinary and champion affixes",
+    "I opens Equipment and pauses the practice adventure"
+  ],
+  "asset_authorship": "Original local Blender MCP meshes; separate standalone editable source; unrelated live Blender document preserved",
+  "production_binary": "/tmp/soh-tektite/production",
+  "production_sha256": "0631bc6b51e0f2a0e957cffe8543c8c25faf3f301654a80a61583b600c30ce0b",
+  "qa_harness_excluded_from_production": true,
+  "production_app": "/tmp/soh-tektite-playtest/Tektite Adventure.app",
+  "production_profile": "/tmp/soh-tektite-playtest/profiles/arpg-testing",
+  "production_launcher": "/tmp/soh-tektite-production.py",
+  "player_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "compiled_source_sha256": {
+    "soh/soh/Enhancements/arpg/EnemyVisuals.cpp": "7d90828c45f6f5b7892627616992037f250a09f26b62c0c96b5dfa89f61550d4",
+    "soh/soh/Enhancements/arpg/TektiteGeometry.h": "2d441dd7302bcd69132f97285c7262f17ec68cc3af2edc4e6d18f04144bbd7d4",
+    "soh/soh/Enhancements/arpg/TektiteBlenderData.h": "b341e412ee3138d7020ccd2416df148285b3044c67b4b585a2249781f24b793d",
+    "soh/soh/Enhancements/arpg/TektiteBehavior.cpp": "21d44f063808dab5dec5493d035e3e095ca758e1767805238fda92670ffb251a",
+    "soh/soh/Enhancements/arpg/TektiteBehavior.h": "0803c8fd8345ada35b3ee28cea321f28fb594e55ff7c6bd88974863532309117",
+    "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "17a6b1f2b79532fb7e8c8a12318f7cf173a9b5ebf5dfd4a76661c01ca1b8b31e",
+    "soh/src/overlays/actors/ovl_En_Tite/z_en_tite.c": "5e379f1120290971cc1a55e0b3287e2f227fe976925082a528c694b6beff8314",
+    "tests/arpg/tektite_runtime_test.cpp": "f36594739a8376cfe41f1a8be9b09daeae2bd388f66c70927b4a96b7a7fe4cb7"
+  },
+  "workspace_source_sha256": {
+    "soh/soh/Enhancements/arpg/EnemyVisuals.cpp": "7d90828c45f6f5b7892627616992037f250a09f26b62c0c96b5dfa89f61550d4",
+    "soh/soh/Enhancements/arpg/TektiteGeometry.h": "2d441dd7302bcd69132f97285c7262f17ec68cc3af2edc4e6d18f04144bbd7d4",
+    "soh/soh/Enhancements/arpg/TektiteBlenderData.h": "b341e412ee3138d7020ccd2416df148285b3044c67b4b585a2249781f24b793d",
+    "soh/soh/Enhancements/arpg/TektiteBehavior.cpp": "21d44f063808dab5dec5493d035e3e095ca758e1767805238fda92670ffb251a",
+    "soh/soh/Enhancements/arpg/TektiteBehavior.h": "0803c8fd8345ada35b3ee28cea321f28fb594e55ff7c6bd88974863532309117",
+    "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "17a6b1f2b79532fb7e8c8a12318f7cf173a9b5ebf5dfd4a76661c01ca1b8b31e",
+    "soh/src/overlays/actors/ovl_En_Tite/z_en_tite.c": "5e379f1120290971cc1a55e0b3287e2f227fe976925082a528c694b6beff8314",
+    "tests/arpg/tektite_runtime_test.cpp": "f36594739a8376cfe41f1a8be9b09daeae2bd388f66c70927b4a96b7a7fe4cb7"
+  },
+  "build_note": "Targeted incremental build from the previously verified isolated Keese snapshot. Recompiled shared enemy rendering, Tektite behavior, native Tektite actor and practice controls. This verifies this pass, not every concurrent change in the shared worktree.",
+  "remaining": [
+    "Full playthrough across Tektite rooms, slopes, water boundaries and third-party skeleton packs",
+    "Further asset work should upgrade the original roster; new-species expansion remains deferred",
+    "Overall replayability objective remains active and partial"
+  ]
+}

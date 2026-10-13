@@ -3,6 +3,7 @@
 
 #include <libultraship/libultra.h>
 #include "z64math.h"
+#include "soh/Enhancements/arpg/ARPGTypes.h"
 #include "z64audio.h"
 #include "soh/Enhancements/randomizer/randomizerEnums.h"
 #include "soh/Enhancements/gameplaystats.h"
@@ -278,6 +279,7 @@ typedef struct ShipSaveContextData {
     //TODO: Move non-rando specific flags to a new sohInf and move the remaining randomizerInf to ShipRandomizerSaveContextData
     u16 randomizerInf[(RAND_INF_MAX + 15) / 16];
     u8 resetToSpawn;
+    ARPGSaveData arpg;
 } ShipSaveContextData;
 
 #pragma endregion

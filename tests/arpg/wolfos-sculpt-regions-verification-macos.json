@@ -1,0 +1,174 @@
+{
+  "verified_at_utc": "2026-10-13T16:14:20.406757+00:00",
+  "status": "Intermediate head/torso and regional-coat revision; visual acceptance remains open",
+  "master": {
+    "path": "/Users/alec/git/z64-romhack-tutorials/soh/art/arpg/wolfos/workspace/wolfos-sculpt-regions-v3.blend",
+    "sha256": "6877e3de6e9875300c3ce465b0c27a9304a244864b59522e9e5a1a091a176691"
+  },
+  "pack": {
+    "path": "/Users/alec/git/z64-romhack-tutorials/soh/art/arpg/wolfos/workspace/export/wolfos-sculpt-regions-v3.o2r",
+    "sha256": "567c60c923a90ee324664a47970c50e96559a95839d9139fd77c2da40fec5106",
+    "triangles": 1951
+  },
+  "sources_sha256": {
+    "refine_head_torso.py": "73dcd81aeab05f2e47b9a22ccee9dcf5cd40451292077133b2bea029885a50a2",
+    "author_coat_regions.py": "ede02e0a493f2260e1b7cd0eaa5bd3b4e38769c487198a4df6710298450bf6a3",
+    "verify_master_geometry.py": "59b52597c7837aceedeb3c61b04546eff342fe6d91d70a16fcb31a8c5ad1f49b",
+    "apply_paint_maps.py": "7c72e4c81c04fd4a38c8fb44155542131686ddb3860b95fe325152ddd3e06f7b",
+    "export_master.py": "16c2cd4a53754114d15fe823760bd164e844abd5df2c3a8573a9c37372b74a8a",
+    "native_asset.py": "9849b2b3dd08c15ee98d208fdd216b634e87bdb49a971d45b68520638e74f460",
+    "preview_workspace.py": "25f354f26e3b8c145413cc4b91cc2d074507a6ca144e85b7a24d12b7880ee105"
+  },
+  "paint": {
+    "source": "art/arpg/wolfos/paint/coat/wolfos-coat-regions-v1.png",
+    "sha256": "d6d0e36a15909900f1160b5e8ae5f86a2fbe6f4642a980531bfe2c8d08e00a30",
+    "prompts": "art/arpg/wolfos/paint/coat/region-prompt.json",
+    "tool": "built-in image_gen",
+    "imported_size": [
+      1024,
+      512
+    ]
+  },
+  "sculpt": {
+    "before_vertices": 494,
+    "vertices": 1013,
+    "triangles": 1951,
+    "subdivisions": [
+      {
+        "level": 1,
+        "edges": 110,
+        "regions": {
+          "7": 14,
+          "12": 15,
+          "17": 81
+        }
+      },
+      {
+        "level": 2,
+        "edges": 409,
+        "regions": {
+          "7": 43,
+          "12": 52,
+          "17": 314
+        }
+      }
+    ],
+    "relaxed_vertices": {
+      "12": 69,
+      "17": 310,
+      "7": 57
+    },
+    "maximum_motion": {
+      "17": 1.7499953678614755,
+      "12": 2.749999162740878,
+      "7": 2.749823731224325
+    },
+    "protected_surfaces": 416,
+    "eye_surface_samples": 180,
+    "maximum_eye_seating_change": 4.410743713378906e-06,
+    "method": "Two rigid-region subdivision passes and five bounded surface relaxation passes; protected landmarks and mixed-joint geometry pinned"
+  },
+  "regions": {
+    "regions": {
+      "face": 765,
+      "body": 517,
+      "chest": 83,
+      "muzzle": 69
+    },
+    "atlas": "Four equal vertical strips; continuous cylindrical limb projections; UVs inset four percent inside each region",
+    "geometry_changed": false,
+    "native_wrap": "Clamp S and T",
+    "quantized_uv_repairs": 109,
+    "collapsed_quantized_coat_uv_triangles": 0
+  },
+  "geometry": {
+    "status": "passed",
+    "pack": "art/arpg/wolfos/workspace/export/wolfos-sculpt-regions-v3.o2r",
+    "pack_sha256": "567c60c923a90ee324664a47970c50e96559a95839d9139fd77c2da40fec5106",
+    "triangles": 1951,
+    "preserved_mixed_joint_triangles": 108,
+    "preserved_noncoat_triangles": 61,
+    "edited_limbs": [
+      7,
+      12,
+      17
+    ],
+    "unchanged_other_limb_geometry_and_winding": true,
+    "coat_wrap": "Clamp S and T",
+    "triangle_pose_samples": 243875,
+    "minimum_cross_squared": 3.59999999999869e-07,
+    "collapsed_count": 0,
+    "collapsed_quantized_coat_uv_triangles": 0,
+    "maximum_head_eye_matrix_difference": 0
+  },
+  "eye_resources": {
+    "eye_resources_unchanged": [
+      "alt/objects/object_wf/gWolfosNormalEyeHalfTex",
+      "alt/objects/object_wf/gWolfosNormalEyeNarrowTex",
+      "alt/objects/object_wf/gWolfosNormalEyeOpenTex",
+      "alt/objects/object_wf/gWolfosNormalEyesDL",
+      "arpg/wolfos/master/normal/limb-18.vtx"
+    ],
+    "animation_and_skeleton_overrides": 0
+  },
+  "runtime": {
+    "status": "passed",
+    "checks": 32,
+    "results": "tests/arpg/wolfos-sculpt-regions-runtime-results-macos.json",
+    "profile": "/var/folders/v6/86zp6_fs76718ycp8mp1g_j40000gn/T/soh-arpg-qa-wolfos-master-7zjqw2b2",
+    "executable_sha256": "34c6fa8983f24d782cefe763f20bc32f9c0b1122e9212382d679b7557dc78ca6",
+    "scope": "Final v3 asset pack mounted in existing isolated snapshot executable; no C++ edits"
+  },
+  "visual_review": {
+    "video": "/Users/alec/git/z64-romhack-tutorials/soh/art/arpg/wolfos/workspace/sculpt-regions-motion-v3/wolfos-sculpt-regions-review.mp4",
+    "video_sha256": "f1674035ce3ee46789b4c6cbd4cc9c31c4299c716cdcba1e31a8d0d7e96aa2bc",
+    "video_info": {
+      "width": 960,
+      "height": 720,
+      "duration": "8.250000",
+      "nb_frames": "165"
+    },
+    "reel": {
+      "frames": 165,
+      "fps": 20,
+      "all_vertices_inside_camera": true,
+      "closeups": [
+        {
+          "frame": 126,
+          "label": "open",
+          "blink": 0
+        },
+        {
+          "frame": 131,
+          "label": "half",
+          "blink": 1
+        },
+        {
+          "frame": 136,
+          "label": "narrow",
+          "blink": 2
+        },
+        {
+          "frame": 141,
+          "label": "half-return",
+          "blink": 3
+        }
+      ],
+      "master": "art/arpg/wolfos/workspace/wolfos-sculpt-regions-v3.blend",
+      "keyposes": [],
+      "full_reel_rendered": true
+    },
+    "in_game": "/Users/alec/git/z64-romhack-tutorials/soh/art/arpg/wolfos/workspace/sculpt-regions-motion-v3/sculpt-in-game.png",
+    "active_review_profile": "/var/folders/v6/86zp6_fs76718ycp8mp1g_j40000gn/T/soh-arpg-qa-wolfos-master-b3ivhjd9",
+    "observation": "Distinct facial/muzzle/body/chest fur visible in Blender and native lighting. Chest moved off shoulders; cylindrical sides and cap projections reduce abrupt direction changes. Native angular cuffs, paws and shoulder outline and visible atlas boundaries remain art issues."
+  },
+  "normal_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "legacy_glb_sha256": "a4695dbb17775eccf22d9fc73fd843edf5d460d5c3386d697bdb448e11c964da",
+  "deployment": "Experimental temporary preview profile only; normal profile unchanged",
+  "remaining": [
+    "Paw, finger/claw and fang anatomy needs authored refinement beyond the native silhouette.",
+    "Shoulder and muzzle silhouettes remain angular; atlas boundaries need painted transitions.",
+    "Original tongue retained; white species and rank variations remain pending.",
+    "Current artwork has not received human visual approval; accepted animation remains the reference."
+  ]
+}

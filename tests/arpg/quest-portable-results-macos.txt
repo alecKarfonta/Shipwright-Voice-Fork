@@ -1,0 +1,47 @@
+Test project /tmp/arpg-quest-tests
+      Start  1: arpg_rules
+ 1/21 Test  #1: arpg_rules .......................   Passed    0.25 sec
+      Start  2: arpg_gear_geometry
+ 2/21 Test  #2: arpg_gear_geometry ...............   Passed    0.28 sec
+      Start  3: arpg_skill_tree
+ 3/21 Test  #3: arpg_skill_tree ..................   Passed    0.74 sec
+      Start  4: arpg_loot
+ 4/21 Test  #4: arpg_loot ........................   Passed    4.92 sec
+      Start  5: arpg_expedition
+ 5/21 Test  #5: arpg_expedition ..................   Passed   78.09 sec
+      Start  6: arpg_enemy_geometry
+ 6/21 Test  #6: arpg_enemy_geometry ..............   Passed    0.11 sec
+      Start  7: arpg_wolfos_geometry
+ 7/21 Test  #7: arpg_wolfos_geometry .............   Passed    0.22 sec
+      Start  8: arpg_lizalfos_geometry
+ 8/21 Test  #8: arpg_lizalfos_geometry ...........   Passed    0.15 sec
+      Start  9: arpg_world_population
+ 9/21 Test  #9: arpg_world_population ............   Passed    0.01 sec
+      Start 10: arpg_waystone_geometry
+10/21 Test #10: arpg_waystone_geometry ...........   Passed    0.20 sec
+      Start 11: arpg_ritual
+11/21 Test #11: arpg_ritual ......................   Passed   54.54 sec
+      Start 12: arpg_warden
+12/21 Test #12: arpg_warden ......................   Passed    0.02 sec
+      Start 13: arpg_relic_geometry
+13/21 Test #13: arpg_relic_geometry ..............   Passed    0.24 sec
+      Start 14: arpg_relay
+14/21 Test #14: arpg_relay .......................   Passed   35.13 sec
+      Start 15: arpg_arsenal
+15/21 Test #15: arpg_arsenal .....................   Passed    0.16 sec
+      Start 16: arpg_weapon_loot
+16/21 Test #16: arpg_weapon_loot .................   Passed    1.56 sec
+      Start 17: arpg_creature
+17/21 Test #17: arpg_creature ....................   Passed    0.01 sec
+      Start 18: arpg_brood
+18/21 Test #18: arpg_brood .......................   Passed    0.15 sec
+      Start 19: arpg_adventure_items
+19/21 Test #19: arpg_adventure_items .............   Passed    3.41 sec
+      Start 20: arpg_quests
+20/21 Test #20: arpg_quests ......................   Passed    0.69 sec
+      Start 21: arpg_adventure_relics
+21/21 Test #21: arpg_adventure_relics ............   Passed    0.18 sec
+
+100% tests passed, 0 tests failed out of 21
+
+Total Test time (real) = 181.06 sec

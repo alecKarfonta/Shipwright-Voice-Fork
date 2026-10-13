@@ -5,6 +5,7 @@
  */
 
 #include "z_en_st.h"
+#include "soh/Enhancements/arpg/EnemyVisuals.h"
 #include "objects/object_st/object_st.h"
 #include "soh/Enhancements/game-interactor/GameInteractor_Hooks.h"
 
@@ -1056,6 +1057,9 @@ void EnSt_Update(Actor* thisx, PlayState* play) {
 s32 EnSt_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dListP, Vec3f* pos, Vec3s* rot, void* thisx) {
     EnSt* this = (EnSt*)thisx;
 
+    Gfx* original = *dListP;
+    ARPG_OverrideEnemyLimb(play, &this->actor, limbIndex, dListP);
+
     OPEN_DISPS(play->state.gfxCtx);
     switch (limbIndex) {
         case 1:
@@ -1070,7 +1074,7 @@ s32 EnSt_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dListP, Vec3f* p
         case 4:
             // teeth
             gDPPipeSync(POLY_OPA_DISP++);
-            gDPSetEnvColor(POLY_OPA_DISP++, this->teethR, this->teethG, this->teethB, 0);
+            gDPSetEnvColor(POLY_OPA_DISP++, this->teethR, this->teethG, this->teethB, *dListP != original ? this->teethR : 0);
             break;
     }
     CLOSE_DISPS(play->state.gfxCtx);

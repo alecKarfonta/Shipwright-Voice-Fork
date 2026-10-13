@@ -1,0 +1,102 @@
+{
+  "status": "passed",
+  "date": "2026-10-13",
+  "feature": "Original land and water Stinger anatomy and native movement integration",
+  "scope": "Original wanderer, circling parent and decoys, and water swimmer. Native animations, movement, collision and attack timing retained.",
+  "art": {
+    "source_sha256": "5f10a6fa7c3b4622a21fec1c7079122920adb1b907263a1ca5ec9ddde3c707cb",
+    "vertices": 5108,
+    "triangles": 9434,
+    "parts": 41,
+    "subpixel_triangles_removed": 10,
+    "triangles_per_actor": {
+      "0": 9434
+    },
+    "materials": [
+      "skin",
+      "edge",
+      "belly",
+      "ridge",
+      "socket",
+      "eye",
+      "pupil"
+    ],
+    "space": "Native joint-local XYZ, positions x100; native normals retained; per-vertex native joint indices; authoring-pose transforms omitted"
+  },
+  "animation": {
+    "status": "passed",
+    "geometry_variants": 1,
+    "habitat_palettes": 2,
+    "native_animation_clips_per_variant": 5,
+    "native_animation_frames_per_variant": 208,
+    "visible_limbs_in_rig": 11,
+    "bridges": 8,
+    "posed_bridge_endpoint_checks": 79872,
+    "maximum_quantized_endpoint_error_world_units": 0.004137571056781817,
+    "maximum_posed_envelope_extension_world_units": 1.8260887248045634,
+    "maximum_actor_scale": 0.005,
+    "scope": "Full native animation poses; quantized endpoints follow their assigned native joints. Native source vertices and authored connection endpoints are transformed under their assigned joints. Native root offsets translate both native and authored geometry equally. Fins and tail are reviewed in all five clips; no claim of watertight topology."
+  },
+  "portable": {
+    "full_suites_passed": 34,
+    "address_and_undefined_sanitizers": "passed",
+    "log": "/tmp/stinger-portable-test.log"
+  },
+  "native": {
+    "checks_passed": 66,
+    "draw_frames": 1326,
+    "dive_frames": 11,
+    "land_fade_frames": 153,
+    "water_fade_frames": 51,
+    "water_leap_frames": 16,
+    "defeats": 4,
+    "results": "tests/arpg/stinger-runtime-results-macos.json",
+    "scope": "Land underground hiding, ambush/glide/dive/return, recoil/stun/death, underground instant-defeat reward, circle contacts, decoy reward exclusion and both interrupted/normal cleanup. Water placement, swim, breach predicate and airborne updates, recoil/stun/death. Native scale/collision/root offsets, palettes, gates, distance fallback, caches and scene teardown.",
+    "fixture_limits": "Isolated debug profile; pinned player and camera. Collision/damage stimuli and attack setup calls are supplied. The breach test supplies near-surface positions, water distances, facing and a fresh floor query before invoking the original attack function. The player update is held for 21 ticks during this short breach fixture. It does not establish unassisted natural breach frequency or full dungeon coverage."
+  },
+  "production_ui": {
+    "build": "/tmp/soh-stinger-playtest/Stinger Adventure.app",
+    "verified": [
+      "Collapsed Stinger section and all three habitat options",
+      "Ordinary land practice summon beside original room enemies",
+      "Approach triggers original backflip and articulated flight",
+      "Native targeting and attack damage",
+      "Journal reopens after the encounter"
+    ],
+    "profile_root": "/tmp/soh-stinger-playtest/profiles",
+    "qa_harness_linked": false,
+    "not_claimed": "Manual water or circling combat acceptance; full dungeon and terrain coverage."
+  },
+  "build": {
+    "method": "Isolated source snapshot and object-link chain from verified Iron Knuckle build. Rebuilt Stinger renderer, native Eiyer/Weiyer, EnemyDifficulty, practice controls and QA harness. Shared Ninja not run; unrelated concurrent changes are not claimed rebuilt.",
+    "source": "/tmp/soh-stinger/source",
+    "qa": "/tmp/soh-stinger/qa",
+    "production": "/tmp/soh-stinger/production",
+    "source_hashes": {
+      "soh/soh/Enhancements/arpg/StingerBlenderData.h": "3df1f584984b504d26fb72c5879cc731729085b5f095faab41dfdc92adbed780",
+      "soh/soh/Enhancements/arpg/StingerGeometry.h": "7e51b3b9fabc2151d2b432e3eea400ec0d3a3cfb46d67271afe8412046ebba6e",
+      "soh/soh/Enhancements/arpg/StingerVisuals.h": "fb631a2210c9cf6fc427c059bb6f7e6b069e0c6f9809b0cc4e76a489052f60ad",
+      "soh/soh/Enhancements/arpg/StingerVisuals.cpp": "ababded42f857ad0ac9557c63e4ffaf932bb5a286cfdc9cfb3852cebfbfc332c",
+      "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "10bdeba901867d702122d49ab66d4300575c9e638262d63653cda64a7b3da927",
+      "soh/soh/Enhancements/arpg/CreatureSystem.h": "97fe47ca64743986a3f7c07810785d1048b459e39d3940c3bd004ece632ddf01",
+      "soh/src/overlays/actors/ovl_En_Eiyer/z_en_eiyer.c": "747fc1597255576e13509d48e6118cf16fa8a801adfcce04cfc025ee019d54f7",
+      "soh/src/overlays/actors/ovl_En_Weiyer/z_en_weiyer.c": "0fe2d48b41f5101b8764e0db4afb2bda83ce8e73c054c19fcac803731b4b461f",
+      "soh/soh/Enhancements/EnemyDifficulty/EnemyDifficulty.cpp": "19245b147d3cd8035497dde54927fe7d7c1ec2d012bc38a1803b4b79f9133176",
+      "tests/arpg/stinger_runtime_test.cpp": "62b0cc349778c19a11ee639908bcabd50ac0a170b8f08ec9ea23e9db9560c232"
+    },
+    "qa_exit_status": 0,
+    "production_exit_status": 0
+  },
+  "save": {
+    "path": "/Users/alec/Library/Application Support/shipofharkinian/profiles/player1/Save/file1.sav",
+    "before_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "after_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "unchanged": true
+  },
+  "blender": {
+    "authoring": "Installed Blender 5.1.2 in separate background processes; live MCP connection unavailable.",
+    "editable_source": "art/arpg/stingers/stingers.blend",
+    "user_project_modified": false
+  },
+  "remaining": "Other native families; Jabu-Jabu, water/terrain and crowded-scene acceptance; full replayability goal remains incomplete."
+}

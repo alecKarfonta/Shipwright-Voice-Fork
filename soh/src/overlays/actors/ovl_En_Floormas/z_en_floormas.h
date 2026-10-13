@@ -6,7 +6,7 @@
 
 typedef struct EnFloormas EnFloormas;
 
-typedef void (*EnFloormasActionFunc)(EnFloormas* this, PlayState* play);
+typedef void (*EnFloormasActionFunc)(EnFloormas* self, PlayState* play);
 
 struct EnFloormas{
     /* 0x0000 */ Actor actor;

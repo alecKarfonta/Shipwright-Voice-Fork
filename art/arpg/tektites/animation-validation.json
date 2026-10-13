@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "native_animations": {
+    "0001D4": 8,
+    "0004F8": 15,
+    "00069C": 6,
+    "00083C": 6,
+    "000A14": 8,
+    "000C70": 11,
+    "000F50": 15,
+    "0012E4": 20
+  },
+  "native_frames": 89,
+  "knee_checks": 356,
+  "variant_count": 2,
+  "maximum_knee_gap_world_units": 0,
+  "native_envelope_tolerance_world_units": 4.5,
+  "foot_anchor_tolerance_world_units": 2.6,
+  "note": "Rigid joint centers, exported integer mesh bounds and claw proximity to native foot effects checked through every native animation frame."
+}

@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "geometry_variants": 1,
+  "native_animation_clips": 5,
+  "native_animation_frames": 82,
+  "visible_native_bones": 17,
+  "transformed_authored_vertex_checks": 434928,
+  "maximum_posed_envelope_extension_at_regular_scale": 5.425194271589675,
+  "maximum_posed_envelope_extension_at_giant_scale": 10.85038854317935,
+  "practice_scales": [
+    0.01,
+    0.015,
+    0.02
+  ],
+  "scope": "Every exported vertex transformed through all five original animation clips. All pieces are rigid on their own original joints; detached skull, jaw and body parts do not require flex matrices. Root offsets and actor scale affect original and replacement equally. Bounds are per-axis envelope checks, not collision or watertight-surface proof. Motion renders and native combat are separately reviewed."
+}

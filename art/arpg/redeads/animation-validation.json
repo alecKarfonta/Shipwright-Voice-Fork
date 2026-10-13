@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "variants": 2,
+  "native_animation_clips_per_variant": 11,
+  "native_animation_frames_per_variant": 277,
+  "visible_limbs_per_variant": 15,
+  "bridges_per_variant": 9,
+  "posed_bridge_endpoint_checks": 119664,
+  "maximum_quantized_endpoint_error_world_units": 0.007047997465111698,
+  "maximum_posed_envelope_extension_world_units": 3.459056529712173,
+  "scope": "Full native animation poses; quantized endpoints follow their assigned native joints. Overlapping hips, ankles and neck are visually reviewed; no claim of watertight topology or cloth simulation."
+}

@@ -1,0 +1,21 @@
+{
+  "source_sha256": "829072bbfc1a5b536ba911e19c5cc99c866b44f4e425d21b66367ffd14a1a596",
+  "vertices": 2572,
+  "triangles": 4067,
+  "parts": 24,
+  "subpixel_triangles_removed": 19,
+  "triangles_per_actor": {
+    "0": 4067
+  },
+  "materials": [
+    "shell",
+    "edge",
+    "socket",
+    "belly",
+    "fold",
+    "leg",
+    "band",
+    "fang"
+  ],
+  "space": "Native joint-local XYZ, positions x100; native normals retained; authoring-pose transforms omitted"
+}

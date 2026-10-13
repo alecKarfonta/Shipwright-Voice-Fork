@@ -1,0 +1,99 @@
+{
+  "review_date": "2026-10-13T03:36:47.844397+00:00",
+  "intent": "Match the existing Ocarina of Time art using original painted assets, scene lighting, restrained particle colors and feathered effects.",
+  "coverage": {
+    "equipment": "Shared material treatment for 12 base appearances, 6 modifier appearances, 20 unique/set appearances, bow and hammer, socket material drops, and held/worn/pickup variants.",
+    "combat": "Every active skill and rune uses original trail, dust, flame, lightning or flash textures; seven aura forms use restrained trails and motes with child scaling.",
+    "other_effects": "Arsenal and adventure relic procs, healing tethers, Warden warnings, quest interaction rings and brood webs use the shared textured effect state.",
+    "creatures": "Native-painted material detail on the existing custom Stalfos, Wolfos, Lizalfos/Dinolfos, Tektite, Deku Baba and Keese meshes, plus sentinels, wraiths and brood shells.",
+    "quest_props": "Original rock, crate, torch and gravestone models replace the artificial ore crystals, parcel boxes and lantern-like memorials. Timber and the spring use painted material detail; prior foliage work is retained."
+  },
+  "preserved": "Gameplay hit shapes, timings, rewards, saves, item powers, actor rigs and equipment attachment transforms.",
+  "native_resources": "resource-provenance.json",
+  "screenshots": [
+    "attack-effects-day.png",
+    "attack-effects-night.png",
+    "creatures-healing.png",
+    "equipped-relics-day.png",
+    "gear-overcast.png",
+    "quest-props-day.png",
+    "release-startup.png",
+    "relic-equipment-day.png",
+    "set-equipment-day.png"
+  ],
+  "validation": {
+    "skills-runtime-results.json": {
+      "status": "passed",
+      "check_count": 370,
+      "draw_frames": null
+    },
+    "creature-runtime-results.json": {
+      "status": "passed",
+      "check_count": 87,
+      "draw_frames": 401
+    },
+    "all-skills-render-results.json": {
+      "status": "passed",
+      "check_count": null,
+      "draw_frames": 320
+    },
+    "props-render-results.json": {
+      "status": "passed",
+      "check_count": null,
+      "draw_frames": 320
+    },
+    "relic-render-results.json": {
+      "status": "passed",
+      "check_count": null,
+      "draw_frames": 320
+    },
+    "set-render-results.json": {
+      "status": "passed",
+      "check_count": null,
+      "draw_frames": 320
+    },
+    "effects-night-render-results.json": {
+      "status": "passed",
+      "check_count": null,
+      "draw_frames": 320
+    },
+    "portable": {
+      "status": "passed",
+      "suites": 26,
+      "log": "portable-tests.txt"
+    },
+    "enemy-model-runtime-results.json": {
+      "status": "passed",
+      "check_count": 18
+    }
+  },
+  "source_sha256": {
+    "NativeEffects.h": "0ec8a91a81a695e8df9e140c28c119d77a2f1ab3a86cc4f23f37428f650db6b3",
+    "NativeMaterials.h": "50c831a1aa3b28f206c6c56a339004ee3878901947e25f7f7670f7b0184cfdac",
+    "SkillVfx.cpp": "1f80f8cd6983545be1db9d327d7736a9c12fb71a057ea86bb89d1c3cd47c5c00",
+    "SkillAuras.cpp": "5e9640e94eec02953272c1ce1e0b207f24f798c4cd3da9612a120c442dc32552",
+    "GearVisuals.cpp": "f5fb8ee4a28a30f869a0ab9c7b426b90790828b35ada9a9a54e9042327eedab3",
+    "EnemyVisuals.cpp": "2c5e4cc46b76be707d37b201ff23515d3f0e200019bfa3f3c3babee7a98af589",
+    "KeeseVisuals.cpp": "fbc9640a61d19ce1a4701894e7a7017560337f16b40f3188bf74800178a7121a",
+    "CreatureVisuals.cpp": "ea96b295cec40f5b52fb2601de564b4598c4c3866298f00005ddbcc9cf0caf4b",
+    "QuestWorld.cpp": "76e1450ea574c5631d6f3e56fe7bacc995dd8497781f742fe9a9f23e8acd95a0",
+    "BroodSystem.cpp": "82f0d00794bc73c27cdf25b8bb2237e8c56eb33e1a28269772b0a3f1ad0c2fef",
+    "AdventureRelics.cpp": "ac44d81f706d5959b418c6e63fb3790a20a0f7d4c970713f9eb4b7e471e7b169",
+    "ArsenalSystem.cpp": "d5835f80898b0a1601fb97535024077325a6ab52063ad2912d95c1f1fe26908a",
+    "WardenCombat.cpp": "9e3a39b4169805c014f1d2c2824f1fc4219a5a333dd6ce66afc8f917a3820d77"
+  },
+  "review_limits": [
+    "Representative native views cover daytime, overcast and nighttime; this is not a manual review of every animation, camera angle, room or texture-pack combination.",
+    "The existing painted inventory icons were audited and retained.",
+    "The first skill integration run reached the champion-pack test with its QA profile enemy toggle off. The fresh rerun with enemies enabled passed all 370 checks."
+  ],
+  "production_build": {
+    "status": "passed",
+    "installed_executable": "/Users/alec/git/z64-romhack-tutorials/soh/build-cmake/soh/soh-macos",
+    "sha256": "943235eb798a16a1a073cab6954adedf2d44043d79621cd0ce98fcfd6fd20d98",
+    "backup": "/tmp/soh-before-native-art-20261012-234707-macos",
+    "runtime_fixtures_compiled": false,
+    "startup_check": "passed: ordinary Nintendo boot and Zelda title screen in the isolated profile"
+  },
+  "follow_up": "material-review.json"
+}

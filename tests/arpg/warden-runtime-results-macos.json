@@ -1,0 +1,646 @@
+{
+  "checks": [
+    {
+      "check": "A fresh native expedition starts for the oath fixture",
+      "oath": 0
+    },
+    {
+      "check": "A deterministic ritual route selects the requested oath",
+      "oath": 0
+    },
+    {
+      "check": "Spawned ritual includes a live protected warden",
+      "oath": 0
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 0
+    },
+    {
+      "check": "Loss of player control pauses the warning clock",
+      "oath": 0
+    },
+    {
+      "check": "Duplicate hooks in one gameplay frame cannot advance attacks",
+      "oath": 0
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 0
+    },
+    {
+      "check": "Native invulnerability prevents warden damage throughout the strike",
+      "oath": 0
+    },
+    {
+      "check": "Warning aim remains locked after player movement",
+      "oath": 0
+    },
+    {
+      "check": "Ritual protection still overrides the retaliatory opening",
+      "oath": 0
+    },
+    {
+      "check": "Exposed ritual warden composes its opening with oath and seal damage multipliers",
+      "oath": 0
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 0
+    },
+    {
+      "check": "Retaliatory bonus ends with the opening",
+      "oath": 0
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 0
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 0
+    },
+    {
+      "check": "The oath's advertised positional counter avoids all pulses",
+      "oath": 0
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 0
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 0
+    },
+    {
+      "check": "Ground attacks cannot hit a player above their visible footprint",
+      "oath": 0
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 0
+    },
+    {
+      "check": "Full warning duration is harmless",
+      "oath": 0
+    },
+    {
+      "check": "A visible strike reaches the native player health path",
+      "oath": 0
+    },
+    {
+      "check": "A cast hits only once even when damage invulnerability is cleared",
+      "oath": 0
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 0
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 0
+    },
+    {
+      "check": "Native double defense reduces the same hazard damage",
+      "oath": 0
+    },
+    {
+      "check": "Warnings and strike state never leak into the saved expedition",
+      "oath": 0
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 0
+    },
+    {
+      "check": "Warden death cancels its pending strike and world marks",
+      "oath": 0
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 0
+    },
+    {
+      "check": "Native frame hooks advance the visible cast after the test probes",
+      "oath": 0
+    },
+    {
+      "check": "Ending the expedition clears marks and vulnerability",
+      "oath": 0
+    },
+    {
+      "check": "A fresh native expedition starts for the oath fixture",
+      "oath": 1
+    },
+    {
+      "check": "A deterministic ritual route selects the requested oath",
+      "oath": 1
+    },
+    {
+      "check": "Spawned ritual includes a live protected warden",
+      "oath": 1
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 1
+    },
+    {
+      "check": "Loss of player control pauses the warning clock",
+      "oath": 1
+    },
+    {
+      "check": "Duplicate hooks in one gameplay frame cannot advance attacks",
+      "oath": 1
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 1
+    },
+    {
+      "check": "Native invulnerability prevents warden damage throughout the strike",
+      "oath": 1
+    },
+    {
+      "check": "Warning aim remains locked after player movement",
+      "oath": 1
+    },
+    {
+      "check": "Ritual protection still overrides the retaliatory opening",
+      "oath": 1
+    },
+    {
+      "check": "Exposed ritual warden composes its opening with oath and seal damage multipliers",
+      "oath": 1
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 1
+    },
+    {
+      "check": "Retaliatory bonus ends with the opening",
+      "oath": 1
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 1
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 1
+    },
+    {
+      "check": "The oath's advertised positional counter avoids all pulses",
+      "oath": 1
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 1
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 1
+    },
+    {
+      "check": "Ground attacks cannot hit a player above their visible footprint",
+      "oath": 1
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 1
+    },
+    {
+      "check": "Full warning duration is harmless",
+      "oath": 1
+    },
+    {
+      "check": "A visible strike reaches the native player health path",
+      "oath": 1
+    },
+    {
+      "check": "A cast hits only once even when damage invulnerability is cleared",
+      "oath": 1
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 1
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 1
+    },
+    {
+      "check": "Native double defense reduces the same hazard damage",
+      "oath": 1
+    },
+    {
+      "check": "Warnings and strike state never leak into the saved expedition",
+      "oath": 1
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 1
+    },
+    {
+      "check": "Warden death cancels its pending strike and world marks",
+      "oath": 1
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 1
+    },
+    {
+      "check": "Native frame hooks advance the visible cast after the test probes",
+      "oath": 1
+    },
+    {
+      "check": "Ending the expedition clears marks and vulnerability",
+      "oath": 1
+    },
+    {
+      "check": "A fresh native expedition starts for the oath fixture",
+      "oath": 2
+    },
+    {
+      "check": "A deterministic ritual route selects the requested oath",
+      "oath": 2
+    },
+    {
+      "check": "Spawned ritual includes a live protected warden",
+      "oath": 2
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 2
+    },
+    {
+      "check": "Loss of player control pauses the warning clock",
+      "oath": 2
+    },
+    {
+      "check": "Duplicate hooks in one gameplay frame cannot advance attacks",
+      "oath": 2
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 2
+    },
+    {
+      "check": "Native invulnerability prevents warden damage throughout the strike",
+      "oath": 2
+    },
+    {
+      "check": "Warning aim remains locked after player movement",
+      "oath": 2
+    },
+    {
+      "check": "Ritual protection still overrides the retaliatory opening",
+      "oath": 2
+    },
+    {
+      "check": "Exposed ritual warden composes its opening with oath and seal damage multipliers",
+      "oath": 2
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 2
+    },
+    {
+      "check": "Retaliatory bonus ends with the opening",
+      "oath": 2
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 2
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 2
+    },
+    {
+      "check": "The oath's advertised positional counter avoids all pulses",
+      "oath": 2
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 2
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 2
+    },
+    {
+      "check": "Ground attacks cannot hit a player above their visible footprint",
+      "oath": 2
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 2
+    },
+    {
+      "check": "Full warning duration is harmless",
+      "oath": 2
+    },
+    {
+      "check": "A visible strike reaches the native player health path",
+      "oath": 2
+    },
+    {
+      "check": "A cast hits only once even when damage invulnerability is cleared",
+      "oath": 2
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 2
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 2
+    },
+    {
+      "check": "Native double defense reduces the same hazard damage",
+      "oath": 2
+    },
+    {
+      "check": "Warnings and strike state never leak into the saved expedition",
+      "oath": 2
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 2
+    },
+    {
+      "check": "Warden death cancels its pending strike and world marks",
+      "oath": 2
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 2
+    },
+    {
+      "check": "Native frame hooks advance the visible cast after the test probes",
+      "oath": 2
+    },
+    {
+      "check": "Ending the expedition clears marks and vulnerability",
+      "oath": 2
+    },
+    {
+      "check": "A fresh native expedition starts for the oath fixture",
+      "oath": 3
+    },
+    {
+      "check": "A deterministic ritual route selects the requested oath",
+      "oath": 3
+    },
+    {
+      "check": "Spawned ritual includes a live protected warden",
+      "oath": 3
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 3
+    },
+    {
+      "check": "Loss of player control pauses the warning clock",
+      "oath": 3
+    },
+    {
+      "check": "Duplicate hooks in one gameplay frame cannot advance attacks",
+      "oath": 3
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 3
+    },
+    {
+      "check": "Native invulnerability prevents warden damage throughout the strike",
+      "oath": 3
+    },
+    {
+      "check": "Warning aim remains locked after player movement",
+      "oath": 3
+    },
+    {
+      "check": "Ritual protection still overrides the retaliatory opening",
+      "oath": 3
+    },
+    {
+      "check": "Exposed ritual warden composes its opening with oath and seal damage multipliers",
+      "oath": 3
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 3
+    },
+    {
+      "check": "Retaliatory bonus ends with the opening",
+      "oath": 3
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 3
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 3
+    },
+    {
+      "check": "The oath's advertised positional counter avoids all pulses",
+      "oath": 3
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 3
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 3
+    },
+    {
+      "check": "Ground attacks cannot hit a player above their visible footprint",
+      "oath": 3
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 3
+    },
+    {
+      "check": "Full warning duration is harmless",
+      "oath": 3
+    },
+    {
+      "check": "A visible strike reaches the native player health path",
+      "oath": 3
+    },
+    {
+      "check": "A cast hits only once even when damage invulnerability is cleared",
+      "oath": 3
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 3
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 3
+    },
+    {
+      "check": "Native double defense reduces the same hazard damage",
+      "oath": 3
+    },
+    {
+      "check": "Warnings and strike state never leak into the saved expedition",
+      "oath": 3
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 3
+    },
+    {
+      "check": "Warden death cancels its pending strike and world marks",
+      "oath": 3
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 3
+    },
+    {
+      "check": "Native frame hooks advance the visible cast after the test probes",
+      "oath": 3
+    },
+    {
+      "check": "Ending the expedition clears marks and vulnerability",
+      "oath": 3
+    },
+    {
+      "check": "A fresh native expedition starts for the oath fixture",
+      "oath": 4
+    },
+    {
+      "check": "A deterministic ritual route selects the requested oath",
+      "oath": 4
+    },
+    {
+      "check": "Spawned ritual includes a live protected warden",
+      "oath": 4
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 4
+    },
+    {
+      "check": "Loss of player control pauses the warning clock",
+      "oath": 4
+    },
+    {
+      "check": "Duplicate hooks in one gameplay frame cannot advance attacks",
+      "oath": 4
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 4
+    },
+    {
+      "check": "Native invulnerability prevents warden damage throughout the strike",
+      "oath": 4
+    },
+    {
+      "check": "Warning aim remains locked after player movement",
+      "oath": 4
+    },
+    {
+      "check": "Ritual protection still overrides the retaliatory opening",
+      "oath": 4
+    },
+    {
+      "check": "Exposed ritual warden composes its opening with oath and seal damage multipliers",
+      "oath": 4
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 4
+    },
+    {
+      "check": "Retaliatory bonus ends with the opening",
+      "oath": 4
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 4
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 4
+    },
+    {
+      "check": "The oath's advertised positional counter avoids all pulses",
+      "oath": 4
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 4
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 4
+    },
+    {
+      "check": "Ground attacks cannot hit a player above their visible footprint",
+      "oath": 4
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 4
+    },
+    {
+      "check": "Full warning duration is harmless",
+      "oath": 4
+    },
+    {
+      "check": "A visible strike reaches the native player health path",
+      "oath": 4
+    },
+    {
+      "check": "A cast hits only once even when damage invulnerability is cleared",
+      "oath": 4
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 4
+    },
+    {
+      "check": "Native cast reaches its expected phase",
+      "oath": 4
+    },
+    {
+      "check": "Native double defense reduces the same hazard damage",
+      "oath": 4
+    },
+    {
+      "check": "Warnings and strike state never leak into the saved expedition",
+      "oath": 4
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 4
+    },
+    {
+      "check": "Warden death cancels its pending strike and world marks",
+      "oath": 4
+    },
+    {
+      "check": "Live terrain generates a locked warning footprint",
+      "oath": 4
+    },
+    {
+      "check": "Native frame hooks advance the visible cast after the test probes",
+      "oath": 4
+    },
+    {
+      "check": "Ending the expedition clears marks and vulnerability",
+      "oath": 4
+    }
+  ],
+  "error": "",
+  "status": "passed"
+}

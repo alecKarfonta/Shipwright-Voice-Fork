@@ -1,3 +1,4 @@
+#include "soh/Enhancements/arpg/HandmasterVisuals.h"
 /*
  * File: z_en_floormas
  * Overlay: En_Floormas
@@ -1090,10 +1091,13 @@ s32 EnFloormas_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec
     if (limbIndex == 1) {
         pos->z += this->zOffset;
     }
+    ARPG_OverrideHandmasterLimb(play, &this->actor, limbIndex, dList);
     return false;
 }
 
 void EnFloormas_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, void* thisx, Gfx** gfx) {
+    Gfx* finger = (Gfx*)gWallmasterFingerDL;
+    ARPG_OverrideHandmasterLimb(play, (Actor*)thisx, 25, &finger);
     if (limbIndex == 2) {
         Matrix_Push();
         Matrix_Translate(1600.0f, -700.0f, -1700.0f, MTXMODE_APPLY);
@@ -1101,7 +1105,7 @@ void EnFloormas_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s*
         Matrix_RotateZ(DEGTORAD(15.0f), MTXMODE_APPLY);
         Matrix_Scale(2.0f, 2.0f, 2.0f, MTXMODE_APPLY);
         gSPMatrix((*gfx)++, MATRIX_NEWMTX(play->state.gfxCtx), G_MTX_LOAD);
-        gSPDisplayList((*gfx)++, gWallmasterFingerDL);
+        gSPDisplayList((*gfx)++, finger);
         Matrix_Pop();
     }
 }

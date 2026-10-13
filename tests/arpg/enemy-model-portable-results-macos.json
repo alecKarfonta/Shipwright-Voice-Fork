@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "mode": "normal",
+      "exit_code": 0,
+      "output": "Validated 106899 integer-safe triangles across 72 animated limb meshes; per rank 35331, 35587, 35981.",
+      "stderr": ""
+    },
+    {
+      "mode": "address_undefined_sanitized",
+      "exit_code": 0,
+      "output": "Validated 106899 integer-safe triangles across 72 animated limb meshes; per rank 35331, 35587, 35981.",
+      "stderr": ""
+    }
+  ]
+}

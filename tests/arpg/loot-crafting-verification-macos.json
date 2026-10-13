@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-12",
+  "status": "passed for implemented loot/crafting increment",
+  "content": {
+    "uniques": 8,
+    "four_piece_sets": 3,
+    "ordered_runeworks": 8,
+    "gem_families": 6,
+    "gem_grades": 3,
+    "runes": 6,
+    "save_version": 6
+  },
+  "portable_tests": {
+    "normal": "4/4 passed",
+    "asan_ubsan": "4/4 passed",
+    "loot_roll_samples": 30000
+  },
+  "ui_observations": [
+    "Temporary forge test kit added 24 gear items to the initial 12-item bag, plus six of each ingredient and 200 essence.",
+    "Inserted Em then Va into a two-socket common Master Sword; each rune count changed from six to five exactly once.",
+    "Sword became Kindling Master Sword with purple RUNEWORK quality, ordered filled sockets, awakened name, and Ember-forged art.",
+    "Equipping Kindling updated active bonuses to 18% melee damage, 31% fire-hit chance, 4% speed and 15% Sword technique damage.",
+    "Combined three Rough Rubies: rough stack changed from six to three and cut stack from six to seven.",
+    "Equipped Briarwatch pieces individually; two-piece and four-piece thresholds appeared at the correct counts.",
+    "Full Briarwatch displayed Guardian technique damage +30%, recharge -20%, healing on kill +0.25 hearts, with full ordinary stats.",
+    "Searching Kindling located the crafted sword in the backpack.",
+    "Extracted both runes: Em and Va returned to six, essence 200 to 192, sword returned to common with two empty sockets and no longer matched Kindling search.",
+    "Added a third socket to the empty base: essence 192 to 156 and socket count two to three.",
+    "Recipe book displayed base restrictions, exact rune order, socket counts and recipe bonuses.",
+    "Resumed world: named Perfect Ruby, Em and Va pickups rendered as distinct rotating gem/rune meshes with scene lighting; equipment remained attached to Link."
+  ],
+  "follow_up_ui_fix": "Verified in the final production preview: switching to Runes selects Em, switching to Gems selects Ruby, and Cut selects Cut Ruby with the matching socket bonus.",
+  "first_native_run": {
+    "passed_checks": 90,
+    "result": "failed dungeon policy check after the idle character exited Deku Tree; loot, combat, save and pickup checks passed",
+    "record": "runtime-results-loot-first-run-macos.json"
+  },
+  "regression_fixture_change": "Keep the idle dungeon population fixture at its valid entrance spawn to prevent enemy body collisions from moving it through the exit. Prior movement/combat phases remain unpinned.",
+  "normal_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "limits": [
+    "Named items reuse the established equipment appearance families; bespoke art per unique and set is still pending.",
+    "Full long-term balance, complete boss playthroughs and endgame reward targeting remain unverified.",
+    "Mouse drag acceptance remains outstanding from the earlier native automation limitation.",
+    "Characters, enemies and scenery remain outside the completed equipment remaster."
+  ],
+  "broad_goal_status": "active; an endless expedition loop and broader asset/world passes remain required",
+  "production_build": {
+    "runtime_tests": "OFF",
+    "build_log": "/tmp/soh-loot-final-build.log",
+    "sha256": "f6ce45fdb47b46dce6aa78dfb9b1139ac100eff878ce1a1838cfda39f12a48e7",
+    "native_preview_bundle": "org.shipofharkinian.arpg-inventory-preview33",
+    "ship_home": "/tmp/soh-arpg-remaster-preview"
+  },
+  "native_regression": {
+    "status": "passed",
+    "checks": 93,
+    "record": "runtime-results-loot-macos.json",
+    "qa_log": "/tmp/soh-arpg-loot-qa03.log"
+  }
+}

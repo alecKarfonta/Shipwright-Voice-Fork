@@ -1,0 +1,108 @@
+{
+  "date": "2026-10-12T20:26:55.060297+00:00",
+  "status": "passed",
+  "scope": "Second expedition objective: interruptible three-seal ritual with native protected/exposed warden, original Blender ward assets, deterministic offers, v8 persistence and temporary testing shortcut.",
+  "geometry": {
+    "source_sha256": "547565f31dfd0e5a6a9f0db8b6eb6c0c3fc08f0772adfc653e1d8c10b57b25a8",
+    "vertices": 20223,
+    "triangles": 11622,
+    "parts": 40,
+    "subpixel_triangles_removed": 0,
+    "triangles_per_part": {
+      "0": 2436,
+      "1": 88,
+      "2": 20,
+      "3": 20,
+      "4": 20,
+      "5": 5180,
+      "6": 984,
+      "7": 1036,
+      "8": 74,
+      "9": 216,
+      "10": 56,
+      "11": 360,
+      "12": 32,
+      "13": 972,
+      "14": 128
+    },
+    "materials": [
+      "stone",
+      "cut",
+      "bronze",
+      "gold",
+      "wood",
+      "grain",
+      "iron",
+      "velvet",
+      "oath",
+      "gem",
+      "shadow"
+    ],
+    "space": "Native model-local XYZ, positions x100; native normals retained; studio transforms omitted; crystal and lid use separate runtime pivots"
+  },
+  "portable": "ritual-portable-results-macos.json",
+  "native": {
+    "ritual-runtime-results-macos.json": {
+      "status": "passed",
+      "count": 32,
+      "binary_sha256": "0cfacc4eef3cce42bb1a448152e9470d596733b4ad0d16648f6dca080dde66ed"
+    },
+    "ritual-gauntlet-runtime-results-macos.json": {
+      "status": "passed",
+      "count": 39,
+      "binary_sha256": "6b840bdd12b1f9e64abb61166a5c94c511dea7b8ddf5d3d2eae0c7f5a0495a5d"
+    }
+  },
+  "production": {
+    "binary": "/tmp/soh-ritual-release-binary",
+    "binary_sha256": "1e77f369bddbc7177427a79b2d288fbbfdda6f7d7101b45ad36ddda6a3d17bfc",
+    "runtime_tests": false,
+    "matched_vertices": 20223,
+    "preview": "/tmp/soh-arpg-inventory-preview-20261011-45/Ship ARPG Inventory.app",
+    "pid": 95016,
+    "ui_checks": [
+      "Both route objectives and descriptions visible in release44",
+      "Wild hunt ritual selected through production route journal",
+      "World wards, shrine, four native enemies and protected warden visibly render",
+      "Test ritual encounter button visible and functional in release45",
+      "Iron ritual spawned from shortcut and paused in expedition journal with updated footer"
+    ]
+  },
+  "normal_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "source_sha256": {
+    "soh/soh/Enhancements/arpg/ARPGTypes.h": "5ee056263ce6a930201ff50e92e2286afb98f85b54ae6040d210eaa5f4a2691a",
+    "soh/soh/Enhancements/arpg/ExpeditionRules.h": "410ec1ff2d783e7fad1ede46d17f5f05d6d7762211a2c46c3f86b9cb55f1c045",
+    "soh/soh/Enhancements/arpg/RitualRules.h": "644f87e9bd899009fd12e31a089f49fab3a1f6548b7086d589e026e28111e30c",
+    "soh/soh/Enhancements/arpg/ExpeditionSystem.cpp": "15e8b3d73ac2f3a492602ce89d117a64186b988c6cb959381a0d6054914bcf80",
+    "soh/soh/Enhancements/arpg/EnemySystem.cpp": "70888128c832e91c60cddb1423063d4e9d03f281529d0da8f7b1f4f84cdb4832",
+    "soh/soh/Enhancements/arpg/EnemySystem.h": "43d4fbb2f1abe0d37b50d4e27a4745df20479d5f722120a25ff5c235fcaabaf3",
+    "soh/soh/Enhancements/arpg/WaystoneState.h": "50636008debf06d8f019469c95c2781af8cf2e4ee8bd273a861a0d885139ea57",
+    "soh/soh/Enhancements/arpg/WaystoneBlenderData.h": "d47b056d51c0d18b7c21a70a54e2c7f8b49bc7e9d1bb208a3b0b7e229e75f1c8",
+    "soh/soh/Enhancements/arpg/GearVisuals.cpp": "d6628b2c89cf802dd9f3db9ba5dcea4fee713902923f25f19517fc8f09168f62",
+    "soh/soh/Enhancements/arpg/ARPGSaveCodec.h": "f9291704630a75470262d0b1c619d8fe968ae7228668862e19b87787e1b43eb5",
+    "soh/soh/Enhancements/arpg/ARPGSave.cpp": "d654d63f09fc2546cbb7187c63b4f5de942b84fb709eb97b63da1e7f48d471e0",
+    "soh/soh/Enhancements/arpg/ARPGTesting.cpp": "7382aee9be2ee6600e2d24745d11ea90fc760c101a7d2133a029cc9bf532479d",
+    "soh/soh/Enhancements/arpg/ARPGInventoryWindow.cpp": "dfa481e2a0accd131e0109d8208531ec56e4182476f3c089664e732b5573f9ec",
+    "soh/soh/Enhancements/arpg/SkillSystem.cpp": "af85869881352fb6902882144158903e3334942842c0d5e357448ee77f1c4044",
+    "soh/soh/Enhancements/arpg/SkillSystem.h": "37d213e991fd37d6ed3345afe36bd18c08c4930c8228259771f094671c45220a",
+    "tests/arpg/ritual_test.cpp": "6d10f3def93ef2b0334896f74e1c7ac783ad4411b12cf1cce2e2fb20464a4913",
+    "tests/arpg/expedition_test.cpp": "ebbba48f90551a826b948847016d4bca4c9869f1c24820626733f5a9432c4702",
+    "tests/arpg/waystone_geometry_test.cpp": "94f0bb636ecea1efe998c7d9e24eed8ca31a418daceb9fc0b8b927afdcdb6832",
+    "tests/arpg/ritual_runtime_test.cpp": "e9f0ebf59a3a5f5ea19d325fc1c83e8dcc6b2c1308e152049901e963baca94c8",
+    "tests/arpg/expedition_runtime_test.cpp": "91cc7ea2c8a67b686de45a9a85854f96eef31c36de0b3e695207c0bf5e34e8b6",
+    "art/arpg/waystone/build_waystone.py": "0a20e5f40b8ee3f8acabafd30bb1af804b8a9c702cce9245b8865fe4e962966b",
+    "art/arpg/waystone/export_runtime.py": "f016e9002f424a885c87ffee0ca6e39678e3114bbc401ab6a1c1515eae53d0d5",
+    "art/arpg/waystone/package_blend.py": "9fb025147a9cff40289305b7d062a0e2fc67d7fcfaf2fa9b1ddb75c808e932d2",
+    "art/arpg/waystone/waystone.glb": "547565f31dfd0e5a6a9f0db8b6eb6c0c3fc08f0772adfc653e1d8c10b57b25a8",
+    "art/arpg/waystone/waystone.blend": "556f483ad34f79fb92fc5a4e8b158ab08f7ff3dace34ba553c548c63a1dfa2c7"
+  },
+  "limits": [
+    "Native encounter acceptance exercised Hyrule Field; broader region/age acceptance remains pending.",
+    "Native collision calculation and health subtraction were tested on the live warden; completion callbacks were scripted after the ward-channel tests.",
+    "The exposed phase lasts for the rest of this encounter; it is not a timed re-shielding cycle.",
+    "Asset surfaces use native lit vertex colors; Blender studio PBR materials are preview only.",
+    "World landmarks are visual geometry without blocking collision.",
+    "Long-run objective difficulty/reward balance and crowded-scene performance remain unmeasured.",
+    "The broad replayability goal remains active with all five requirements partial."
+  ]
+}

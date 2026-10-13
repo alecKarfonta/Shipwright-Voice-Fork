@@ -5,6 +5,7 @@
  */
 
 #include "z_en_vm.h"
+#include "soh/Enhancements/arpg/BeamosVisuals.h"
 #include "objects/object_vm/object_vm.h"
 #include "overlays/actors/ovl_En_Bom/z_en_bom.h"
 #include "objects/gameplay_keep/gameplay_keep.h"
@@ -163,6 +164,8 @@ void EnVm_Destroy(Actor* thisx, PlayState* play) {
     EnVm* this = (EnVm*)thisx;
 
     Collider_DestroyCylinder(play, &this->colliderCylinder);
+    Collider_DestroyQuad(play, &this->colliderQuad1);
+    Collider_DestroyQuad(play, &this->colliderQuad2);
 }
 
 void EnVm_SetupWait(EnVm* this) {
@@ -463,6 +466,7 @@ s32 EnVm_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* po
         }
     }
 
+    ARPG_OverrideBeamosLimb(play, &this->actor, limbIndex, dList);
     return false;
 }
 

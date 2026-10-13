@@ -9,6 +9,7 @@ typedef struct {
     int16_t yOffset;       // Additional Y offset to apply for the name tag
     Color_RGBA8 textColor; // Text color override. Global color is used if alpha is 0
     bool noZBuffer;        // Allow rendering over geometry
+    float scale;          // [TIME] | [INFO] | NameTag.Options | Zero keeps the existing scale.
 } NameTagOptions;
 
 // Register required hooks for nametags on startup
@@ -24,6 +25,7 @@ void NameTag_RegisterForActorWithOptions(Actor* actor, const char* text, NameTag
 void NameTag_RegisterForActor(Actor* actor, const char* text);
 // Remove all name tags registered to a specific actor
 void NameTag_RemoveAllForActor(Actor* actor);
+void NameTag_RemoveForActorByTag(Actor* actor, const char* tag);
 // Remove all name tags that share the same tag identifier
 void NameTag_RemoveAllByTag(const char* tag);
 

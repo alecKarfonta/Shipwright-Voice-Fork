@@ -1,0 +1,658 @@
+{
+  "checks": [
+    "Large field population exceeds the old fixed cap within its area budget",
+    "Enemies occupy at least six broad field sectors, not one crowded corner",
+    "Region includes enemies more than the old 2400-unit despawn distance away",
+    "Distant noncombat patrols allow view culling while remaining active",
+    "Distant enemies complete emergence and retain extended draw distance",
+    "Field has a native Wolfos model-detail fixture",
+    "Distant enemies retain native geometry while nearby enemies retain remastered detail",
+    "Ranch and castle approaches each receive two native watch NPCs",
+    "Unassisted NPC combat cannot award player XP or loot",
+    "Large population keeps native collision tables below capacity",
+    "Multiple distant enemies travel at least 100 units while Link stays still",
+    "Watch patrols engage monsters without Link approaching",
+    "Monsters retaliate through native collision and damage the watch",
+    "Watch spear collisions damage living monsters without player attacks",
+    "Distant regional actors persist beyond the old director cleanup interval",
+    "No replacement waves spawn around an idle player",
+    "Joining a monster fight enables normal player rewards",
+    "Watchmen check the fighting area after contact ends",
+    "Aftermath ends and does not trap guards in lookout duty",
+    "Idle watchmen patrol more than 100 units after a battle clears",
+    "Watch partners remain available after the skirmish",
+    "A watchman helps a nearby wounded partner",
+    "A surviving watchman is available for quiet recovery",
+    "Watch wounds mend during a quiet stretch without monsters",
+    "Disabling population cleans up monsters and watchmen",
+    "Re-enabling populations rebuilds the region once",
+    "A second wilderness region populates from its own collision",
+    "Smaller desert region receives a smaller population budget than Hyrule Field",
+    "Hylian watchmen do not follow Link into the desert",
+    "Destination has a safe resident fixture location",
+    "Native resident fixture initializes without pack membership",
+    "Existing native residents wake with the region population",
+    "Disabling living populations restores native residents without deleting them"
+  ],
+  "error": "",
+  "observations": [
+    {
+      "distance": 4712.583984375,
+      "enemy": 473,
+      "scaleY": 0.009999999776482582,
+      "x": -3855.423095703125,
+      "y": -276.9691162109375,
+      "z": 4024.701904296875
+    },
+    {
+      "distance": 4776.29248046875,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -4049.09375,
+      "y": -300.0,
+      "z": 3850.271484375
+    },
+    {
+      "distance": 4566.490234375,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -3736.231201171875,
+      "y": -279.9689025878906,
+      "z": 3943.1767578125
+    },
+    {
+      "distance": 6798.33740234375,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 3023.318359375,
+      "y": -185.60487365722656,
+      "z": 7401.72021484375
+    },
+    {
+      "distance": 6321.75341796875,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 2869.876953125,
+      "y": -152.0095672607422,
+      "z": 6941.6767578125
+    },
+    {
+      "distance": 9529.662109375,
+      "enemy": 473,
+      "scaleY": 0.009999999776482582,
+      "x": 1256.19580078125,
+      "y": -309.9961242675781,
+      "z": 10758.8583984375
+    },
+    {
+      "distance": 9799.740234375,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 992.9730834960938,
+      "y": -364.614501953125,
+      "z": 11065.2705078125
+    },
+    {
+      "distance": 7433.43896484375,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -5374.7001953125,
+      "y": -266.7054748535156,
+      "z": 6450.541015625
+    },
+    {
+      "distance": 7481.353515625,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -4742.7265625,
+      "y": -183.29905700683594,
+      "z": 7102.5087890625
+    },
+    {
+      "distance": 10770.1494140625,
+      "enemy": 473,
+      "scaleY": 0.009999999776482582,
+      "x": -7733.63330078125,
+      "y": -456.6732482910156,
+      "z": 8809.9052734375
+    },
+    {
+      "distance": 10770.3037109375,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -7868.9794921875,
+      "y": -443.7940673828125,
+      "z": 8671.708984375
+    },
+    {
+      "distance": 11622.7294921875,
+      "enemy": 473,
+      "scaleY": 0.009999999776482582,
+      "x": -3721.9482421875,
+      "y": -496.8802185058594,
+      "z": 12323.736328125
+    },
+    {
+      "distance": 11878.298828125,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -3540.686279296875,
+      "y": -500.0,
+      "z": 12652.830078125
+    },
+    {
+      "distance": 3613.209716796875,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 2852.80712890625,
+      "y": 221.7869110107422,
+      "z": 3532.58935546875
+    },
+    {
+      "distance": 3546.037841796875,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 2782.47705078125,
+      "y": 224.1300048828125,
+      "z": 3511.890380859375
+    },
+    {
+      "distance": 6848.83447265625,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -1636.2850341796875,
+      "y": 22.126140594482422,
+      "z": 7960.6865234375
+    },
+    {
+      "distance": 7043.60009765625,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -1559.4423828125,
+      "y": -36.06877136230469,
+      "z": 8179.32568359375
+    },
+    {
+      "distance": 2492.07080078125,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -157.536376953125,
+      "y": 23.289295196533203,
+      "z": 3797.11767578125
+    },
+    {
+      "distance": 2421.910400390625,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -722.933837890625,
+      "y": -72.31360626220703,
+      "z": 3621.749267578125
+    },
+    {
+      "distance": 7281.41650390625,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 4677.10791015625,
+      "y": -40.37005615234375,
+      "z": 6893.63134765625
+    },
+    {
+      "distance": 6750.13232421875,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 4702.65087890625,
+      "y": 80.70664978027344,
+      "z": 6150.248046875
+    },
+    {
+      "distance": 2343.01220703125,
+      "enemy": 473,
+      "scaleY": 0.009999999776482582,
+      "x": -2129.158203125,
+      "y": -87.97473907470703,
+      "z": 2293.770751953125
+    },
+    {
+      "distance": 2881.79443359375,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -2520.101318359375,
+      "y": -189.69564819335938,
+      "z": 2718.3173828125
+    },
+    {
+      "distance": 2785.3671875,
+      "enemy": 473,
+      "scaleY": 0.009999999776482582,
+      "x": 2697.757568359375,
+      "y": -18.419937133789062,
+      "z": 625.3369140625
+    },
+    {
+      "distance": 3039.638671875,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 3032.849609375,
+      "y": -20.0,
+      "z": 1101.23291015625
+    },
+    {
+      "distance": 12972.0244140625,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -1726.884033203125,
+      "y": -500.0,
+      "z": 14170.951171875
+    },
+    {
+      "distance": 12857.59765625,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -1800.53759765625,
+      "y": -500.0,
+      "z": 14044.029296875
+    },
+    {
+      "distance": 7772.38623046875,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -6494.17724609375,
+      "y": -186.54183959960938,
+      "z": 5585.68115234375
+    },
+    {
+      "distance": 7751.64404296875,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -6419.67724609375,
+      "y": -190.0873260498047,
+      "z": 5657.5166015625
+    },
+    {
+      "distance": 9483.037109375,
+      "enemy": 473,
+      "scaleY": 0.009999999776482582,
+      "x": -1937.1373291015625,
+      "y": -414.63812255859375,
+      "z": 10595.9443359375
+    },
+    {
+      "distance": 9626.673828125,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -2161.27099609375,
+      "y": -410.57037353515625,
+      "z": 10690.8037109375
+    },
+    {
+      "distance": 9674.1826171875,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -1956.10693359375,
+      "y": -435.5384216308594,
+      "z": 10784.5458984375
+    },
+    {
+      "distance": 3899.739501953125,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -3616.060302734375,
+      "y": -300.0,
+      "z": -149.5472412109375
+    },
+    {
+      "distance": 4633.5146484375,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -4170.94482421875,
+      "y": -300.0,
+      "z": -715.7926025390625
+    },
+    {
+      "distance": 4687.41845703125,
+      "enemy": 473,
+      "scaleY": 0.009999999776482582,
+      "x": 2328.744140625,
+      "y": 326.0852966308594,
+      "z": 5379.7216796875
+    },
+    {
+      "distance": 4562.0107421875,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 2381.57373046875,
+      "y": 349.8543395996094,
+      "z": 5201.005859375
+    },
+    {
+      "distance": 4308.6865234375,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 2156.796630859375,
+      "y": 354.0916442871094,
+      "z": 5037.990234375
+    },
+    {
+      "distance": 6970.11572265625,
+      "enemy": 473,
+      "scaleY": 0.009999999776482582,
+      "x": 462.8505859375,
+      "y": -134.96302795410156,
+      "z": 8267.185546875
+    },
+    {
+      "distance": 7150.681640625,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 719.1556396484375,
+      "y": -134.6191864013672,
+      "z": 8429.423828125
+    },
+    {
+      "distance": 7043.70263671875,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 294.08209228515625,
+      "y": -122.17697143554688,
+      "z": 8348.5615234375
+    },
+    {
+      "distance": 5723.279296875,
+      "enemy": 473,
+      "scaleY": 0.009999999776482582,
+      "x": -5622.76171875,
+      "y": -300.0,
+      "z": 2388.362548828125
+    },
+    {
+      "distance": 5877.490234375,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -5717.9677734375,
+      "y": -300.0,
+      "z": 2691.565185546875
+    },
+    {
+      "distance": 9441.7900390625,
+      "enemy": 473,
+      "scaleY": 0.009999999776482582,
+      "x": -5535.41650390625,
+      "y": -235.63377380371094,
+      "z": 8962.599609375
+    },
+    {
+      "distance": 9242.2470703125,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -5345.12060546875,
+      "y": -223.36660766601562,
+      "z": 8855.42578125
+    },
+    {
+      "distance": 9515.2138671875,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -5411.7802734375,
+      "y": -211.96397399902344,
+      "z": 9143.779296875
+    },
+    {
+      "distance": 5430.99609375,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 5100.93212890625,
+      "y": -20.0,
+      "z": 3176.3759765625
+    },
+    {
+      "distance": 5473.51513671875,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 5200.75927734375,
+      "y": -30.405235290527344,
+      "z": 3023.4736328125
+    },
+    {
+      "distance": 11308.9970703125,
+      "enemy": 473,
+      "scaleY": 0.009999999776482582,
+      "x": 502.92462158203125,
+      "y": -500.0,
+      "z": 12610.2958984375
+    },
+    {
+      "distance": 11543.7548828125,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 657.54541015625,
+      "y": -500.0,
+      "z": 12839.546875
+    },
+    {
+      "distance": 11277.9931640625,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 380.5880432128906,
+      "y": -500.0,
+      "z": 12581.822265625
+    },
+    {
+      "distance": 11283.2587890625,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -9472.0673828125,
+      "y": -252.96046447753906,
+      "z": 7446.1005859375
+    },
+    {
+      "distance": 11062.9697265625,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -9542.068359375,
+      "y": -176.84230041503906,
+      "z": 6909.49560546875
+    },
+    {
+      "distance": 8831.0166015625,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 5284.02978515625,
+      "y": 57.93696975708008,
+      "z": 8384.927734375
+    },
+    {
+      "distance": 8949.9814453125,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 4711.13671875,
+      "y": 48.03810119628906,
+      "z": 8920.7900390625
+    },
+    {
+      "distance": 13656.01953125,
+      "enemy": 473,
+      "scaleY": 0.009999999776482582,
+      "x": -5103.46240234375,
+      "y": -700.0,
+      "z": 13979.7119140625
+    },
+    {
+      "distance": 13877.2216796875,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -5297.01806640625,
+      "y": -636.0,
+      "z": 14139.666015625
+    },
+    {
+      "distance": 13612.8935546875,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -5009.2216796875,
+      "y": -700.0,
+      "z": 13969.46875
+    },
+    {
+      "distance": 156.80372619628906,
+      "enemy": 473,
+      "scaleY": 0.009999999776482582,
+      "x": -151.47598266601562,
+      "y": 0.0,
+      "z": 1266.7811279296875
+    },
+    {
+      "distance": 114.14180755615234,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -89.07601928710938,
+      "y": 0.0,
+      "z": 1241.781982421875
+    },
+    {
+      "distance": 77.42268371582031,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -79.27241516113281,
+      "y": 0.0,
+      "z": 1308.1685791015625
+    },
+    {
+      "distance": 4926.08837890625,
+      "enemy": 473,
+      "scaleY": 0.009999999776482582,
+      "x": -2311.654541015625,
+      "y": 313.0,
+      "z": 5663.3642578125
+    },
+    {
+      "distance": 4939.85791015625,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -2381.21240234375,
+      "y": 313.0,
+      "z": 5641.43115234375
+    },
+    {
+      "distance": 5053.21923828125,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -2268.8193359375,
+      "y": 313.0,
+      "z": 5828.55908203125
+    },
+    {
+      "guard": 179,
+      "health": 18,
+      "x": 7.879845142364502,
+      "y": -0.0,
+      "z": 1334.42724609375
+    },
+    {
+      "guard": 179,
+      "health": 24,
+      "x": -153.25717163085938,
+      "y": 0.0,
+      "z": 1353.4822998046875
+    },
+    {
+      "guard": 179,
+      "health": 24,
+      "x": -2292.51318359375,
+      "y": 313.0,
+      "z": 5607.71875
+    },
+    {
+      "guard": 179,
+      "health": 12,
+      "x": -2447.33740234375,
+      "y": 313.0,
+      "z": 5732.32080078125
+    },
+    {
+      "area": 146978780.0,
+      "live": 63,
+      "region": "field",
+      "target": 64
+    },
+    {
+      "populatedFieldSectors": 9
+    },
+    {
+      "bgFlags": 129,
+      "freeze": 0,
+      "gravity": -1.0,
+      "guardTravel": 226.34402465820312,
+      "health": 16,
+      "speed": 2.5,
+      "velocityX": 0.4541917145252228,
+      "velocityY": -4.0
+    },
+    {
+      "bgFlags": 129,
+      "freeze": 0,
+      "gravity": -1.0,
+      "guardTravel": 245.1720733642578,
+      "health": 18,
+      "speed": 0.0,
+      "velocityX": 0.0,
+      "velocityY": -4.0
+    },
+    {
+      "bgFlags": 129,
+      "freeze": 0,
+      "gravity": -1.0,
+      "guardTravel": 116.93566131591797,
+      "health": 0,
+      "speed": 1.7999999523162842,
+      "velocityX": 0.9427106380462646,
+      "velocityY": -4.0
+    },
+    {
+      "bgFlags": 129,
+      "freeze": 0,
+      "gravity": -1.0,
+      "guardTravel": 169.7998046875,
+      "health": 18,
+      "speed": 0.0,
+      "velocityX": -0.0,
+      "velocityY": -4.0
+    },
+    {
+      "combatFrames": 501,
+      "movingDistantEnemies": 46,
+      "movingGuards": 4,
+      "observedDamage": true
+    },
+    {
+      "peakAC": 116,
+      "peakAT": 3,
+      "peakOC": 77
+    },
+    {
+      "hurtWatchmen": 4,
+      "remaining": 63,
+      "watchAttacks": 29,
+      "watchHits": 14
+    },
+    {
+      "idleGuardTravel": 203.60316467285156
+    },
+    {
+      "idleGuardTravel": 0.0
+    },
+    {
+      "idleGuardTravel": 387.00885009765625
+    },
+    {
+      "idleGuardTravel": 396.14276123046875
+    },
+    {
+      "area": 47330192.0,
+      "live": 32,
+      "region": "colossus",
+      "target": 32
+    }
+  ],
+  "status": "passed",
+  "binarySha256": "4b73f4253b1b943c1d039bd1d2960875271f2e3f80c86082c00a18afd6e3960f"
+}

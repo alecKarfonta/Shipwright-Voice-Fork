@@ -1,0 +1,25 @@
+{
+  "source_sha256": "1f4971cc56ccd06096c173ddf439d3ed7600b4b24062ebc50cce9b9341f33f2b",
+  "vertices": 2980,
+  "triangles": 13144,
+  "parts": 54,
+  "subpixel_triangles_removed": 0,
+  "triangles_per_actor": {
+    "0": 6512,
+    "1": 6632
+  },
+  "materials": [
+    "skin",
+    "ridge",
+    "spot",
+    "lip",
+    "interior",
+    "gum",
+    "tooth",
+    "stem",
+    "leaf",
+    "vein",
+    "bark"
+  ],
+  "space": "Native joint-local XYZ, positions x100; native normals retained; authoring-pose transforms omitted"
+}

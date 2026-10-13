@@ -1,0 +1,745 @@
+{
+  "error": "",
+  "index": 41,
+  "status": "passed",
+  "visits": [
+    {
+      "adult": false,
+      "contact": true,
+      "entry": [
+        -66.07052612304688,
+        -80.0,
+        938.70263671875
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 3,
+      "quest": 2,
+      "scene": 85,
+      "storyItems": 33554431
+    },
+    {
+      "adult": false,
+      "contact": true,
+      "entry": [
+        874.208251953125,
+        2.0,
+        -3742.50537109375
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 3,
+      "quest": 7,
+      "scene": 99,
+      "storyItems": 33554431
+    },
+    {
+      "adult": false,
+      "contact": false,
+      "entry": [
+        -1346.59765625,
+        119.47383880615234,
+        2219.5009765625
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 3,
+      "quest": 9,
+      "scene": 96,
+      "storyItems": 33554431
+    },
+    {
+      "adult": false,
+      "contact": false,
+      "entry": [
+        -1504.876953125,
+        -20.0,
+        1507.21923828125
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 3,
+      "quest": 16,
+      "scene": 84,
+      "storyItems": 33554431
+    },
+    {
+      "adult": false,
+      "contact": true,
+      "entry": [
+        -2646.001953125,
+        138.0,
+        1063.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 1,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 3,
+      "quest": 18,
+      "scene": 82,
+      "storyItems": 33554431
+    },
+    {
+      "adult": false,
+      "contact": false,
+      "entry": [
+        -1407.99951171875,
+        0.0,
+        330.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 3,
+      "quest": 20,
+      "scene": 83,
+      "storyItems": 33554431
+    },
+    {
+      "adult": false,
+      "contact": true,
+      "entry": [
+        -1108.99951171875,
+        210.0,
+        -160.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 0,
+      "quest": 0,
+      "scene": 88,
+      "storyItems": 33554431
+    },
+    {
+      "adult": false,
+      "contact": true,
+      "entry": [
+        56.0,
+        600.0,
+        1100.99951171875
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 0,
+      "quest": 0,
+      "scene": 98,
+      "storyItems": 33554431
+    },
+    {
+      "adult": true,
+      "contact": true,
+      "entry": [
+        -1.0,
+        0.0,
+        -89.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 0,
+      "quest": 0,
+      "scene": 38,
+      "storyItems": 33554430
+    },
+    {
+      "adult": true,
+      "contact": true,
+      "entry": [
+        -29.409366607666016,
+        -80.0,
+        895.0576171875
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 3,
+      "quest": 4,
+      "scene": 85,
+      "storyItems": 33554431
+    },
+    {
+      "adult": true,
+      "contact": false,
+      "entry": [
+        -10.0,
+        0.0,
+        1264.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 1,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 3,
+      "quest": 7,
+      "scene": 81,
+      "storyItems": 33554431
+    },
+    {
+      "adult": true,
+      "contact": false,
+      "entry": [
+        -1.0,
+        0.0,
+        245.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 3,
+      "quest": 23,
+      "scene": 91,
+      "storyItems": 33554431
+    },
+    {
+      "adult": true,
+      "contact": false,
+      "entry": [
+        -201.0,
+        0.0,
+        2123.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 1,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 3,
+      "quest": 23,
+      "scene": 86,
+      "storyItems": 33554431
+    },
+    {
+      "adult": true,
+      "contact": true,
+      "entry": [
+        56.0,
+        600.0,
+        1044.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 3,
+      "quest": 26,
+      "scene": 98,
+      "storyItems": 33554431
+    },
+    {
+      "adult": true,
+      "contact": false,
+      "entry": [
+        16.0,
+        -0.0,
+        2682.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 3,
+      "quest": 27,
+      "scene": 9,
+      "storyItems": 33554431
+    },
+    {
+      "adult": true,
+      "contact": false,
+      "entry": [
+        -2093.0,
+        -1034.1651611328125,
+        765.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 3,
+      "quest": 29,
+      "scene": 87,
+      "storyItems": 33554431
+    },
+    {
+      "adult": true,
+      "contact": true,
+      "entry": [
+        -12.0,
+        0.0,
+        249.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 0,
+      "quest": 0,
+      "scene": 56,
+      "storyItems": 33554431
+    },
+    {
+      "adult": true,
+      "contact": true,
+      "entry": [
+        -2578.0,
+        138.0,
+        1065.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 3,
+      "quest": 32,
+      "scene": 82,
+      "storyItems": 33554431
+    },
+    {
+      "adult": true,
+      "contact": true,
+      "entry": [
+        2643.5068359375,
+        -263.3296813964844,
+        721.609619140625
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 1,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 3,
+      "quest": 34,
+      "scene": 90,
+      "storyItems": 33554431
+    },
+    {
+      "adult": true,
+      "contact": true,
+      "entry": [
+        -842.0,
+        4.678350925445557,
+        -144.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 0,
+      "quest": 0,
+      "scene": 93,
+      "storyItems": 33554431
+    },
+    {
+      "adult": true,
+      "contact": false,
+      "entry": [
+        4455.0,
+        -360.0,
+        3039.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 3,
+      "quest": 35,
+      "scene": 94,
+      "storyItems": 33554431
+    },
+    {
+      "adult": true,
+      "contact": false,
+      "entry": [
+        -10.0,
+        0.0,
+        1264.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": true,
+      "passed": true,
+      "placed": 0,
+      "quest": 5,
+      "scene": 81,
+      "storyItems": 33554431
+    },
+    {
+      "adult": true,
+      "contact": false,
+      "entry": [
+        -1.0,
+        0.0,
+        245.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": true,
+      "passed": true,
+      "placed": 0,
+      "quest": 21,
+      "scene": 91,
+      "storyItems": 33554431
+    },
+    {
+      "adult": false,
+      "contact": true,
+      "entry": [
+        -29.409366607666016,
+        -80.0,
+        895.0576171875
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 1,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 3,
+      "quest": 41,
+      "scene": 85,
+      "storyItems": 33554431
+    },
+    {
+      "adult": false,
+      "contact": true,
+      "entry": [
+        1050.6083984375,
+        0.0,
+        -3719.5068359375
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 0,
+      "quest": 43,
+      "scene": 99,
+      "storyItems": 33554431
+    },
+    {
+      "adult": false,
+      "contact": false,
+      "entry": [
+        1047.083984375,
+        0.0,
+        -3718.22607421875
+      ],
+      "night": true,
+      "npcs": [],
+      "objective": 1,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 0,
+      "quest": 43,
+      "scene": 99,
+      "storyItems": 33554431
+    },
+    {
+      "adult": false,
+      "contact": true,
+      "entry": [
+        -2589.0,
+        138.0,
+        1063.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 1,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 0,
+      "quest": 44,
+      "scene": 82,
+      "storyItems": 33554431
+    },
+    {
+      "adult": false,
+      "contact": false,
+      "entry": [
+        -1351.0,
+        0.0,
+        330.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 3,
+      "quest": 45,
+      "scene": 83,
+      "storyItems": 33554431
+    },
+    {
+      "adult": false,
+      "contact": false,
+      "entry": [
+        -1497.34228515625,
+        0.5,
+        394.6699523925781
+      ],
+      "night": true,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 3,
+      "quest": 46,
+      "scene": 83,
+      "storyItems": 33554431
+    },
+    {
+      "adult": false,
+      "contact": false,
+      "entry": [
+        -1483.529296875,
+        -20.0,
+        1454.36767578125
+      ],
+      "night": true,
+      "npcs": [],
+      "objective": 1,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 3,
+      "quest": 49,
+      "scene": 84,
+      "storyItems": 33554431
+    },
+    {
+      "adult": false,
+      "contact": true,
+      "entry": [
+        1050.6083984375,
+        0.0,
+        -3719.5068359375
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 0,
+      "quest": 50,
+      "scene": 99,
+      "storyItems": 33554431
+    },
+    {
+      "adult": false,
+      "contact": true,
+      "entry": [
+        -1052.0,
+        210.0,
+        -160.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 1,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 0,
+      "quest": 50,
+      "scene": 88,
+      "storyItems": 33554431
+    },
+    {
+      "adult": true,
+      "contact": false,
+      "entry": [
+        -2093.0,
+        -1034.1651611328125,
+        765.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 0,
+      "quest": 51,
+      "scene": 87,
+      "storyItems": 33554431
+    },
+    {
+      "adult": true,
+      "contact": false,
+      "entry": [
+        -201.0,
+        0.0,
+        2123.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 0,
+      "quest": 52,
+      "scene": 86,
+      "storyItems": 33554431
+    },
+    {
+      "adult": true,
+      "contact": false,
+      "entry": [
+        -201.0,
+        0.0,
+        2119.25
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 1,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 0,
+      "quest": 52,
+      "scene": 86,
+      "storyItems": 33554431
+    },
+    {
+      "adult": true,
+      "contact": true,
+      "entry": [
+        -842.0,
+        4.678350925445557,
+        -144.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 1,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 0,
+      "quest": 53,
+      "scene": 93,
+      "storyItems": 33554431
+    },
+    {
+      "adult": true,
+      "contact": false,
+      "entry": [
+        4455.0,
+        -360.0,
+        3039.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 1,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 0,
+      "quest": 54,
+      "scene": 94,
+      "storyItems": 33554431
+    },
+    {
+      "adult": true,
+      "contact": true,
+      "entry": [
+        -12.0,
+        0.0,
+        249.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 0,
+      "quest": 55,
+      "scene": 56,
+      "storyItems": 33554431
+    },
+    {
+      "adult": true,
+      "contact": false,
+      "entry": [
+        -2093.0,
+        -1034.1651611328125,
+        765.0
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 1,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 3,
+      "quest": 55,
+      "scene": 87,
+      "storyItems": 33554431
+    },
+    {
+      "adult": true,
+      "contact": false,
+      "entry": [
+        -2578.0,
+        138.0,
+        1065.0
+      ],
+      "night": true,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 3,
+      "quest": 56,
+      "scene": 82,
+      "storyItems": 33554431
+    },
+    {
+      "adult": true,
+      "contact": true,
+      "entry": [
+        2643.5068359375,
+        -263.3296813964844,
+        721.609619140625
+      ],
+      "night": false,
+      "npcs": [],
+      "objective": 0,
+      "packDefeated": false,
+      "passed": true,
+      "placed": 0,
+      "quest": 58,
+      "scene": 90,
+      "storyItems": 33554431
+    }
+  ]
+}

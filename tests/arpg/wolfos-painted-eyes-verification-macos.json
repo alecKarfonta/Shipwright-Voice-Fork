@@ -1,0 +1,110 @@
+{
+  "verified_at_utc": "2026-10-13T15:12:09.729908+00:00",
+  "status": "Painted brown eye revision verified; full character remaster remains incomplete",
+  "previous_goal_turn": "progress",
+  "master": {
+    "path": "/Users/alec/git/z64-romhack-tutorials/soh/art/arpg/wolfos/workspace/wolfos-painted-eyes-v1.blend",
+    "sha256": "3a3faf9b27c42d0deb46dfa5d915d31fff1a68d8eb6cf7a1c3ed3a921f6d0c11",
+    "baseline_sha256": "fa077d48fa539ec1fb7eae72637034befa1d9d3c9ee972da821d5669564afe06"
+  },
+  "pack": {
+    "path": "/Users/alec/git/z64-romhack-tutorials/soh/art/arpg/wolfos/workspace/export/wolfos-painted-eyes-v1.o2r",
+    "sha256": "f1debee94b7dc0ac2cd91f92a7c8ad62e4daf7b322959745e5b0eaedcf414da3",
+    "changed_resources": [
+      "alt/objects/object_wf/gWolfosNormalEyeHalfTex",
+      "alt/objects/object_wf/gWolfosNormalEyeNarrowTex",
+      "alt/objects/object_wf/gWolfosNormalEyeOpenTex"
+    ],
+    "remaining_resources": "Byte-identical to the verified baseline; native rig and animation resources are not replaced"
+  },
+  "paint_sources": {
+    "amber-open-v1.png": {
+      "path": "/Users/alec/git/z64-romhack-tutorials/soh/art/arpg/wolfos/paint/eyes/amber-open-v1.png",
+      "sha256": "cec29447992522e38c12e8ea8fb4fd95dbcb1042ef294bf573e4349d82d1a630",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "runtime_size": [
+        256,
+        256
+      ]
+    },
+    "amber-half-v1.png": {
+      "path": "/Users/alec/git/z64-romhack-tutorials/soh/art/arpg/wolfos/paint/eyes/amber-half-v1.png",
+      "sha256": "f13cdd8488326302e437dac224ff28145c7aea6a124a8985d78b52ffd32913e5",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "runtime_size": [
+        256,
+        256
+      ]
+    },
+    "amber-closed-v1.png": {
+      "path": "/Users/alec/git/z64-romhack-tutorials/soh/art/arpg/wolfos/paint/eyes/amber-closed-v1.png",
+      "sha256": "3e164c935a9734de171e3bd9fd93a9bd44bd637a9743eb735dcf12d97c6e0ddc",
+      "source_size": [
+        1254,
+        1254
+      ],
+      "runtime_size": [
+        256,
+        256
+      ]
+    }
+  },
+  "generation": {
+    "tool": "built-in image_gen",
+    "prompts": "art/arpg/wolfos/paint/eyes/prompts.json",
+    "artist_intent": "Readable round pupil, amber iris fibers and darker limbal ring; upper eyelid occludes the iris at half blink and fully closes; transparent contour matches native eye surfaces"
+  },
+  "code_sha256": {
+    "art/arpg/wolfos/apply_paint_maps.py": "7c72e4c81c04fd4a38c8fb44155542131686ddb3860b95fe325152ddd3e06f7b",
+    "art/arpg/wolfos/preview_workspace.py": "7ff6073380f9508dac482f4e3ae148040b7d3c5d234c689b582aa3baaf2e743f",
+    "art/arpg/wolfos/launch_master_preview.py": "0b6f14e6538b29c19566865cadd697d92cec4040b922c0a59cfa8353442d8f22",
+    "tests/arpg/wolfos_models_runtime_test.cpp": "cf444f0858b3a3ba14b3d31145538db398daaaa4521bd31a5383780245cf570b"
+  },
+  "preview": {
+    "path": "/Users/alec/git/z64-romhack-tutorials/soh/art/arpg/wolfos/workspace/painted-eyes-preview-v1/painted-blink-review.mp4",
+    "width": 960,
+    "height": 720,
+    "fps": 20,
+    "frames": 134,
+    "seconds": 6.7,
+    "timing": "Slowed held eye states for art inspection, not ordinary blink timing",
+    "studio_states": [
+      "open",
+      "half",
+      "closed",
+      "half-return"
+    ]
+  },
+  "native_visual_review": {
+    "profile": "/var/folders/v6/86zp6_fs76718ycp8mp1g_j40000gn/T/soh-arpg-qa-wolfos-master-c2nn6e66",
+    "open": "art/arpg/wolfos/workspace/painted-eyes-preview-v1/eyes-close-in-game-1.png",
+    "half": "art/arpg/wolfos/workspace/painted-eyes-preview-v1/eyes-close-in-game-2.png",
+    "closed": "art/arpg/wolfos/workspace/painted-eyes-preview-v1/eyes-close-in-game-6.png",
+    "observation": "Both amber irises and pupils visible in the native renderer; partial lid occlusion and full closure visibly confirmed. Native eye surfaces remain attached to the head. Close camera uses held eye states; combat suite retains original blink timing.",
+    "review_app": "Left open for inspection"
+  },
+  "native_combat": {
+    "status": "passed",
+    "checks": 32,
+    "results": "tests/arpg/wolfos-painted-eyes-runtime-results-macos.json",
+    "profile": "/var/folders/v6/86zp6_fs76718ycp8mp1g_j40000gn/T/soh-arpg-qa-wolfos-master-jexw_ml8",
+    "qa_executable_sha256": "34c6fa8983f24d782cefe763f20bc32f9c0b1122e9212382d679b7557dc78ca6",
+    "build_log": "/tmp/wolfos-painted-eyes-build.log",
+    "scope": "Isolated snapshot build, same integration documented in master-export verification; current-root EnemyVisuals.cpp separately compiled. Combat app closed after completion."
+  },
+  "normal_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "deployment": "Exported native pack and temporary review profile only; normal player profile and main installed app unchanged",
+  "blender_mcp": "Handshake still disconnected; editing/import/rendering completed with isolated background Blender 5.1.2",
+  "remaining": [
+    "Native reference body still needs modern anatomy and painted coat, mouth and claw materials.",
+    "White Wolfos remains unedited.",
+    "Older procedural replacement retains old eye geometry until the new full master is accepted and deployed.",
+    "User approved original-motion reference only; human acceptance of this eye art and complete character remains open."
+  ]
+}

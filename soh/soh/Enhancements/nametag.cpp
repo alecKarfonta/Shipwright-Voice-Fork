@@ -27,6 +27,7 @@ typedef struct {
     int16_t width;             // Textbox width
     int16_t yOffset;           // Addition Y offset
     bool noZBuffer;            // Allow rendering over geometry
+    float scale;
     Mtx* mtx;                  // Allocated Mtx for rendering
     Vtx* vtx;                  // Allocated Vtx for rendering
 } NameTag;
@@ -49,6 +50,8 @@ void FreeNameTag(NameTag* nameTag) {
 }
 
 void DrawNameTag(PlayState* play, const NameTag* nameTag) {
+    if (nameTag->tag && (std::string(nameTag->tag) == "ARPGAffix" || std::string(nameTag->tag) == "arpg-activity") &&
+        !CVarGetInteger(CVAR_ENHANCEMENT("ARPG.EnemyNameplates"), 0)) { return; }
     if (nameTag->actor == nullptr || nameTag->actor->draw == nullptr || !nameTag->actor->isDrawn ||
         nameTag->vtx == nullptr || nameTag->mtx == nullptr) {
         return;
@@ -65,7 +68,7 @@ void DrawNameTag(PlayState* play, const NameTag* nameTag) {
         alpha = (440000.0f - nameTag->actor->xyzDistToPlayerSq) / 80000.0f;
     }
 
-    float scale = 75.0f / 100.f;
+    float scale = nameTag->scale > 0 ? nameTag->scale : 0.75f;
 
     size_t numChar = nameTag->processedText.length();
     // No text to render
@@ -266,6 +269,7 @@ extern "C" void NameTag_RegisterForActorWithOptions(Actor* actor, const char* te
     nameTag.width = width;
     nameTag.yOffset = options.yOffset;
     nameTag.noZBuffer = options.noZBuffer;
+    nameTag.scale = options.scale;
     nameTag.mtx = new Mtx();
     nameTag.vtx = vertices;
 
@@ -288,6 +292,17 @@ extern "C" void NameTag_RemoveAllForActor(Actor* actor) {
         }
     }
 
+    NameTag_RegisterHooks();
+}
+
+// [TIME] | [INFO] | NameTag.RemoveForActorByTag | Updating an enemy roll preserves labels belonging to other enhancements.
+extern "C" void NameTag_RemoveForActorByTag(Actor* actor, const char* tag) {
+    for (auto it = nameTags.begin(); it != nameTags.end();) {
+        if (it->actor == actor && it->tag != nullptr && strcmp(it->tag, tag) == 0) {
+            FreeNameTag(&(*it));
+            it = nameTags.erase(it);
+        } else { ++it; }
+    }
     NameTag_RegisterHooks();
 }
 

@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "variants": [
+    {
+      "variant": "spear",
+      "native_clips": 14,
+      "native_frames": 278,
+      "visible_limbs": 15,
+      "joint_connections": 12,
+      "posed_endpoint_checks": 80064,
+      "maximum_quantized_endpoint_error_world_units": 0.005900285160718749,
+      "maximum_posed_envelope_extension_world_units": 4.84354137520404,
+      "patrol_world_scale_multiplier": 1.4
+    },
+    {
+      "variant": "club",
+      "native_clips": 9,
+      "native_frames": 248,
+      "visible_limbs": 15,
+      "joint_connections": 12,
+      "posed_endpoint_checks": 71424,
+      "maximum_quantized_endpoint_error_world_units": 0.012712652848762288,
+      "maximum_posed_envelope_extension_world_units": 10.839301684563281
+    }
+  ],
+  "scope": "Every original animation frame; bridge endpoints use native matrices. Envelope comparison is per axis, not collision proof; motion renders and native combat separately reviewed."
+}

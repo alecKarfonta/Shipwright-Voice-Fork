@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-12T02:54:32.582052+00:00",
+  "platform": "macOS arm64",
+  "preview": "org.shipofharkinian.arpg-inventory-preview25",
+  "original_art": {
+    "new_skills": 37,
+    "new_base_equipment": 12,
+    "new_elemental_swords": 2,
+    "retained_original_paintings": 5,
+    "total": 56
+  },
+  "checks": [
+    "All 56 asset hashes match the manifest and packaged soh.o2r resources.",
+    "All 56 paintings have unique hashes; no native item-art fallback remains in ARPG inventory or skill nodes.",
+    "All 37 skill IDs map to existing original paintings.",
+    "All new paintings inspected on transparent backgrounds and at 48/88px in icon-gallery.html.",
+    "All three skill trees, learned/unlearned tinting and the combat action bar visually verified in the native game.",
+    "Inventory, item inspector, equipment slots and modifier comparisons visibly use the original paintings.",
+    "Click Equip changes to Frostbound, updates equipped painting and modifier totals, and preserves the displaced Ember sword with backpack count 16/48.",
+    "Infusion hand seal and its three elemental crystals render in live native combat.",
+    "Production build succeeded with runtime test harness disabled.",
+    "Portable CTest: 3/3 passed; ASAN/UBSAN CTest: 3/3 passed.",
+    "Focused native aura lifecycle suite: 39 passed; see runtime-results-auras-macos.json.",
+    "Normal player save SHA-256 remains unchanged."
+  ],
+  "limits": [
+    "Automated native mouse drag selected the source but did not complete a swap; direct mouse drag acceptance remains unverified. Click-to-equip was verified.",
+    "Extended campaign and boss balance remains a playtesting task."
+  ],
+  "normal_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "related_regressions": [
+    "runtime-results-tree-skills-macos.json",
+    "runtime-results-tree-regression-macos.json"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "reviewed_at": "2026-10-13T02:31:45.754989+00:00",
+  "source_sha256": {
+    "soh/soh/Enhancements/arpg/QuestWorld.cpp": "ed69ecff88843aaa57550b7e90bbc4310a59e3470e5b822d253a3df310a540b8",
+    "soh/soh/Enhancements/arpg/QuestPlantGeometry.h": "ca0f80b42e4562cb5dda3c6a4c9008ad99c313e359d24bf0034f8ea7a4a915f4",
+    "tests/arpg/quest_plant_test.cpp": "b4a1a81bb1ac7a6caa0a3fe0b8846c5a166c022935f6c5510dc047cc3d9d49fb",
+    "tests/arpg/quest_runtime_test.cpp": "3f8bf26052cbc6f6f7cc54867bf9ebed5d860e3e2652bcef4a03fa8a959eab1c"
+  },
+  "production_sha256": "62aac30150cafd6adf6451385bc679ee01289c53597af3131c8ef582f33e6d35",
+  "production_test_hooks": false,
+  "original_resources": [
+    "objects/gameplay_field_keep/gHanaDL",
+    "objects/gameplay_field_keep/gHanaLeafTex",
+    "objects/gameplay_field_keep/gFieldBushDL",
+    "objects/object_wood02/object_wood02_Tex_002F90"
+  ],
+  "reference_actors": [
+    "Obj_Hana",
+    "En_Kusa",
+    "En_Wood02"
+  ],
+  "visual_reviews": {
+    "kokiri-day.png": "Herbs, seedling and three restored saplings in the native forest; transparent leaf edges, bark, scale and floor contact inspected.",
+    "kokiri-night-reverse.png": "Reverse view: two-sided foliage, scene lighting and fog inspected at night."
+  },
+  "tests": {
+    "portable": [
+      "arpg_quest_plants",
+      "arpg_quests"
+    ],
+    "native_engine_checks": 36,
+    "native_results": "quest-runtime-results.json"
+  },
+  "limits": [
+    "Controlled native fixtures, not a full manual campaign playthrough.",
+    "Screenshots show the isolated QA profile."
+  ]
+}

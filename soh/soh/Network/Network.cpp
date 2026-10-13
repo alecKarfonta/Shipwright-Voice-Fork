@@ -8,27 +8,34 @@ void Network::Enable(const char* host, uint16_t port) {
         return;
     }
 
-    if (SDLNet_ResolveHost(&networkAddress, host, port) == -1) {
+    if (receiveThread.joinable())
+        receiveThread.join();
+    relaySocket.reset();
+    if (PublicRelay::IsWebSocket(host)) {
+        if (!PublicRelay::Supported()) {
+            SPDLOG_ERROR("This build does not support public relays");
+            return;
+        }
+        relaySocket = std::make_unique<PublicRelay::Socket>();
+        relaySocket->Start(host);
+    } else if (SDLNet_ResolveHost(&networkAddress, host, port) == -1) {
         SPDLOG_ERROR("[Network] SDLNet_ResolveHost: {}", SDLNet_GetError());
+        return;
     }
 
     isEnabled = true;
-
-    // First check if there is a thread running, if so, join it
-    if (receiveThread.joinable()) {
-        receiveThread.join();
-    }
 
     receiveThread = std::thread(&Network::ReceiveFromServer, this);
 }
 
 void Network::Disable() {
-    if (!isEnabled) {
-        return;
-    }
-
     isEnabled = false;
-    receiveThread.join();
+    if (receiveThread.joinable())
+        receiveThread.join();
+    if (relaySocket) {
+        relaySocket->Stop();
+        relaySocket.reset();
+    }
 }
 
 void Network::OnIncomingData(char payload[512]) {
@@ -48,7 +55,12 @@ void Network::ProcessOutgoingPackets() {
 
 void Network::SendDataToRemote(const char* payload) {
     SPDLOG_DEBUG("[Network] Sending data: {}", payload);
-    SDLNet_TCP_Send(networkSocket, payload, static_cast<int>(strlen(payload) + 1));
+    if (relaySocket) {
+        relaySocket->Send(std::string(payload) + std::string(1, '\0'));
+        return;
+    }
+    if (networkSocket)
+        SDLNet_TCP_Send(networkSocket, payload, static_cast<int>(strlen(payload) + 1));
 }
 
 void Network::SendJsonToRemote(nlohmann::json payload) {
@@ -58,6 +70,10 @@ void Network::SendJsonToRemote(nlohmann::json payload) {
 // MARK: - Private
 
 void Network::ReceiveFromServer() {
+    if (relaySocket) {
+        ReceiveWebSocket();
+        return;
+    }
     while (isEnabled) {
         while (!isConnected && isEnabled) {
             SPDLOG_TRACE("[Network] Attempting to make connection to server...");
@@ -71,6 +87,7 @@ void Network::ReceiveFromServer() {
                 OnConnected();
                 break;
             }
+            std::this_thread::sleep_for(std::chrono::milliseconds(250));
         }
 
         SDLNet_SocketSet socketSet = SDLNet_AllocSocketSet(1);
@@ -81,7 +98,7 @@ void Network::ReceiveFromServer() {
         // Listen to socket messages
         while (isConnected && networkSocket && isEnabled) {
             // we check first if socket has data, to not block in the TCP_Recv
-            int socketsReady = SDLNet_CheckSockets(socketSet, 0);
+            int socketsReady = SDLNet_CheckSockets(socketSet, 5);
 
             if (socketsReady == -1) {
                 SPDLOG_ERROR("[Network] SDLNet_CheckSockets: {}", SDLNet_GetError());
@@ -106,19 +123,7 @@ void Network::ReceiveFromServer() {
 
             HandleRemoteData(remoteDataReceived);
 
-            receivedData.append(remoteDataReceived, len);
-
-            // Proess all complete packets
-            size_t delimiterPos = receivedData.find('\0');
-            while (delimiterPos != std::string::npos) {
-                // Extract the complete packet until the delimiter
-                std::string packet = receivedData.substr(0, delimiterPos);
-                // Remove the packet (including the delimiter) from the received data
-                receivedData.erase(0, delimiterPos + 1);
-                HandleRemoteJson(packet);
-                // Find the next delimiter
-                delimiterPos = receivedData.find('\0');
-            }
+            ConsumeData(std::string(remoteDataReceived, len));
         }
 
         if (socketSet) {
@@ -155,4 +160,46 @@ void Network::HandleRemoteJson(std::string payload) {
     } catch (const std::exception& e) {
         SPDLOG_ERROR("[Network] Exception handling incoming JSON: {}", e.what());
     } catch (...) { SPDLOG_ERROR("[Network] Unknown exception handling incoming JSON"); }
+}
+
+void Network::ConsumeData(const std::string& bytes) {
+    receivedData += bytes;
+    if (receivedData.size() > 4 * 1024 * 1024) {
+        receivedData.clear();
+        isEnabled = false;
+        return;
+    }
+    for (auto end = receivedData.find('\0'); end != std::string::npos; end = receivedData.find('\0')) {
+        auto packet = receivedData.substr(0, end);
+        receivedData.erase(0, end + 1);
+        HandleRemoteJson(packet);
+    }
+}
+void Network::ReceiveWebSocket() {
+    while (isEnabled) {
+        for (auto& event : relaySocket->Poll()) {
+            if (event.kind == PublicRelay::Socket::Kind::Open) {
+                receivedData.clear();
+                isConnected = true;
+                OnConnected();
+            } else if (event.kind == PublicRelay::Socket::Kind::Data) {
+                if (isConnected)
+                    ConsumeData(event.data);
+            } else {
+                if (isConnected.exchange(false)) {
+                    receivedData.clear();
+                    OnDisconnected();
+                }
+                if (event.kind == PublicRelay::Socket::Kind::Error)
+                    SPDLOG_WARN("[Public relay] {}", event.data);
+            }
+        }
+        if (isConnected)
+            ProcessOutgoingPackets();
+        std::this_thread::sleep_for(std::chrono::milliseconds(5));
+    }
+    relaySocket->Stop();
+    if (isConnected.exchange(false))
+        OnDisconnected();
+    receivedData.clear();
 }

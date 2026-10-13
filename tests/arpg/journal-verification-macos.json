@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-12",
+  "platform": "macOS / Metal",
+  "native_runtime_checks": 24,
+  "native_runtime_status": "passed",
+  "portable_regression_suites": 13,
+  "portable_regression_status": "passed",
+  "native_build": "passed",
+  "visual_checks": [
+    "Single journal replaces native pause drawing and input",
+    "Items grid and native button assignment indicators",
+    "Base equipment ownership, age restrictions and selected equipment",
+    "Quest rewards and song notes",
+    "Zelda lullaby practice recognized by native ocarina engine: Well played",
+    "Resume and reopen",
+    "World map native image, discovery clouds, location markers and Skulltula completion",
+    "Deku Tree current-room highlight and compass chest markers",
+    "Selecting 2F changes dungeon map and markers"
+  ],
+  "coverage_limits": [
+    "Physical controller not attached; navigation activation covered by runtime check",
+    "Representative world map and Deku Tree floors inspected; no exhaustive dungeon or randomizer seed playthrough",
+    "Alternate HD texture packs not visually tested",
+    "Existing equipment layout clips at 640x480; full-size viewport inspected"
+  ],
+  "test_isolation": "Temporary SHIP_HOME directories; runtime save writes isolated slot 2",
+  "build_configuration": "Focused SOH_ARPG_JOURNAL_TESTS option disabled after verification; shared SOH_ARPG_RUNTIME_TESTS setting is managed by concurrent work and currently enabled. All harnesses require their explicit QA environment gate."
+}

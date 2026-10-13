@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "variants": 132,
+  "integer_safe_triangles": 179752,
+  "triangles_per_actor": {
+    "0:0": 28381,
+    "0:1": 29215,
+    "0:2": 29483,
+    "1:0": 28831,
+    "1:1": 29735,
+    "1:2": 30003
+  },
+  "checks": [
+    "Finite bounded native coordinates",
+    "Unit normals",
+    "No collapsed integer triangles",
+    "Native species weapon reach and empty-hand state",
+    "Stored sword hilt",
+    "Distinct species and rank geometry",
+    "Empty native rig nodes remain empty",
+    "Normal Stalfos/Wolfos/Lizalfos geometry suites passed",
+    "AddressSanitizer and UndefinedBehaviorSanitizer Stalfos/Wolfos/Lizalfos geometry suites passed",
+    "GLB exporter deterministic and rejects unrelated scene objects"
+  ],
+  "header_sha256": "438c3d2ed7287eaef9a00db1778039c45c4687ff5e74a41e84028618c6104ebe"
+}

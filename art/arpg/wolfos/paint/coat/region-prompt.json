@@ -1,0 +1,11 @@
+{
+  "tool": "built-in image_gen",
+  "output": "wolfos-coat-regions-v1.png",
+  "regions": [
+    "short facial fur",
+    "body coat",
+    "light chest",
+    "dark muzzle"
+  ],
+  "prompt": "Use case: game-asset\nAsset type: ONE opaque 2:1 landscape material texture ATLAS for a painted Wolfos game creature.\nCreate a single 2048x1024 rectangular texture sheet divided into FOUR EXACTLY EQUAL vertical strips. Each strip is 512x1024. No gutters, no frames, no labels. This sheet will be UV-mapped, so the strips are flat material samples, not body-part illustrations. The attached coat painting is a style reference; preserve a hand-painted Zelda-compatible look but make the material regions distinctly different in hair length and color.\nLEFT TO RIGHT:\n1. LEFT QUARTER: short close-lying warm-gray facial fur, fine tiny tapered hairs flowing downward, restrained texture, very low relief. Midtone gray-taupe with modest warm buff variation. NOT shaggy. This covers the forehead and cheeks.\n2. SECOND QUARTER: medium-length gray-brown body fur, slender overlapping pointed tufts flowing downward, subtle charcoal roots and taupe tips. Longer than the face but controlled and natural, no giant clumps, no scales, no feather plates. Rich medium values, not pale silver.\n3. THIRD QUARTER: soft pale warm buff/cream chest fur with fine downward fibers and small soft tufts. Clearly lighter than strips 1 and 2, without pure-white highlights or orange coloration.\n4. RIGHT QUARTER: very short dark muzzle fur with fine charcoal hairs. The TOP THIRD is nearly black charcoal, the center softly transitions through dark cool gray, and the BOTTOM THIRD grades to the same medium gray-taupe as strip 1 so it can meet the forehead. No hard horizontal boundary; a smooth gradual vertical color transition.\nWithin every strip, the material extends fully to its boundaries. Strips 1-3 should have no broad vertical lighting gradient. No baked illumination, no cast shadows, no specular glints. All colors are albedo. Distinct clean vertical boundaries exactly at 25%, 50%, and 75% of the full width, with no visible divider lines. Each strip has a 1:2 aspect ratio and consistent downward hair direction. No wolf, animal, face, eyes, paws, scenery, perspective, words or symbols. Entire sheet opaque."
+}

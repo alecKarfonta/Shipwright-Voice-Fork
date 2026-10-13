@@ -1,0 +1,198 @@
+[  1%] Building CXX object CMakeFiles/arpg_skill_tree_test.dir/skill_tree_test.cpp.o
+[  2%] Building CXX object CMakeFiles/arpg_inventory_card_stats_test.dir/inventory_card_stats_test.cpp.o
+[  3%] Building CXX object CMakeFiles/arpg_wolfos_geometry_test.dir/wolfos_geometry_test.cpp.o
+[  4%] Building CXX object CMakeFiles/arpg_gear_geometry_test.dir/gear_geometry_test.cpp.o
+[  8%] Building CXX object CMakeFiles/arpg_rules_test.dir/arpg_rules_test.cpp.o
+[  8%] Built target arpg_enemy_geometry_test
+[  8%] Building CXX object CMakeFiles/arpg_loot_test.dir/loot_test.cpp.o
+[  9%] Building CXX object CMakeFiles/arpg_expedition_test.dir/expedition_test.cpp.o
+[ 11%] Built target arpg_lizalfos_geometry_test
+[ 13%] Built target arpg_keese_geometry_test
+[ 15%] Built target arpg_tektite_geometry_test
+[ 17%] Built target arpg_world_population_test
+[ 18%] Building CXX object CMakeFiles/arpg_waystone_geometry_test.dir/waystone_geometry_test.cpp.o
+[ 19%] Linking CXX executable arpg_inventory_card_stats_test
+[ 19%] Built target arpg_inventory_card_stats_test
+[ 20%] Building CXX object CMakeFiles/arpg_ritual_test.dir/ritual_test.cpp.o
+[ 21%] Linking CXX executable arpg_gear_geometry_test
+[ 21%] Built target arpg_gear_geometry_test
+[ 23%] Built target arpg_warden_test
+[ 24%] Linking CXX executable arpg_wolfos_geometry_test
+[ 25%] Building CXX object CMakeFiles/arpg_relic_geometry_test.dir/relic_geometry_test.cpp.o
+[ 25%] Built target arpg_wolfos_geometry_test
+[ 26%] Building CXX object CMakeFiles/arpg_relay_test.dir/relay_test.cpp.o
+[ 27%] Linking CXX executable arpg_waystone_geometry_test
+[ 27%] Built target arpg_waystone_geometry_test
+[ 28%] Building CXX object CMakeFiles/arpg_arsenal_test.dir/arsenal_test.cpp.o
+[ 29%] Linking CXX executable arpg_expedition_test
+[ 30%] Linking CXX executable arpg_loot_test
+[ 30%] Built target arpg_expedition_test
+[ 31%] Linking CXX executable arpg_skill_tree_test
+[ 31%] Built target arpg_loot_test
+[ 32%] Linking CXX executable arpg_relic_geometry_test
+[ 33%] Building CXX object CMakeFiles/arpg_weapon_loot_test.dir/weapon_loot_test.cpp.o
+[ 35%] Built target arpg_creature_test
+[ 35%] Built target arpg_skill_tree_test
+[ 35%] Built target arpg_relic_geometry_test
+[ 37%] Built target arpg_brood_test
+[ 37%] Building CXX object CMakeFiles/arpg_adventure_items_test.dir/adventure_items_test.cpp.o
+[ 38%] Building CXX object CMakeFiles/arpg_quest_test.dir/quest_test.cpp.o
+[ 40%] Built target arpg_quest_plant_test
+[ 41%] Linking CXX executable arpg_rules_test
+[ 42%] Building CXX object CMakeFiles/arpg_adventure_relics_test.dir/adventure_relics_test.cpp.o
+[ 42%] Built target arpg_rules_test
+[ 44%] Built target arpg_dekubaba_geometry_test
+[ 46%] Built target arpg_octorok_geometry_test
+[ 47%] Building CXX object CMakeFiles/arpg_exploration_test.dir/exploration_test.cpp.o
+[ 48%] Linking CXX executable arpg_ritual_test
+[ 48%] Built target arpg_ritual_test
+[ 50%] Built target arpg_skulltula_geometry_test
+[ 52%] Built target arpg_bubble_geometry_test
+[ 53%] Building CXX object CMakeFiles/arpg_material_identity_test.dir/material_identity_test.cpp.o
+[ 54%] Linking CXX executable arpg_relay_test
+[ 55%] Linking CXX executable arpg_arsenal_test
+[ 55%] Built target arpg_relay_test
+[ 57%] Built target arpg_dodongo_geometry_test
+[ 57%] Built target arpg_arsenal_test
+[ 58%] Building CXX object CMakeFiles/arpg_material_workload.dir/material_workload.cpp.o
+[ 60%] Built target arpg_redead_geometry_test
+[ 62%] Built target arpg_ironknuckle_geometry_test
+[ 64%] Built target arpg_stinger_geometry_test
+[ 66%] Built target arpg_shellblade_geometry_test
+[ 68%] Built target arpg_armos_geometry_test
+[ 70%] Built target arpg_peahat_geometry_test
+[ 72%] Built target arpg_moblin_geometry_test
+[ 74%] Built target arpg_handmaster_geometry_test
+[ 76%] Built target arpg_stalchild_geometry_test
+[ 78%] Built target arpg_beamos_geometry_test
+[ 80%] Built target arpg_madscrub_geometry_test
+[ 82%] Built target arpg_anubis_geometry_test
+[ 83%] Linking CXX executable arpg_adventure_items_test
+[ 84%] Linking CXX executable arpg_weapon_loot_test
+[ 86%] Built target arpg_poe_geometry_test
+[ 86%] Built target arpg_adventure_items_test
+[ 88%] Built target arpg_guay_geometry_test
+[ 88%] Built target arpg_weapon_loot_test
+[ 89%] Building CXX object CMakeFiles/arpg_combat_input_test.dir/combat_input_test.cpp.o
+[ 91%] Linking CXX executable arpg_quest_test
+[ 92%] Built target arpg_quest_party_test
+[ 94%] Built target arpg_quest_party_catalog
+[ 95%] Building CXX object CMakeFiles/arpg_character_travel_test.dir/character_travel_test.cpp.o
+[ 95%] Built target arpg_quest_test
+[ 96%] Linking CXX executable arpg_adventure_relics_test
+[ 96%] Built target arpg_adventure_relics_test
+[ 97%] Linking CXX executable arpg_exploration_test
+[ 97%] Built target arpg_exploration_test
+[ 98%] Linking CXX executable arpg_material_workload
+[ 99%] Linking CXX executable arpg_combat_input_test
+[ 99%] Built target arpg_combat_input_test
+[ 99%] Built target arpg_material_workload
+[ 99%] Linking CXX executable arpg_material_identity_test
+[ 99%] Built target arpg_material_identity_test
+[100%] Linking CXX executable arpg_character_travel_test
+[100%] Built target arpg_character_travel_test
+Test project /tmp/arpg-quest-coop-tests
+      Start  1: arpg_inventory_card_stats
+ 1/50 Test  #1: arpg_inventory_card_stats ........   Passed    0.14 sec
+      Start  2: arpg_rules
+ 2/50 Test  #2: arpg_rules .......................   Passed    0.21 sec
+      Start  3: arpg_gear_geometry
+ 3/50 Test  #3: arpg_gear_geometry ...............   Passed    0.27 sec
+      Start  4: arpg_skill_tree
+ 4/50 Test  #4: arpg_skill_tree ..................   Passed    0.48 sec
+      Start  5: arpg_loot
+ 5/50 Test  #5: arpg_loot ........................   Passed    2.54 sec
+      Start  6: arpg_expedition
+ 6/50 Test  #6: arpg_expedition ..................   Passed   41.79 sec
+      Start  7: arpg_enemy_geometry
+ 7/50 Test  #7: arpg_enemy_geometry ..............   Passed    0.06 sec
+      Start  8: arpg_wolfos_geometry
+ 8/50 Test  #8: arpg_wolfos_geometry .............   Passed    0.29 sec
+      Start  9: arpg_lizalfos_geometry
+ 9/50 Test  #9: arpg_lizalfos_geometry ...........   Passed    0.08 sec
+      Start 10: arpg_keese_geometry
+10/50 Test #10: arpg_keese_geometry ..............   Passed    0.01 sec
+      Start 11: arpg_tektite_geometry
+11/50 Test #11: arpg_tektite_geometry ............   Passed    0.01 sec
+      Start 12: arpg_world_population
+12/50 Test #12: arpg_world_population ............   Passed    0.01 sec
+      Start 13: arpg_waystone_geometry
+13/50 Test #13: arpg_waystone_geometry ...........   Passed    0.17 sec
+      Start 14: arpg_ritual
+14/50 Test #14: arpg_ritual ......................   Passed   38.53 sec
+      Start 15: arpg_warden
+15/50 Test #15: arpg_warden ......................   Passed    0.02 sec
+      Start 16: arpg_relic_geometry
+16/50 Test #16: arpg_relic_geometry ..............   Passed    0.21 sec
+      Start 17: arpg_relay
+17/50 Test #17: arpg_relay .......................   Passed   41.96 sec
+      Start 18: arpg_arsenal
+18/50 Test #18: arpg_arsenal .....................   Passed    0.17 sec
+      Start 19: arpg_weapon_loot
+19/50 Test #19: arpg_weapon_loot .................   Passed    1.74 sec
+      Start 20: arpg_creature
+20/50 Test #20: arpg_creature ....................   Passed    0.01 sec
+      Start 21: arpg_brood
+21/50 Test #21: arpg_brood .......................   Passed    0.01 sec
+      Start 22: arpg_adventure_items
+22/50 Test #22: arpg_adventure_items .............   Passed    3.60 sec
+      Start 23: arpg_quests
+23/50 Test #23: arpg_quests ......................   Passed    0.96 sec
+      Start 24: arpg_quest_plants
+24/50 Test #24: arpg_quest_plants ................   Passed    0.01 sec
+      Start 25: arpg_adventure_relics
+25/50 Test #25: arpg_adventure_relics ............   Passed    0.18 sec
+      Start 26: arpg_dekubaba_geometry
+26/50 Test #26: arpg_dekubaba_geometry ...........   Passed    0.01 sec
+      Start 27: arpg_octorok_geometry
+27/50 Test #27: arpg_octorok_geometry ............   Passed    0.01 sec
+      Start 28: arpg_exploration
+28/50 Test #28: arpg_exploration .................   Passed    0.16 sec
+      Start 29: arpg_skulltula_geometry
+29/50 Test #29: arpg_skulltula_geometry ..........   Passed    0.01 sec
+      Start 30: arpg_bubble_geometry
+30/50 Test #30: arpg_bubble_geometry .............   Passed    0.01 sec
+      Start 31: arpg_material_identity
+31/50 Test #31: arpg_material_identity ...........   Passed    0.67 sec
+      Start 32: arpg_dodongo_geometry
+32/50 Test #32: arpg_dodongo_geometry ............   Passed    0.01 sec
+      Start 33: arpg_redead_geometry
+33/50 Test #33: arpg_redead_geometry .............   Passed    0.02 sec
+      Start 34: arpg_ironknuckle_geometry
+34/50 Test #34: arpg_ironknuckle_geometry ........   Passed    0.05 sec
+      Start 35: arpg_stinger_geometry
+35/50 Test #35: arpg_stinger_geometry ............   Passed    0.02 sec
+      Start 36: arpg_shellblade_geometry
+36/50 Test #36: arpg_shellblade_geometry .........   Passed    0.01 sec
+      Start 37: arpg_armos_geometry
+37/50 Test #37: arpg_armos_geometry ..............   Passed    0.01 sec
+      Start 38: arpg_peahat_geometry
+38/50 Test #38: arpg_peahat_geometry .............   Passed    0.01 sec
+      Start 39: arpg_moblin_geometry
+39/50 Test #39: arpg_moblin_geometry .............   Passed    0.02 sec
+      Start 40: arpg_handmaster_geometry
+40/50 Test #40: arpg_handmaster_geometry .........   Passed    0.02 sec
+      Start 41: arpg_stalchild_geometry
+41/50 Test #41: arpg_stalchild_geometry ..........   Passed    0.01 sec
+      Start 42: arpg_beamos_geometry
+42/50 Test #42: arpg_beamos_geometry .............   Passed    0.01 sec
+      Start 43: arpg_madscrub_geometry
+43/50 Test #43: arpg_madscrub_geometry ...........   Passed    0.01 sec
+      Start 44: arpg_anubis_geometry
+44/50 Test #44: arpg_anubis_geometry .............   Passed    0.01 sec
+      Start 45: arpg_poe_geometry
+45/50 Test #45: arpg_poe_geometry ................   Passed    0.01 sec
+      Start 46: arpg_guay_geometry
+46/50 Test #46: arpg_guay_geometry ...............   Passed    0.01 sec
+      Start 47: arpg_quest_party
+47/50 Test #47: arpg_quest_party .................   Passed    0.23 sec
+      Start 48: arpg_quest_party_catalog
+48/50 Test #48: arpg_quest_party_catalog .........   Passed    0.02 sec
+      Start 49: arpg_combat_input
+49/50 Test #49: arpg_combat_input ................   Passed    0.16 sec
+      Start 50: arpg_character_travel
+50/50 Test #50: arpg_character_travel ............   Passed    1.24 sec
+
+100% tests passed, 0 tests failed out of 50
+
+Total Test time (real) = 136.25 sec

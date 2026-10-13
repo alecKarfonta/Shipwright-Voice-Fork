@@ -1,0 +1,74 @@
+{
+  "date_utc": "2026-10-12T21:57:15.024301+00:00",
+  "status": "passed_with_documented_visual_scope",
+  "scope": "Twenty named gear identities and progressive item disclosure; continued broader ARPG goal remains incomplete.",
+  "assets": {
+    "original_painted_icons": 20,
+    "image_generation_mode": "built-in imagegen",
+    "prompts": "art/arpg/relics/icon-prompts.json",
+    "authored_with": "local Blender MCP",
+    "standalone_source": "art/arpg/relics/relics.blend",
+    "semantic_meshes": 35,
+    "material_ranges": 127,
+    "runtime_triangles": 22348,
+    "indexed_vertices": 12874,
+    "glb_sha256": "8c579795f33befbe0bd99358ef376fbfe5a598eeb9873001dd7a1d8a537272bf",
+    "quantization_degenerate_triangles_removed": 40
+  },
+  "portable_validation": {
+    "suites": [
+      "arpg_relic_geometry",
+      "arpg_gear_geometry",
+      "arpg_loot"
+    ],
+    "normal": "passed",
+    "address_and_undefined_behavior_sanitizers": "passed",
+    "final_geometry_revalidation": "named-gear suite passed normally and sanitized after final model refinements",
+    "mounting_and_base_variants": 125,
+    "triangles_checked": 97683
+  },
+  "native_validation": {
+    "result": "tests/arpg/relic-runtime-results-macos.json",
+    "checks_passed": 173,
+    "pickup_render_frames": 520,
+    "both_native_ages": true,
+    "packed_distinct_icons": 20,
+    "qa_binary": "/tmp/soh-relic-runtime-binary-v2"
+  },
+  "production_visual_validation": {
+    "preview": "/tmp/soh-arpg-inventory-preview-20261011-55/Ship ARPG Inventory.app",
+    "pid_at_handoff": 81876,
+    "frozen_binary": "/tmp/soh-relic-release-binary-v2",
+    "frozen_binary_sha256": "cc340f42ed98a5683e705f712131da33d97456e8df8694d01f624c3fc950adaf",
+    "qa_initializers_present": false,
+    "observed": [
+      "First unique collection worn in Hyrule Field with green branch shield, oxblood tunic and ivory boot cuffs.",
+      "Relic wardrobe dropdown equipped the four-piece Tidecaller collection through normal preview action.",
+      "Tidecaller navy/cyan equipment and original painted set icons appeared in production.",
+      "Set bonuses expanded independently while affixes and full-set power remained collapsed.",
+      "Clicked Equip to swap Tidecaller sword to Cinderwake and back; both equipment art and bag entry updated.",
+      "Final preview left paused in equipment overview with all four Tidecaller pieces equipped."
+    ],
+    "notes": [
+      "A transient restriction message appeared while native pause was opening; normal Equip succeeded after pause settled.",
+      "Final build also includes the test-only wardrobe reuse change to avoid collecting duplicates while switching previously generated collections."
+    ]
+  },
+  "save_preservation": {
+    "normal_save": "/Users/alec/Library/Application Support/shipofharkinian/profiles/player1/Save/file1.sav",
+    "sha256_before_and_after": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "testing_home": "/tmp/soh-arpg-remaster-preview",
+    "save_schema_changed": false
+  },
+  "limitations": [
+    "Tunics recolor native skinned bodies and attach new chest ornament meshes; sleeves and full body skinning remain native.",
+    "The harness renders every named pickup and checks every native mount; manual visual review sampled collections rather than all twenty appearances in every scene.",
+    "Physical held-drag input remains unverified with the macOS automation tool.",
+    "Crowded-scene performance, runework-specific appearances and full costume replacements remain future work."
+  ],
+  "source_validation": {
+    "git_diff_check": "passed",
+    "concurrent_work_preserved": true,
+    "committed": false
+  }
+}

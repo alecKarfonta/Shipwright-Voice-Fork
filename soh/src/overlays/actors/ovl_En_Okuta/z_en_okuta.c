@@ -1,4 +1,5 @@
 #include "z_en_okuta.h"
+#include "soh/Enhancements/arpg/EnemyVisuals.h"
 #include "objects/object_okuta/object_okuta.h"
 #include "objects/gameplay_field_keep/gameplay_field_keep.h"
 #include "soh/Enhancements/game-interactor/GameInteractor_Hooks.h"
@@ -746,6 +747,7 @@ s32 EnOkuta_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f*
     if (doScale) {
         Matrix_Scale(scale.x, scale.y, scale.z, MTXMODE_APPLY);
     }
+    ARPG_OverrideEnemyLimb(play, &this->actor, limbIndex, dList);
     return false;
 }
 

@@ -129,6 +129,24 @@ void KaleidoEntryIcon::Draw(PlayState* play, std::vector<Gfx>* mEntryDl) {
     mEntryDl->push_back(gsSPPopMatrix(G_MTX_MODELVIEW));
 }
 
+std::vector<std::pair<std::string, bool>> Kaleido::GetStatus(PlayState* play) {
+    std::vector<std::pair<std::string, bool>> result;
+    for (const auto& entry : mEntries) {
+        entry->Update(play);
+        result.emplace_back(entry->StatusText(), entry->Achieved());
+    }
+    return result;
+}
+
+std::string KaleidoEntryOcarinaButtons::StatusText() const {
+    const char* names[] = { "A", "C-Up", "C-Down", "C-Left", "C-Right" };
+    std::string result = "Ocarina buttons:";
+    for (size_t i = 0; i < mButtonCollected.size(); ++i) {
+        if (mButtonCollected[i]) { result += std::string(" ") + names[i]; }
+    }
+    return result;
+}
+
 Kaleido::Kaleido() {
     const auto ctx = Rando::Context::GetInstance();
     int yOffset = 0;

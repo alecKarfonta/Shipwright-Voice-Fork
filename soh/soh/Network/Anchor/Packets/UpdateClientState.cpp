@@ -2,10 +2,14 @@
 #include "soh/Network/Anchor/JsonConversions.hpp"
 #include <nlohmann/json.hpp>
 #include "soh/OTRGlobals.h"
+#include "soh/Enhancements/arpg/ARPGSave.h"
+#include "soh/Enhancements/arpg/QuestSystem.h"
 #include "soh/Enhancements/randomizer/SeedContext.h"
+#include "soh/Enhancements/EnemyDifficulty/EnemyDifficulty.h"
 
 extern "C" {
 #include "variables.h"
+#include "macros.h"
 extern PlayState* gPlayState;
 }
 
@@ -35,6 +39,40 @@ nlohmann::json Anchor::PrepClientState() {
         payload["sceneNum"] = gPlayState->sceneNum;
         payload["curRoomNum"] = gPlayState->roomCtx.curRoom.num;
         payload["entranceIndex"] = gSaveContext.entranceIndex;
+        using namespace ARPG::Quests;
+        const int storyItems[] = { QUEST_KOKIRI_EMERALD,   QUEST_GORON_RUBY,      QUEST_ZORA_SAPPHIRE,
+                                   QUEST_MEDALLION_FOREST, QUEST_MEDALLION_FIRE,  QUEST_MEDALLION_WATER,
+                                   QUEST_MEDALLION_SHADOW, QUEST_MEDALLION_SPIRIT };
+        int stage = 0;
+        while (stage < 8 && CHECK_QUEST_ITEM(storyItems[stage]))
+            ++stage;
+        if (stage == 8 && GET_EVENTCHKINF(EVENTCHKINF_COMPLETED_FOREST_TRIAL) &&
+            GET_EVENTCHKINF(EVENTCHKINF_COMPLETED_FIRE_TRIAL) && GET_EVENTCHKINF(EVENTCHKINF_COMPLETED_WATER_TRIAL) &&
+            GET_EVENTCHKINF(EVENTCHKINF_COMPLETED_SHADOW_TRIAL) &&
+            GET_EVENTCHKINF(EVENTCHKINF_COMPLETED_SPIRIT_TRIAL) && GET_EVENTCHKINF(EVENTCHKINF_COMPLETED_LIGHT_TRIAL))
+            stage = 9;
+        if (gSaveContext.ship.stats.gameComplete)
+            stage = 10;
+        // Randomized saves have no single ordered campaign; do not suggest a false next dungeon.
+        payload["campaign"] = { { "storyStage", IS_RANDO ? 11 : stage } };
+        const auto& campaign = gARPGSave.campaign;
+        const auto* quest = Enabled() ? Find(campaign.tracked) : nullptr;
+        if (quest && (Status(campaign, quest->id) == State::Active || Status(campaign, quest->id) == State::Ready)) {
+            const auto& p = campaign.quests[quest->id - 1];
+            int done = 0, total = 0;
+            for (const auto& objective : quest->objectives) {
+                if (objective.kind == Kind::None)
+                    continue;
+                const int i = &objective - quest->objectives.data();
+                ++total;
+                if (p.progress[i] >= Target(p, objective))
+                    ++done;
+            }
+            payload["campaign"]["questId"] = quest->id;
+            payload["campaign"]["questState"] = p.state;
+            payload["campaign"]["completedObjectives"] = done;
+            payload["campaign"]["totalObjectives"] = total;
+        }
     } else {
         payload["seed"] = 0;
         payload["isSaveLoaded"] = false;
@@ -73,4 +111,8 @@ void Anchor::HandlePacket_UpdateClientState(nlohmann::json payload) {
         clients[clientId].curRoomNum = client.curRoomNum;
         clients[clientId].entranceIndex = client.entranceIndex;
     }
+
+    // [TIME] | [INFO] | Anchor.HandlePacket_UpdateClientState | A peer loading/quitting
+    // their save changes the effective player count -> difficulty recount
+    EnemyDifficulty::RecountAndRescale();
 }

@@ -1,0 +1,90 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-12T22:07:12.445997-04:00",
+  "feature": "Existing normal, fire and ice Keese upgraded on their native rig; no new enemy species or flight controller",
+  "native_checks": 158,
+  "native_render_frames": 301,
+  "native_result": "tests/arpg/keese-runtime-results-macos.json",
+  "portable": "All 30 limb/variant meshes, integer triangles, normals, bounds and two-sided membranes passed normally and with ASAN/UBSAN (LeakSanitizer disabled on macOS)",
+  "animation": {
+    "status": "passed",
+    "native_frames": 8,
+    "variant_count": 3,
+    "hinge_checks": 192,
+    "maximum_hinge_center_gap_world_units": 0.018631653516298963,
+    "native_envelope_tolerance_world_units": 1.5,
+    "note": "Original wing hinges and actor-sized bounds verified using exported, quantized geometry; visual game checks remain required."
+  },
+  "geometry": {
+    "source_sha256": "3fffd7370960286455987b5373b6454b470f62d46277359c3e0dafceeed21a25",
+    "vertices": 1822,
+    "triangles": 6308,
+    "parts": 103,
+    "subpixel_triangles_removed": 0,
+    "triangles_per_actor": {
+      "0": 2036,
+      "1": 2132,
+      "2": 2140
+    },
+    "materials": [
+      "fur",
+      "ruff",
+      "membrane",
+      "web",
+      "rib",
+      "ear",
+      "claw",
+      "eye",
+      "pupil",
+      "mouth",
+      "accent"
+    ],
+    "space": "Native joint-local XYZ, positions x100; native normals retained; authoring-pose transforms omitted"
+  },
+  "native_scope": [
+    "Three variants and 60 stable opaque/Lens display lists",
+    "Live native dive, altitude changes and wing-pivot articulation",
+    "Native scale/collision, root offset and effect anchor positions",
+    "Ignition, extinguishing, Deku-nut stun and frozen fall",
+    "Perch disturbance, hidden bodies, native-eye fallback and scene teardown"
+  ],
+  "visual_checks": [
+    "Blender frontal, side and four flight-phase views inspected; membrane shading and eye shapes refined",
+    "All three elemental variants inspected in the native field with their original aura effects",
+    "Production selector summons normal and fire Keese ahead",
+    "Native attacks hit the player; a fire attacker extinguishes and returns to the normal model",
+    "I opens Equipment and pauses the playable practice build"
+  ],
+  "asset_authorship": "Original local Blender MCP meshes; GLB and standalone editable Blender source preserved without overwriting the live unrelated Blender document",
+  "production_binary": "/tmp/soh-keese/production",
+  "production_sha256": "c955787148b8a60939abfb962ba8dec36eb7281d57ddf410786e6a7422fb8f48",
+  "qa_harness_excluded_from_production": true,
+  "production_app": "/tmp/soh-keese-playtest/Keese Adventure.app",
+  "production_profile": "/tmp/soh-keese-playtest/profiles/arpg-testing",
+  "production_launcher": "/tmp/soh-keese-production.py",
+  "player_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "compiled_source_sha256": {
+    "soh/soh/Enhancements/arpg/KeeseVisuals.cpp": "547d33db98094b54c90d006f20c6ccbff1599a3b915d4b956b5f6e47d89cb352",
+    "soh/soh/Enhancements/arpg/KeeseVisuals.h": "e38608b2aa44b4658239bb57aa4b282a96c7d056197bb37ad20b4d4d476cac98",
+    "soh/soh/Enhancements/arpg/KeeseGeometry.h": "6495d19dac82a32e66d277fc59a38ce1efeaad9995ce61de2243cb26e641f225",
+    "soh/soh/Enhancements/arpg/KeeseBlenderData.h": "12b3d7155ddc5b5cb4e9878455f573f940bedf2ed1616bfd9a9d6a800b885a0d",
+    "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "0184224f531c4de24a882dde1a8ed9b382dc410781cdd4c3b76a27a375137aed",
+    "soh/src/overlays/actors/ovl_En_Firefly/z_en_firefly.c": "07fb3050ece5c3b806b103802202af63c874a1ee0a0e6183ab8a31d2caf5635a",
+    "tests/arpg/keese_runtime_test.cpp": "62584a2a5b2838963c417e4e04242338cfd11840f392930dfc4098bf42ea485f"
+  },
+  "workspace_source_sha256": {
+    "soh/soh/Enhancements/arpg/KeeseVisuals.cpp": "547d33db98094b54c90d006f20c6ccbff1599a3b915d4b956b5f6e47d89cb352",
+    "soh/soh/Enhancements/arpg/KeeseVisuals.h": "e38608b2aa44b4658239bb57aa4b282a96c7d056197bb37ad20b4d4d476cac98",
+    "soh/soh/Enhancements/arpg/KeeseGeometry.h": "6495d19dac82a32e66d277fc59a38ce1efeaad9995ce61de2243cb26e641f225",
+    "soh/soh/Enhancements/arpg/KeeseBlenderData.h": "12b3d7155ddc5b5cb4e9878455f573f940bedf2ed1616bfd9a9d6a800b885a0d",
+    "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "0184224f531c4de24a882dde1a8ed9b382dc410781cdd4c3b76a27a375137aed",
+    "soh/src/overlays/actors/ovl_En_Firefly/z_en_firefly.c": "07fb3050ece5c3b806b103802202af63c874a1ee0a0e6183ab8a31d2caf5635a",
+    "tests/arpg/keese_runtime_test.cpp": "62584a2a5b2838963c417e4e04242338cfd11840f392930dfc4098bf42ea485f"
+  },
+  "build_note": "Targeted build reuses the previously verified isolated Brood snapshot, recompiling Keese rendering, the native Firefly actor, and practice controls. Other shared-worktree builds were active. This verifies this pass, not every concurrent change in the repository.",
+  "remaining": [
+    "Full playthrough coverage across Keese rooms, Lens encounters and third-party skeleton packs",
+    "Further upgrades should focus on the original enemy roster; new-species expansion is deferred",
+    "Overall replayability objective remains active and partial"
+  ]
+}

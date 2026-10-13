@@ -1,0 +1,21 @@
+{
+  "source_sha256": "3c315ebe088fd4fb66f1627d498a4772793e4331617d6a8b781629370b670568",
+  "vertices": 11433,
+  "triangles": 7009,
+  "parts": 24,
+  "subpixel_triangles_removed": 0,
+  "triangles_per_actor": {
+    "0": 7009
+  },
+  "materials": [
+    "linen",
+    "fold",
+    "recess",
+    "mask",
+    "edge",
+    "gold",
+    "lapis",
+    "jewel"
+  ],
+  "space": "Native joint-local XYZ, positions x100; native normals retained; per-vertex native joint indices; authoring-pose transforms omitted"
+}

@@ -1,0 +1,63 @@
+{
+  "status": "passed",
+  "date": "2026-10-13T02:10:25.156464+00:00",
+  "campaign": {
+    "quests": 58,
+    "chapters": 11,
+    "addedQuests": 18,
+    "newObjectiveKinds": [
+      "Song",
+      "Delivery",
+      "Survey",
+      "Vigil"
+    ]
+  },
+  "portable": {
+    "questChecks": 1054,
+    "regressionSuitesPassed": 21,
+    "buildType": "Debug",
+    "assertionsEnabled": true,
+    "results": "quest-portable-results-macos.txt"
+  },
+  "native": {
+    "engineChecks": 36,
+    "regionalCases": 41,
+    "engineResults": "quest-runtime-results-macos.json",
+    "worldResults": "quest-world-results-macos.json"
+  },
+  "manualVisualChecks": [
+    "Large journal: quest topics, background response, Saria first-person melody offer, reward claim and continuation acceptance",
+    "640x480 journal: keyboard topic access, readable wrapped responses, automatic scroll to selected response",
+    "Production binary: native file selector loads isolated campaign save, J shows 58-quest campaign and preserved state"
+  ],
+  "voice": {
+    "distinctSpokenTexts": 330,
+    "queuedRecordings": 1924,
+    "totalQueue": 6101,
+    "exportTestsPassed": 8,
+    "stockMessagesVerified": 2114,
+    "workers": 6,
+    "renderStatus": "running",
+    "manifest": "../../../voice-production/quest-playback-map.json",
+    "audioComplete": false,
+    "nativePrerecordedPlaybackInstalled": false
+  },
+  "production": {
+    "path": "soh/build-cmake/soh/soh-macos",
+    "sha256": "e7765db9c8364ea69b39f6e38b2ac18717c1feb8f15fc18aa498c652df34829f",
+    "runtimeTestHooks": false
+  },
+  "sourceSha256": {
+    "QuestCatalog.h": "53ca885f032927a9c30a6874a603839d386b8656f632e6fa9957224416d2ab16",
+    "QuestDialogue.h": "e7b0165e03845031abfd5a1d8c910e742629af66d3d88db270fb9f2bef5152bd",
+    "QuestRules.h": "7b3e4d34e03555db4ffdda8a583223550c93a1ae4e946801ac9313880fe03943",
+    "QuestSystem.cpp": "29474e9d4b682dd357ff0ff03fe294aa66ae1d54d321d3be464f8de204968c33",
+    "QuestSystem.h": "d50c2e740b10a3e63bbfdd38abda6affb61ddfeecf9b0e2c7916d0e6daad1f16",
+    "ARPGTypes.h": "d7b093a4a60348e808f91058aa81ad5946926e3aeaf0b11d124dccdcd4d0d292",
+    "ARPGSave.cpp": "39664d1395fd414eb9701176d990df6dd8c58c892e1cd01ab7c576e1e5225ee5"
+  },
+  "limits": [
+    "Native runs use isolated controlled fixtures, not a full manual playthrough of all 58 quests.",
+    "Voice jobs are queued and rendering through the existing TTS/STT pipeline. Prerecorded playback integration is separate."
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "status": "passed",
+  "date": "2026-10-13",
+  "feature": "Original Beamos with fitted mechanical shutters, inset eye and carved native-lit pedestal",
+  "scope": "New Blender geometry replaces the four original visible limbs. Original actor movement, detection, warning clip, tracking, native laser/effects, eye interrupt, explosive health rules and flying-head death are retained. Both quad colliders receive their native destructor calls.",
+  "art": {
+    "source_sha256": "11e31062bed5f0bcdd6704e75405331c069fc70c11ee6f665f4bd3b282b75626",
+    "vertices": 4760,
+    "triangles": 7412,
+    "parts": 18,
+    "subpixel_triangles_removed": 0,
+    "triangles_per_actor": {
+      "0": 7412
+    },
+    "materials": [
+      "stone",
+      "edge",
+      "shadow",
+      "bronze",
+      "iron",
+      "eye",
+      "crack"
+    ],
+    "space": "Native joint-local XYZ, positions x100; native normals retained; per-vertex native joint indices; authoring-pose transforms omitted"
+  },
+  "animation": {
+    "status": "passed",
+    "geometry_variants": 1,
+    "native_animation_clips_per_variant": 1,
+    "native_animation_frames_per_variant": 8,
+    "visible_limbs_in_rig": 4,
+    "bridges": 0,
+    "posed_bridge_endpoint_checks": 0,
+    "maximum_quantized_endpoint_error_world_units": 0.0,
+    "maximum_posed_envelope_extension_world_units": 0.29911406700637144,
+    "actor_scale": 0.01,
+    "scope": "Full native animation poses; quantized endpoints follow their assigned native joints. Native source vertices and authored connection endpoints are transformed under their assigned joints. Native root offsets translate both native and authored geometry equally. Shutters, inset eye and pedestal are reviewed in the eight native clip frames; no claim of watertight topology.",
+    "native_callback_sweep_poses": 256,
+    "swept_vertex_checks": 1218560,
+    "maximum_sweep_extension_small_world_units": 0.5150817095389328,
+    "maximum_sweep_extension_large_world_units": 0.7211143933545059,
+    "sweep_scope": "All eight shutter poses, eight head yaws and four pitches through the native attack clamp. Envelope validation does not prove per-triangle clearance or actual collision."
+  },
+  "materials": {
+    "explicit_slots": "art/arpg/native-style/material-slots.json",
+    "semantic_adapter_checks_passed": 14,
+    "native_reference_archive_checks_passed": 46,
+    "verified_bound_textures": {
+      "gLinkAdultHookshotMetalTex": {
+        "type": "RGBA16",
+        "width": 8,
+        "height": 8,
+        "bytes": 128
+      },
+      "gUnusedStoneTex": {
+        "type": "RGBA16",
+        "width": 32,
+        "height": 32,
+        "bytes": 2048
+      }
+    },
+    "current_shared_material_api_compile": "Passed /tmp/Beamos-current-api.o; source also compiled and ran with the frozen build material API. Explicit semantic slots avoid RGB inference."
+  },
+  "portable": {
+    "full_suites_passed": 41,
+    "full_suite_log": "/tmp/beamos-portable-test.log",
+    "address_and_undefined_sanitizers": "Passed final 7,412-triangle geometry, all four joints, hidden pivots, explicit eye emissive role, bounded positions, nondegenerate topology and normalized lighting normals.",
+    "sanitizer_binary": "/tmp/beamos-geometry-sanitize"
+  },
+  "native": {
+    "checks_passed": 50,
+    "results": "tests/arpg/beamos-runtime-results-macos.json",
+    "beam_frames": 62,
+    "bombs": 7,
+    "death_flight_frames": 64,
+    "distinct_poses": 8,
+    "four_actor_paced_draw_interval_native": {
+      "median_ms": 49.973834,
+      "p95_ms": 50.55825,
+      "samples": 139
+    },
+    "four_actor_paced_draw_interval_upgraded": {
+      "median_ms": 49.993417,
+      "p95_ms": 50.556334,
+      "samples": 139
+    },
+    "ground_contact_frames": 62,
+    "native_defeats": 2,
+    "projectile_eye_stuns": 1,
+    "render_frames": 903,
+    "scan_angles": 382,
+    "scope": "Native rig, all four replacement meshes, caching, explicit texture binding, feature gates and distance fallback; original callback pitch/yaw, scan range and collision dimensions; natural detection, shutter warning, laser, real ground clipping and attack-quad motion; repeated-eye stun rejection and recovery; real arrow collision, real small/large bomb defeats, original flying-head/pedestal visibility and exactly two earned defeats. Practice size validation, cap, scene teardown and large-variant attack in the Deku Tree room pass.",
+    "fixture_limits": "Separate debug save with adult player, health, camera and time pinned. Other scene enemies cleared. Initial eye interrupt and beam contact flags are injected to test their handlers; the later arrow uses the original projectile actor, shoot transition and collision solver. Projectile culling is disabled for the camera fixture. Three test bombs use real native actors, a visible armed scale and a shortened twelve-tick fuse so their normal body draw initializes the blast center. No explosive-hit flags or health changes are injected. A first arrow fixture missed before culling setup, and an immediate-detonation bomb fixture lacked an initialized blast center; both were corrected before the final passing run. Render frames count draw-end observations with a live selected Beamos, not GPU draw calls.",
+    "crowd_measurement_scope": "Four live Beamos, two of each size, fixed camera/player, 20 warm-up ticks and 139 draw-end intervals per mode. Median and p95 cadence are approximately 50 ms in both modes, at the native capped update cadence. This is a narrow paced smoke comparison, not an uncapped GPU benchmark or broad crowd-performance guarantee."
+  },
+  "production_ui": {
+    "build": "/tmp/soh-beamos-playtest/Beamos Adventure.app",
+    "profile_root": "/tmp/soh-beamos-playtest/profiles",
+    "qa_harness_linked": false,
+    "launcher": "/tmp/soh-beamos-production.py",
+    "state": "Open and paused in the adventure journal in open Hyrule Field with a fresh large Beamos nearby",
+    "verified": [
+      "Collapsed Upgraded Beamos section with Small and Large selector and concise counters",
+      "Small and large summons, native targeting and scanner motion",
+      "Ordinary bow input fires and consumes one arrow; native laser damage and player knockback observed",
+      "A small Beamos defeated by a placed bomb; journal XP increased from 31,160 to 31,188",
+      "A fresh large Beamos left paused in the journal"
+    ],
+    "not_claimed": "The ordinary bow hit did not receive an independent instrumented confirmation; real eye collision is covered by the native QA run. Earlier manual bomb placements missed before the successful close placement. Full manual large-variant defeat, all dungeon placements and uncapped crowd performance remain open. The isolated build inherits earlier UI/nameplate behavior; unrelated shared UI changes are not claimed rebuilt."
+  },
+  "build": {
+    "method": "Isolated object-link build from verified Stalchild snapshot; rebuilt Beamos renderer, original actor, CreatureSystem and the QA-only harness. Shared Ninja was not run. No unrelated shared-source changes are claimed rebuilt.",
+    "source": "/tmp/soh-beamos/source",
+    "qa": "/tmp/soh-beamos/qa",
+    "production": "/tmp/soh-beamos/production",
+    "source_hashes": {
+      "soh/soh/Enhancements/arpg/BeamosBlenderData.h": "14b6907ba01c51c16b8f28c53dafbcc9f616ed353b5ca8b8fe2a67933c3de60a",
+      "soh/soh/Enhancements/arpg/BeamosGeometry.h": "089141cff0958ea2450811deaece5d019cc59d7e07d789883e5a1e145c97a756",
+      "soh/soh/Enhancements/arpg/BeamosVisuals.h": "051e9e159daf789cd91e29e23c453ffd2a9c09231c86c7c748aeba5dc7825265",
+      "soh/soh/Enhancements/arpg/BeamosVisuals.cpp": "de96f6287d5e76c65bd3211b9f826303c3d41485fd5468695a02de238e1d79fb",
+      "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "ee9b516e864b7b99af672ac565ea629872c843035fa2923206b0c90f1aae2c9f",
+      "soh/soh/Enhancements/arpg/CreatureSystem.h": "89fbb5a3bb0fd3d04d44f23a37c472618f44715e6584e36a2485ad1f3115968f",
+      "soh/src/overlays/actors/ovl_En_Vm/z_en_vm.c": "e86129e91ff530908b81a4f5ac2752bdc9b52b03296b936afeea82813d781789",
+      "tests/arpg/beamos_runtime_test.cpp": "f1a497e13546f6bd1cf4bdc6b1f99fc49ceb8e901de9353c4f8524a4522dc237"
+    },
+    "tested_source_hashes": {
+      "soh/soh/Enhancements/arpg/BeamosBlenderData.h": "14b6907ba01c51c16b8f28c53dafbcc9f616ed353b5ca8b8fe2a67933c3de60a",
+      "soh/soh/Enhancements/arpg/BeamosGeometry.h": "089141cff0958ea2450811deaece5d019cc59d7e07d789883e5a1e145c97a756",
+      "soh/soh/Enhancements/arpg/BeamosVisuals.h": "051e9e159daf789cd91e29e23c453ffd2a9c09231c86c7c748aeba5dc7825265",
+      "soh/soh/Enhancements/arpg/BeamosVisuals.cpp": "0a2e2ec7047e5e1c074b3dd05ce597bb30ed21f623b5e792233e04cbae2ef273",
+      "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "ee9b516e864b7b99af672ac565ea629872c843035fa2923206b0c90f1aae2c9f",
+      "soh/soh/Enhancements/arpg/CreatureSystem.h": "89fbb5a3bb0fd3d04d44f23a37c472618f44715e6584e36a2485ad1f3115968f",
+      "soh/src/overlays/actors/ovl_En_Vm/z_en_vm.c": "e86129e91ff530908b81a4f5ac2752bdc9b52b03296b936afeea82813d781789",
+      "tests/arpg/beamos_runtime_test.cpp": "f1a497e13546f6bd1cf4bdc6b1f99fc49ceb8e901de9353c4f8524a4522dc237"
+    },
+    "source_snapshot_matches_executable_code": true,
+    "post_validation_comment_correction": "Only BeamosVisuals.cpp differs from the tested snapshot: a copied BodyBreak comment was corrected to describe the four cached scanner meshes. Removing whole-line comments makes all eight source files byte-equivalent.",
+    "production_and_packaged_app_macho_uuid": "E808792E-46BA-3FEC-99A7-FC1A6F56F61A",
+    "qa_exit_status": 0,
+    "production_exit_status": null,
+    "known_shutdown_log": "Pre-existing ResourceManager.cpp:70 logger mutex error repeats on shutdown; final QA process exits zero. Ordinary app remains open."
+  },
+  "save": {
+    "path": "/Users/alec/Library/Application Support/shipofharkinian/profiles/player1/Save/file1.sav",
+    "before_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "after_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "unchanged": true
+  },
+  "blender": {
+    "authoring": "Installed Blender 5.1.2 in isolated background processes; live Blender MCP was disconnected.",
+    "editable_source": "art/arpg/beamos/beamos.blend",
+    "user_project_modified": false
+  },
+  "previews": [
+    "art/arpg/beamos/beamos-studio.png",
+    "art/arpg/beamos/beamos-native-daylight.png",
+    "art/arpg/beamos/beamos-native-dungeon.png",
+    "art/arpg/beamos/beamos-practice-menu.png",
+    "art/arpg/beamos/beamos-ordinary-combat.png",
+    "art/arpg/beamos/beamos-large-practice.png",
+    "art/arpg/beamos/beamos-earned-xp.png"
+  ],
+  "remaining": "Other original enemy families, environment and character assets; broader regional/manual/dungeon acceptance and uncapped crowd performance. All five broad replayability requirements remain partial."
+}

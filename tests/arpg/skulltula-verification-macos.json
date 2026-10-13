@@ -1,0 +1,93 @@
+{
+  "status": "passed",
+  "date": "2026-10-13",
+  "feature": "Native hanging Skulltula art and motion integration",
+  "scope": "Upgrade ACTOR_EN_ST normal, big and invisible variants on the original rig. Defer custom species. Wall/gold Skulltulas remain outside this pass.",
+  "art": {
+    "source_sha256": "829072bbfc1a5b536ba911e19c5cc99c866b44f4e425d21b66367ffd14a1a596",
+    "vertices": 2572,
+    "triangles": 4067,
+    "parts": 24,
+    "subpixel_triangles_removed": 19,
+    "triangles_per_actor": {
+      "0": 4067
+    },
+    "materials": [
+      "shell",
+      "edge",
+      "socket",
+      "belly",
+      "fold",
+      "leg",
+      "band",
+      "fang"
+    ],
+    "space": "Native joint-local XYZ, positions x100; native normals retained; authoring-pose transforms omitted"
+  },
+  "animation": {
+    "status": "passed",
+    "native_animation_frames": 111,
+    "native_visible_limbs": 10,
+    "leg_anchor_checks": 888,
+    "maximum_anchor_gap_world_units": 3.552713678800501e-15,
+    "maximum_envelope_extension_world_units": 0.7528383933696574,
+    "normal_actor_scale": 0.04,
+    "big_actor_scale": 0.056,
+    "rig": "Original leg-root rotations and independently animated mandible; no invented knee animation"
+  },
+  "portable": {
+    "cmake_build": "/tmp/arpg-skulltula-portable",
+    "ctest": "arpg_skulltula_geometry",
+    "result": "passed",
+    "asan_ubsan": "passed; AppleClang address/undefined sanitizers, leak detection disabled"
+  },
+  "runtime": {
+    "checks": 67,
+    "render_frames": 161,
+    "stun_frames_observed": 119,
+    "results": "tests/arpg/skulltula-runtime-results-macos.json",
+    "qa_profile": "/tmp/soh-arpg-qa-creatures-skull02",
+    "coverage": "Native drop, landing, rotating legs/jaw, tooth warning pulse, collision-sphere updates, front deflection/sway, rear damage/spin, utility stun and recovery, native retreat, bouncing and arrow deaths, single defeat rewards, scene reload, both off gates, distant fallback, big scale/collision and invisible Lens flag.",
+    "limits": "Damage-route checks inject native collider-hit records. Lens flag retention is checked; interactive Lens activation was not exercised. Runtime frame counts describe this fixture, not a crowded-scene performance benchmark.",
+    "fixture_correction": "First run failed because the harness moved Link into a wall. The final run retreats along the verified approach and waits for the original ceiling state."
+  },
+  "visual": {
+    "blender": "CPU renders inspected: front studio, native frames 17/47/86 and rear. Existing rig keeps the joints connected.",
+    "native": "Front shield, rear abdomen and red mandible pulse inspected in the native Metal renderer.",
+    "production": "Summon button succeeded; approaching triggered the native drop with ARPG enabled. Final dedicated test profile has ambient packs disabled to isolate the encounter; paused in Equipment journal.",
+    "practice_path": "More / Arsenal & enemy counters / Practice encounters / Upgraded Skulltulas"
+  },
+  "build": {
+    "production": "/tmp/soh-skulltula/production",
+    "production_sha256": "e62413a8fe6a11f3a1447f5646387329e63abedca2507fab92f908a9f092913f",
+    "qa": "/tmp/soh-skulltula/qa",
+    "qa_sha256": "c6cd3608348886ac25b8eb67a82365b55dffbc9b46d76be778da6a2707aa26e4",
+    "launcher": "/tmp/soh-skulltula-production.py",
+    "app": "/tmp/soh-skulltula-playtest/Skulltula Adventure.app",
+    "profile": "/tmp/soh-skulltula-playtest/profiles/arpg-testing",
+    "production_has_no_qa_harness": true,
+    "scope": "Isolated snapshot from the previously verified Octorok build. Recompiled the renderer, practice controls, native Skulltula and optional QA harness. Concurrent shared-worktree changes are not claimed as rebuilt. Shared Ninja builds were left alone.",
+    "compiled_source_sha256": {
+      "soh/soh/Enhancements/arpg/EnemyVisuals.cpp": "dc009673a10aaaa99078543ca78f6272870466ec785f53610d944ee08a4ded70",
+      "soh/soh/Enhancements/arpg/NativeMaterials.h": "50c831a1aa3b28f206c6c56a339004ee3878901947e25f7f7670f7b0184cfdac",
+      "soh/soh/Enhancements/arpg/SkulltulaGeometry.h": "3037088124b5b6f9f0cc2ff2f5ff1d2560a57285db59dcadb230d47167d2ba72",
+      "soh/soh/Enhancements/arpg/SkulltulaBlenderData.h": "ef3a967c95c99621bf12012746c90cc64787e519312ac040e76f430ff36ca3ca",
+      "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "e6f27bbe9ae720e4a571064b7590b744cbee6fb466d5bf2211b98e39483f0625",
+      "soh/soh/Enhancements/arpg/CreatureSystem.h": "eb88551eb8b48a589e91812b96cfdcb412618c2059c16688f0b98319e6fa5deb",
+      "soh/src/overlays/actors/ovl_En_St/z_en_st.c": "10243f85653ac07891759096cb813853c4e59518e44a035bdd5c5c426a67e66f",
+      "tests/arpg/skulltula_runtime_test.cpp": "e20e65ddc466e33ec923107d3b1bf1197df3a2d51d57b1acd96c7a1894ae7282"
+    }
+  },
+  "save": {
+    "path": "/Users/alec/Library/Application Support/shipofharkinian/profiles/player1/Save/file1.sav",
+    "before_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "after_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "unchanged": true
+  },
+  "blender": {
+    "authoring": "Installed Blender 5.1.2 in separate background factory-startup processes. Live MCP connection unavailable.",
+    "editable_source": "art/arpg/skulltulas/skulltulas.blend",
+    "user_project_modified": false
+  },
+  "remaining": "Other native enemy families, original-material detail refinement, scene breadth and crowded-scene performance remain in the full active replayability goal."
+}

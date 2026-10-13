@@ -1,4 +1,5 @@
 #include <libultraship/libultra.h>
+#include <stdatomic.h>
 #include <libultraship/bridge/audiobridge.h>
 #include "global.h"
 #include "soh/OTRGlobals.h"
@@ -1472,12 +1473,24 @@ void AudioOcarina_SetCustomButtonMapping(bool customControls) {
         (sOcarinaD5BtnMap | sOcarinaB4BtnMap | sOcarinaA4BtnMap | sOcarinaF4BtnMap | sOcarinaD4BtnMap);
 }
 
+// A modal journal supplies ocarina notes without releasing gameplay input.
+// Audio consumes this on a separate thread, so publish the enable bit and notes together.
+static atomic_uint sOcarinaUiInput = 0;
+void AudioOcarina_SetUiInput(int enabled, u16 buttons) {
+    atomic_store(&sOcarinaUiInput, enabled ? 0x10000u | buttons : 0);
+}
+
 void AudioOcarina_ReadControllerInput(void) {
     Input inputs[4];
     Input* input = &inputs[0];
     u32 ocarinaInputButtonPrev = sOcarinaInputButtonCur;
 
     PadMgr_RequestPadData(&gPadMgr, inputs, false);
+    unsigned uiInput = atomic_load(&sOcarinaUiInput);
+    if (uiInput & 0x10000u) {
+        memset(input, 0, sizeof(*input));
+        input->cur.button = uiInput & 0xFFFF;
+    }
     sOcarinaInputButtonCur = input->cur.button;
     sOcarinaInputButtonPrev = ocarinaInputButtonPrev;
     sOcarinaInputStickAdj.x = input->rel.stick_x;

@@ -1,0 +1,162 @@
+{
+  "review_date": "2026-10-13T05:07:15.430982+00:00",
+  "intent": "Make native art materials explicit, integrate Octorok/Skulltula/Bubble surfaces and make visual acceptance repeatable.",
+  "changes": [
+    "Semantic Surface tags survive palette changes, shading and batching; RGB no longer selects a texture.",
+    "Authored metal, wood, leather, cloth, bone, skin, membrane and gemstone roles include separate gold embroidery and buckle materials.",
+    "Octorok skin, Skulltula bone/skin and Bubble bone/membranes use native details; apertures, eyes and native tooth warnings remain intentional exceptions.",
+    "Native movement capture, interior effects and Lake Hylia previews; documented authoring/review workflow; slot/resource and material/workload checks."
+  ],
+  "validation": {
+    "portable": {
+      "status": "passed",
+      "suites": 31,
+      "log": "material-portable-tests.txt"
+    },
+    "material_identity": {
+      "status": "passed",
+      "vertices_and_recolors": 2983335
+    },
+    "address_undefined_sanitizers": {
+      "status": "passed",
+      "leak_detection": "disabled on macOS",
+      "log": "material-sanitizer.txt"
+    },
+    "material_adapters": 13,
+    "native_resource_references": 46,
+    "enemy_runtime": {
+      "octorok": {
+        "status": "passed",
+        "checks": 89,
+        "result": "material-octorok-results.json",
+        "draw_frames": 241
+      },
+      "skulltula": {
+        "status": "passed",
+        "checks": 67,
+        "result": "material-skulltula-results.json",
+        "draw_frames": 161
+      },
+      "bubble": {
+        "status": "passed",
+        "checks": 102,
+        "result": "material-bubble-results.json",
+        "draw_frames": 2102
+      }
+    },
+    "native_movement": {
+      "running": {
+        "result": "material-gear-running.json",
+        "animation": "__OTR__objects/gameplay_keep/gPlayerAnim_link_normal_run_free",
+        "scene": 0,
+        "status": "captured-run"
+      },
+      "rolling": {
+        "result": "material-gear-rolling.json",
+        "animation": "__OTR__objects/gameplay_keep/gPlayerAnim_link_normal_landing_roll_free",
+        "scene": 0,
+        "status": "captured-roll"
+      },
+      "attacking": {
+        "result": "material-gear-attacking.json",
+        "animation": "__OTR__objects/gameplay_keep/gPlayerAnim_link_fighter_Lside_kiru",
+        "scene": 0,
+        "status": "captured-attack"
+      },
+      "swimming": {
+        "result": "material-gear-swimming.json",
+        "animation": "__OTR__objects/gameplay_keep/gPlayerAnim_link_swimer_swim_wait",
+        "scene": 87,
+        "status": "captured-swim"
+      },
+      "water-surface": {
+        "result": "material-gear-water-surface.json",
+        "animation": "__OTR__objects/gameplay_keep/gPlayerAnim_link_swimer_swim_wait",
+        "scene": 87,
+        "status": "captured-swim"
+      }
+    },
+    "interior_effects": {
+      "animation": "",
+      "attackFrames": 0,
+      "drawFrames": 320,
+      "mode": 2,
+      "movingFrames": 0,
+      "rollingFrames": 0,
+      "scene": 0,
+      "status": "passed",
+      "swimmingFrames": 0
+    }
+  },
+  "workload": {
+    "models_compared": 273,
+    "geometry_normals_and_rgb": "unchanged fingerprints using identical clang++ -std=c++20 -O1 flags",
+    "vertices": 1283571,
+    "material_batches_before": 1457,
+    "material_batches_after": 1481,
+    "maximum_batches_per_model_before": 14,
+    "maximum_batches_per_model_after": 15,
+    "method": "tests/arpg/material_workload.cpp; authored workload, not a GPU FPS benchmark"
+  },
+  "visual_acceptance": [
+    "Inspected final Octorok river pose, Skulltula and Bubble dungeon poses with original lighting.",
+    "Inspected captured native adult running, landing roll and sword slash with equipped relics; no obvious mount separation or clipping in these views.",
+    "Inspected underwater swimming wait, water-surface pose and rainy Lake Hylia lighting with equipped relics.",
+    "Inspected four simultaneous representative effects at floor level in the Deku Tree; floor and nearby enemies remain readable."
+  ],
+  "screenshots": [
+    "material-bubble-dungeon.png",
+    "material-effects-dungeon.png",
+    "material-equipped-dungeon.png",
+    "material-gear-attacking.png",
+    "material-gear-rolling.png",
+    "material-gear-running.png",
+    "material-gear-swimming.png",
+    "material-gear-water-surface.png",
+    "material-octorok-river.png",
+    "material-release-startup.png",
+    "material-skulltula-dungeon.png"
+  ],
+  "source_sha256": {
+    "GearGeometry.h": "f0522a70a3431a977e0eb3ce0341df9ee8dfdd5c825acc7a26b3c1b3d206951f",
+    "NativeMaterials.h": "91b6182897e301226c050b517b1706e28c84ccf7927e8ee0c18f87906c3dc130",
+    "GearVisuals.cpp": "83aced28889a9dbc35255d81dbc00b0e2a76065330683f5a0bd6d04d8b870515",
+    "EnemyVisuals.cpp": "67d914e3ce28395775dacbfc2fb77fe69c55b83f21efafdeece4e671cc0632ee",
+    "EnemyGeometry.h": "0ed747bab7dbeff8a669c05e4fa25f6cc8f4782c2f17137707a09c003535790f",
+    "WolfosGeometry.h": "a79981bd612dc2f8343f7a0998933fd1f39e67fcbedf2ca7aeb4b3da7f250158",
+    "LizalfosGeometry.h": "be747158eea9ebb2be01587299fc1975a09590f99d1fc080d8bb997efd8b4169",
+    "TektiteGeometry.h": "5bff2afb5046a364b69497adbefd071cccdf87c2f3d460003d41bdd73afc2294",
+    "DekuBabaGeometry.h": "dfbc004202107329762b82e7765e2ab959bbfd6654138d87a82fb78e4ca03a49",
+    "KeeseGeometry.h": "ff4a5f26b565687dadcbd516b1da83fafce33e666673dc153b3b683d90204016",
+    "KeeseVisuals.cpp": "6a45941633efb718d8e336aa8a0d7a4ecf3536826215a565ce71848da4ec2bc5",
+    "OctorokGeometry.h": "4d5cb09d3e730e47c9772c190fc3be14145f3998616d6f0b8362c2a952cb8fd6",
+    "SkulltulaGeometry.h": "3c655b3dd868cf30850da8943c99a1e01f130a6fb594395140a7c6acab244c8b",
+    "BubbleGeometry.h": "aa39cf9caea8a2cd5400cb8fc605a2bc1d0171a53ca78fd3cadcd8065aa3f91e",
+    "RelicGeometry.h": "db0050a77c2506fc66dd4ef5e921ceb45123e77043d08b74c8f2ed134e775522",
+    "WaystoneGeometry.h": "c055288d3e0cce17447dc2009bf734c8b41f1aa1e1c508129d24ea0508b5f5f6",
+    "RelayGeometry.h": "3f8db8ebe693dc1fbbce965f50d286ab0d9db670cefaa7624320f290a3b076ea",
+    "WeaponGeometry.h": "76dcadd02970dd2d4af8722cabe9c5b6771097cc4dd64db16da57f358bb83365",
+    "QuestWorld.cpp": "1f32df22dd462482c5e81a7d6f93fe3ddc2461450d9241f708dc0c04ada74435",
+    "CreatureVisuals.cpp": "3b4b6eef8c8549ea3420b4cb32ca025ba7452cb4d7b8f7e0f620c496a48b9df5"
+  },
+  "limitations": [
+    "Representative native poses and environments, not every animation, child/adult combination, room or external texture pack.",
+    "Geometry workloads and bounded cache behavior were checked; no controlled before/after crowded-scene GPU frame-rate benchmark was performed.",
+    "The initial river fixture found no sufficiently deep water and is recorded separately, not counted as a pass. The final mode uses the native Water Temple exit to initialize swimming and collision together.",
+    "Inventory icons and authored mesh shapes were retained; this follow-up changes surface meaning and rendering, not silhouettes."
+  ],
+  "production_build": {
+    "status": "passed",
+    "installed_executable": "/Users/alec/git/z64-romhack-tutorials/soh/build-cmake/soh/soh-macos",
+    "sha256": "5719e62829faae9d3ea560b2ddd958934855ee6cd85595f4ef7bae0de06b39fc",
+    "backup": "/tmp/soh-before-materials-20261013-010545-macos",
+    "runtime_fixtures_compiled": false,
+    "startup_check": "passed: ordinary Zelda title screen in the isolated profile"
+  },
+  "workflow": "../ASSET_WORKFLOW.md",
+  "test_source_sha256": {
+    "tests/arpg/native_art_runtime_test.cpp": "09778024d2e4b75154c2d45ecf8a23acb6c0aea2ca5b54f90b5361fe353e8630",
+    "tests/arpg/material_identity_test.cpp": "02843f52d1ee65030ae88046c20a511ceb74821d37b9ab0de67dd14ae2e3b3c3",
+    "tests/arpg/material_workload.cpp": "6df72103dc365dab55df348a01e9bb804cda2b91d556f681f99408db88cf1ace"
+  }
+}

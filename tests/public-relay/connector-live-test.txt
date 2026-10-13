@@ -1,0 +1,1 @@
+PASS: two existing TCP clients joined and discovered a two-player public room through the macOS loopback connector at 127.0.0.1:43389. The upstream endpoint was wss://mlapi.us/z64/relay/ws.

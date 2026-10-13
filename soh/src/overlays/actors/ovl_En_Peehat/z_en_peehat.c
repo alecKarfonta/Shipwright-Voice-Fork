@@ -1,4 +1,5 @@
 #include "z_en_peehat.h"
+#include "soh/Enhancements/arpg/PeahatVisuals.h"
 #include "objects/object_peehat/object_peehat.h"
 #include "overlays/actors/ovl_En_Bom/z_en_bom.h"
 #include "overlays/effects/ovl_Effect_Ss_Hahen/z_eff_ss_hahen.h"
@@ -245,18 +246,49 @@ void EnPeehat_Init(Actor* thisx, PlayState* play) {
     }
 }
 
+s32 EnPeehat_CountLarvae(PlayState* play, EnPeehat* parent) {
+    Actor* actor;
+    s32 count = 0;
+    for (actor = play->actorCtx.actorLists[ACTORCAT_ENEMY].head; actor != NULL; actor = actor->next) {
+        if (actor->update != NULL && actor->id == ACTOR_EN_PEEHAT && actor->params == PEAHAT_TYPE_LARVA &&
+            actor->parent == &parent->actor) {
+            count++;
+        }
+    }
+    return count;
+}
+
+static EnPeehat* EnPeehat_LiveParent(EnPeehat* this, PlayState* play) {
+    Actor* actor;
+    // [TIME] | [INFO] | EnPeehat.Parent | Resolve ownership against live actors before dereferencing a possibly removed parent.
+    for (actor = play->actorCtx.actorLists[ACTORCAT_ENEMY].head; actor != NULL; actor = actor->next) {
+        if (actor == this->actor.parent && actor->update != NULL && actor->id == ACTOR_EN_PEEHAT && actor->params <= 0) {
+            return (EnPeehat*)actor;
+        }
+    }
+    return NULL;
+}
+
 void EnPeehat_Destroy(Actor* thisx, PlayState* play) {
     EnPeehat* this = (EnPeehat*)thisx;
     EnPeehat* parent;
-
+    Actor* actor;
     Collider_DestroyCylinder(play, &this->colCylinder);
     Collider_DestroyJntSph(play, &this->colJntSph);
-
-    // If PEAHAT_TYPE_LARVA, decrement total larva spawned
-    if (this->actor.params > 0) {
-        parent = (EnPeehat*)this->actor.parent;
-        if (parent != NULL && parent->actor.update != NULL) {
+    Collider_DestroyQuad(play, &this->colliderQuad);
+    if (this->actor.params == PEAHAT_TYPE_LARVA) {
+        parent = EnPeehat_LiveParent(this, play);
+        if (parent != NULL && parent->unk_2FA > 0 &&
+            (parent->actor.params == PEAHAT_TYPE_FLYING || parent->state == PEAHAT_STATE_3)) {
             parent->unk_2FA--;
+        }
+        this->actor.parent = NULL;
+    } else {
+        // [TIME] | [INFO] | EnPeehat.Destroy | Detach every remaining larva before freeing its parent; each keeps its original pursuit and death behavior.
+        for (actor = play->actorCtx.actorLists[ACTORCAT_ENEMY].head; actor != NULL; actor = actor->next) {
+            if (actor->id == ACTOR_EN_PEEHAT && actor->params == PEAHAT_TYPE_LARVA && actor->parent == &this->actor) {
+                actor->parent = NULL;
+            }
         }
     }
 }
@@ -297,6 +329,8 @@ void EnPeehat_HitWhenGrounded(EnPeehat* this, PlayState* play) {
 
         this->colCylinder.base.acFlags &= ~AC_HIT;
         if (GameInteractor_Should(VB_PEEHAT_SPAWN_LARVAS, true, this, play)) {
+            // [TIME] | [INFO] | EnPeehat.Brood | Count living children so sleep/flight transitions cannot reset the three-larva cap.
+            this->unk_2FA = EnPeehat_CountLarvae(play, this);
             for (i = MAX_LARVA - this->unk_2FA; i > 0; i--) {
                 Actor* larva =
                     Actor_SpawnAsChild(&play->actorCtx, &this->actor, play, ACTOR_EN_PEEHAT,
@@ -361,7 +395,6 @@ void EnPeehat_Flying_SetStateGround(EnPeehat* this) {
                      ANIMMODE_ONCE, 0.0f);
     this->seekPlayerTimer = 400;
     this->unk_2D4 = 0;
-    this->unk_2FA = 0; //! @bug: overwrites number of child larva spawned, allowing for more than MAX_LARVA spawns
     this->state = PEAHAT_STATE_4;
     EnPeehat_SetupAction(this, EnPeehat_Flying_StateGrounded);
 }
@@ -398,6 +431,7 @@ void EnPeehat_Flying_StateFly(EnPeehat* this, PlayState* play) {
     if (!IS_DAY || this->xzDistToRise < this->actor.xzDistToPlayer) {
         EnPeehat_Flying_SetStateLanding(this);
     } else if (this->actor.xzDistToPlayer < this->xzDistMax) {
+        this->unk_2FA = EnPeehat_CountLarvae(play, this);
         if (this->unk_2FA < MAX_LARVA && (play->gameplayFrames & 7) == 0) {
             Actor* larva = Actor_SpawnAsChild(&play->actorCtx, &this->actor, play, ACTOR_EN_PEEHAT,
                                               Rand_CenteredFloat(25.0f) + this->actor.world.pos.x,
@@ -478,8 +512,6 @@ void EnPeehat_Flying_StateRise(EnPeehat* this, PlayState* play) {
             }
         }
         if (SkelAnime_Update(&this->skelAnime) || this->animTimer == 0) {
-            //! @bug: overwrites number of child larva spawned, allowing for more than MAX_LARVA spawns
-            this->unk_2FA = 0;
             EnPeehat_Flying_SetStateFly(this);
         } else {
             this->actor.world.pos.y += 18.0f;
@@ -543,7 +575,7 @@ void EnPeehat_Larva_StateSeekPlayer(EnPeehat* this, PlayState* play) {
     if (this->actor.xzDistToPlayer <= 5.3f) {
         speedXZ = this->actor.xzDistToPlayer + 0.0005f;
     }
-    if (this->actor.parent != NULL && this->actor.parent->update == NULL) {
+    if (this->actor.parent != NULL && EnPeehat_LiveParent(this, play) == NULL) {
         this->actor.parent = NULL;
     }
     this->actor.speedXZ = speedXZ;
@@ -565,7 +597,8 @@ void EnPeehat_Larva_StateSeekPlayer(EnPeehat* this, PlayState* play) {
     Audio_PlayActorSound2(&this->actor, NA_SE_EN_PIHAT_SM_FLY - SFX_FLAG);
     if (this->colliderQuad.base.atFlags & AT_BOUNCED) {
         this->actor.colChkInfo.health = 0;
-        this->colliderQuad.base.acFlags = this->colliderQuad.base.acFlags & ~AC_BOUNCED;
+        // [TIME] | [INFO] | EnPeehat.Shield | Clear attack bounce flags after the native reflected-larva recoil begins.
+        this->colliderQuad.base.atFlags &= ~(AT_BOUNCED | AT_HIT);
         EnPeehat_SetStateAttackRecoil(this);
     } else if ((this->colliderQuad.base.atFlags & AT_HIT) || (this->colCylinder.base.acFlags & AC_HIT) ||
                (this->actor.bgCheckFlags & BGCHECKFLAG_GROUND)) {
@@ -1013,6 +1046,7 @@ void EnPeehat_Update(Actor* thisx, PlayState* play) {
 s32 EnPeehat_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s* rot, void* thisx) {
     EnPeehat* this = (EnPeehat*)thisx;
 
+    ARPG_OverridePeahatLimb(play, &this->actor, limbIndex, dList);
     if (limbIndex == 4) {
         rot->x = -this->bladeRot;
     }
@@ -1062,6 +1096,7 @@ void EnPeehat_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* r
         Matrix_RotateY(3.2f + damageYRot, MTXMODE_APPLY);
         Matrix_Scale(0.3f, 0.2f, 0.2f, MTXMODE_APPLY);
         gSPMatrix(POLY_OPA_DISP++, MATRIX_NEWMTX(play->state.gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+        ARPG_OverridePeahatRoot(play, &this->actor, dList);
         gSPDisplayList(POLY_OPA_DISP++, *dList);
         Matrix_Pop();
         CLOSE_DISPS(play->state.gfxCtx);

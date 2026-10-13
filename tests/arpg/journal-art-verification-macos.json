@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-12",
+  "platform": "macOS / Metal",
+  "scope": "Journal art, controls, navigation and adaptive equipment layout",
+  "build": "cmake --build build-cmake --target soh GenerateSohOtr -j 6",
+  "checks": {
+    "native_build": "passed after final native-style and compact-header refinements",
+    "art_archive": "journal-stone.png included",
+    "diff_whitespace": "passed",
+    "visual_window_sizes": [
+      "640x480",
+      "1280x800 (native stone direction)",
+      "1708x980 (initial layout pass)"
+    ],
+    "gear_slots": "Equipment art aligned to bounded slots; empty sword outline observed after unequipping",
+    "equipment_actions": "Click equip, return to backpack, and drag equip observed in isolated practice profile",
+    "navigation": "Clickable top tabs, selected state, bracket page cycling, keyboard focus and Tab scrolling observed",
+    "compact_layout": "Two-row navigation, two-column equipment/backpack, separate item inspector observed at 640x480",
+    "pages_reviewed": [
+      "Equipment",
+      "Items",
+      "Base equipment",
+      "Skills and assignment tray",
+      "Quests and native reward icons",
+      "World map"
+    ],
+    "song_actions": "Listen/Practice fit compact pane and remain keyboard reachable after scrolling",
+    "native_style_pages": [
+      "Equipment: native lettering, icon tabs, selected yellow corners and aligned gear wells",
+      "Quest: medallion ring, Spiritual Stones and colored song notes",
+      "Compact: two-row icon navigation and single-column song list"
+    ],
+    "song_practice": "Native engine recognized Zelda lullaby and displayed Well played",
+    "back_navigation": "Escape returned from Quests to Equipment"
+  },
+  "coverage_limits": [
+    "Physical controller not attached; shoulder-button bindings not physically tested",
+    "No exhaustive dungeon or randomizer visual sweep",
+    "Low-height windows require scrolling content panes; navigation remains fixed"
+  ],
+  "art": {
+    "mode": "built-in image_gen",
+    "path": "soh/assets/custom/textures/arpg/journal-stone.png",
+    "prompt_record": "art/journal-native-style-prompt.json",
+    "earlier_direction_retained": "journal-endpaper.png"
+  },
+  "test_isolation": "Temporary SHIP_HOME practice adventures; no player saves modified",
+  "current_direction": "OoT-inspired carved indigo pause tablet; replaces the initial forest endpaper direction"
+}

@@ -1,0 +1,19 @@
+{
+  "source_sha256": "515adaa1d2c3b256355f9156d7e4247e93496bc3e0f42c5772295462ea8677bf",
+  "vertices": 5304,
+  "triangles": 9198,
+  "parts": 38,
+  "subpixel_triangles_removed": 0,
+  "triangles_per_actor": {
+    "0": 9198
+  },
+  "materials": [
+    "bone",
+    "edge",
+    "socket",
+    "tooth",
+    "eye",
+    "crack"
+  ],
+  "space": "Native joint-local XYZ, positions x100; native normals retained; per-vertex native joint indices; authoring-pose transforms omitted"
+}

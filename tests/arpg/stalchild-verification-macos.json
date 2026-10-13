@@ -1,0 +1,120 @@
+{
+  "status": "passed",
+  "date": "2026-10-13",
+  "feature": "Original Stalchildren with articulated Blender bone anatomy and original movement",
+  "scope": "Open ribs and pelvis, separate skull and jaw, inset pulsing eyes, cervical and spinal bones, paired forearm/shin bones, individual fingers and toes on the original rigid skeleton. Native emergence, walk, swipe, recoil, stun, headless pursuit, burial and breakup remain intact.",
+  "art": {
+    "source_sha256": "515adaa1d2c3b256355f9156d7e4247e93496bc3e0f42c5772295462ea8677bf",
+    "vertices": 5304,
+    "triangles": 9198,
+    "parts": 38,
+    "subpixel_triangles_removed": 0,
+    "triangles_per_actor": {
+      "0": 9198
+    },
+    "materials": [
+      "bone",
+      "edge",
+      "socket",
+      "tooth",
+      "eye",
+      "crack"
+    ],
+    "space": "Native joint-local XYZ, positions x100; native normals retained; per-vertex native joint indices; authoring-pose transforms omitted"
+  },
+  "animation": {
+    "status": "passed",
+    "geometry_variants": 1,
+    "native_animation_clips": 5,
+    "native_animation_frames": 82,
+    "visible_native_bones": 17,
+    "transformed_authored_vertex_checks": 434928,
+    "maximum_posed_envelope_extension_at_regular_scale": 5.425194271589675,
+    "maximum_posed_envelope_extension_at_giant_scale": 10.85038854317935,
+    "practice_scales": [
+      0.01,
+      0.015,
+      0.02
+    ],
+    "scope": "Every exported vertex transformed through all five original animation clips. All pieces are rigid on their own original joints; detached skull, jaw and body parts do not require flex matrices. Root offsets and actor scale affect original and replacement equally. Bounds are per-axis envelope checks, not collision or watertight-surface proof. Motion renders and native combat are separately reviewed."
+  },
+  "portable": {
+    "full_suites_passed": 40,
+    "full_suite_log": "/tmp/stalchild-portable-test.log",
+    "final_geometry_retest": "/tmp/stalchild-final-geometry.log",
+    "address_and_undefined_sanitizers": "Passed final 9,198-triangle geometry, all seventeen original joints, hidden joints, skull/jaw isolation, nondegenerate triangles and normalized lighting normals.",
+    "sanitizer_binary": "/tmp/stalchild-geometry-sanitize",
+    "scope": "Full suite passed before small brow/neck art refinements; the changed geometry suite and sanitizers were rebuilt and rerun after the final refinement."
+  },
+  "native": {
+    "checks_passed": 72,
+    "results": "tests/arpg/stalchild-runtime-results-macos.json",
+    "attack_frames": 1,
+    "blue_drops": 1,
+    "debris_frames": 812,
+    "distinct_poses": 87,
+    "headless_frames": 108,
+    "headless_yaw_values": 7,
+    "native_defeats": 4,
+    "red_drops": 3,
+    "render_frames": 947,
+    "scope": "Original twenty-entry rig, all seventeen visible bones, persistent display-list lifetime, feature gates, distance fallback, regular/large/giant scale and colliders. Natural emergence and pursuit, swipe entry, shield-bounce reversal, recoil, ice-magic immunity, eighty-frame stun, repeated-stun rejection, split head/jaw debris, headless wandering, fire filter, lethal-stun delay, body breakup, size-dependent blue/red rupees, day/home-distance burial, deep-water defeat, idempotent pending-buffer cleanup, six-actor practice cap and scene teardown. Exactly four earned native and ARPG defeats.",
+    "fixture_limits": "Separate debug save; adult player, camera and time pinned. Other Field enemies are cleared after safe placement succeeds. Damage and shield-bounce flags are supplied to the original handlers; health is restored to two before the nonlethal spin fixture. Water depth and flags are explicitly supplied, not an unassisted water encounter. The active swipe is blocked on its first observed active frame, so this does not count a full uninterrupted attack window. render_frames and headless_frames are draw-end observations with a live actor, not GPU draw counts. debris_frames counts individual live debris actors at draw end, not unique wall-clock frames. Native field spawner escalation and bunny-mask behavior were unchanged but not specifically exercised."
+  },
+  "production_ui": {
+    "build": "/tmp/soh-stalchild-playtest/Stalchild Adventure.app",
+    "profile_root": "/tmp/soh-stalchild-playtest/profiles",
+    "qa_harness_linked": false,
+    "launcher": "/tmp/soh-stalchild-production.py",
+    "state": "Open and paused in the equipment journal in open Hyrule Field, with a freshly summoned giant nearby",
+    "verified": [
+      "Collapsed Stalchild practice section with Regular, Large and Giant choices, concise counter hint and corrected Set night label",
+      "Night shortcut changes the actual outdoor environment",
+      "Ordinary regular, large and giant summons, targeting, native walking and swipes",
+      "Native knockback observed; moved away from the bridge and moat for the final encounter",
+      "Regular Stalchild defeated through the configured C sword input; journal XP rose from 31,160 to 31,206",
+      "Fresh giant encounter left paused in the journal"
+    ],
+    "not_claimed": "Full manual headless fight, all weapon types, repeated large/giant kills, natural field-spawner size escalation, dungeon traversal or crowd performance. The inherited isolated build still has the earlier target/nameplate UI; unrelated shared UI changes are not claimed rebuilt."
+  },
+  "build": {
+    "method": "Isolated object-link build from the verified Handmaster snapshot; rebuilt the Stalchild renderer, original actor, CreatureSystem and QA harness. Shared Ninja was not run. Successive passing native runs were repeated after brow/neck refinements and the testing label fix. Unrelated shared-source changes are not claimed rebuilt.",
+    "source": "/tmp/soh-stalchild/source",
+    "qa": "/tmp/soh-stalchild/qa",
+    "production": "/tmp/soh-stalchild/production",
+    "source_hashes": {
+      "soh/soh/Enhancements/arpg/StalchildBlenderData.h": "783d97c30fffc926452d57b63e4d4a61d4bec9b931019c74846e7ceac5bab274",
+      "soh/soh/Enhancements/arpg/StalchildGeometry.h": "cd8d7448b4f5bb41d2e9acfc95a50ff5135a888f48d73bac56ea401ae21c9eae",
+      "soh/soh/Enhancements/arpg/StalchildVisuals.h": "1351481a8e43993bd0f5d4e8622b2763756703c7c9c9778b00a53c5080efa72a",
+      "soh/soh/Enhancements/arpg/StalchildVisuals.cpp": "dd0ed4b3bb1f24dcc2d3fd4da51ab253e431807dec695be615b2cbfc15d07fea",
+      "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "2008751ce01a2f439e6d2e3494c4b063e0844a8d3017317f4b05e24874732661",
+      "soh/soh/Enhancements/arpg/CreatureSystem.h": "433e0af204f78bac8894632e63c82a9b82e1896900c25328ba6f47b835c5a2af",
+      "soh/src/overlays/actors/ovl_En_Skb/z_en_skb.c": "d3e12de85e8aede754c7ea144d5f69f7333ca65d31ddc5b4deb63d9609e05d7c",
+      "tests/arpg/stalchild_runtime_test.cpp": "68e8d55b77c0cc5fe6ceb4c376da6fc205fc0aed2643589c2fe6572f7145069a"
+    },
+    "source_snapshot_matches": true,
+    "production_and_packaged_app_macho_uuid": "57E89274-C8D5-3975-852C-035D2844FB6A",
+    "qa_exit_status": 0,
+    "production_exit_status": null,
+    "known_shutdown_log": "All QA processes exited zero. The pre-existing ResourceManager.cpp:70 logger mutex error repeats at shutdown, as in prior family verification. Ordinary build remains open."
+  },
+  "save": {
+    "path": "/Users/alec/Library/Application Support/shipofharkinian/profiles/player1/Save/file1.sav",
+    "before_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "after_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "unchanged": true
+  },
+  "blender": {
+    "authoring": "Installed Blender 5.1.2 in isolated background processes; live Blender MCP was disconnected.",
+    "editable_source": "art/arpg/stalchildren/stalchildren.blend",
+    "user_project_modified": false
+  },
+  "previews": [
+    "art/arpg/stalchildren/stalchildren-studio.png",
+    "art/arpg/stalchildren/stalchild-native-preview.png",
+    "art/arpg/stalchildren/stalchild-practice-menu.png",
+    "art/arpg/stalchildren/stalchild-ordinary-combat.png",
+    "art/arpg/stalchildren/stalchild-earned-xp.png"
+  ],
+  "remaining": "Other original families, environment and character assets; broader manual, regional, dungeon and crowd acceptance. All five broader replayability requirements remain partial."
+}

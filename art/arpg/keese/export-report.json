@@ -1,0 +1,26 @@
+{
+  "source_sha256": "3fffd7370960286455987b5373b6454b470f62d46277359c3e0dafceeed21a25",
+  "vertices": 1822,
+  "triangles": 6308,
+  "parts": 103,
+  "subpixel_triangles_removed": 0,
+  "triangles_per_actor": {
+    "0": 2036,
+    "1": 2132,
+    "2": 2140
+  },
+  "materials": [
+    "fur",
+    "ruff",
+    "membrane",
+    "web",
+    "rib",
+    "ear",
+    "claw",
+    "eye",
+    "pupil",
+    "mouth",
+    "accent"
+  ],
+  "space": "Native joint-local XYZ, positions x100; native normals retained; authoring-pose transforms omitted"
+}

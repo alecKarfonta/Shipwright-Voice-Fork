@@ -4,6 +4,7 @@
  * Description: Moblins
  */
 
+#include "soh/Enhancements/arpg/MoblinVisuals.h"
 #include "z_en_mb.h"
 #include "objects/object_mb/object_mb.h"
 #include "soh/Enhancements/game-interactor/GameInteractor_Hooks.h"
@@ -335,6 +336,13 @@ void EnMb_Init(Actor* thisx, PlayState* play) {
 void EnMb_Destroy(Actor* thisx, PlayState* play) {
     EnMb* this = (EnMb*)thisx;
 
+    // [TIME] | [INFO] | EnMb.Destroy | An interrupted charge must release only the player held by this Moblin.
+    Player* player = GET_PLAYER(play);
+    if (player != NULL && player->actor.parent == thisx) {
+        player->stateFlags2 &= ~PLAYER_STATE2_GRABBED_BY_ENEMY;
+        player->actor.parent = NULL;
+        player->av2.actionVar2 = 200;
+    }
     Collider_DestroyTris(play, &this->frontShielding);
     Collider_DestroyCylinder(play, &this->hitbox);
     Collider_DestroyQuad(play, &this->attackCollider);
@@ -582,6 +590,7 @@ void EnMb_SetupClubDamagedWhileKneeling(EnMb* this) {
 }
 
 void EnMb_SetupClubDead(EnMb* this) {
+    if (this->actionFunc == EnMb_ClubDead) return;
     Animation_MorphToPlayOnce(&this->skelAnime, &gEnMbClubFallOnItsBackAnim, -4.0f);
     this->state = ENMB_STATE_CLUB_DEAD;
     this->actor.flags &= ~ACTOR_FLAG_ATTENTION_ENABLED;
@@ -591,6 +600,8 @@ void EnMb_SetupClubDead(EnMb* this) {
     this->actor.speedXZ = 0.0f;
     Audio_PlayActorSound2(&this->actor, NA_SE_EN_MORIBLIN_DEAD);
     EnMb_SetupAction(this, EnMb_ClubDead);
+    // [TIME] | [INFO] | EnMb.Defeat | Both ordinary and delayed frozen deaths enter this transition exactly once.
+    GameInteractor_ExecuteOnEnemyDefeat(&this->actor);
 }
 
 void EnMb_SetupStunned(EnMb* this) {
@@ -1319,6 +1330,7 @@ void EnMb_SpearDamaged(EnMb* this, PlayState* play) {
 void EnMb_SetupSpearDead(EnMb* this) {
     s16 relYawTowardsPlayer = this->actor.yawTowardsPlayer - this->actor.shape.rot.y;
 
+    if (this->actionFunc == EnMb_SpearDead) return;
     if (ABS(relYawTowardsPlayer) <= 0x4000) {
         Animation_MorphToPlayOnce(&this->skelAnime, &gEnMbSpearFallOnItsBackAnim, -4.0f);
         this->actor.speedXZ = -8.0f;
@@ -1334,6 +1346,8 @@ void EnMb_SetupSpearDead(EnMb* this) {
     Audio_PlayActorSound2(&this->actor, NA_SE_EN_MORIBLIN_DEAD);
     this->actor.flags &= ~ACTOR_FLAG_ATTENTION_ENABLED;
     EnMb_SetupAction(this, EnMb_SpearDead);
+    // [TIME] | [INFO] | EnMb.Defeat | Keep the reward on the death transition, including lethal ice stuns.
+    GameInteractor_ExecuteOnEnemyDefeat(&this->actor);
 }
 
 void EnMb_SpearDead(EnMb* this, PlayState* play) {
@@ -1445,14 +1459,12 @@ void EnMb_CheckColliding(EnMb* this, PlayState* play) {
                 if (this->actor.params == ENMB_TYPE_CLUB) {
                     if (this->actor.colChkInfo.health == 0) {
                         EnMb_SetupClubDead(this);
-                        GameInteractor_ExecuteOnEnemyDefeat(&this->actor);
                     } else if (this->state != ENMB_STATE_CLUB_KNEELING) {
                         EnMb_SetupClubDamaged(this);
                     }
                 } else {
                     if (this->actor.colChkInfo.health == 0) {
                         EnMb_SetupSpearDead(this);
-                        GameInteractor_ExecuteOnEnemyDefeat(&this->actor);
                     } else {
                         EnMb_SetupSpearDamaged(this);
                     }
@@ -1552,6 +1564,11 @@ void EnMb_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, 
     }
 }
 
+s32 EnMb_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s* rot, void* thisx) {
+    ARPG_OverrideMoblinLimb(play, (Actor*)thisx, limbIndex, dList);
+    return false;
+}
+
 void EnMb_Draw(Actor* thisx, PlayState* play) {
     static Vec3f frontShieldingTriModel0[] = {
         { 4000.0f, 7000.0f, 3500.0f },
@@ -1571,7 +1588,7 @@ void EnMb_Draw(Actor* thisx, PlayState* play) {
     EnMb* this = (EnMb*)thisx;
 
     Gfx_SetupDL_25Opa(play->state.gfxCtx);
-    SkelAnime_DrawSkeletonOpa(play, &this->skelAnime, NULL, EnMb_PostLimbDraw, thisx);
+    SkelAnime_DrawSkeletonOpa(play, &this->skelAnime, EnMb_OverrideLimbDraw, EnMb_PostLimbDraw, thisx);
 
     if (thisx->params != ENMB_TYPE_CLUB) {
         if (this->attack > ENMB_ATTACK_NONE) {

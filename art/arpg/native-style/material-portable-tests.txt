@@ -1,0 +1,67 @@
+Test project /tmp/arpg-material-tests
+      Start 13: arpg_ritual
+      Start  5: arpg_expedition
+      Start 16: arpg_relay
+      Start 21: arpg_adventure_items
+ 1/31 Test #21: arpg_adventure_items .............   Passed    2.89 sec
+      Start  4: arpg_loot
+ 2/31 Test  #4: arpg_loot ........................   Passed    2.15 sec
+      Start 18: arpg_weapon_loot
+ 3/31 Test #18: arpg_weapon_loot .................   Passed    1.55 sec
+      Start 22: arpg_quests
+ 4/31 Test #22: arpg_quests ......................   Passed    0.67 sec
+      Start  3: arpg_skill_tree
+ 5/31 Test  #3: arpg_skill_tree ..................   Passed    0.35 sec
+      Start 30: arpg_material_identity
+ 6/31 Test #30: arpg_material_identity ...........   Passed    0.57 sec
+      Start  2: arpg_gear_geometry
+ 7/31 Test  #2: arpg_gear_geometry ...............   Passed    0.26 sec
+      Start 15: arpg_relic_geometry
+ 8/31 Test #15: arpg_relic_geometry ..............   Passed    0.18 sec
+      Start  1: arpg_rules
+ 9/31 Test  #1: arpg_rules .......................   Passed    0.07 sec
+      Start  7: arpg_wolfos_geometry
+10/31 Test  #7: arpg_wolfos_geometry .............   Passed    0.23 sec
+      Start  8: arpg_lizalfos_geometry
+11/31 Test  #8: arpg_lizalfos_geometry ...........   Passed    0.19 sec
+      Start 31: arpg_dodongo_geometry
+12/31 Test #31: arpg_dodongo_geometry ............   Passed    0.13 sec
+      Start  6: arpg_enemy_geometry
+13/31 Test  #6: arpg_enemy_geometry ..............   Passed    0.18 sec
+      Start 10: arpg_tektite_geometry
+14/31 Test #10: arpg_tektite_geometry ............   Passed    0.14 sec
+      Start 12: arpg_waystone_geometry
+15/31 Test #12: arpg_waystone_geometry ...........   Passed    0.16 sec
+      Start  9: arpg_keese_geometry
+16/31 Test  #9: arpg_keese_geometry ..............   Passed    0.13 sec
+      Start 24: arpg_adventure_relics
+17/31 Test #24: arpg_adventure_relics ............   Passed    0.02 sec
+      Start 17: arpg_arsenal
+18/31 Test #17: arpg_arsenal .....................   Passed    0.01 sec
+      Start 11: arpg_world_population
+19/31 Test #11: arpg_world_population ............   Passed    0.00 sec
+      Start 14: arpg_warden
+20/31 Test #14: arpg_warden ......................   Passed    0.01 sec
+      Start 27: arpg_exploration
+21/31 Test #27: arpg_exploration .................   Passed    0.01 sec
+      Start 29: arpg_bubble_geometry
+22/31 Test #29: arpg_bubble_geometry .............   Passed    0.14 sec
+      Start 23: arpg_quest_plants
+23/31 Test #23: arpg_quest_plants ................   Passed    0.13 sec
+      Start 19: arpg_creature
+24/31 Test #19: arpg_creature ....................   Passed    0.01 sec
+      Start 25: arpg_dekubaba_geometry
+25/31 Test #25: arpg_dekubaba_geometry ...........   Passed    0.14 sec
+      Start 26: arpg_octorok_geometry
+26/31 Test #26: arpg_octorok_geometry ............   Passed    0.14 sec
+      Start 28: arpg_skulltula_geometry
+27/31 Test #28: arpg_skulltula_geometry ..........   Passed    0.13 sec
+      Start 20: arpg_brood
+28/31 Test #20: arpg_brood .......................   Passed    0.00 sec
+29/31 Test #13: arpg_ritual ......................   Passed   31.98 sec
+30/31 Test #16: arpg_relay .......................   Passed   32.17 sec
+31/31 Test  #5: arpg_expedition ..................   Passed   32.77 sec
+
+100% tests passed, 0 tests failed out of 31
+
+Total Test time (real) =  32.77 sec

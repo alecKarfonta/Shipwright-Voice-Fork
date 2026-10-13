@@ -25,7 +25,7 @@ extern PlayState* gPlayState;
  */
 
 void Anchor::SendPacket_UpdateTeamState() {
-    if (!IsSaveLoaded() || !roomState.syncItemsAndFlags) {
+    if (!IsSaveLoaded() || !CanSyncTeamSave()) {
         return;
     }
 
@@ -119,7 +119,7 @@ void Anchor::SendPacket_ClearTeamState(std::string teamId) {
 }
 
 void Anchor::HandlePacket_UpdateTeamState(nlohmann::json payload) {
-    if (!roomState.syncItemsAndFlags) {
+    if (!CanSyncTeamSave()) {
         return;
     }
 
@@ -308,7 +308,13 @@ void Anchor::HandlePacket_UpdateTeamState(nlohmann::json payload) {
         std::lock_guard<std::mutex> lock(incomingPacketQueueMutex);
         for (auto& item : payload["queue"]) {
             nlohmann::json itemPayload = nlohmann::json::parse(item.get<std::string>());
-            incomingPacketQueue.push(itemPayload);
+            const auto bytes = itemPayload.dump().size();
+            if (incomingPacketQueue.size() >= 1024 || incomingBytes + bytes > 4 * 1024 * 1024) {
+                isEnabled = false;
+                break;
+            }
+            incomingBytes += bytes;
+            incomingPacketQueue.push({appliedTransportEpoch, itemPayload, bytes});
         }
     }
     isHandlingUpdateTeamState = false;

@@ -1,0 +1,11 @@
+{
+  "animation": "__OTR__objects/gameplay_keep/gPlayerAnim_link_normal_landing_roll_free",
+  "attackFrames": 0,
+  "drawFrames": 693,
+  "mode": 7,
+  "movingFrames": 0,
+  "rollingFrames": 3,
+  "scene": 0,
+  "status": "captured-roll",
+  "swimmingFrames": 0
+}

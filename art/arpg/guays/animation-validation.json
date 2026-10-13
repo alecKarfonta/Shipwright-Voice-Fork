@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "native_clips": 1,
+  "native_frames": 8,
+  "callback_pose_variants": 16,
+  "posed_vertex_checks": 63808,
+  "connection_endpoint_checks": 1792,
+  "native_visible_joints": 7,
+  "mixed_joint_connections": 6,
+  "maximum_extension_regular_world_units": 0.7278412685767184,
+  "maximum_extension_giant_world_units": 2.183523805730155,
+  "per_state_regular_extension": {
+    "living_tail_wag": 0.7278412685767184,
+    "death_tail_neutral": 0.7278412685767184
+  },
+  "scope": "Every native fly frame with original live tail offsets and dead neutral-tail callbacks, measured at .01 and .03 actor scales. Runtime turning/pitch and growing/shrinking actor scale do not change local joint assignment. Bounds do not establish triangle-level intersection clearance."
+}

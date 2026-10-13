@@ -8,6 +8,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <filesystem>
+#include <fstream>
 #include <string>
 #include <vector>
 
@@ -97,8 +98,16 @@ int main(int argc, char** argv) {
     }
 
     for (const auto& rom : roms) {
+        // [TIME] | [FIX] | torch-cli | Read ROM bytes explicitly; newer libc++ rejects the
+        // former implicit std::string -> std::vector<uint8_t> conversion.
+        std::ifstream in(rom, std::ios::binary);
+        if (!in) {
+            fprintf(stderr, "failed to open %s\n", rom.c_str());
+            return 1;
+        }
+        std::vector<uint8_t> bytes((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
         // A fresh extraction per ROM; torch names the archive from config.yml.
-        const std::string archive = SohTorch::Extract(rom, src, dest, version, nullptr);
+        const std::string archive = SohTorch::Extract(bytes, src, dest, version, nullptr);
         if (archive.empty()) {
             fprintf(stderr, "failed to extract %s\n", rom.c_str());
             return 1;

@@ -1,7 +1,9 @@
+#include "soh/Enhancements/arpg/ARPGBridge.h"
 #include "global.h"
 #include "vt.h"
 #include "overlays/effects/ovl_Effect_Ss_HitMark/z_eff_ss_hitmark.h"
 #include "soh/Enhancements/game-interactor/GameInteractor.h"
+#include "soh/Enhancements/game-interactor/GameInteractor_Hooks.h"
 #include <assert.h>
 #include <libultraship/bridge/consolevariablebridge.h>
 
@@ -1724,6 +1726,7 @@ void CollisionCheck_SetBounce(Collider* at, Collider* ac) {
  */
 s32 CollisionCheck_SetATvsAC(PlayState* play, Collider* at, ColliderInfo* atInfo, Vec3f* atPos, Collider* ac,
                              ColliderInfo* acInfo, Vec3f* acPos, Vec3f* hitPos) {
+    if (!ARPG_SkillCollision(play, at, ac) || !ARPG_RelicCollision(play, at, ac, atInfo, acInfo, hitPos)) { return 0; }
     if (ac->acFlags & AC_HARD && at->actor != NULL && ac->actor != NULL) {
         CollisionCheck_SetBounce(at, ac);
     }
@@ -3024,8 +3027,13 @@ void CollisionCheck_ApplyDamage(PlayState* play, CollisionCheckContext* colChkCt
         damage = tbl->table[i] & 0xF;
         collider->actor->colChkInfo.damageEffect = tbl->table[i] >> 4 & 0xF;
     }
+
+    // [TIME] | [INFO] | CollisionCheck_ApplyDamage | Carry source/alignment into modifiers; hard collisions consume no procs.
     if (!(collider->acFlags & AC_HARD)) {
-        collider->actor->colChkInfo.damage += damage;
+        GameInteractor_ExecuteOnDamageActor(collider->actor, info->acHit != NULL ? info->acHit->actor : NULL,
+                                           info->acHitInfo->toucher.dmgFlags,
+                                           info->acHit != NULL ? info->acHit->atFlags : 0, &damage);
+        collider->actor->colChkInfo.damage = ARPG_AccumulateDamage(damage, collider->actor->colChkInfo.damage);
     }
 
     if (CVarGetInteger(CVAR_ENHANCEMENT("IvanCoopModeEnabled"), 0)) {

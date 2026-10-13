@@ -1,0 +1,2 @@
+ok  	go-anchor	5.700s
+?   	go-anchor/cmd/observer	[no test files]

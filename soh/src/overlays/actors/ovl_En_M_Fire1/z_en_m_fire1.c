@@ -1,3 +1,5 @@
+#include "soh/Enhancements/arpg/ARPGBridge.h"
+#include "soh/Enhancements/arpg/ARPGTypes.h"
 /*
  * File: z_en_m_fire1.c
  * Overlay: ovl_En_M_Fire1
@@ -70,6 +72,7 @@ void EnMFire1_Update(Actor* thisx, PlayState* play) {
     if (Math_StepToF(&this->timer, 1.0f, 0.2f)) {
         Actor_Kill(&this->actor);
     } else {
+        this->collider.dim.radius = 200 * ARPG_AdventureBlastScale(&this->actor);
         Collider_UpdateCylinder(&this->actor, &this->collider);
         CollisionCheck_SetAT(play, &play->colChkCtx, &this->collider.base);
     }

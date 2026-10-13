@@ -1,4 +1,6 @@
 #include "z_en_crow.h"
+#include "soh/Enhancements/arpg/GuayVisuals.h"
+#include "soh/Enhancements/arpg/GuayBehavior.h"
 #include "objects/object_crow/object_crow.h"
 #include "soh/Enhancements/game-interactor/GameInteractor_Hooks.h"
 #include <libultraship/bridge/consolevariablebridge.h>
@@ -412,6 +414,7 @@ void EnCrow_Respawn(EnCrow* this, PlayState* play) {
             this->actor.flags |= ACTOR_FLAG_ATTENTION_ENABLED;
             this->actor.flags &= ~ACTOR_FLAG_UPDATE_CULLING_DISABLED;
             this->actor.colChkInfo.health = 1;
+            ARPG_GuayRespawned(&this->actor);
             EnCrow_SetupFlyIdle(this);
         }
         this->actor.scale.z = this->actor.scale.y = this->actor.scale.x;
@@ -426,7 +429,13 @@ void EnCrow_UpdateDamage(EnCrow* this, PlayState* play) {
             if (this->actor.colChkInfo.damageEffect == 1) { // Deku Nuts
                 EnCrow_SetupTurnAway(this);
             } else if (GameInteractor_Should(VB_GUAY_SETUP_DAMAGED, true, this)) {
-                Actor_ApplyDamage(&this->actor);
+                // [TIME] | [INFO] | EnCrow.Damage | Scaled birds can survive a hit. Scatter on the original flying rig; reserve the fall/finishing blow for zero health.
+                if (Actor_ApplyDamage(&this->actor)) {
+                    EnCrow_SetupTurnAway(this);
+                    this->timer = 35;
+                    Actor_SetColorFilter(&this->actor, this->actor.colChkInfo.damageEffect == 3 ? 0 : 0x4000, 255, 0, 12);
+                    return;
+                }
                 this->actor.flags &= ~ACTOR_FLAG_ATTENTION_ENABLED;
                 Enemy_StartFinishingBlow(play, &this->actor);
                 EnCrow_SetupDamaged(this, play);
@@ -493,6 +502,7 @@ s32 EnCrow_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* 
             rot->y += 0x1400 * sinf((this->skelAnime.curFrame + 2.5f) * (M_PI / 4));
         }
     }
+    ARPG_OverrideGuayLimb(play, &this->actor, limbIndex, dList);
     return false;
 }
 

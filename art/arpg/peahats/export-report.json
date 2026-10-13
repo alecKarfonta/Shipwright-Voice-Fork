@@ -1,0 +1,20 @@
+{
+  "source_sha256": "1c3295d334ad0be7aef7bdbad90b481f3272bdd0e23a8e7c2a770ef7b8fc9724",
+  "vertices": 13660,
+  "triangles": 10652,
+  "parts": 19,
+  "subpixel_triangles_removed": 8,
+  "triangles_per_actor": {
+    "0": 10652
+  },
+  "materials": [
+    "bark",
+    "edge",
+    "leaf",
+    "vein",
+    "root",
+    "core",
+    "shadow"
+  ],
+  "space": "Native joint-local XYZ, positions x100; native normals retained; per-vertex native joint indices; authoring-pose transforms omitted"
+}

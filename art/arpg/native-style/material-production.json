@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "installed_executable": "/Users/alec/git/z64-romhack-tutorials/soh/build-cmake/soh/soh-macos",
+  "sha256": "5719e62829faae9d3ea560b2ddd958934855ee6cd85595f4ef7bae0de06b39fc",
+  "backup": "/tmp/soh-before-materials-20261013-010545-macos",
+  "runtime_fixtures_compiled": false,
+  "startup_check": "passed: ordinary Zelda title screen in the isolated profile"
+}

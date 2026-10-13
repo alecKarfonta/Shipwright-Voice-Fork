@@ -1,0 +1,21 @@
+{
+  "source_sha256": "362581142c90f0df1f2a733d2429aef1fc2a23e7e1e4f36b51d091a65c290140",
+  "vertices": 3988,
+  "triangles": 7304,
+  "parts": 28,
+  "subpixel_triangles_removed": 20,
+  "triangles_per_actor": {
+    "0": 7304
+  },
+  "materials": [
+    "plumage",
+    "coverts",
+    "primaries",
+    "quill",
+    "beak",
+    "edge",
+    "eye",
+    "pupil"
+  ],
+  "space": "Native joint-local XYZ, positions x100; native normals retained; per-vertex native joint indices; authoring-pose transforms omitted"
+}

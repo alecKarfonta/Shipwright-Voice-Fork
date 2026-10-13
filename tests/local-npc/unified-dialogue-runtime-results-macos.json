@@ -1,0 +1,31 @@
+{
+  "checks": [
+    "Native Kokiri contact exists",
+    "F7 entry accepts a native offered conversation",
+    "Native campaign owns the interaction before custom topics",
+    "Native two-choice actor script preserves its selected continuation",
+    "Campaign hands off to one native custom textbox without an actor event target",
+    "Custom conversation holds the player in the native conversation pose",
+    "Conversation HUD keeps the minimap clear of native dialogue",
+    "Native quest choice accepts the local mission",
+    "A stale accept choice cannot repeat its transaction",
+    "A full backpack preserves the reward, XP and currency until space is available",
+    "Native reward choice grants the selected gear and completes the quest",
+    "Repeated reward selection cannot duplicate inventory, XP or currency",
+    "Leaving closes the native textbox and returns player control",
+    "An active campaign message cannot be replaced by custom topics",
+    "Unified conversations work with ARPG gameplay disabled",
+    "Actor destruction closes custom dialogue and invalidates its session",
+    "Conversation can reopen after cancellation",
+    "Disabling dialogue releases the textbox and native player lock"
+  ],
+  "error": "",
+  "message": {
+    "drawPosition": 0,
+    "id": 63232,
+    "length": 72,
+    "mode": 1
+  },
+  "phase": 98,
+  "status": "passed"
+}

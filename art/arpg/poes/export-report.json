@@ -1,0 +1,22 @@
+{
+  "source_sha256": "173f5cee460b6574091a302bd938093212056f5eef101765283ad2b90881fe30",
+  "vertices": 4255,
+  "triangles": 7905,
+  "parts": 22,
+  "subpixel_triangles_removed": 0,
+  "triangles_per_actor": {
+    "0": 7905
+  },
+  "materials": [
+    "cloth",
+    "fold",
+    "recess",
+    "seam",
+    "skin",
+    "knuckle",
+    "bronze",
+    "edge",
+    "eye"
+  ],
+  "space": "Native joint-local XYZ, positions x100; native normals retained; per-vertex native joint indices; authoring-pose transforms omitted"
+}

@@ -1,0 +1,20 @@
+{
+  "source_sha256": "ed51adbd2f53d207256967e5a7e74247c7e4b91a664484feb821ff2dacc126fe",
+  "vertices": 10018,
+  "triangles": 7213,
+  "parts": 19,
+  "subpixel_triangles_removed": 1,
+  "triangles_per_actor": {
+    "0": 7213
+  },
+  "materials": [
+    "stone",
+    "edge",
+    "shadow",
+    "inlay",
+    "iron",
+    "eye",
+    "crack"
+  ],
+  "space": "Native joint-local XYZ, positions x100; native normals retained; per-vertex native joint indices; authoring-pose transforms omitted"
+}

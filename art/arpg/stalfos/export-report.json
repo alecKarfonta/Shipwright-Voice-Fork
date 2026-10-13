@@ -1,0 +1,26 @@
+{
+  "source_sha256": "d177dc655eade94a159575bd61faf3afaf9cae52ece0f9b5943fddc5cb98cef9",
+  "vertices": 20092,
+  "triangles": 108826,
+  "parts": 195,
+  "subpixel_triangles_removed": 0,
+  "triangles_per_actor": {
+    "0": 35840,
+    "1": 36284,
+    "2": 36702
+  },
+  "materials": [
+    "bone",
+    "shadow",
+    "armor",
+    "trim",
+    "cloth",
+    "eye",
+    "steel",
+    "edge",
+    "cavity",
+    "strap",
+    "inlay"
+  ],
+  "space": "Native joint-local XYZ, positions x100; native normals retained; authoring-pose transforms omitted"
+}

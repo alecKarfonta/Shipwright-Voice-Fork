@@ -1,0 +1,101 @@
+{
+  "status": "passed",
+  "date": "2026-10-13",
+  "feature": "Original ReDead and Gibdo anatomy on native animation and combat rigs",
+  "scope": "Original ACTOR_EN_RD variants; no new custom species or replacement AI. Native actor source changed only to include and call the limb renderer.",
+  "art": {
+    "source_sha256": "5513efde016a3aa5a24ecde8c662a6c88fc7594b4e02071df3998865a91e5be1",
+    "vertices": 13152,
+    "triangles": 19748,
+    "parts": 81,
+    "subpixel_triangles_removed": 0,
+    "triangles_per_actor": {
+      "0": 5236,
+      "1": 14512
+    },
+    "materials": [
+      "skin",
+      "ridge",
+      "mask",
+      "cavity",
+      "wrap",
+      "edge",
+      "eye",
+      "nail",
+      "cloth"
+    ],
+    "space": "Native joint-local XYZ, positions x100; native normals retained; per-vertex native joint indices; authoring-pose transforms omitted"
+  },
+  "animation": {
+    "status": "passed",
+    "variants": 2,
+    "native_animation_clips_per_variant": 11,
+    "native_animation_frames_per_variant": 277,
+    "visible_limbs_per_variant": 15,
+    "bridges_per_variant": 9,
+    "posed_bridge_endpoint_checks": 119664,
+    "maximum_quantized_endpoint_error_world_units": 0.007047997465111698,
+    "maximum_posed_envelope_extension_world_units": 3.459056529712173,
+    "scope": "Full native animation poses; quantized endpoints follow their assigned native joints. Overlapping hips, ankles and neck are visually reviewed; no claim of watertight topology or cloth simulation."
+  },
+  "portable": {
+    "full_suites_passed": 32,
+    "final_geometry_ctest": "passed after the final shoulder edit",
+    "address_and_undefined_sanitizers": "passed on final geometry"
+  },
+  "native": {
+    "checks_passed": 74,
+    "draw_frames": 1064,
+    "grab_frames": 65,
+    "fire_frames": 39,
+    "fade_frames": 51,
+    "defeats": 1,
+    "results": "tests/arpg/redead-runtime-results-macos.json",
+    "scope": "Native gaze, walk, actual grabPlayer capture/damage/escape, Hookshot stun, song stun/recovery, attached fire anchors, death/fade, mourning, both models, Lens flag, coffin rise, four practice variants, feature gates, distance fallback, cache and scene teardown.",
+    "fixture_limits": "Isolated debug save and pinned player/camera. Footstep flag and damage/effect collision stimuli are supplied by the harness; Sun Song terminal timer is shortened after observing countdown. This is not a complete playthrough of every scene or age."
+  },
+  "production_ui": {
+    "build": "/tmp/soh-redead-playtest/Undead Adventure.app",
+    "verified": [
+      "Collapsed native undead section and four-option selector",
+      "Successful ReDead and rising-Gibdo summons from the ordinary menu",
+      "Journal stays paused until Resume",
+      "Coffin float/rotation visible in normal play",
+      "Normal keyboard movement triggers native gaze and pursuit",
+      "Journal opens during combat"
+    ],
+    "profile_root": "/tmp/soh-redead-playtest/profiles",
+    "qa_harness_linked": false,
+    "final_mesh_recheck": "Final shoulder mesh rebuilt and verified through ordinary menu summon, native gaze/pursuit and journal pause; application subsequently exited successfully."
+  },
+  "build": {
+    "method": "Isolated immutable source snapshot and object-link chain from the verified Dodongo build; rebuilt dedicated renderer, native ReDead actor, practice menu and harness. Shared Ninja build not run. Concurrent unrelated material and adventure work is not claimed rebuilt.",
+    "source": "/tmp/soh-redead/source",
+    "qa": "/tmp/soh-redead/qa",
+    "production": "/tmp/soh-redead/production",
+    "source_hashes": {
+      "soh/soh/Enhancements/arpg/RedeadBlenderData.h": "293403a8c54359eb5b886a0e1ec9f5c5ed7f7b899027aa824aa3cdd8cda9310f",
+      "soh/soh/Enhancements/arpg/RedeadGeometry.h": "62ddeabc503c41ca202391cc2c0dd492a637ffd511904aab84911525a078946a",
+      "soh/soh/Enhancements/arpg/RedeadVisuals.cpp": "b8db712b6cf1bf28bbaef92f6b7c9869487d6f7455f359be1482dcab65e22c67",
+      "soh/soh/Enhancements/arpg/RedeadVisuals.h": "933855e1c15e7bdd5a2831b747918770620741db1009dc58d6f2bf3c40b6fd0b",
+      "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "5cb8902f2ba10e3c5dc5c8576d5f4c0321960d5ad0c6baa163929e1c84f939fc",
+      "soh/soh/Enhancements/arpg/CreatureSystem.h": "f8f1c29c4037b2561d2cb7b25a8ea6fe5d2a5c8a0d0740969040212f0f65e33c",
+      "soh/src/overlays/actors/ovl_En_Rd/z_en_rd.c": "639b1f7e1d6619c0a33ad64bc2e3852098b1588e557969484f10545661ee2704",
+      "tests/arpg/redead_runtime_test.cpp": "b3c39f244aaf4b5d9c82d4913a8989cc84697bc69954b0a3f80b1bbc7699e55e"
+    },
+    "qa_exit_status": 0,
+    "production_exit_status": 0
+  },
+  "save": {
+    "path": "/Users/alec/Library/Application Support/shipofharkinian/profiles/player1/Save/file1.sav",
+    "before_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "after_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "unchanged": true
+  },
+  "blender": {
+    "authoring": "Installed Blender 5.1.2 in separate background factory-startup processes; live MCP connection unavailable.",
+    "editable_source": "art/arpg/redeads/redeads.blend",
+    "user_project_modified": false
+  },
+  "remaining": "Additional native families, broader age/room/terrain acceptance, crowded-scene performance and full replayability requirements remain open."
+}

@@ -1,0 +1,55 @@
+{
+  "status": "passed",
+  "date": "2026-10-12T13:55:24.549770",
+  "scope": "Full Stalfos geometry replacement on the native animation rig; other enemy families and environment remain unfinished.",
+  "variants": [
+    "ordinary patinated armor",
+    "champion burgundy armor and circlet",
+    "elite gilded armor and crown"
+  ],
+  "native_checks": {
+    "file": "enemy-model-runtime-results-macos.json",
+    "count": 18,
+    "includes": [
+      "72 stable cached limb lists",
+      "master and model gates",
+      "hidden limbs and Lens visibility",
+      "live sword attacks",
+      "forced native shield-block state and collider tracking",
+      "damage recoil and color-filter state",
+      "ice attachment state",
+      "fatal hit and one defeat callback",
+      "detached replacement parts",
+      "actor/scene cleanup"
+    ],
+    "limit": "Native suite ran before final skull contour and crown geometry refinements. Final geometry passed normal and ASAN/UBSAN tests and a production UI/play smoke check; renderer and combat hooks were unchanged."
+  },
+  "portable_checks": "enemy-model-portable-results-macos.json",
+  "visual_checks": [
+    "Native Metal playback with three ranks simultaneously",
+    "Moving jaw, legs, hands, swords and shields",
+    "Refined overlapping shoulder plates",
+    "Final production model has a continuous cranium and recessed eye sockets",
+    "Settings model toggle present",
+    "Enemy rank selector set to Elite and Spawn enemy ahead produced a named Lv 16 Stormclaw with the elite model",
+    "Production build paused in equipment journal at the elite encounter"
+  ],
+  "normal_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "build_runtime_tests": "OFF",
+  "build_sha256": "694a6c41d8f8f133df9c484b076d0a123d9b4fa12e15f04a02742ef796f4e6d8",
+  "preview": "/tmp/soh-arpg-inventory-preview-20261011-36/Ship ARPG Inventory.app",
+  "source_sha256": {
+    "soh/soh/Enhancements/arpg/EnemyGeometry.h": "a2abf3bfc360753d8bf44276dd1db3f5f1199a8b231a984836cc664cd3f1558b",
+    "soh/soh/Enhancements/arpg/EnemyVisuals.cpp": "745910e2036b5f8747e1077da05145c14826423b0308cbb3098479b71b9d9ca5",
+    "soh/soh/Enhancements/arpg/EnemyVisuals.h": "91e73280f38c1b5cfb8b7436349565961846c0053c2e7eee907fc51c8546d440",
+    "soh/soh/Enhancements/arpg/ARPGTesting.cpp": "3e1af414b1ec041d02ec3838d34e74426c933c28ce568e922faf1201431d7b01",
+    "soh/src/overlays/actors/ovl_En_Test/z_en_test.c": "c4edd49259c7e1ce9c5654f5898691f63418e4a20cf6634ef5905cf4d9c5421e"
+  },
+  "limitations": [
+    "Custom Stalfos skeleton packs have not been validated",
+    "Other enemy models and environment assets remain original",
+    "Procedural solid materials; no PBR texture or normal-map pipeline in this pass",
+    "Long-run crowded-scene performance and broader scene/age coverage remain to be measured"
+  ],
+  "superseded_by": "stalfos-blender-verification-macos.json"
+}

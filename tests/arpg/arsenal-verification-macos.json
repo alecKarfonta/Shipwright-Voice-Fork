@@ -1,0 +1,160 @@
+{
+  "date": "2026-10-12T23:03:33.184264+00:00",
+  "status": "implemented_and_focused_validation_passed",
+  "scope": "First native arsenal expansion, build-defining item powers, native enemy affinities, two boss vulnerability counters and five expedition oath counters.",
+  "weapons": {
+    "hammer": "A damaging native hit creates three staggered terrain-projected fault nodes. Each secondary enemy is hit once across the line; primary target excluded. One-second recovery, line-of-sight and static-ground checks, actor limits, friendly NPC/watchman exclusions.",
+    "boomerang": "Accepted native stun marks for four seconds; next damaging arrow or slingshot seed consumes it for +75% damage.",
+    "hookshot": "Accepted native stun tethers for four seconds, movement -25%; next damaging hammer or bomb consumes tether for +75% damage.",
+    "bomb_and_bombchu": "Damaging hit applies two seconds of 40% slower movement.",
+    "deku_nut": "Accepted native stun applies 1.5 seconds of 40% slower movement."
+  },
+  "native_family_affinities": {
+    "Stalfos": {
+      "hammer": 1.5,
+      "bomb": 1.25,
+      "bow_and_slingshot": 0.75
+    },
+    "Wolfos": {
+      "fire": 1.25
+    },
+    "Lizalfos_and_Dinolfos": {
+      "ice": 1.25
+    },
+    "semantics": "Multipliers compose with native damage tables; zero native damage and hard shields remain protected. Arsenal status effects currently target these three families."
+  },
+  "bosses": {
+    "Gohma": "Existing stunned, exposed-eye branch: hammer damage doubles; arrows/slingshot chip for one damage. Closed eye and unstunned damage phase remain protected. Native hammer already worked before this change.",
+    "King_Dodongo": "Existing vulnerable branch after a bomb opening: native hammer damage doubles. Armored walking/rolling protection remains. Native hammer already worked before this change."
+  },
+  "expedition_oaths": {
+    "Iron": "Swords x0.65; hammers, ranged and explosives x1.5.",
+    "Hunt": "Arrows and slingshot seeds x1.35.",
+    "Cinder": "Ice arrows/magic x1.5.",
+    "Winter": "Fire x1.5.",
+    "Storm": "Hammer x1.5; light arrows/magic x0.65.",
+    "protection": "Ritual/relay shields gate damage and setup effects before multipliers."
+  },
+  "item_powers": {
+    "Furnace_rhythm": {
+      "sources": [
+        "Cinderwake",
+        "complete Cinderbound set",
+        "Sunbreaker runework"
+      ],
+      "effect": "Sword technique primes a six-second basic weapon follow-up that reduces sword cooldowns by one second, once."
+    },
+    "Moonwell_weave": {
+      "sources": [
+        "Moonwell Fang",
+        "complete Tidecaller set",
+        "Nightwell runework"
+      ],
+      "effect": "Three basic weapon hits within six seconds prepare a free Flame Burst, Frost Nova, Chain Lightning or Meteor. Native magic acquisition and idle meter required. Failed casts preserve charge; successful casts consume once."
+    },
+    "Briar_reprisal": {
+      "sources": [
+        "Briar Oath",
+        "complete Briarwatch set",
+        "Oathkeeper runework"
+      ],
+      "effect": "Guardian technique opens a six-second guard. Actual health loss arms a six-second basic weapon counter that heals that loss, capped at half a heart, with ten-second recharge."
+    },
+    "basic_weapons": [
+      "sword",
+      "hammer",
+      "Deku stick",
+      "bow",
+      "slingshot"
+    ],
+    "invariants": "Runtime-only; duplicate powers do not stack. Equipment/socket changes clear preparations and retain reprisal recharge. Pauses freeze timers. No new saved fields or RNG calls."
+  },
+  "ui": {
+    "location": "More > Arsenal & enemy counters",
+    "layout": "Dedicated Arsenal page with seven initially collapsed sections and Back to More/Escape navigation. Item powers remain inside unique, set and runework details. Free spell readiness appears in hotbar/journal cost.",
+    "manual_inspection": [
+      "Final production build displays ARSENAL heading and all seven collapsed rows without clipping at 1708x1010.",
+      "Hammer disclosure opens cleanly and Escape returns to More.",
+      "A dedicated QA preview exercised moving world effects; captured frames did not provide a clear view of every new visual state. Do not treat this as complete effect/terrain visual acceptance."
+    ]
+  },
+  "validation": {
+    "native_arsenal": {
+      "result": "arsenal-runtime-results-macos.json",
+      "passed_checks": 66,
+      "fault_native_collision_nodes": 3,
+      "draw_frames_during_fault_sequence": 36
+    },
+    "native_skill_cost_regression": {
+      "result": "arsenal-skill-cost-runtime-results-macos.json",
+      "passed_checks": 40
+    },
+    "total_successful_native_checks": 106,
+    "portable": "arsenal-portable-results-macos.json",
+    "incomplete_full_skill_runs": [
+      {
+        "source": "/tmp/soh-arpg-qa-arsenal-skills04/skills-runtime-results.json",
+        "status": "running",
+        "recorded_checks": 251,
+        "acceptance": "Incomplete; process exited before final result. Cause not established. No test failure reported; not counted as passed."
+      },
+      {
+        "source": "/tmp/soh-arpg-qa-arsenal-06/skills-runtime-results.json",
+        "status": "running",
+        "recorded_checks": 155,
+        "acceptance": "Incomplete; process exited before final result. Cause not established. No test failure reported; not counted as passed."
+      }
+    ],
+    "production_build": "cmake --build build-cmake --target soh -j 6, successful; SOH_ARPG_RUNTIME_TESTS=OFF, SOH_ARPG_JOURNAL_TESTS=OFF. nm confirms arsenal implementation and absence of arsenal/skills test harnesses."
+  },
+  "binaries": {
+    "/tmp/soh-arsenal-qa-binary-final": {
+      "sha256": "7f5cd43c7f2926707076f0d8c71d34c2da2fa9987549adbc138c98a93518e9d6"
+    },
+    "/tmp/soh-arsenal-qa-binary": {
+      "sha256": "9bf5144db41a94f0d2ff0e6b357d4aa24461ec889dd938d6efee0812c0739c56"
+    },
+    "/tmp/soh-arsenal-release-binary-final": {
+      "sha256": "c748b27e014ec7a7c994b1109d55c97229e5f8e1c05589bdbe5b92a54a825285"
+    }
+  },
+  "save": {
+    "path": "/Users/alec/Library/Application Support/shipofharkinian/profiles/player1/Save/file1.sav",
+    "sha256_before_and_after": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "changed": false,
+    "format_version": 9,
+    "testing": "Separate temporary SHIP_HOME directories and debug/practice adventures; no normal-save writes."
+  },
+  "limitations": [
+    "This pass extends native tools; it does not add separate rolled bow/hammer/boomerang loot slots.",
+    "New status/affinity support is limited to Stalfos, Wolfos and Lizalfos/Dinolfos; original boss additions cover Gohma and King Dodongo.",
+    "Boss QA calls actual native phase functions in the relevant boss rooms, but does not complete full unassisted boss fights.",
+    "Broader normal-play acceptance across both ages, dynamic/steep terrain, regions, long runs and crowded scenes remains.",
+    "Full all-rune native regression did not finish; only completed focused 40-check skill-cost suite is counted.",
+    "Broad replayability goal remains active and incomplete."
+  ],
+  "source_sha256_at_recording": {
+    "soh/soh/Enhancements/arpg/ArsenalRules.h": "b18f69a56e8de6bfe875b307d15cabcf12ba02323ca5e73857b02d9572d6e9cd",
+    "soh/soh/Enhancements/arpg/ArsenalSystem.h": "5e98c40a81d3655cca4e95bd0f96b36a3604352b12cb24c0f5529822c10d191c",
+    "soh/soh/Enhancements/arpg/ArsenalSystem.cpp": "a70eb3bcffd0473eaa10903db97f675cd76e1fd39f061f77db57f8c86f22f640",
+    "soh/soh/Enhancements/arpg/ItemPowerRules.h": "3ef476434bd6c0e8f80e264e1029ce179237f1d36705ebc3f07bc7de6eceb392",
+    "soh/soh/Enhancements/arpg/LootCatalog.h": "111bb66649908e96c2100b19d3012323f041d07f0a3e74130cf6dceee3466d4b",
+    "soh/soh/Enhancements/arpg/SkillSystem.cpp": "f293eb1e10a3196c50cec23e3c6cb31d04a2a3a56619fa99096631d75b7d2119",
+    "soh/soh/Enhancements/arpg/SkillSystem.h": "f4c106d8cb5ca30509ba7b3554fd310fe62e2b62a2679d20fdbe12a4b655c43e",
+    "soh/soh/Enhancements/arpg/SkillUI.cpp": "a7deb9c833846c2e4899e3b46b3dacabdfa325086dee33fcc59a0bbff024e10b",
+    "soh/soh/Enhancements/arpg/ARPGInventoryWindow.cpp": "3e23345fc94f9908df766881cadc9a1a26ca7963e1ca14408f5a0f0161634d17",
+    "soh/soh/Enhancements/arpg/AffixSystem.cpp": "06daa6dc888088f5f96209b547ace73e760bda4f2e8f678375e635d71a56990d",
+    "soh/soh/Enhancements/arpg/ARPG.cpp": "5b5f476a3cc1e6d819622db1631d0d069dc4b47a925bcb26dff2110ad0cceb82",
+    "soh/soh/Enhancements/arpg/SkillCombat.cpp": "c36092c4da056c81c1bf5ce2f3b20ca1f28ae063a9b0abe6f8e5fbfb88102d40",
+    "soh/soh/Enhancements/arpg/ARPGBridge.h": "f39202547735055a9fd2d97894fe06de3a576a009f091313cbae6f1454a436bd",
+    "soh/soh/Enhancements/arpg/ExpeditionSystem.cpp": "250634132ee291906d107076f73eb68272784957a07f0e29b299ec59f5ed74f1",
+    "soh/soh/Enhancements/arpg/ExpeditionRules.h": "d270b8ae7b8d08572153b4ff39ffe40a6b4acf55bb733c52b59a3627241f3c80",
+    "soh/src/overlays/actors/ovl_Boss_Goma/z_boss_goma.c": "d955fefaf1d3ecddab666904e20df1727285280da6de2bcf95c9ca36bf822bbc",
+    "soh/src/overlays/actors/ovl_Boss_Dodongo/z_boss_dodongo.c": "f4a6297f7d4dbcf2f36a61d89adb9accc158c6cb819cab49a14553542485d400",
+    "tests/arpg/arsenal_test.cpp": "fa01cb614e3c772a693f098881162f27f256ac345a6bc35552032dcd56faab93",
+    "tests/arpg/arsenal_runtime_test.cpp": "dc9668896e353818a28021a983c18ed2c5fa78e6bf06b23cd97e435e16465428",
+    "tests/arpg/skills_runtime_test.cpp": "f1c8b9a20cf096c061b5b167e0eb04473a6006901141279b0a1b7da220c302e9",
+    "tests/arpg/CMakeLists.txt": "3fac047c351d0cea93202afd9bcfcae293212cd6700015f0f21e6b57dac03ff2",
+    "soh/CMakeLists.txt": "34a0e3c0bb987de641325986e06bd08b9724ce90c3bb3a6a8b65c2c3361804c8"
+  }
+}

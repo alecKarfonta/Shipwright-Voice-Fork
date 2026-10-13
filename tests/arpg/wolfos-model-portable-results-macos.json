@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "scope": "Final Wolfos geometry after fur refinement; native Stalfos geometry regression",
+  "variants": 126,
+  "wolfos_triangles": 224236,
+  "mixed_matrix_triangles": 4080,
+  "triangles_per_actor_by_rank": [
+    34370,
+    35954,
+    37426
+  ],
+  "checks": [
+    {
+      "mode": "normal",
+      "exit_code": 0,
+      "wolfos": "All finite positions, unit normals, valid palette indices, integer-safe world-space triangles, 17 skin connections, three blink shapes, rank geometry and triangle budget passed.",
+      "stalfos": "106899 integer-safe triangles across 72 animated limb meshes passed."
+    },
+    {
+      "mode": "address_undefined_sanitized",
+      "exit_code": 0,
+      "tests": [
+        "arpg_wolfos_geometry",
+        "arpg_enemy_geometry"
+      ],
+      "result": "2/2 passed without sanitizer diagnostics."
+    }
+  ]
+}

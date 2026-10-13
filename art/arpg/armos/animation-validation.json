@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "geometry_variants": 1,
+  "native_animation_clips_per_variant": 3,
+  "native_animation_frames_per_variant": 52,
+  "visible_limbs_in_rig": 4,
+  "bridges": 0,
+  "posed_bridge_endpoint_checks": 0,
+  "maximum_quantized_endpoint_error_world_units": 0.0,
+  "maximum_posed_envelope_extension_world_units": 4.2563334523469685,
+  "actor_scale": 0.01,
+  "scope": "Full native animation poses; quantized endpoints follow their assigned native joints. Native source vertices and authored connection endpoints are transformed under their assigned joints. Native root offsets translate both native and authored geometry equally. Carved body, base and arms are reviewed in all three clips; no claim of watertight topology."
+}

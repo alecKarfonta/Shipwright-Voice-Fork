@@ -1,0 +1,44 @@
+{
+  "normal": {
+    "source": "/tmp/soh-arsenal-portable.xml",
+    "failures": 0,
+    "tests": [
+      {
+        "name": "arpg_skill_tree",
+        "seconds": 0.289808,
+        "status": "run"
+      },
+      {
+        "name": "arpg_loot",
+        "seconds": 2.14186,
+        "status": "run"
+      },
+      {
+        "name": "arpg_arsenal",
+        "seconds": 0.00994733,
+        "status": "run"
+      }
+    ]
+  },
+  "address_and_undefined_behavior_sanitizers": {
+    "source": "/tmp/soh-arsenal-sanitized.xml",
+    "failures": 0,
+    "tests": [
+      {
+        "name": "arpg_skill_tree",
+        "seconds": 1.23948,
+        "status": "run"
+      },
+      {
+        "name": "arpg_loot",
+        "seconds": 8.08749,
+        "status": "run"
+      },
+      {
+        "name": "arpg_arsenal",
+        "seconds": 0.0593401,
+        "status": "run"
+      }
+    ]
+  }
+}

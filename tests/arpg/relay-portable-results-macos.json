@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "seeds_per_suite": 10000,
+  "normal_seconds": 75.7,
+  "sanitized_seconds": 303.74,
+  "relay_geometry_triangles_checked": 3288,
+  "runs": {
+    "normal": {
+      "directory": "/tmp/soh-arpg-tests",
+      "last_test_log_sha256": "d84a8e74b7659cb38bf3b35923ca62acc88784e92cfaffb291317a8772e779eb",
+      "suites": [
+        "arpg_expedition",
+        "arpg_ritual",
+        "arpg_relay"
+      ],
+      "status": "passed"
+    },
+    "sanitized": {
+      "directory": "/tmp/soh-arpg-tests-sanitized",
+      "last_test_log_sha256": "7a18f235bfa6d8e823bb1fd1b3c49d3cbf9e52f95c3beed216255706ed60cb44",
+      "suites": [
+        "arpg_expedition",
+        "arpg_ritual",
+        "arpg_relay"
+      ],
+      "status": "passed"
+    }
+  }
+}

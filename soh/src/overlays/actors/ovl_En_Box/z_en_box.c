@@ -1,4 +1,5 @@
 #include "z_en_box.h"
+#include "soh/Enhancements/arpg/ARPGBridge.h"
 #include "objects/object_box/object_box.h"
 #include "soh_assets.h"
 #include <assert.h>
@@ -187,7 +188,8 @@ void EnBox_Init(Actor* thisx, PlayState* play2) {
     }
 
     this->dyna.actor.world.rot.y += 0x8000;
-    this->dyna.actor.home.rot.z = this->dyna.actor.world.rot.z = this->dyna.actor.shape.rot.z = 0;
+    if (!ARPG_IsExplorationSecret(&this->dyna.actor)) { this->dyna.actor.home.rot.z = 0; }
+    this->dyna.actor.world.rot.z = this->dyna.actor.shape.rot.z = 0;
 
     SkelAnime_Init(play, &this->skelanime, &gTreasureChestSkel, anim, this->jointTable, this->morphTable, 5);
     Animation_Change(&this->skelanime, anim, 1.5f, animFrameStart, endFrame, ANIMMODE_ONCE, 0.0f);

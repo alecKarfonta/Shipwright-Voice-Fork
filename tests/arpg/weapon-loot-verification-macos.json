@@ -1,0 +1,41 @@
+{
+  "status": "passed with visual acceptance remaining",
+  "scope": [
+    "Bow and hammer loot slots, two uniques, two runeworks, weapon-local mods and sockets",
+    "Native ownership and age gates, projectile snapshots, physical drops, targeted expedition rewards",
+    "Version-10 saves and old version-9 migration",
+    "Original inventory paintings from built-in image generation; code-authored matching pickup and held meshes"
+  ],
+  "native_weapon_checks": 33,
+  "native_arsenal_checks": 68,
+  "portable_suites": 6,
+  "sanitized_suites": 6,
+  "save_migration": "Actual version-9 fixture retains every pre-existing field; new weapon slots empty",
+  "normal_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "production_binary": "/tmp/soh-weapon-production-binary",
+  "production_sha256": "f4cac7079c11a76fbe18d57c1da1860d370ea0a8ec47d40be5f418bb33b7f8c7",
+  "qa_binary_sha256": "146caa00b2c98a3a21dfdf245f0520141147715f8b31fa28e4db55c3fc257388",
+  "production_qa_harnesses": false,
+  "build_logs": [
+    "/tmp/soh-weapon-qa-ready-build.log",
+    "/tmp/soh-weapon-qa-isolated-link.log",
+    "/tmp/soh-weapon-production-link.log"
+  ],
+  "visual_observations": [
+    "Both new paintings render in equipped slots and backpack",
+    "Unique powers remain inside Details disclosure",
+    "Button equip and return-to-backpack worked",
+    "New bow pickup and held mesh render in the native field"
+  ],
+  "limitations": [
+    "Drag gesture did not complete through the current UI automation; native equip/full-pack swap rules are tested",
+    "Full bowstring/attack-animation alignment and extended terrain/age/balance acceptance remain",
+    "Broader all-rune regression from the previous pass remains incomplete",
+    "Other workers are changing shared UI/build files; the production binary is frozen separately"
+  ],
+  "assets": [
+    "soh/assets/custom/textures/arpg/weapons/recurve-bow.png",
+    "soh/assets/custom/textures/arpg/weapons/war-hammer.png"
+  ],
+  "prompts": "art/arpg/weapons/icon-prompts.json"
+}

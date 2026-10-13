@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-13T14:46:24.266138+00:00",
+  "status": "passed",
+  "public_directory": "https://mlapi.us/z64/games/",
+  "endpoint": "wss://mlapi.us/z64/relay/ws",
+  "deployment": {
+    "controller": "192.168.50.4",
+    "namespace": "z64",
+    "deployment": "relay",
+    "service": "relay",
+    "service_ip": "10.43.31.138",
+    "replicas": 1,
+    "available_replicas": 1,
+    "image": "192.168.50.78:30500/z64/relay:20261013.2",
+    "image_digest": "sha256:7ea8376231fa6f10032c709864befec34b956e116f1ea6ac31effed97a2991d8",
+    "nginx_config": "/etc/nginx/conf.d/apps/mlapi.us/z64-relay.conf",
+    "nginx_config_test": "passed",
+    "routing": "Existing Cloudflare HTTPS tunnel; WebSocket application endpoint; no router port forward."
+  },
+  "validation": {
+    "relay_race_tests": "go test -race ./... passed, including all campaign definition tests and public transport/ownership/visibility/limits/connector tests",
+    "live_transport": "Two real C++ clients using game transport: TLS certificate verification, discover listed room, join, party size 2, six shared kills.",
+    "native_ui": "Two production game processes on macOS: created listed room, discovered from other client, joined and observed 2 players. Final narrow room cards visually checked. Test clients were closed and room removed.",
+    "website": "Live game data displayed, Choose this game revealed correct room/team and copied room name. Public connector downloads fetched and matched published SHA-256.",
+    "connector": "macOS loopback TCP bridge tested with two clients against the live WSS relay. Public and unlisted visibility preservation covered by Go tests.",
+    "production_build": "macOS production build passed with SOH_PUBLIC_RELAY=ON and isolated QA compile flags OFF."
+  },
+  "installed_game": {
+    "installed": "/Users/alec/git/z64-romhack-tutorials/soh/build-cmake/soh/soh-macos",
+    "backup": "/tmp/soh-before-public-relay-1791902432222245000",
+    "sha256": "03fc1a38cb9dbabf327502bbd98d33017cd2d7cd61b0b7445234f80e0f1f20f4"
+  },
+  "connector_downloads": [
+    {
+      "file": "Z64-Public-Relay-Windows-x64-20261013.1.zip",
+      "sha256": "a9261477b406d91a1230cb6113d8ef9aa0547fbda02c3c17df0d2fb4831ea4f6",
+      "bytes": 3012296
+    },
+    {
+      "file": "Z64-Public-Relay-macOS-arm64-20261013.1.zip",
+      "sha256": "ddb714fa6bea738123509ed0f71b3563cb687128697edb01e8d0508ce7f93fd7",
+      "bytes": 2744904
+    }
+  ],
+  "evidence": [
+    "relay-tests.txt",
+    "live-wss-test.txt",
+    "connector-live-test.txt",
+    "native-build.txt",
+    "native-directory.png",
+    "native-joined.png",
+    "public-directory.png"
+  ],
+  "limits": [
+    "Windows connector cross-compiled but not run on Windows; full native Windows game was not rebuilt.",
+    "Published full-game ZIPs are unchanged; existing game releases use the separately published connector. Updated development Mac game supports WSS directly.",
+    "No full in-world public two-player campaign playthrough; previous local quest checks, live transport quest checks and actual public native joining are separate coverage.",
+    "Single in-memory relay; restarts disconnect rooms. Saved quest clients repopulate progress on reconnect.",
+    "Unlisted rooms are not password-protected. Native combat remains existing Anchor behavior."
+  ],
+  "source_sha256": {
+    "mp-server/main.go": "5b483591d80d50423c40cf0f3531e44739dce43b78aa39edc1eec9122a0f21c7",
+    "mp-server/public.go": "9ba5c9b27f8042976aecb21fb8f3930ef25dc8dddac2850b190f215c306fe891",
+    "mp-server/public_test.go": "33d8b24d54669c78bdf015626d95318fb8f1074db6b14256e239e23b7d4f8f86",
+    "mp-server/quests.go": "7026dad39ce3bc20667a78eede5b72ad2bfa8a2a43123991215e6e4c2d12f687",
+    "mp-server/main_test.go": "c32bc95542e1c4337ed5bd3291dc862823c511da782d850907a1ea9a075ba396",
+    "mp-server/cmd/public-client/main.go": "ea949b1d68ab9b8beacb8d1e4a26fc2543eb5e92f3ddf34d5e4388f7bde87f75",
+    "mp-server/cmd/public-client/main_test.go": "fe77c9dde5c3882c45c4b2b83cd81a8df6fab0398df9ad73590492e5a591ca79",
+    "mp-server/deploy/relay.yaml": "b990dfcabe158402af5165c378e0f61019f9750f5a1067f609cdc0c78d94e6e0",
+    "mp-server/go.mod": "f6acd59f3a79315e762bbb693972125faf97681889b9f65c3cc8c0e38bc12a8f",
+    "mp-server/go.sum": "1f1676fc6bb94593d3b340f85b1913414d1a8c3c85f1179cb057c17b32d8c4f2",
+    "soh/soh/Network/Network.cpp": "804f8604180f2da98bb6f94c6a3aa1d6bd7f64423d27ad7ff17214fd36d5f306",
+    "soh/soh/Network/Network.h": "34e8fc0df5ad4acfed3d6bc05ab2cbf1973ee54bb2556c4750e6270b26f3390c",
+    "soh/soh/Network/RelayWebSocket.cpp": "34d90e503a2623d9bf4c5c368648e2fdc04318635d87b7a8729c2c0993038a60",
+    "soh/soh/Network/RelayWebSocket.h": "dc322848d57792ae9c16bfea44c122855e9f3f323f1ee7a2d8d45cf9183b3a6c",
+    "soh/soh/Network/Anchor/ServerBrowserWindow.cpp": "83678421a91cd8381deb9faacfac583758bd3508b6ee4b04e18b07b0db1be990",
+    "soh/soh/Network/Anchor/ServerBrowserWindow.h": "afafba65c4e43621e317ff0b444cd772832793a1fbc2d27b1f4a21b668fd56f5",
+    "soh/soh/Network/Anchor/Menu.cpp": "c9c2bc4fcc4ee6936f536f483e3f0bea3ba88943a62d63f8b1f80e797b41283f",
+    "soh/soh/Network/Anchor/Packets/UpdateRoomState.cpp": "f6516a909d339dad3691d176164ce070781c24f12200966561b4bd6fae755ae9"
+  },
+  "installed_local_relay_sha256": "057065cc3128e178299968b41ee61a2cee3e53e0c009ceb7e19cae7c8c940a4e"
+}

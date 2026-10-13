@@ -39,6 +39,8 @@ void GameInteractor_ExecuteOnActorSpawn(void* actor);
 bool GameInteractor_ShouldActorUpdate(void* actor);
 void GameInteractor_ExecuteOnActorUpdate(void* actor);
 void GameInteractor_ExecuteOnActorKill(void* actor);
+// [TIME] | [INFO] | GameInteractor_ExecuteOnDamageActor | mutates damage before commit
+void GameInteractor_ExecuteOnDamageActor(void* actor, void* attacker, u32 dmgFlags, uint8_t attackType, float* damage);
 bool GameInteractor_ShouldActorDestroy(void* actor);
 void GameInteractor_ExecuteOnActorDestroy(void* actor);
 void GameInteractor_ExecuteOnEnemyDefeat(void* actor);

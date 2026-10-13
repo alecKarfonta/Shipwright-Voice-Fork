@@ -1,3 +1,5 @@
+#include "soh/Enhancements/arpg/ARPGBridge.h"
+#include "soh/Enhancements/arpg/ARPGTypes.h"
 /*
  * File: z_en_arrow.c
  * Overlay: ovl_En_Arrow
@@ -236,6 +238,7 @@ void EnArrow_Shoot(EnArrow* this, PlayState* play) {
         }
 
         EnArrow_SetupAction(this, EnArrow_Fly);
+        ARPG_RelicArrowReleased(&this->actor);
         Math_Vec3f_Copy(&this->unk_210, &this->actor.world.pos);
 
         if (this->actor.params >= ARROW_SEED) {
@@ -327,8 +330,9 @@ void EnArrow_Fly(EnArrow* this, PlayState* play) {
 
             if (this->actor.params == ARROW_NUT) {
                 iREG(50) = -1;
-                Actor_Spawn(&play->actorCtx, play, ACTOR_EN_M_FIRE1, this->actor.world.pos.x, this->actor.world.pos.y,
+                Actor* flash = Actor_Spawn(&play->actorCtx, play, ACTOR_EN_M_FIRE1, this->actor.world.pos.x, this->actor.world.pos.y,
                             this->actor.world.pos.z, 0, 0, 0, 0);
+                ARPG_AdventureCopy(flash, &this->actor);
                 sfxId = NA_SE_IT_DEKU;
             } else {
                 sfxId = NA_SE_IT_SLING_REFLECT;
@@ -522,9 +526,10 @@ void EnArrow_Draw(Actor* thisx, PlayState* play) {
         Gfx_SetupDL_25Xlu2(play->state.gfxCtx);
 
         if (this->actor.params == ARROW_SEED) {
-            gDPSetPrimColor(POLY_XLU_DISP++, 0, 0, 255, 255, 255, 255);
-            gDPSetEnvColor(POLY_XLU_DISP++, 0, 255, 255, alpha);
-            scale = 50.0f;
+            int element = ARPG_AdventureSeedElement(&this->actor);
+            gDPSetPrimColor(POLY_XLU_DISP++, 0, 0, element == 2 ? 170 : 255, element == 1 ? 185 : 255, element == 1 ? 65 : 255, 255);
+            gDPSetEnvColor(POLY_XLU_DISP++, element == 1 ? 255 : 0, element == 1 ? 65 : 180, element == 1 ? 15 : 255, alpha);
+            scale = element ? 70.0f : 50.0f;
         } else {
             gDPSetPrimColor(POLY_XLU_DISP++, 0, 0, 12, 0, 0, 255);
             gDPSetEnvColor(POLY_XLU_DISP++, 250, 250, 0, alpha);

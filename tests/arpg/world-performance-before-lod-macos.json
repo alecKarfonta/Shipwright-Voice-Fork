@@ -1,0 +1,52 @@
+{
+  "status": "partial_before_lod",
+  "host": "Apple M2 Max, 64 GB, macOS 15.1.1, Metal, 1280x720 window, 60 FPS interpolation",
+  "backgroundLoad": "Concurrent native compilation; comparison is not an isolated laboratory benchmark.",
+  "results": [
+    {
+      "maxPopulation": 0,
+      "minPopulation": 0,
+      "mode": "off",
+      "simulationTickInterval": {
+        "maxMs": 66.890958,
+        "meanMs": 50.10935125000001,
+        "p95Ms": 50.5175,
+        "p99Ms": 55.592333,
+        "samples": 300
+      },
+      "stateMainCpuWallTime": {
+        "maxMs": 20.856792,
+        "meanMs": 2.6244590633333336,
+        "p95Ms": 10.783334,
+        "p99Ms": 17.074666,
+        "samples": 300
+      },
+      "target": 0,
+      "warmupPeakMs": 19.596583,
+      "warmupTickPeakMs": 64.268666
+    },
+    {
+      "maxPopulation": 64,
+      "minPopulation": 62,
+      "mode": "default64",
+      "simulationTickInterval": {
+        "maxMs": 534.375667,
+        "meanMs": 215.42721694333332,
+        "p95Ms": 226.791542,
+        "p99Ms": 235.403875,
+        "samples": 300
+      },
+      "stateMainCpuWallTime": {
+        "maxMs": 13.296042,
+        "meanMs": 3.1830205866666663,
+        "p95Ms": 7.3905,
+        "p99Ms": 11.023667,
+        "samples": 300
+      },
+      "target": 64,
+      "warmupPeakMs": 23.125958,
+      "warmupTickPeakMs": 283.317958
+    }
+  ],
+  "profile": "3-second sample: 2172/2223 main-thread samples in DrawAndRunGraphicsCommands; 2025/2223 in Fast::Interpreter::Run."
+}

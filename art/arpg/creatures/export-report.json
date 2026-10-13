@@ -1,0 +1,39 @@
+{
+  "source_sha256": "8fce18eae95fd65c8bbd4836551ed87424cfc2e11885d39852c51eb8ab2b2be8",
+  "vertices": 2874,
+  "triangles": 2492,
+  "parts": 49,
+  "subpixel_triangles_removed": 0,
+  "triangles_per_part": {
+    "0": 240,
+    "1": 224,
+    "2": 224,
+    "3": 164,
+    "4": 132,
+    "5": 132,
+    "6": 132,
+    "7": 132,
+    "8": 388,
+    "9": 180,
+    "10": 170,
+    "11": 170,
+    "12": 50,
+    "13": 50,
+    "14": 44,
+    "15": 60
+  },
+  "materials": [
+    "basalt",
+    "stone",
+    "edge",
+    "bronze",
+    "gold",
+    "core",
+    "bone",
+    "dark",
+    "cloth",
+    "trim",
+    "spirit"
+  ],
+  "space": "Native model-local XYZ, positions x100; native normals retained; studio transforms omitted; creatures use sixteen articulated runtime parts"
+}

@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "variants": [
+    {
+      "variant": "wall",
+      "native_clips": 12,
+      "native_frames": 346,
+      "visible_limbs": 14,
+      "post_draw_digits": 1,
+      "joint_connections": 13,
+      "posed_endpoint_checks": 149472,
+      "maximum_quantized_endpoint_error_world_units": 0.008659813627369279,
+      "maximum_posed_envelope_extension_world_units": 4.667061511843286
+    },
+    {
+      "variant": "floor",
+      "native_clips": 12,
+      "native_frames": 346,
+      "visible_limbs": 14,
+      "post_draw_digits": 1,
+      "joint_connections": 13,
+      "posed_endpoint_checks": 149472,
+      "maximum_quantized_endpoint_error_world_units": 0.008659813627369279,
+      "maximum_posed_envelope_extension_world_units": 4.667061511843286,
+      "split_world_scale_multiplier": 0.4
+    }
+  ],
+  "scope": "Every original animation frame; bridge endpoints use native matrices. Envelope comparison is per axis, not collision proof; motion renders and native combat separately reviewed."
+}

@@ -1,0 +1,94 @@
+{
+  "date_utc": "2026-10-12T22:22:53.562089+00:00",
+  "status": "passed_with_documented_scope",
+  "scope": "Third expedition objective: Spirit Relay; original Blender lantern and spirit; compact route selection and encounter labels.",
+  "behavior": [
+    "Three route offers always contain gauntlet, ritual and relay, with deterministic oaths and preserved ritual offer placement.",
+    "Three registered guard deaths release at most one spirit each. Link carries one spirit while moving and attacking.",
+    "Health loss drops the carried spirit onto validated terrain with a thirty-tick recovery delay. Loose spirits return to the supported shrine after six hundred active ticks.",
+    "Delivery into any unlit lantern consumes one spirit without channeling. Three lanterns expose the warden; defeating all registered enemies earns one atomic cache.",
+    "Pauses suspend objective updates; retries, scene changes and run termination clear runtime spirits and deliveries.",
+    "Save section v9 reads versions 1 through 8 and retains earned caches without live combat actors."
+  ],
+  "assets": {
+    "authoring": "local Blender MCP",
+    "scene": "ARPG Spirit Relay",
+    "standalone_source": "art/arpg/relay/relay.blend",
+    "render": "art/arpg/relay/relay-preview.png",
+    "semantic_meshes": 3,
+    "triangles": 1096,
+    "parts": [
+      "lantern cage",
+      "floating beacon",
+      "winged spirit"
+    ],
+    "source_glb_sha256": "809b2f59b495b729d96450819f6d165f3b3c7396ccf9706e2a732ca4453d91e9",
+    "user_live_blender_file_saved": false
+  },
+  "portable": "tests/arpg/relay-portable-results-macos.json",
+  "native": {
+    "relay": {
+      "status": "passed",
+      "checks": 34,
+      "artifact": "tests/arpg/relay-runtime-results-macos.json",
+      "rendered_frames": 605
+    },
+    "ritual": {
+      "status": "passed",
+      "checks": 32,
+      "artifact": "tests/arpg/relay-ritual-runtime-results-macos.json"
+    },
+    "gauntlet": {
+      "status": "passed",
+      "checks": 39,
+      "artifact": "tests/arpg/relay-gauntlet-runtime-results-macos.json"
+    }
+  },
+  "native_checks_total": 105,
+  "save_preservation": {
+    "normal_save": "/Users/alec/Library/Application Support/shipofharkinian/profiles/player1/Save/file1.sav",
+    "before_and_after_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "isolated_native_save_section_version": 9
+  },
+  "production": {
+    "binary": "/tmp/soh-relay-release-binary-v3",
+    "sha256": "91903ed9366ea382a58119c96a0fe886c831ed024e2fc0e9b8acac9701f066bd",
+    "qa_harnesses_present": false,
+    "native_qa_binary": "/tmp/soh-relay-qa-binary-v3",
+    "native_qa_binary_sha256": "f14cc51c7bbd47b7101da89d1eeb6890b79e4485bcd6bb8b40b733eda7a1be33",
+    "manual_ui": [
+      "Selected Expeditions through the normal equipment journal.",
+      "All three objective buttons appeared with oath names and individually collapsed counters.",
+      "Expanded relay instructions independently and selected Spirit relay / Iron procession.",
+      "Resumed the normal adventure and observed the shrine, relay lantern geometry, four named enemies and Iron cleave warning in Hyrule Field."
+    ],
+    "final_ui_polish": "After this manual pass, shortened repeated enemy labels and replaced queued zero-foe counts with gathering/resume messages; final build compiled successfully.",
+    "current_game_observed": "/private/tmp/Ship Journal Refine1.app/Contents/MacOS/soh-macos was running and contained GetRelayView at final inspection."
+  },
+  "validation_notes": [
+    "Several detached QA/preview processes exited with shutdown logging before final results; no cause established. The gauntlet also timed out in a paused journal once. A fresh isolated managed run passed all 39 checks; relay and ritual passed their complete native runs.",
+    "Background EEVEE review rendering stopped in a macOS exception handler. The original asset export remained valid; isolated CPU Cycles packaging and render completed successfully.",
+    "Final short-label/queued-status edits affect presentation only and postdate the full native gameplay runs."
+  ],
+  "limitations": [
+    "Native end-to-end relay acceptance covered adult Link in Hyrule Field. Broader regional terrain, child movement, all oath/relay pairings in normal play and long-run balance remain to be evaluated.",
+    "This is another expedition objective; spontaneous world events, further bosses, complete character/environment asset replacement and expedition co-op remain incomplete.",
+    "Manual visual inspection did not independently review every carried/loose/lit state; those states were exercised by native integration and geometry checks."
+  ],
+  "source_hashes": {
+    "soh/soh/Enhancements/arpg/RelayRules.h": "b12214183ac636c9b13a98d8518b6ab8377804f0891079e9842a015ae2958e93",
+    "soh/soh/Enhancements/arpg/RelayGeometry.h": "f09ba29d7b913227454666ad6a2d33d6e8616b04962688ba057c93c5b3abfa4c",
+    "soh/soh/Enhancements/arpg/RelayBlenderData.h": "f52ecb3502728499622ff5b689735f6377b3e076c953392a978df6b459c4823e",
+    "soh/soh/Enhancements/arpg/ExpeditionRules.h": "fa52f5e29abd2de11abe6ff72aec3b73f12b6c9e42ca38de579091b625ed5846",
+    "soh/soh/Enhancements/arpg/ExpeditionSystem.cpp": "24e5d00d8c90ae9ca4e65bf16e42fabaf4e6b07debd60c14f6c1d0fec05d22b1",
+    "soh/soh/Enhancements/arpg/GearVisuals.cpp": "f200d030d696588d380f9a62d509bad34b94e946a3a640c340b3ef3fdc758a0c",
+    "soh/soh/Enhancements/arpg/ARPGSave.cpp": "708e46ecc4e6a1dd41aa5b9c14465ecd4cd57c71bd846aeb9b7a574818fcf627",
+    "tests/arpg/relay_test.cpp": "5603d14a931ea84df7e8f61fdbb677a4eabfa500a00b9b19a91ae965e2a7fae5",
+    "tests/arpg/relay_runtime_test.cpp": "8d0f3407a7737fe032868d852a165d9dfb8dccc271633ef04c09a1fd1b638e43",
+    "art/arpg/relay/author_blender.py": "8c0e4e3d7f68547dcfe1b6a52798ca9e4adced4ac2caa1da83a3fe1f3a6d0603",
+    "art/arpg/relay/relay.glb": "809b2f59b495b729d96450819f6d165f3b3c7396ccf9706e2a732ca4453d91e9",
+    "art/arpg/relay/relay.blend": "b70a2f4ee933470310eddc1fcb4f1d2a6c3b3c19552e1e5c40a08533edee3114"
+  },
+  "git_diff_check": "passed",
+  "goal_status": "active"
+}

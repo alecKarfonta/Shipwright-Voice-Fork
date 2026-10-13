@@ -6,6 +6,7 @@
 
 #include "z_en_firefly.h"
 #include "objects/object_firefly/object_firefly.h"
+#include "soh/Enhancements/arpg/KeeseVisuals.h"
 #include "overlays/actors/ovl_Obj_Syokudai/z_obj_syokudai.h"
 #include "soh/Enhancements/game-interactor/GameInteractor_Hooks.h"
 #include <libultraship/bridge/consolevariablebridge.h>
@@ -734,6 +735,7 @@ s32 EnFirefly_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3
     } else if (limbIndex == 1) {
         pos->y += 2300.0f;
     }
+    ARPG_OverrideKeeseLimb(play, &this->actor, limbIndex, dList, this->actor.draw == EnFirefly_DrawInvisible);
     return false;
 }
 
@@ -759,7 +761,9 @@ void EnFirefly_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* 
     EnFirefly* this = (EnFirefly*)thisx;
 
     if (!this->onFire && (limbIndex == 27)) {
-        gSPDisplayList((*gfx)++, gKeeseEyesDL);
+        if (!ARPG_IsKeeseHead(*dList)) {
+            gSPDisplayList((*gfx)++, gKeeseEyesDL);
+        }
     } else {
         if ((this->auraType == KEESE_AURA_FIRE) || (this->auraType == KEESE_AURA_ICE)) {
             if ((limbIndex == 15) || (limbIndex == 21)) {

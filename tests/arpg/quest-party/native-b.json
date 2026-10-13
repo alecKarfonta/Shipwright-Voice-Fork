@@ -1,0 +1,324 @@
+{
+  "campaign": {
+    "milestones": 0,
+    "quests": [
+      {
+        "nodes": [
+          0,
+          0,
+          0
+        ],
+        "party": 3700337519,
+        "partySize": 2,
+        "progress": [
+          6,
+          0,
+          0
+        ],
+        "sites": [
+          [
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null
+          ]
+        ],
+        "state": 3
+      },
+      {
+        "nodes": [
+          7,
+          0,
+          0
+        ],
+        "party": 3700337519,
+        "partySize": 2,
+        "progress": [
+          3,
+          0,
+          0
+        ],
+        "sites": [
+          [
+            {
+              "adult": 0,
+              "placed": 1,
+              "room": 0,
+              "x": 242.68008422851563,
+              "y": 2.0,
+              "z": 462.5102844238281
+            },
+            {
+              "adult": 0,
+              "placed": 1,
+              "room": 0,
+              "x": 532.848876953125,
+              "y": -2.4615607261657715,
+              "z": 131.76165771484375
+            },
+            {
+              "adult": 0,
+              "placed": 1,
+              "room": 0,
+              "x": 418.46307373046875,
+              "y": 2.0,
+              "z": 331.298095703125
+            }
+          ],
+          [
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null
+          ]
+        ],
+        "state": 3
+      },
+      {
+        "nodes": [
+          0,
+          0,
+          0
+        ],
+        "party": 0,
+        "partySize": 0,
+        "progress": [
+          0,
+          0,
+          0
+        ],
+        "sites": [
+          [
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null
+          ]
+        ],
+        "state": 3
+      },
+      {
+        "nodes": [
+          7,
+          0,
+          0
+        ],
+        "party": 3700337519,
+        "partySize": 2,
+        "progress": [
+          3,
+          0,
+          0
+        ],
+        "sites": [
+          [
+            {
+              "adult": 0,
+              "placed": 1,
+              "room": 0,
+              "x": -108.323486328125,
+              "y": 2.0,
+              "z": 25.485702514648438
+            },
+            {
+              "adult": 0,
+              "placed": 1,
+              "room": 0,
+              "x": -226.7938995361328,
+              "y": 2.0,
+              "z": 133.01828002929688
+            },
+            {
+              "adult": 0,
+              "placed": 1,
+              "room": 0,
+              "x": -291.2734069824219,
+              "y": 2.0,
+              "z": -113.89569091796875
+            }
+          ],
+          [
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null
+          ]
+        ],
+        "state": 2
+      },
+      {
+        "nodes": [
+          7,
+          0,
+          0
+        ],
+        "party": 3700337519,
+        "partySize": 2,
+        "progress": [
+          3,
+          0,
+          0
+        ],
+        "sites": [
+          [
+            {
+              "adult": 0,
+              "placed": 1,
+              "room": 0,
+              "x": -199.15982055664063,
+              "y": 2.0,
+              "z": 1503.878173828125
+            },
+            {
+              "adult": 0,
+              "placed": 1,
+              "room": 0,
+              "x": 599.395751953125,
+              "y": 2.0,
+              "z": 1392.05126953125
+            },
+            {
+              "adult": 0,
+              "placed": 1,
+              "room": 0,
+              "x": -30.38055419921875,
+              "y": 2.0,
+              "z": 1732.2557373046875
+            }
+          ],
+          [
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null
+          ]
+        ],
+        "state": 2
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "tracked": 5
+  },
+  "checks": [
+    "Opening campaign quest accepted",
+    "Both native clients joined the same party quest",
+    "Two-player hunt scales from four kills to six",
+    "Native enemy initialized on contributing client",
+    "Repeated death callback does not duplicate contribution",
+    "Native enemy initialized on contributing client",
+    "Repeated death callback does not duplicate contribution",
+    "Native enemy initialized on contributing client",
+    "Repeated death callback does not duplicate contribution",
+    "Local and remote kills complete the shared hunt",
+    "Party membership and scaling survive save serialization",
+    "Native NPC grants this player's quest reward",
+    "Quest reward cannot be claimed twice",
+    "Native reward uses the displayed party-scaled XP",
+    "Next fixture quest accepted with prerequisites satisfied",
+    "Both native clients joined the same party quest",
+    "Gathered nodes and positions replicate to the other game",
+    "Party membership and scaling survive save serialization",
+    "Native NPC grants this player's quest reward",
+    "Quest reward cannot be claimed twice",
+    "Native reward uses the displayed party-scaled XP",
+    "Next fixture quest accepted with prerequisites satisfied",
+    "Both native clients joined the same party quest",
+    "World restoration completes on both game clients",
+    "Party membership and scaling survive save serialization",
+    "Named pack quest accepted",
+    "Both native clients joined the same party quest",
+    "Two-player quest pack receives its native HP scaling floor",
+    "Two-player quest pack receives its native HP scaling floor",
+    "Two-player quest pack receives its native HP scaling floor",
+    "World restoration completes on both game clients",
+    "Party membership and scaling survive save serialization",
+    "Named pack existed on both native clients before shared defeat",
+    "Named enemy identities grant shared credit exactly once",
+    "Native disconnect and reconnect preserve party progress and difficulty"
+  ],
+  "error": "",
+  "phase": 5,
+  "status": "passed"
+}

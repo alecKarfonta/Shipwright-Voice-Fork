@@ -1,0 +1,1 @@
+{"maxPlayers":8,"questProtocol":1,"rooms":[{"roomId":"QA - Native menu verification","players":2,"playersInGame":0,"teams":["River"],"roomState":{"arpgSeed":0,"difficultyMode":1,"listed":true,"ownerClientId":1,"pvpMode":0,"showLocationsMode":1,"syncItemsAndFlags":0,"teleportMode":1},"maxPlayers":8,"versions":["7be5a4f"]}],"type":"ROOM_LIST"}

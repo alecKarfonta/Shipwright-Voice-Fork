@@ -1,0 +1,42 @@
+{
+  "verified_at": "2026-10-13T03:57:44.520623+00:00",
+  "build": {
+    "command": "ninja -C soh/build-cmake -j 8 soh",
+    "status": "passed",
+    "kind": "full native rebuild"
+  },
+  "runtime": {
+    "status": "passed",
+    "checks": 110,
+    "result": "inventory-ui-polish-runtime-results-macos.json"
+  },
+  "manual_ui": {
+    "resolutions": [
+      "1280x800",
+      "1024x720",
+      "800x600"
+    ],
+    "checks": [
+      "Single main-navigation row at 1024 and 1280; both gear panes remain visible.",
+      "19 custom items fit in four visible backpack rows at 1024x720; all 24 usable slots fit without scrolling.",
+      "Type dropdown filters to the two owned custom bows.",
+      "Escape closes the type dropdown while leaving the journal open.",
+      "Search empty state exposes Clear filters, which restores both query and type.",
+      "Selected custom gear exposes equip and C-button controls before stats.",
+      "Windpiercer assigned through C-Left; Stormthread assigned through C-Down in the compact inspector.",
+      "Assigning Stormthread returns Windpiercer to the backpack and preserves native C-button swaps.",
+      "Comparison names Windpiercer and displays incoming/equipped stats.",
+      "Escape returns from item details to the loadout or compact stash.",
+      "800x600 uses a full-width inspector; returning to 1280 restores the two-pane loadout."
+    ],
+    "limitations": [
+      "Physical gamepad input and drag-and-drop were not manually exercised in this polish pass."
+    ]
+  },
+  "source_sha256": {
+    "soh/soh/Enhancements/arpg/ARPGInventoryWindow.cpp": "5ba4239f9b6336949eaac7f1a559de4acdc4f9b879f6b61c4f492c6493b04d78",
+    "soh/soh/Enhancements/arpg/AdventureJournal.cpp": "713bc857160e47b575551b4f500fa68c25a4784d47a2fe04587cd6901597d020",
+    "soh/soh/Enhancements/arpg/README.md": "8b0c6199eb01e7f2396fbd0fcb2fb27729b3a30f6479da567d52ff24d510a898"
+  },
+  "executable_sha256": "e09efcbe99f6d31459ff32c491857c0df4bf420b902f21d369e497c1f78e8fb1"
+}

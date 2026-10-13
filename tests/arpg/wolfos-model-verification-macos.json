@@ -1,0 +1,64 @@
+{
+  "status": "passed",
+  "date": "2026-10-12T14:23:01.232640",
+  "scope": "Full brown and white Wolfos remaster on the native flex rig. Other enemy families, character bodies and environment remain unfinished.",
+  "variants": [
+    "ordinary brown",
+    "champion brown with mane and collar",
+    "elite brown with crest and fittings",
+    "ordinary white",
+    "champion white with mane and collar",
+    "elite white with crest and fittings"
+  ],
+  "geometry": {
+    "visible_limbs": 19,
+    "skin_connections": 17,
+    "cached_variants_including_blinks": 126,
+    "triangles_per_actor": [
+      34370,
+      35954,
+      37426
+    ],
+    "portable_triangles_validated": 224236
+  },
+  "portable_checks": "wolfos-model-portable-results-macos.json",
+  "native_checks": {
+    "wolfos_file": "wolfos-model-runtime-results-macos.json",
+    "wolfos_count": 26,
+    "stalfos_regression_file": "wolfos-stalfos-regression-runtime-results-macos.json",
+    "stalfos_count": 18,
+    "final_geometry": "Both suites ran on the final fur/geometry and shared renderer, before rebuilding with runtime tests OFF."
+  },
+  "visual_checks": [
+    "Metal playback of six Wolfos covering both species and all ranks",
+    "Refined fur locks follow the rounded body instead of floating above it",
+    "Final brown and white elites viewed together during native lunges, turning and claw swipes",
+    "Three modeled blink shapes; continuous shoulders, elbows, hips, tail and neck",
+    "Production Settings shows Remastered Stalfos and Wolfos enabled",
+    "Production Test enemy dropdown includes White Wolfos; selecting Elite and Spawn enemy ahead produced Lv 15 Bonebreaker with the new white model",
+    "Release preview paused in Equipment at the White Wolfos encounter"
+  ],
+  "native_fix": "Fire attachment 7 now uses WOLFOS_LIMB_BACK_LEFT_SHIN instead of nonexistent limb 37; all ten native attachment positions were checked.",
+  "normal_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "build_runtime_tests": "OFF",
+  "build_sha256": "ffb41108fa0b705fa8f1a701bb159ebe881f9e2a8e83b80ec1c4f152e69c9181",
+  "runtime_qa_binary_sha256": "32f99f1e9aa0d92c12068fcebab52cc4d5edeeb8105f1cd59620e0f0c99830ca",
+  "preview": "/tmp/soh-arpg-inventory-preview-20261011-37/Ship ARPG Inventory.app",
+  "source_sha256": {
+    "soh/soh/Enhancements/arpg/WolfosGeometry.h": "1c4bee493a4e2db1b6615d91cd84af9a1444e2ac3406cd45831fef06b6b10f91",
+    "soh/soh/Enhancements/arpg/WolfosRig.h": "09ee02f52687316d35b10e8026c528091c655613b00e2071df5d20e07c202842",
+    "soh/soh/Enhancements/arpg/EnemyVisuals.cpp": "54796f6b3d5a07159c9becd060dc47804d240de16578edce48a06cdf476d4ffe",
+    "soh/soh/Enhancements/arpg/ARPGTesting.cpp": "3865c8211ce049c030c60a8af4923922b10aec9d5863f0c238a2d41fa820e862",
+    "soh/soh/Enhancements/arpg/ARPGWindow.cpp": "18bb3df86ea99449f6f5d637902e54c4a703678aadfb3a0a558e41576da08e0f",
+    "soh/src/overlays/actors/ovl_En_Wf/z_en_wf.c": "c46170fb4a6ff4f93c89dadb3c8eb6ef2080b742b685180285f6e6ecd2351861",
+    "tests/arpg/wolfos_models_runtime_test.cpp": "49224d37a938bc63f5f74f8342972a5d9c70efd1d0efad3cdb013fd9eb1a5312",
+    "tests/arpg/wolfos_geometry_test.cpp": "7bac48380276fc169a1f1ca736c2183fcc6c1d23adaa27ebf707e86ec4226cef"
+  },
+  "limitations": [
+    "Native Wolfos rigs only; custom skeleton packs have not been validated",
+    "Stylized procedural solid materials, without PBR textures or normal maps",
+    "Wider scene/age coverage and long-run crowded-scene performance remain unmeasured",
+    "Other enemy families and environment still use their original assets"
+  ],
+  "superseded_by": "wolfos-blender-verification-macos.json"
+}

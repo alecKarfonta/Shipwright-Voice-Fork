@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "scope": "Final Blender Stalfos anatomy, armor and weapons in all native limbs/ranks. Portable Wolfos and Lizalfos regressions also passed.",
+  "variants": 72,
+  "integer_safe_triangles": 108826,
+  "triangles_per_actor_by_rank": [
+    35840,
+    36284,
+    36702
+  ],
+  "normal_tests": [
+    "arpg_enemy_geometry",
+    "arpg_wolfos_geometry",
+    "arpg_lizalfos_geometry"
+  ],
+  "address_undefined_sanitized_tests": [
+    "arpg_enemy_geometry",
+    "arpg_wolfos_geometry",
+    "arpg_lizalfos_geometry"
+  ],
+  "checks": [
+    "Every visible limb has a nonempty bounded replacement",
+    "Finite coordinates within the native envelope",
+    "Unit normals",
+    "No collapsed triangles after native integer quantization",
+    "Sword terminates at the original 3400-unit trail tip",
+    "Unsupported and empty rig nodes remain empty",
+    "Distinct rank geometry within the 40000-triangle actor budget"
+  ],
+  "deterministic_export": true,
+  "header_sha256": "2f84dbd8553866fb465e91bcbeef72f9b1711a6edc8df38e62ff7636191553a6"
+}

@@ -5,6 +5,7 @@
  */
 
 #include "z_en_bb.h"
+#include "soh/Enhancements/arpg/EnemyVisuals.h"
 #include "objects/gameplay_keep/gameplay_keep.h"
 #include "objects/object_Bb/object_Bb.h"
 #include "soh/Enhancements/game-interactor/GameInteractor_Hooks.h"
@@ -1161,10 +1162,8 @@ void EnBb_CollisionCheck(EnBb* this, PlayState* play) {
                 this->actor.freezeTimer = this->collider.elements[0].info.acHitInfo->toucher.damage;
             case 5:
                 this->fireIceTimer = 0x30;
-                //! @bug
-                //! Setting fireIceTimer here without calling Actor_SetColorFilter causes a crash if the bubble is
-                //! killed in a single hit by an attack with damage effect 5 or 7 while actor updating is halted. Using
-                //! Din's Fire on a white bubble will do just that. The mechanism is complex and described below.
+                // [TIME] | [INFO] | EnBb.CollisionCheck | Lethal fire must initialize a valid filter before drawing while actor updates are halted.
+                Actor_SetColorFilter(&this->actor, 0x4000, 0xFF, 0, 0x30);
                 goto block_15;
             case 6:
                 this->actor.freezeTimer = this->collider.elements[0].info.acHitInfo->toucher.damage;
@@ -1201,11 +1200,6 @@ void EnBb_CollisionCheck(EnBb* this, PlayState* play) {
                         EnBb_KillFlameTrail(this);
                     }
                     EnBb_SetupDeath(this, play);
-                    //! @bug
-                    //! Because Din's Fire kills the bubble in a single hit, Actor_SetColorFilter is never called and
-                    //! colorFilterParams is never set. And because Din's Fire halts updating during its cutscene,
-                    //! EnBb_Death doesn't kill the bubble on the next frame like it should. This combines with
-                    //! the bug in EnBb_Draw below to crash the game.
                 } else if ((this->actor.params == ENBB_WHITE) &&
                            ((this->action == BB_WHITE) || (this->action == BB_STUNNED))) {
                     Actor_SetColorFilter(&this->actor, 0x4000, 0xFF, 0, 0xC);
@@ -1265,6 +1259,11 @@ void EnBb_Update(Actor* thisx, PlayState* play2) {
     }
 }
 
+s32 EnBb_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s* rot, void* thisx) {
+    ARPG_OverrideEnemyLimb(play, &((EnBb*)thisx)->actor, limbIndex, dList);
+    return false;
+}
+
 void EnBb_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, void* thisx) {
     EnBb* this = (EnBb*)thisx;
 
@@ -1292,15 +1291,11 @@ void EnBb_Draw(Actor* thisx, PlayState* play) {
     if (this->moveMode != BBMOVE_HIDDEN) {
         if (this->actor.params <= ENBB_BLUE) {
             Gfx_SetupDL_25Opa(play->state.gfxCtx);
-            SkelAnime_DrawSkeletonOpa(play, &this->skelAnime, NULL, EnBb_PostLimbDraw, this);
+            SkelAnime_DrawSkeletonOpa(play, &this->skelAnime, EnBb_OverrideLimbDraw, EnBb_PostLimbDraw, this);
 
             if (this->fireIceTimer != 0) {
                 this->actor.colorFilterTimer++;
-                //! @bug:
-                //! The purpose of this is to counteract Actor_UpdateAll decrementing colorFilterTimer. However,
-                //! the above bugs mean unk_2A8 can be nonzero without damage effects ever having been set.
-                //! This routine will then increment colorFilterTimer, and on the next frame Actor_Draw will try
-                //! to draw the unset colorFilterParams. This causes a divide-by-zero error, crashing the game.
+                // [TIME] | [INFO] | EnBb.Draw | Keep the initialized filter alive while the draw-driven fire or ice effect runs.
                 this->fireIceTimer--;
                 if ((this->fireIceTimer % 4) == 0) {
                     Vec3f sp70;

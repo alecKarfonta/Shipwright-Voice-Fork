@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "native_animation_frames": 28,
+  "native_visible_limbs": 6,
+  "wing_seam_checks": 504,
+  "maximum_seam_gap_world_units": 2.5121479338940403e-15,
+  "maximum_envelope_extension_world_units": 1.1788117326420604,
+  "normal_actor_scale": 0.01,
+  "great_green_actor_scale": 0.03,
+  "rig": "Original skull, snapping mandible and two articulated wing pairs"
+}

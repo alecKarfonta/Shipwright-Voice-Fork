@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-13T15:24:21.551713+00:00",
+  "status": "passed",
+  "endpoint": "wss://mlapi.us/z64/relay/ws",
+  "deployment": {
+    "image": "192.168.50.78:30500/z64/relay:20261013.3",
+    "digest": "sha256:0e51b303bd3a6d0c13c21b65930170a27af17d92d392b895c1b403414df71c5e",
+    "rollout": "available"
+  },
+  "installed_game": {
+    "installed": "/Users/alec/git/z64-romhack-tutorials/soh/build-cmake/soh/soh-macos",
+    "backup": "/tmp/soh-before-native-directory-1791904776850078000",
+    "sha256": "7400da7447b7ec9ebf91cf82310d2ea54d84de215867d657696c8c14b2382282"
+  },
+  "checks": {
+    "build": "Mac production build; public relay enabled; all isolated QA compile flags disabled",
+    "relay": "go test -race ./... passed",
+    "browser_model": "ASan/UBSan search, filters, capacity, legacy stage and sorting tests passed",
+    "catalog": "exported canonical title/chapter/objective catalog equality test passed",
+    "live_probe": "Two game-transport WSS clients verified directory campaign data, joining and six shared kills",
+    "actual_game_clients": "Two native game processes hosted/discovered/joined a public room. Host created and loaded an isolated vanilla save. Directory changed to Inside the Great Deku Tree; players=2, playersInGame=1. Both clients then closed.",
+    "native_ui": "1024x768 and 640x480; native panel/button/glyph textures; search by quest; full room join disabled; host form; compact details; save selection; Z reopen; bracket tab navigation; Escape closes dropdown before parent; compact detail/list/save Back chain",
+    "cleanup": "Temporary public room removed; only isolated test saves/configs used. Local fixture relay and clients stopped."
+  },
+  "limitations": [
+    "Windows game package not rebuilt or tested on Windows in this turn.",
+    "Physical controller hardware was not available; controller paths use existing ImGui modal navigation.",
+    "Populated list screenshots use explicitly labeled local QA fixture parties; live-campaign.png and live-loaded-campaign.json show the real public relay and loaded native save."
+  ],
+  "source_sha256": {
+    "soh/soh/Network/Anchor/ServerBrowserWindow.cpp": "00c793cb48a2c97231e83bcf8055a5ea6ddbf6f30f08aa48d6f57833976b37c4",
+    "soh/soh/Network/Anchor/ServerBrowserWindow.h": "73915adc0cbe7920861a94d90dee389cc86cf560137c8f29fff923893c9b4bac",
+    "soh/soh/Network/Anchor/ServerBrowserModel.h": "433fe28e8df741024b02789e934039c1752154e4f9fb040520c6858db87c4446",
+    "soh/soh/Network/Anchor/Packets/UpdateClientState.cpp": "a44fe8534d843830f9a95db6e26307c1e5e5fd1cc70eddfe72fdb60baca84d78",
+    "soh/soh/Network/Anchor/HookHandlers.cpp": "adc56ad6369d3936fc82beb818950307ce1139643338274b34a6d7053a26db8e",
+    "mp-server/campaign.go": "737e740ad5a429a9453e5b480ea5bf0ca3d97f7f06535bd207854e9fa1ca9e18",
+    "mp-server/campaign_test.go": "02470083e4f55dd0dc6156b979d4139860e98bd30913ab80fcc61fadb735af7d",
+    "mp-server/main.go": "97959d379a30cf5478e1c7f94982a786a09ab982cbfbffaa3686d6d0a0c9b30c",
+    "mp-server/public.go": "0996144ecae0282880e8ac68bed74b65930498b23d65ff409da75675c17d5b71",
+    "mp-server/quest_catalog.json": "bd9bbbb137e6c0dd5d280c9d365aed8fe597e04acd63399471224911bea8bb53",
+    "tests/public-relay/browser_model_test.cpp": "4493221c74869dd675a120e20a5da2cfbcba5ee5f3e3cf953a897d83adef8f0d",
+    "tests/public-relay/probe.cpp": "7c2d7ccb2aa1261b8622b4be1b03ff401e7f2002622d819f4327922715db3324"
+  }
+}

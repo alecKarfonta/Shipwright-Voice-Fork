@@ -1,0 +1,38 @@
+{
+  "source_sha256": "547565f31dfd0e5a6a9f0db8b6eb6c0c3fc08f0772adfc653e1d8c10b57b25a8",
+  "vertices": 20223,
+  "triangles": 11622,
+  "parts": 40,
+  "subpixel_triangles_removed": 0,
+  "triangles_per_part": {
+    "0": 2436,
+    "1": 88,
+    "2": 20,
+    "3": 20,
+    "4": 20,
+    "5": 5180,
+    "6": 984,
+    "7": 1036,
+    "8": 74,
+    "9": 216,
+    "10": 56,
+    "11": 360,
+    "12": 32,
+    "13": 972,
+    "14": 128
+  },
+  "materials": [
+    "stone",
+    "cut",
+    "bronze",
+    "gold",
+    "wood",
+    "grain",
+    "iron",
+    "velvet",
+    "oath",
+    "gem",
+    "shadow"
+  ],
+  "space": "Native model-local XYZ, positions x100; native normals retained; studio transforms omitted; crystal and lid use separate runtime pivots"
+}

@@ -5,6 +5,7 @@
  */
 
 #include "z_en_boom.h"
+#include "soh/Enhancements/arpg/ARPGBridge.h"
 #include "objects/gameplay_keep/gameplay_keep.h"
 
 #define FLAGS (ACTOR_FLAG_UPDATE_CULLING_DISABLED | ACTOR_FLAG_DRAW_CULLING_DISABLED)
@@ -243,7 +244,7 @@ void EnBoom_Update(Actor* thisx, PlayState* play) {
     Player* player = GET_PLAYER(play);
 
     if (!(player->stateFlags1 & PLAYER_STATE1_IN_CUTSCENE)) {
-        this->actionFunc(this, play);
+        if (!ARPG_RelicBoomerangUpdate(&this->actor)) this->actionFunc(this, play);
         Actor_SetFocus(&this->actor, 0.0f);
         this->activeTimer = this->activeTimer + 1;
     }

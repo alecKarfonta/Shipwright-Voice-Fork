@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-11",
+  "platform": "macOS arm64",
+  "build": "soh native build succeeded; SOH_ARPG_RUNTIME_TESTS=OFF",
+  "build_log": "/tmp/soh-world-gear-build8.log",
+  "preview": "org.shipofharkinian.arpg-inventory-preview22",
+  "built_binary_sha256": "248e81a210da6da8506368c8a7121be066ddc46304ded89a543ead96b0f49085",
+  "signed_preview_binary_sha256": "0fe546c9882fc5c7ef5f024073ccac7a7b156a78fd497f2161161b5e568d22a4",
+  "automated_checks": [
+    "Both portable CTest targets pass: arpg_rules and arpg_gear_geometry.",
+    "Geometry check validates 2,976 nondegenerate triangles across ten meshes, finite bounded coordinates, and stable modifier-driven appearance selection.",
+    "The geometry check also passes AddressSanitizer and UndefinedBehaviorSanitizer.",
+    "Tracked engine diff passes git diff --check."
+  ],
+  "native_visual_checks": [
+    "All four original collectible models render in Hyrule Field: faceted elemental sword, carved Rootwarden shield, Star-woven garment, and Wind-stride boots.",
+    "Adult Link wears the indigo tunic/cap, front chest star and collar trim, jade cuffs with feather details, Rootwarden shield, and custom sword hilt/scabbard.",
+    "During the earlier world-gear preview, the new adult sword and shield rendered in the hands during native movement and combat; the shield also rendered on the back.",
+    "Carved shield wood grain and material colors render in the final native build; appearances remain visible as the scene darkens.",
+    "Removing the Star-woven roll restored the normal green Kokiri tunic/cap while shield and boot appearances remained equipped.",
+    "The final build switched from adult to child and back through the testing UI. Child Link displayed the scaled shield, sword hilt, front star/collar, and boot details.",
+    "Preview matching gear resumed gameplay, preserved displaced rolls in the backpack, spawned four physical pickups, and selected Kokiri Sword for the child preset and Master Sword for the adult preset.",
+    "Returned the sandbox to adult Link with all four matching rolls equipped; left the game open with inventory paused.",
+    "Normal player save SHA-256 stayed unchanged."
+  ],
+  "limits": [
+    "Earlier native combat regression suites were not rerun for this rendering pass; no save format or combat formulas changed.",
+    "Native pause model ornaments are wired and compile but were not visually inspected on the equipment page.",
+    "Every sword/base/animation combination, including broken Giant Knife and first-person/reflection exclusions, still needs broader visual acceptance.",
+    "Custom player skeletons and remote Anchor actor appearances are excluded; multiplayer visual compatibility was not exercised.",
+    "When a custom sword is paired with a native shield, the native combined shield/scabbard mesh remains with the new custom hilt."
+  ],
+  "normal_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309"
+}

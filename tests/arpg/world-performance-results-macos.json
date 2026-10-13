@@ -1,0 +1,75 @@
+{
+  "note": "Release build, fixed Hyrule Field camera, 60 FPS interpolation. CPU wall time covers GameState main through display-list generation, excluding renderer/GPU and frame pacing; tick interval includes those and scheduling. 180 warmup and 300 sampled ticks per mode. Warmup peak includes scene setup or population creation.",
+  "results": [
+    {
+      "maxPopulation": 0,
+      "minPopulation": 0,
+      "mode": "off",
+      "simulationTickInterval": {
+        "maxMs": 53.010541,
+        "meanMs": 49.9995681966667,
+        "p95Ms": 50.257917,
+        "p99Ms": 50.981292,
+        "samples": 300
+      },
+      "stateMainCpuWallTime": {
+        "maxMs": 19.036375,
+        "meanMs": 0.8730181766666667,
+        "p95Ms": 2.2125,
+        "p99Ms": 6.048834,
+        "samples": 300
+      },
+      "target": 0,
+      "warmupPeakMs": 10.7195,
+      "warmupTickPeakMs": 65.633209
+    },
+    {
+      "maxPopulation": 64,
+      "minPopulation": 64,
+      "mode": "default64",
+      "simulationTickInterval": {
+        "maxMs": 52.594166,
+        "meanMs": 49.99564180333337,
+        "p95Ms": 51.009542,
+        "p99Ms": 51.966292,
+        "samples": 300
+      },
+      "stateMainCpuWallTime": {
+        "maxMs": 11.650958,
+        "meanMs": 4.1896601299999965,
+        "p95Ms": 6.84575,
+        "p99Ms": 9.817625,
+        "samples": 300
+      },
+      "target": 64,
+      "warmupPeakMs": 13.417417,
+      "warmupTickPeakMs": 215.641167
+    },
+    {
+      "maxPopulation": 95,
+      "minPopulation": 95,
+      "mode": "stress96",
+      "simulationTickInterval": {
+        "maxMs": 55.058333,
+        "meanMs": 50.004094443333344,
+        "p95Ms": 50.956875,
+        "p99Ms": 53.374458,
+        "samples": 300
+      },
+      "stateMainCpuWallTime": {
+        "maxMs": 13.255041,
+        "meanMs": 4.705417490000001,
+        "p95Ms": 6.256834,
+        "p99Ms": 8.737042,
+        "samples": 300
+      },
+      "target": 96,
+      "warmupPeakMs": 38.128041,
+      "warmupTickPeakMs": 78.219458
+    }
+  ],
+  "status": "completed",
+  "host": "Apple M2 Max, 64 GB, macOS 15.1.1, Metal, 1280x720 window, 60 FPS interpolation",
+  "backgroundLoad": "Concurrent native compilation; not an isolated laboratory benchmark.",
+  "binarySha256": "4b73f4253b1b943c1d039bd1d2960875271f2e3f80c86082c00a18afd6e3960f"
+}

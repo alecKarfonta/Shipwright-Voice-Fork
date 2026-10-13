@@ -1,0 +1,111 @@
+{
+  "status": "passed",
+  "date": "2026-10-13",
+  "feature": "Original Peahat adult and larva authored anatomy with native flight",
+  "scope": "Original hunting adult, high-flying brood parent and larva. Native rigid skeleton, clips, rotor and squash transforms, collision, pursuit, weapon counters and defeat behavior retained.",
+  "art": {
+    "source_sha256": "1c3295d334ad0be7aef7bdbad90b481f3272bdd0e23a8e7c2a770ef7b8fc9724",
+    "vertices": 13660,
+    "triangles": 10652,
+    "parts": 19,
+    "subpixel_triangles_removed": 8,
+    "triangles_per_actor": {
+      "0": 10652
+    },
+    "materials": [
+      "bark",
+      "edge",
+      "leaf",
+      "vein",
+      "root",
+      "core",
+      "shadow"
+    ],
+    "space": "Native joint-local XYZ, positions x100; native normals retained; per-vertex native joint indices; authoring-pose transforms omitted"
+  },
+  "animation": {
+    "status": "passed",
+    "geometry_variants": 1,
+    "native_animation_clips_per_variant": 4,
+    "native_animation_frames_per_variant": 129,
+    "visible_limbs_in_rig": 8,
+    "extra_native_draws": 1,
+    "bridges": 0,
+    "additional_rotor_squash_poses": 48,
+    "posed_bridge_endpoint_checks": 0,
+    "maximum_quantized_endpoint_error_world_units": 0.0,
+    "maximum_posed_envelope_extension_world_units": 7.10051256829347,
+    "actor_scale": 0.036,
+    "scope": "All native animation poses plus 48 independent rotor/squash samples; rigid geometry follows its assigned native joints. Native source vertices and authored connection endpoints are transformed under their assigned joints. Native root offsets translate both native and authored geometry equally. Bulb, crown, six blades and weak root are reviewed in all four clips; no claim of watertight topology."
+  },
+  "portable": {
+    "full_suites_passed": 37,
+    "full_suite_log": "/tmp/peahat-portable-test.log",
+    "address_and_undefined_sanitizers": "Passed both palettes, all eight rigid limbs and adult root bounds at neutral and both extreme damage-wobble angles",
+    "final_target_check": "Peahat geometry CTest passed again after adding damage-wobble coverage"
+  },
+  "native": {
+    "checks_passed": 88,
+    "render_frames": 812,
+    "blade_rotations": 430,
+    "stun_frames": 79,
+    "larva_recoil_frames": 17,
+    "explosion_bombs": 2,
+    "native_defeats": 5,
+    "adult_defeats": 2,
+    "larva_defeats": 3,
+    "native_blade_quad": true,
+    "native_blade_tips": true,
+    "results": "tests/arpg/peahat-runtime-results-macos.json",
+    "scope": "All three original actor types, embedded native animation arrays, model/root feature gates and distance fallback, cached geometry, original scale and collider dimensions. Night rest, native day takeoff/hover/pursuit, home return/landing/reawakening, blade quad and dust tips, root sphere and targeting. Shell protection, nut/light-ice immunity, ordinary root damage, boomerang stun/recovery, hookshot and fire counters. Brood day/night cap, safe parent detachment, larva contact cooldown, shield recoil, weapon and ground deaths. Nearby practice limits, original field-population placement, interrupted deletion and scene cleanup.",
+    "fixture_limits": "Isolated debug save, pinned player/camera and selected day/night flags. Other field enemies and the night spawner are removed after ordinary practice placement succeeds. Native collision flags and damage effects are supplied to original handlers. Grounded-hit branching selects a non-collectible frame. Brood larvae are held aloft during repeated day/night transitions to isolate ownership/cap coverage. Return and landing run unshortened; original landing settles 8.38 units from home. Tests do not establish full manual kills, natural brood combat, broad terrain acceptance or crowd performance."
+  },
+  "production_ui": {
+    "build": "/tmp/soh-peahat-playtest/Peahat Adventure.app",
+    "profile_root": "/tmp/soh-peahat-playtest/profiles",
+    "qa_harness_linked": false,
+    "launcher": "/tmp/soh-peahat-production.py",
+    "verified": [
+      "Collapsed Upgraded Peahats panel and hunting adult, brood parent and larva choices",
+      "Ordinary hunter summon in Hyrule Field beside its original population",
+      "Native takeoff, spinning pursuit, exposed-root targeting and player knockback",
+      "Adult returned to night rest as dusk ended",
+      "Journal reopened after the encounter",
+      "Ordinary larva summon, flattened leaf model and pursuit"
+    ],
+    "not_claimed": "Full manual defeat, manually confirmed shield reflection, natural brood encounter, varied terrain or crowd-performance acceptance."
+  },
+  "build": {
+    "method": "Isolated source snapshot and object-link chain from verified Armos build. Rebuilt Peahat renderer, native EnPeehat, CreatureSystem and QA harness. Shared Ninja not run; unrelated concurrent source changes are not claimed rebuilt.",
+    "source": "/tmp/soh-peahat/source",
+    "qa": "/tmp/soh-peahat/qa",
+    "production": "/tmp/soh-peahat/production",
+    "source_hashes": {
+      "soh/soh/Enhancements/arpg/PeahatBlenderData.h": "8cdd60fc689e81459b21d74c3297c5dfa9f82cd41246f0ffda68c1ae9c5ecbc6",
+      "soh/soh/Enhancements/arpg/PeahatGeometry.h": "2c3cd90e02c45cdf4f287d8894685beefc0110d8a3a060057d680d57cdc97467",
+      "soh/soh/Enhancements/arpg/PeahatVisuals.h": "b3193e7d06d7c7fbcd17a9c9acd98255c84d49de3ae67e0efd18ac253bb148d7",
+      "soh/soh/Enhancements/arpg/PeahatVisuals.cpp": "b3deed4975fd7f5e0c0d8befc9af8656472c663ccab5634b0b03fe87af3d6b4e",
+      "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "d68b39204e910efcce9e34a901238590d79f838ceae72f3d682af2e22cf41fe1",
+      "soh/soh/Enhancements/arpg/CreatureSystem.h": "9935a96cd5abda3d810be9320c3d3f5f6f46619ddf1851ada2f79ac92abf17fd",
+      "soh/src/overlays/actors/ovl_En_Peehat/z_en_peehat.c": "c197d87cc84211955eb65798a05865b3e9cdfb8170fb3e072ad84e058f858750",
+      "tests/arpg/peahat_runtime_test.cpp": "788de710ab39191fd3fbe810a428ca5c78591b11eb9b5998f080cf5c66c437b9"
+    },
+    "source_snapshot_matches": true,
+    "qa_exit_status": 0,
+    "production_exit_status": 0,
+    "known_shutdown_log": "Both apps exited zero. ResourceManager destructor logging emitted a mutex-lock error at shutdown, also present in earlier Armos and Shell Blade logs; this existing logger-lifetime issue is outside the Peahat change."
+  },
+  "save": {
+    "path": "/Users/alec/Library/Application Support/shipofharkinian/profiles/player1/Save/file1.sav",
+    "before_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "after_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "unchanged": true
+  },
+  "blender": {
+    "authoring": "Installed Blender 5.1.2 in isolated background processes; live Blender MCP unavailable.",
+    "editable_source": "art/arpg/peahats/peahats.blend",
+    "user_project_modified": false
+  },
+  "preview": "art/arpg/peahats/peahat-native-preview.png",
+  "remaining": "Other native families, environment and character upgrades, broader original-world combat acceptance and crowded-scene performance; full replayability goal remains incomplete."
+}

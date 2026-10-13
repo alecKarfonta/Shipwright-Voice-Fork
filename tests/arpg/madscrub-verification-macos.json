@@ -1,0 +1,215 @@
+{
+  "status": "passed",
+  "feature": "Original Mad Scrub and native flower upgrade",
+  "date": "2026-10-13",
+  "portable_tests": {
+    "suites": 42,
+    "passed": 42,
+    "log": "/tmp/mad-portable.log",
+    "final_geometry_rerun": "/tmp/mad-final-geometry.log",
+    "note": "Full suite followed by final crown geometry rerun and ASAN/UBSAN. Final leaf binding changes runtime rendering only."
+  },
+  "geometry_sanitizers": "ASAN and UBSAN passed",
+  "semantic_materials": {
+    "adapters": 15,
+    "native_resource_references": 47,
+    "leaf_format": "RGBA16 32x32, 2048 bytes; archive verified"
+  },
+  "animation": {
+    "status": "passed",
+    "clips": 10,
+    "frames": 158,
+    "posed_vertex_checks": 705470,
+    "native_visible_joints": 9,
+    "additional_flower_meshes": 1,
+    "snout_scale_frames": 11,
+    "maximum_envelope_extension_world_units": 5.901044419172614,
+    "per_clip_extension_world_units": {
+      "gDekuNutsBurrowAnim": 3.8219954379531096,
+      "gDekuNutsDamageAnim": 4.500369833953627,
+      "gDekuNutsDieAnim": 5.716608429690702,
+      "gDekuNutsGaspAnim": 5.023132229113152,
+      "gDekuNutsLookAroundAnim": 4.488218616614443,
+      "gDekuNutsRunAnim": 5.534681049507952,
+      "gDekuNutsSpitAnim": 5.901044419172614,
+      "gDekuNutsStandAnim": 0.9330934505207296,
+      "gDekuNutsUnburrowAnim": 5.700772605736063,
+      "gDekuNutsUpAnim": 3.715747620767033
+    },
+    "scope": "All native clip frames; original Matrix_Scale before the limb transform is reconstructed in the parent space. Flower is a separate static actor. Bounds do not establish collision or triangle-clearance correctness."
+  },
+  "export": {
+    "source_sha256": "aebdaef6b5e57df08a4ef9c92c7662af59e6887b55519ecb472b88423ae8d7b8",
+    "vertices": 5585,
+    "triangles": 4744,
+    "parts": 27,
+    "subpixel_triangles_removed": 0,
+    "triangles_per_actor": {
+      "0": 4744
+    },
+    "materials": [
+      "bark",
+      "edge",
+      "recess",
+      "leaf",
+      "vein",
+      "rust",
+      "eye"
+    ],
+    "space": "Native joint-local XYZ, positions x100; native normals retained; per-vertex native joint indices; authoring-pose transforms omitted"
+  },
+  "native": {
+    "actor_position": [
+      -4.0,
+      0.0,
+      269.0
+    ],
+    "burrow_frames": 20,
+    "checks": [
+      "Practice places a native single-shot Scrub on safe ground",
+      "Original Mad Scrub initializes",
+      "Original twenty-five-entry rig keeps embedded native animation tables",
+      "Native invisible pivot remains invisible",
+      "Native invisible pivot remains invisible",
+      "Native invisible pivot remains invisible",
+      "Native invisible pivot remains invisible",
+      "Native invisible pivot remains invisible",
+      "Native invisible pivot remains invisible",
+      "Native invisible pivot remains invisible",
+      "Native invisible pivot remains invisible",
+      "Native invisible pivot remains invisible",
+      "Native invisible pivot remains invisible",
+      "Native invisible pivot remains invisible",
+      "Native invisible pivot remains invisible",
+      "Native invisible pivot remains invisible",
+      "Native invisible pivot remains invisible",
+      "Native invisible pivot remains invisible",
+      "All nine original meshes and the flower use cached authored geometry",
+      "Bark and foliage bind semantic scene-lit textures",
+      "Feature gate restores every original body and flower mesh",
+      "Feature gate restores every original body and flower mesh",
+      "Distance fallback restores original body and flower",
+      "Original health, scale and burrow collision remain unchanged",
+      "Decorative flower is excluded from scaling, affixes, nameplates and defeat rewards",
+      "Native child flower is a separate nonhostile actor",
+      "Snout remains upgraded after the native squash callback early-return frame",
+      "Native emergence restores rooted collision before spitting",
+      "Native seed survives object loading and flies in field practice",
+      "Close approach causes native burrow and disables incoming damage",
+      "Native volley emits exactly three seeds without new attack timing",
+      "Reflection fixture initializes a real native seed",
+      "Reflection seed finishes native object loading",
+      "Native shield bounce reverses the seed and switches its damage allegiance",
+      "Returned seed naturally collides and flushes the rooted Scrub without a kill",
+      "Native fleeing, gasping and home-seeking complete a full burrow cycle",
+      "A rooted hit begins the original unburrow reaction",
+      "Deku-nut effect stuns the exposed runner without damage",
+      "Repeated stun does not restart the native recovery timer",
+      "Native stun animation completes before running resumes",
+      "Fire damage uses the original exposed-body reaction",
+      "Native death grants one reward and leaves its flower prop behind",
+      "Unknown practice variants are rejected",
+      "Volley practice preserves the high-byte native shot count",
+      "Original Mad Scrub initializes",
+      "Original Mad Scrub initializes",
+      "Original Mad Scrub initializes",
+      "Original Mad Scrub initializes",
+      "Practice obeys the four-live-Scrub nearby cap",
+      "Matched four-Scrub plus flower draw cadence samples captured",
+      "Standalone burrow flower initializes",
+      "Standalone burrow flower initializes",
+      "Standalone burrow flower initializes",
+      "Standalone burrow flower initializes",
+      "Standalone burrow flower initializes",
+      "Standalone burrow flower initializes",
+      "Standalone burrow flower initializes",
+      "Standalone burrow flower initializes",
+      "Practice bounds surviving flower props after repeated victories",
+      "Scene teardown adds no defeats for flowers or live practice actors",
+      "Original Mad Scrub initializes",
+      "Original volley Scrub animates and fires in the darker dungeon"
+    ],
+    "death_frames": 11,
+    "distinct_poses": 137,
+    "error": "",
+    "four_actor_plus_flowers_paced_draw_interval_native": {
+      "median_ms": 49.956291,
+      "p95_ms": 50.836458,
+      "samples": 139
+    },
+    "four_actor_plus_flowers_paced_draw_interval_upgraded": {
+      "median_ms": 49.974167,
+      "p95_ms": 50.814708,
+      "samples": 139
+    },
+    "gasp_frames": 216,
+    "home": [
+      -4.0,
+      0.0,
+      269.0
+    ],
+    "native_defeats": 1,
+    "phase": 98,
+    "render_frames": 1276,
+    "run_frames": 300,
+    "seed_spawns": 44,
+    "status": "passed",
+    "stun_frames": 69
+  },
+  "build": {
+    "method": "Isolated source snapshot and direct object/link commands; shared Ninja not run. Extends the verified Beamos snapshot.",
+    "production": "/tmp/soh-madscrub/production",
+    "production_uuid": "042D7FC5-FA24-3F58-93A6-957493892984",
+    "qa": "/tmp/soh-madscrub/qa",
+    "qa_fixture_in_production": false,
+    "current_material_api_renderer_compile": "passed /tmp/MadScrub-current-api.o",
+    "baseline_note": "Frozen material API retained to avoid ABI mismatch with earlier linked consumers. New adapter uses explicit local semantic slots and compiles with current and frozen APIs.",
+    "ordinary_app_uuid": "042D7FC5-FA24-3F58-93A6-957493892984"
+  },
+  "source_hashes": {
+    "soh/soh/Enhancements/arpg/MadScrubVisuals.cpp": "e0f95f8d22f0c9736f6157da77390fdfbc60e4fcc7c101c09e7efed78b29c9e8",
+    "soh/soh/Enhancements/arpg/MadScrubVisuals.h": "67fa617cdba41637e290a379f0cbbee59fcc788dcf2941d5508bbfe2e4647672",
+    "soh/soh/Enhancements/arpg/MadScrubGeometry.h": "e5efa34d6a6b3f83d423c262b35107ba26ee054fc53a3c961477f4b4a1033c5d",
+    "soh/soh/Enhancements/arpg/MadScrubBlenderData.h": "f6ec7007ee76a1c770f5c7e17f8526299ecb9212eb016ea0789fb17abf1c0fe2",
+    "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "fb5a963c3cc110b18063b4fd03b192d3481e2483ce6a6cc1f120cb93d7de7a32",
+    "soh/soh/Enhancements/arpg/CreatureSystem.h": "67a792535154665d0c28b20f3f2d63abc402fe012e3b4c8baf96ab5fc9dd7f29",
+    "soh/src/overlays/actors/ovl_En_Dekunuts/z_en_dekunuts.c": "04ec20e0a6502177e899045b804af2a8eabad1f99b872f9ff2e1a4e4c0714cda",
+    "soh/src/overlays/actors/ovl_En_Nutsball/z_en_nutsball.c": "a791ccf4bbceb0295e7de550ea42282f5188f5068e46195b21e1521366c4660d",
+    "tests/arpg/madscrub_runtime_test.cpp": "712426729482a2e70d41be837ff02873a484d87b2d6400551ae027d78922172f",
+    "soh/soh/Enhancements/EnemyDifficulty/EnemyDifficulty.cpp": "0850e19c823d96a55ae58abcffd71f66e362e377ffdba011a7f54e3e88d694a3"
+  },
+  "tested_sources_byte_identical": true,
+  "normal_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "fixtures": [
+    "Adult Link, player position/camera/daytime and health pinned; unrelated enemies removed.",
+    "Shield-bounce flag injected on a real loaded seed, native reflection function then used. Returned seed travels naturally and collides with native enemy cylinder.",
+    "Later rooted, stun and fire hits injected at the native collision boundary; reactions, recovery, death and rewards use native updates.",
+    "Single and three-shot sequences, proximity burrowing, full flee/gasp/home return, four live Scrubs plus flowers, flower cap and scene transition exercised."
+  ],
+  "limitations": [
+    "Capped ~50 ms draw cadence is not an uncapped GPU performance measurement.",
+    "Native parameter-0 seed tested; other Scrub projectile variants use the same port fallback but were not individually playtested.",
+    "Full manual fights, child shield timing, broader terrain/rooms and third-party texture packs remain open.",
+    "Known ResourceManager shutdown logger mutex warning persists from the baseline."
+  ],
+  "ordinary_play": {
+    "app": "/tmp/soh-madscrub-playtest/MadScrub Adventure.app",
+    "observed": [
+      "Single-shot practice selection and spawn",
+      "Three-shot volley selection and spawn on the final build",
+      "Shield use flushed the Scrub and triggered its native running escape",
+      "Flower no longer has an enemy nameplate after the classifier fix",
+      "Visible seed volleys, native player damage/knockback, daylight and night appearance",
+      "Normal movement, sword swing, bow aiming and journal reopening"
+    ],
+    "manual_defeat": false,
+    "final_state": "Equipment journal paused in Hyrule Field at night, with two native volley Scrubs nearby on the separate practice profile.",
+    "screenshots": [
+      "art/arpg/mad-scrub/ordinary-single-shot.png",
+      "art/arpg/mad-scrub/ordinary-volley.png",
+      "art/arpg/mad-scrub/ordinary-night-volley.png",
+      "art/arpg/mad-scrub/native-stun-test.png",
+      "art/arpg/mad-scrub/dungeon-native-test.png"
+    ]
+  }
+}

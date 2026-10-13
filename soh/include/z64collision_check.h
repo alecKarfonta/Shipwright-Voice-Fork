@@ -1,9 +1,12 @@
 #ifndef Z_COLLISION_CHECK_H
 #define Z_COLLISION_CHECK_H
 
-#define COLLISION_CHECK_AT_MAX 50
-#define COLLISION_CHECK_AC_MAX 60
-#define COLLISION_CHECK_OC_MAX 50
+// Regional populations can contain up to 96 generated enemies, several with
+// multiple native colliders. Keep headroom for residents, NPCs and projectiles;
+// otherwise late-registered actors silently lose hits or overlap checks.
+#define COLLISION_CHECK_AT_MAX 256
+#define COLLISION_CHECK_AC_MAX 512
+#define COLLISION_CHECK_OC_MAX 256
 #define COLLISION_CHECK_OC_LINE_MAX 3
 
 // From z64.h

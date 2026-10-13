@@ -1,0 +1,24 @@
+{
+  "source_sha256": "364b10ccf31bd79ca5d5df6b9aa64760e977beb4d77bf7262ddf29867c815574",
+  "vertices": 2986,
+  "triangles": 11304,
+  "parts": 72,
+  "subpixel_triangles_removed": 0,
+  "triangles_per_actor": {
+    "0": 5612,
+    "1": 5692
+  },
+  "materials": [
+    "shell",
+    "edge",
+    "seam",
+    "belly",
+    "joint",
+    "claw",
+    "sclera",
+    "iris",
+    "pupil",
+    "glint"
+  ],
+  "space": "Native joint-local XYZ, positions x100; native normals retained; authoring-pose transforms omitted"
+}

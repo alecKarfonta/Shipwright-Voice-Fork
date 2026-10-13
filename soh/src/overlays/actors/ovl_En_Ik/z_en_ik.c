@@ -5,6 +5,7 @@
  */
 
 #include "z_en_ik.h"
+#include "soh/Enhancements/arpg/IronKnuckleVisuals.h"
 #include "scenes/dungeons/jyasinboss/jyasinboss_scene.h"
 #include "objects/object_ik/object_ik.h"
 #include "vt.h"
@@ -177,6 +178,17 @@ void EnIk_Destroy(Actor* thisx, PlayState* play) {
     Collider_DestroyTris(play, &this->shieldCollider);
     Collider_DestroyCylinder(play, &this->bodyCollider);
     Collider_DestroyQuad(play, &this->axeCollider);
+    // [TIME] | [INFO] | EnIk.Destroy | Repeated practice and interrupted armor breaks must release their owned effects and pending debris buffers.
+    Effect_Delete(play, this->blureIdx);
+    if (this->bodyBreak.val != BODYBREAK_STATUS_FINISHED) {
+        ZELDA_ARENA_FREE_DEBUG(this->bodyBreak.matrices);
+        ZELDA_ARENA_FREE_DEBUG(this->bodyBreak.dLists);
+        ZELDA_ARENA_FREE_DEBUG(this->bodyBreak.objectIds);
+        this->bodyBreak.matrices = NULL;
+        this->bodyBreak.dLists = NULL;
+        this->bodyBreak.objectIds = NULL;
+        this->bodyBreak.val = BODYBREAK_STATUS_FINISHED;
+    }
 }
 
 void EnIk_SetupAction(EnIk* this, EnIkActionFunc actionFunc) {
@@ -849,6 +861,7 @@ s32 EnIk_OverrideLimbDraw3(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* p
             *dList = NULL;
         }
     }
+    ARPG_OverrideIronKnuckleLimb(play, thisx, limbIndex, dList);
     return false;
 }
 
@@ -884,7 +897,7 @@ void EnIk_PostLimbDraw3(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot,
     if (this->armorStatusFlag & 1) {
         BodyBreak_SetInfo(&this->bodyBreak, limbIndex, 26, 27, 28, dList, BODYBREAK_OBJECT_DEFAULT);
     }
-    if (limbIndex == 12) {
+    if (limbIndex == 12 && !ARPG_UseIronKnuckleVisuals(play, thisx)) {
         gSPMatrix(POLY_XLU_DISP++, MATRIX_NEWMTX(play->state.gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
         if (this->actor.params != 0) {
             gSPDisplayList(POLY_XLU_DISP++, gIronKnuckleHelmetMarkingDL);
@@ -921,7 +934,7 @@ void EnIk_PostLimbDraw3(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot,
         }
     }
 
-    switch (limbIndex) {
+    switch (ARPG_UseIronKnuckleVisuals(play, thisx) ? 0 : limbIndex) {
         case 22:
             gSPMatrix(POLY_XLU_DISP++, MATRIX_NEWMTX(play->state.gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
             gSPDisplayList(POLY_XLU_DISP++, object_ik_DL_016F88);
@@ -1448,8 +1461,10 @@ void EnIk_Init(Actor* thisx, PlayState* play) {
     EnIk* this = (EnIk*)thisx;
     s32 flag = this->actor.params & 0xFF00;
 
+    // [TIME] | [INFO] | EnIk.Init | Early flag-based despawn owns no trail; 0xFF means no scene switch, not switch 255.
+    this->blureIdx = TOTAL_EFFECT_COUNT;
     if (((this->actor.params & 0xFF) == 0 && (Flags_GetEventChkInf(EVENTCHKINF_FINISHED_NABOORU_BATTLE))) ||
-        (flag != 0 && Flags_GetSwitch(play, flag >> 8))) {
+        (flag != 0 && flag != 0xFF00 && Flags_GetSwitch(play, flag >> 8))) {
         Actor_Kill(&this->actor);
     } else {
         ActorShape_Init(&this->actor.shape, 0.0f, ActorShadow_DrawCircle, 30.0f);

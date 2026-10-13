@@ -1,0 +1,10 @@
+{
+  "all_existing_fields_preserved": true,
+  "canonical_weapon_slots": [
+    4,
+    5
+  ],
+  "difference": [],
+  "new_weapon_slots_empty": true,
+  "source_version": 9
+}

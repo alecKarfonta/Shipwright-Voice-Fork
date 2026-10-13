@@ -47,7 +47,7 @@ void SohInputEditorWindow::InitElement() {
 
     mButtonsBitmasks = { BTN_A, BTN_B, BTN_START, BTN_L, BTN_R, BTN_Z, BTN_CUP, BTN_CDOWN, BTN_CLEFT, BTN_CRIGHT };
     mDpadBitmasks = { BTN_DUP, BTN_DDOWN, BTN_DLEFT, BTN_DRIGHT };
-    mModifierButtonsBitmasks = { BTN_CUSTOM_MODIFIER1, BTN_CUSTOM_MODIFIER2 };
+    mModifierButtonsBitmasks = { BTN_CUSTOM_MODIFIER1, BTN_CUSTOM_MODIFIER2, BTN_CUSTOM_ABILITY5, BTN_CUSTOM_ABILITY6 };
     mCustomOcarinaButtonsBitmasks = { BTN_CUSTOM_OCARINA_NOTE_D4, BTN_CUSTOM_OCARINA_NOTE_F4,
                                       BTN_CUSTOM_OCARINA_NOTE_A4, BTN_CUSTOM_OCARINA_NOTE_B4,
                                       BTN_CUSTOM_OCARINA_NOTE_D5 };
@@ -66,6 +66,8 @@ void SohInputEditorWindow::InitElement() {
     addButtonName(BTN_DDOWN, "D-pad down");
     addButtonName(BTN_DLEFT, "D-pad left");
     addButtonName(BTN_DRIGHT, "D-pad right");
+    addButtonName(BTN_CUSTOM_ABILITY5, "Ability 5");
+    addButtonName(BTN_CUSTOM_ABILITY6, "Ability 6");
     addButtonName(0, "None");
 }
 
@@ -1621,8 +1623,10 @@ void SohInputEditorWindow::DrawLinkTab() {
         }
 
         if (ImGui::CollapsingHeader("Modifier Buttons")) {
-            DrawButtonLine("M1", portIndex, BTN_CUSTOM_MODIFIER1);
+            DrawButtonLine("Sprint / M1", portIndex, BTN_CUSTOM_MODIFIER1);
             DrawButtonLine("M2", portIndex, BTN_CUSTOM_MODIFIER2);
+            DrawButtonLine("Ability 5", portIndex, BTN_CUSTOM_ABILITY5);
+            DrawButtonLine("Ability 6", portIndex, BTN_CUSTOM_ABILITY6);
         }
 
         if (ImGui::CollapsingHeader("Ocarina Controls")) {

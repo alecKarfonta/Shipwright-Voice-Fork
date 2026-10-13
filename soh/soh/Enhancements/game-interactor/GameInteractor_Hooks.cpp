@@ -211,6 +211,20 @@ void GameInteractor_ExecuteOnTimestamp(u8 item) {
     GameInteractor::Instance->ExecuteHooks<GameInteractor::OnTimestamp>(item);
 }
 
+// [TIME] | [INFO] | GameInteractor_ExecuteOnDamageActor | dispatches normal + ID + ptr
+// hooks; hooks mutate *damage in place (resist/vuln/item bonuses)
+void GameInteractor_ExecuteOnDamageActor(void* actor, void* attacker, u32 dmgFlags, uint8_t attackType, float* damage) {
+    if (actor == nullptr || damage == nullptr) {
+        return;
+    }
+    GameInteractor::Instance->ExecuteHooks<GameInteractor::OnDamageActor>(actor, attacker, dmgFlags, attackType, damage);
+    GameInteractor::Instance->ExecuteHooksForID<GameInteractor::OnDamageActor>(
+        ((Actor*)actor)->id, actor, attacker, dmgFlags, attackType, damage);
+    GameInteractor::Instance->ExecuteHooksForPtr<GameInteractor::OnDamageActor>(
+        (uintptr_t)actor, actor, attacker, dmgFlags, attackType, damage);
+    GameInteractor::Instance->ExecuteHooksForFilter<GameInteractor::OnDamageActor>(actor, attacker, dmgFlags, attackType, damage);
+}
+
 void GameInteractor_ExecuteOnPlayerBonk() {
     GameInteractor::Instance->ExecuteHooks<GameInteractor::OnPlayerBonk>();
 }

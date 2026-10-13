@@ -1,5 +1,6 @@
 #include "z_en_eiyer.h"
 #include "objects/object_ei/object_ei.h"
+#include "soh/Enhancements/arpg/StingerVisuals.h"
 #include "soh/Enhancements/game-interactor/GameInteractor_Hooks.h"
 
 #define FLAGS (ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_HOSTILE)
@@ -170,6 +171,17 @@ void EnEiyer_Init(Actor* thisx, PlayState* play) {
 
 void EnEiyer_Destroy(Actor* thisx, PlayState* play) {
     EnEiyer* this = (EnEiyer*)thisx;
+    // [TIME] | [INFO] | EnEiyer.Destroy | Circling decoys borrow their parent's state and must not outlive an interrupted encounter.
+    if (this->actor.params == 0) {
+        Actor* actor = play->actorCtx.actorLists[ACTORCAT_ENEMY].head;
+        while (actor != NULL) {
+            if (actor->id == ACTOR_EN_EIYER && actor->params >= 1 && actor->params <= 3 &&
+                actor->parent == &this->actor) {
+                Actor_Kill(actor);
+            }
+            actor = actor->next;
+        }
+    }
     Collider_DestroyCylinder(play, &this->collider);
 }
 
@@ -607,7 +619,10 @@ void EnEiyer_UpdateDamage(EnEiyer* this, PlayState* play) {
         Actor_SetDropFlag(&this->actor, &this->collider.info, 1);
 
         if (this->actor.colChkInfo.damageEffect != 0 || this->actor.colChkInfo.damage != 0) {
-            if (Actor_ApplyDamage(&this->actor) == 0) {
+            // [TIME] | [INFO] | EnEiyer.Damage | The native underground one-hit kill must also zero health and report its defeat for XP and loot.
+            if (Actor_ApplyDamage(&this->actor) == 0 ||
+                (this->collider.info.bumper.dmgFlags == 0x19 && this->actor.colChkInfo.damage != 0)) {
+                this->actor.colChkInfo.health = 0;
                 Enemy_StartFinishingBlow(play, &this->actor);
                 Audio_PlayActorSound2(&this->actor, NA_SE_EN_EIER_DEAD);
                 this->actor.flags &= ~ACTOR_FLAG_ATTENTION_ENABLED;
@@ -706,14 +721,14 @@ void EnEiyer_Draw(Actor* thisx, PlayState* play) {
         gDPSetEnvColor(POLY_OPA_DISP++, 255, 255, 255, 255);
 
         POLY_OPA_DISP =
-            SkelAnime_DrawSkeleton2(play, &this->skelanime, EnEiyer_OverrideLimbDraw, NULL, this, POLY_OPA_DISP);
+            ARPG_DrawStingerSkeleton(play, &this->actor, &this->skelanime, EnEiyer_OverrideLimbDraw, 0, POLY_OPA_DISP);
     } else {
         Gfx_SetupDL_25Xlu(play->state.gfxCtx);
         gSPSegment(POLY_XLU_DISP++, 0x08, D_80116280);
         gDPSetEnvColor(POLY_XLU_DISP++, 255, 255, 255, this->actor.shape.shadowAlpha);
 
         POLY_XLU_DISP =
-            SkelAnime_DrawSkeleton2(play, &this->skelanime, EnEiyer_OverrideLimbDraw, NULL, this, POLY_XLU_DISP);
+            ARPG_DrawStingerSkeleton(play, &this->actor, &this->skelanime, EnEiyer_OverrideLimbDraw, 1, POLY_XLU_DISP);
     }
     CLOSE_DISPS(play->state.gfxCtx);
 }

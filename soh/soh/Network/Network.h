@@ -3,13 +3,18 @@
 #ifdef __cplusplus
 
 #include <thread>
+#include <atomic>
+#include "RelayWebSocket.h"
 #include <SDL2/SDL_net.h>
 #include <nlohmann/json.hpp>
 
 class Network {
   private:
     IPaddress networkAddress;
-    TCPsocket networkSocket;
+    TCPsocket networkSocket = nullptr;
+    std::unique_ptr<PublicRelay::Socket> relaySocket;
+    void ReceiveWebSocket();
+    void ConsumeData(const std::string& bytes);
     std::thread receiveThread;
     std::string receivedData;
 
@@ -18,8 +23,8 @@ class Network {
     void HandleRemoteJson(std::string payload);
 
   public:
-    bool isEnabled;
-    bool isConnected;
+    std::atomic<bool> isEnabled{ false };
+    std::atomic<bool> isConnected{ false };
 
     void Enable(const char* host, uint16_t port);
     void Disable();

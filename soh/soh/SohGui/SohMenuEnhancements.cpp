@@ -3,6 +3,7 @@
 #include "soh/Enhancements/SwitchAge.h"
 #include "soh/Enhancements/AdultMasks.h"
 #include "soh/Enhancements/BunnyHood.h"
+#include "soh/Enhancements/Sprint/Sprint.h"
 #include "soh/Enhancements/FileSelectEnhancements.h"
 #include <soh/Enhancements/game-interactor/GameInteractor.h>
 #include <soh/OTRGlobals.h>
@@ -337,6 +338,57 @@ void SohMenu::AddMenuEnhancements() {
         })
         .CVar(CVAR_ENHANCEMENT("ReworkedTargeting.Btn"))
         .Options(BtnSelectorOptions().Tooltip("Buttons to activate target switching."));
+
+    AddWidget(path, "Sprint", WIDGET_SEPARATOR_TEXT);
+    AddWidget(path, "Enable Sprint", WIDGET_CVAR_CHECKBOX)
+        .CVar(CVAR_SPRINT_ENABLED_NAME)
+        .Options(CheckboxOptions().Tooltip(
+            "Hold the sprint button while running to move faster for short bursts.\n"
+            "A stamina bar drains while sprinting and refills while walking or standing still;\n"
+            "when fully drained, sprinting locks out until the bar has partially recovered.\n\n"
+            "The bar hides itself when stamina is full."));
+    AddWidget(path, "Show Stamina Bar", WIDGET_CVAR_CHECKBOX)
+        .PreFunc([](WidgetInfo& info) { info.isHidden = CVarGetInteger(CVAR_SPRINT_ENABLED_NAME, 0) == 0; })
+        .CVar(CVAR_WINDOW("SprintBarEnabled"))
+        .Options(CheckboxOptions()
+                     .DefaultValue(true)
+                     .Tooltip("Show the stamina bar overlay while it is draining or regenerating."));
+    AddWidget(path, "Sprint Button Combination:", WIDGET_CVAR_BTN_SELECTOR)
+        .PreFunc([](WidgetInfo& info) { info.isHidden = CVarGetInteger(CVAR_SPRINT_ENABLED_NAME, 0) == 0; })
+        .CVar(CVAR_SPRINT_BTN_NAME)
+        .Options(BtnSelectorOptions().DefaultValue(BTN_CUSTOM_MODIFIER1).Tooltip(
+            "Buttons to activate sprinting. Hold this combo while moving to sprint.\n\n"
+            "Avoid the \"Reset Button Combination\" (Modifier 2 by default) - pressing\n"
+            "that combo resets the game."));
+    AddWidget(path, "Sprint Speed: %.2fx", WIDGET_CVAR_SLIDER_FLOAT)
+        .PreFunc([](WidgetInfo& info) { info.isHidden = CVarGetInteger(CVAR_SPRINT_ENABLED_NAME, 0) == 0; })
+        .CVar(CVAR_SPRINT_MULT_NAME)
+        .Options(FloatSliderOptions()
+                     .Min(1.1f)
+                     .Max(3.0f)
+                     .DefaultValue(1.5f)
+                     .ShowButtons(true)
+                     .Format("%.2fx")
+                     .Tooltip("Movement speed multiplier applied while sprinting."));
+    AddWidget(path, "Stamina Duration: %d seconds", WIDGET_CVAR_SLIDER_INT)
+        .PreFunc([](WidgetInfo& info) { info.isHidden = CVarGetInteger(CVAR_SPRINT_ENABLED_NAME, 0) == 0; })
+        .CVar(CVAR_SPRINT_DRAIN_NAME)
+        .Options(IntSliderOptions()
+                     .Min(1)
+                     .Max(20)
+                     .DefaultValue(5)
+                     .Format("%d seconds")
+                     .Tooltip("How long a full stamina bar lasts while sprinting."));
+    AddWidget(path, "Stamina Recovery: %d seconds", WIDGET_CVAR_SLIDER_INT)
+        .PreFunc([](WidgetInfo& info) { info.isHidden = CVarGetInteger(CVAR_SPRINT_ENABLED_NAME, 0) == 0; })
+        .CVar(CVAR_SPRINT_REGEN_NAME)
+        .Options(IntSliderOptions()
+                     .Min(1)
+                     .Max(20)
+                     .DefaultValue(3)
+                     .Format("%d seconds")
+                     .Tooltip("How long it takes to refill the stamina bar while moving.\n"
+                              "Standing still recovers twice as fast."));
 
     AddWidget(path, "Item Count Messages", WIDGET_SEPARATOR_TEXT);
     AddWidget(path, "Gold Skulltula Tokens", WIDGET_CVAR_CHECKBOX)

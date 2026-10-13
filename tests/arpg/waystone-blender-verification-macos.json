@@ -1,0 +1,91 @@
+{
+  "status": "passed",
+  "date": "2026-10-12T20:00:45.160704+00:00",
+  "scope": "Original Blender oath shrine, five oath crests, three wave-progress lenses, articulated reward coffer and saved-state presentation. Earned-cache placement after reload and retention after death are fixed. Broader world events and replayability remain unfinished.",
+  "assets": {
+    "blend": "art/arpg/waystone/waystone.blend",
+    "glb": "art/arpg/waystone/waystone.glb",
+    "preview": "art/arpg/waystone/waystone-preview.png",
+    "compiler": "art/arpg/waystone/export_runtime.py"
+  },
+  "geometry": {
+    "source_sha256": "4dd6b1517640bdfde9b9e94d6972ca7ee435ae3e255abb9faeed107f9ffeb5db",
+    "vertices": 18529,
+    "triangles": 10522,
+    "parts": 32,
+    "subpixel_triangles_removed": 0,
+    "triangles_per_part": {
+      "0": 2436,
+      "1": 88,
+      "2": 20,
+      "3": 20,
+      "4": 20,
+      "5": 5180,
+      "6": 984,
+      "7": 1036,
+      "8": 74,
+      "9": 216,
+      "10": 56,
+      "11": 360,
+      "12": 32
+    },
+    "materials": [
+      "stone",
+      "cut",
+      "bronze",
+      "gold",
+      "wood",
+      "grain",
+      "iron",
+      "velvet",
+      "oath",
+      "gem",
+      "shadow"
+    ],
+    "space": "Native model-local XYZ, positions x100; native normals retained; studio transforms omitted; crystal and lid use separate runtime pivots"
+  },
+  "portable_checks": "waystone-portable-results-macos.json",
+  "native_checks": {
+    "file": "waystone-runtime-results-macos.json",
+    "count": 39,
+    "note": "Final asset and expedition logic tested. Isolated-adventure preview buttons were added afterward and tested in the production UI."
+  },
+  "visual_checks": [
+    "Blender studio inspection of cut masonry, bronze inlays/astrolabe, five emblems, articulated walnut coffer and contents. Moved the three wave lenses to the right pylon for visibility beside the open lid.",
+    "Native Metal QA showed Iron shrine during real enemy animation and the three-wave test.",
+    "Release43 Settings and testing / Testing shortcuts / Oath shrine preview selected Cinder oath and Preview earned coffer; new flame crest, gold crystal, three gold wave markers and open treasure coffer rendered in Hyrule Field.",
+    "Claim equipment through the real expedition journal switched to Cache claimed; returning to the world showed the coffer still open with contents removed and the crystal restored to the Cinder color.",
+    "Storm covenant / Preview empty coffer produced the distinct lightning crest and violet crystal with empty open interior.",
+    "Release43 left paused in Equipment, backpack count rose from 35 to 36 after the single equipment claim."
+  ],
+  "build_runtime_tests": "OFF",
+  "release_sha256": "667e8b383fc8bb0e57d38d20a9e7ae978822b90067edc2b79f092a0dec8fba25",
+  "runtime_qa_binary_sha256": "366816acccb816aed912b44177aab634bb5f7f66b5ab6fecb83611ed1855a7b3",
+  "binary_asset_check": "All 18,529 final generated vertices and normals matched byte-for-byte in both frozen binaries. Release excludes the native expedition QA registration.",
+  "preview_app": "/tmp/soh-arpg-inventory-preview-20261011-43/Ship ARPG Inventory.app",
+  "preview_home": "/tmp/soh-arpg-remaster-preview",
+  "normal_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "source_sha256": {
+    "art/arpg/waystone/build_waystone.py": "173ff027448d0d329ef6987cf096ba421245cce5e0200e77ebf43853b7db97a6",
+    "art/arpg/waystone/export_runtime.py": "58c46faf9c809aa6096ef2d9a08d97d2315eeb4fd7b68f5a85c8c1cf1c3ff578",
+    "art/arpg/waystone/waystone.glb": "4dd6b1517640bdfde9b9e94d6972ca7ee435ae3e255abb9faeed107f9ffeb5db",
+    "art/arpg/waystone/waystone.blend": "89cee73d65c34e612e1c656632276849c8ab43185af8b5947da1f89721d19138",
+    "soh/soh/Enhancements/arpg/WaystoneBlenderData.h": "6b61f6b337af43ec3d50eebe6587fea4b9dec50d9328e0077912d48d15194eb7",
+    "soh/soh/Enhancements/arpg/WaystoneGeometry.h": "609f6aa764997a3f646722bc85463f8d45746afecc97d4c6e2844fbc257a72df",
+    "soh/soh/Enhancements/arpg/WaystoneState.h": "8fda33a3f20b18c632e0f0b4d1d12960f44c2c33eb47891b0696cd73570b0a00",
+    "soh/soh/Enhancements/arpg/GearVisuals.cpp": "00ab492021207355289aa1d24dc58bf4d6f75ced9cfa23d3901524081770b8af",
+    "soh/soh/Enhancements/arpg/ExpeditionSystem.cpp": "88ed0d64cb95b8d73fffe664df40ce43434e0a3a46c244ecd8d0d3924b01eafd",
+    "soh/soh/Enhancements/arpg/ARPGTesting.cpp": "edf46f407aa5459c53d5cb587fc65391a5226759f02127def70ad63d00b5cf40",
+    "tests/arpg/expedition_runtime_test.cpp": "afb7ceef7ba7bef047cdd7adff1eeac94d607ac91eaea9324ca6c373345df5e0",
+    "tests/arpg/waystone_geometry_test.cpp": "f3dc2fa2e6927e8d0b37c57a0206bd510f7bb72345b4aec2723340929e9f9873"
+  },
+  "limitations": [
+    "Native lit vertex colors; studio PBR metallic/roughness is preview only.",
+    "Shrine has no blocking collision and uses existing safe-ground placement.",
+    "Cache contents symbolize the reward choices; they do not create a separate rupee pickup or change reward quantities.",
+    "Reward claims still use the expedition journal. Expeditions remain solo wilderness encounters.",
+    "Native QA observes real enemies and scripted defeat callbacks; it does not prove player combat balance.",
+    "Broader scene/age coverage and crowded-scene performance remain unmeasured."
+  ],
+  "follow_up_verification": "ritual-verification-macos.json"
+}

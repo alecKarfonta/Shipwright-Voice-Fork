@@ -1,0 +1,95 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-12T23:09:02.758362-04:00",
+  "feature": "Existing normal and Big Deku Baba visual upgrade on native jaw rigs, stem transforms and action controllers",
+  "native_checks": 93,
+  "native_render_frames": 321,
+  "native_pruned_frames": 21,
+  "native_stick_frames": 60,
+  "native_result": "tests/arpg/dekubaba-runtime-results-macos.json",
+  "portable": "CMake/CTest geometry checks and ASAN/UBSAN passed on all fourteen part/species combinations (LeakSanitizer disabled on macOS)",
+  "animation": {
+    "status": "passed",
+    "native_jaw_frames": 140,
+    "variant_frame_checks": 280,
+    "studio_stem_endpoint_checks": 280,
+    "native_head_envelope_tolerance_world_units": 2.6,
+    "note": "Quantized jaw meshes checked through all native animation frames; stem preview endpoint checks are supplemented by native live growth/lunge/pruning tests."
+  },
+  "geometry": {
+    "source_sha256": "1f4971cc56ccd06096c173ddf439d3ed7600b4b24062ebc50cce9b9341f33f2b",
+    "vertices": 2980,
+    "triangles": 13144,
+    "parts": 54,
+    "subpixel_triangles_removed": 0,
+    "triangles_per_actor": {
+      "0": 6512,
+      "1": 6632
+    },
+    "materials": [
+      "skin",
+      "ridge",
+      "spot",
+      "lip",
+      "interior",
+      "gum",
+      "tooth",
+      "stem",
+      "leaf",
+      "vein",
+      "bark"
+    ],
+    "space": "Native joint-local XYZ, positions x100; native normals retained; authoring-pose transforms omitted"
+  },
+  "native_scope": [
+    "Both native sizes, seven replacement parts each and stable cached display lists",
+    "Native seven-sphere collider, armored retraction and damage rejection",
+    "Live emergence, windup, lunge, recovery, jaw articulation and rooted stem motion",
+    "Nut stun activates the six native stem hitboxes; sword pruning retains the severed-head somersault and collectible conversion",
+    "Matching stick pickup retains native miscellaneous category; pruning and fire/shrink death each award one defeat",
+    "Native floor attachment, ARPG/model toggles, distance fallback and complete scene teardown"
+  ],
+  "visual_checks": [
+    "Blender frontal/side/top and close jaw-cycle views inspected",
+    "Cap proportions refined against all native jaw frames; ivory markings projected onto the actual mesh",
+    "Normal and Big plants inspected in the native game with scene lighting, native texture detail and distinct scales/palettes",
+    "Production practice selector summons both sizes; emergence and rooted animated encounters render correctly",
+    "I opens Equipment and pauses the production practice adventure"
+  ],
+  "asset_authorship": "Original local Blender MCP meshes; editable standalone source and CPU-rendered preview saved without overwriting the unrelated live Blender project",
+  "packaging_note": "A background EEVEE render failed with an NSInvalidArgumentException after saving the source. Packaging was successfully rerun with CPU Cycles; the final blend and preview are from that successful run.",
+  "production_binary": "/tmp/soh-dekubaba/production",
+  "production_sha256": "c435328433efe7b512760b7306402085aaf7b89cf4766fdf5eabf4bedcfb590c",
+  "qa_harness_excluded_from_production": true,
+  "production_app": "/tmp/soh-dekubaba-playtest/Deku Baba Adventure.app",
+  "production_profile": "/tmp/soh-dekubaba-playtest/profiles/arpg-testing",
+  "production_launcher": "/tmp/soh-dekubaba-production.py",
+  "player_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "compiled_source_sha256": {
+    "soh/soh/Enhancements/arpg/EnemyVisuals.cpp": "4786af0de4abd80eb76b6b546137446331cf23f0885cfbc431ea76334f362454",
+    "soh/soh/Enhancements/arpg/DekuBabaGeometry.h": "84a955dbb906f0bcbbb7d53440627cdf5582182e7d92a70521215089ffe14f6c",
+    "soh/soh/Enhancements/arpg/DekuBabaParts.h": "b7d519737ce0680a07587232b8d5b2ba224126287a3b7cc380c80057a171a5fb",
+    "soh/soh/Enhancements/arpg/DekuBabaBlenderData.h": "1d570784001eb70f9106705a90771d7b09f715c27a4cadc2f2ddae8e497d2601",
+    "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "f954d045ce0b24efb2ce7d54c43dff1b75cdea075e5271bab9ab70ac36134b03",
+    "soh/src/overlays/actors/ovl_En_Dekubaba/z_en_dekubaba.c": "af2c32663fc99f260a99260a12e451f1e0d7ef17669f1955c21625dc9957233f",
+    "tests/arpg/dekubaba_runtime_test.cpp": "e5d30f80006bd6096ea55e87656c5d55d70e903bbb9cdbd238bc45faec4f6504",
+    "soh/soh/Enhancements/arpg/NativeMaterials.h": "69602f4eaea1faf809e5078fd299fa3d591f91510525a061bd77ddd19ed47393"
+  },
+  "workspace_source_sha256": {
+    "soh/soh/Enhancements/arpg/EnemyVisuals.cpp": "4786af0de4abd80eb76b6b546137446331cf23f0885cfbc431ea76334f362454",
+    "soh/soh/Enhancements/arpg/DekuBabaGeometry.h": "84a955dbb906f0bcbbb7d53440627cdf5582182e7d92a70521215089ffe14f6c",
+    "soh/soh/Enhancements/arpg/DekuBabaParts.h": "b7d519737ce0680a07587232b8d5b2ba224126287a3b7cc380c80057a171a5fb",
+    "soh/soh/Enhancements/arpg/DekuBabaBlenderData.h": "1d570784001eb70f9106705a90771d7b09f715c27a4cadc2f2ddae8e497d2601",
+    "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "f954d045ce0b24efb2ce7d54c43dff1b75cdea075e5271bab9ab70ac36134b03",
+    "soh/src/overlays/actors/ovl_En_Dekubaba/z_en_dekubaba.c": "af2c32663fc99f260a99260a12e451f1e0d7ef17669f1955c21625dc9957233f",
+    "tests/arpg/dekubaba_runtime_test.cpp": "e5d30f80006bd6096ea55e87656c5d55d70e903bbb9cdbd238bc45faec4f6504",
+    "soh/soh/Enhancements/arpg/NativeMaterials.h": "2180c98d5ee7fd28890922bfbfae51673e8e60b569e15ec037424257ee788ab0"
+  },
+  "concurrent_dependency_difference": "After QA, NativeMaterials.h gained an appended Shell enum value, object_gol include and Shell texture case. These are unused by this pass. Removing exactly those additions reproduces the compiled dependency byte-for-byte; the Plant, material tint and UV paths tested here are unchanged.",
+  "build_note": "Targeted incremental build from the previously verified isolated Tektite snapshot, recompiling shared enemy rendering, the native Deku Baba actor and practice controls. It includes the current Plant material path. This verifies the Deku Baba pass, not every concurrent worktree change or the unrelated Shell addition.",
+  "remaining": [
+    "Full playthrough coverage across native plant rooms, sloped placements, all damage combinations and third-party skeleton packs",
+    "Further upgrades should prioritize existing enemies and their established movement",
+    "Overall replayability objective remains active and partial"
+  ]
+}

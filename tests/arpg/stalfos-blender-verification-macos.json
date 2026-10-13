@@ -1,0 +1,76 @@
+{
+  "status": "passed",
+  "date": "2026-10-12T19:45:07.723245+00:00",
+  "scope": "Blender-authored Stalfos anatomy, armor and weapons on all 24 native visible limbs, with ordinary, champion and elite variants. Native checks ran against the final geometry. Other enemy families, environment assets and the broader replayability goal remain unfinished.",
+  "assets": {
+    "blend": "art/arpg/stalfos/stalfos.blend",
+    "glb": "art/arpg/stalfos/stalfos.glb",
+    "preview": "art/arpg/stalfos/stalfos-preview.png",
+    "compiler": "art/arpg/stalfos/export_runtime.py"
+  },
+  "geometry": {
+    "source_sha256": "d177dc655eade94a159575bd61faf3afaf9cae52ece0f9b5943fddc5cb98cef9",
+    "vertices": 20092,
+    "triangles": 108826,
+    "parts": 195,
+    "subpixel_triangles_removed": 0,
+    "triangles_per_actor": {
+      "0": 35840,
+      "1": 36284,
+      "2": 36702
+    },
+    "materials": [
+      "bone",
+      "shadow",
+      "armor",
+      "trim",
+      "cloth",
+      "eye",
+      "steel",
+      "edge",
+      "cavity",
+      "strap",
+      "inlay"
+    ],
+    "space": "Native joint-local XYZ, positions x100; native normals retained; authoring-pose transforms omitted"
+  },
+  "portable_checks": "stalfos-blender-portable-results-macos.json",
+  "native_checks": [
+    {
+      "file": "stalfos-blender-runtime-results-macos.json",
+      "count": 18
+    }
+  ],
+  "visual_checks": [
+    "Local Blender MCP authored the three ranks in a separate Stalfos Workshop scene; standalone source packaged separately without overwriting the user project.",
+    "Reviewed all three ranks in the Blender studio preview; refined orbital openings, jaw/teeth, continuous ribs and phalanges, spine overlap, forged shield orientation and native sword-tip alignment.",
+    "Native Metal QA playback reviewed all three rank variants during combat and the automated compatibility sequence.",
+    "Release42 Settings and testing menu selected Stalfos and Elite; Spawn enemy ahead produced the crowned Stalfos with cyan eyes/inlays, new skull, bones, layered armor, sword and shield.",
+    "Observed the elite from the front during its native raised-sword attack; shield and sword remained attached to their animated hands.",
+    "Release42 left paused in the Equipment journal with the testing encounter ready."
+  ],
+  "build_runtime_tests": "OFF",
+  "release_sha256": "177146918f3bce8ae0a02ec85e205e9a9bba819c28bdf417f44565ac535de9df",
+  "runtime_qa_binary_sha256": "7e4c87c94071ac1999bdf2983768adeb2e824d168f339fee4432f64d89b50228",
+  "binary_asset_check": "All 20,092 final Stalfos vertices matched byte-for-byte in both frozen binaries. The release also matched all 17,640 Wolfos and 29,854 Lizalfos vertices and excludes native QA registration.",
+  "preview_app": "/tmp/soh-arpg-inventory-preview-20261011-42/Ship ARPG Inventory.app",
+  "preview_home": "/tmp/soh-arpg-remaster-preview",
+  "normal_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "source_sha256": {
+    "art/arpg/stalfos/build_stalfos.py": "bba38416e639bc9a107a0768c75805ec3d877684b61ed8aa184a74de062fb95d",
+    "art/arpg/stalfos/export_runtime.py": "f992cc56785f212b6d906dcf1b000850164ead2a8d703077b47425760444f0f1",
+    "art/arpg/stalfos/stalfos.glb": "d177dc655eade94a159575bd61faf3afaf9cae52ece0f9b5943fddc5cb98cef9",
+    "art/arpg/stalfos/stalfos.blend": "c45bf394416ffc9d6c45767c8cccf1cdb3cb03486f559dd8ba3c6ce408d47984",
+    "soh/soh/Enhancements/arpg/EnemyGeometry.h": "80373c721013cf3ec15ace30563ea90a289717c6792b3d512e8c7cf6c8952f70",
+    "soh/soh/Enhancements/arpg/StalfosBlenderData.h": "2f84dbd8553866fb465e91bcbeef72f9b1711a6edc8df38e62ff7636191553a6",
+    "soh/soh/Enhancements/arpg/EnemyVisuals.cpp": "f43d9a523ec2c0b188965d2c47f8c74897590e361080bb51010a1b11b5845b13",
+    "tests/arpg/enemy_geometry_test.cpp": "acffb6baf7d1e755932cffe499a25be44ab52b0be1defba78c6395b88aa95e1a",
+    "tests/arpg/enemy_models_runtime_test.cpp": "def5315f1a55576599a99ee6f23ce5ce1f564ae3b1f722e3695e0c797ffbd168"
+  },
+  "limitations": [
+    "Runtime uses native lit vertex colors and fog; Blender studio PBR materials are preview only.",
+    "Editable Blender source is a posed limb workshop; native skeletons and animations drive the game.",
+    "Custom skeleton packs, broad scene/age coverage and crowded-scene performance remain unvalidated.",
+    "Wolfos and Lizalfos portable regressions passed this turn; their native suites were not rerun during the Stalfos pass."
+  ]
+}

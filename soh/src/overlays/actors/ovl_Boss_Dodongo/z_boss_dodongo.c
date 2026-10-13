@@ -1,4 +1,5 @@
 #include "z_boss_dodongo.h"
+#include "soh/Enhancements/arpg/ARPGBridge.h"
 #include "textures/boss_title_cards/object_kingdodongo.h"
 #include "objects/object_kingdodongo/object_kingdodongo.h"
 #include "overlays/actors/ovl_Door_Warp1/z_door_warp1.h"
@@ -1509,7 +1510,8 @@ void BossDodongo_UpdateDamage(BossDodongo* this, PlayState* play) {
             this->collider.elements->info.bumperFlags &= ~2;
             item1 = this->collider.elements[0].info.acHitInfo;
             if ((this->actionFunc == BossDodongo_Vulnerable) || (this->actionFunc == BossDodongo_LayDown)) {
-                swordDamage = damage = CollisionCheck_GetSwordDamage(item1->toucher.dmgFlags, play);
+                swordDamage = damage = ARPG_BossWeaponDamageWithWeapon(&this->actor, this->collider.elements[0].info.acHit ? this->collider.elements[0].info.acHit->actor : NULL, item1->toucher.dmgFlags,
+                                           CollisionCheck_GetSwordDamage(item1->toucher.dmgFlags, play));
 
                 if (damage != 0) {
                     Audio_PlayActorSound2(&this->actor, NA_SE_EN_DODO_K_DAMAGE);

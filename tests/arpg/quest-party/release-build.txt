@@ -1,0 +1,47 @@
+[0/2] Re-checking globbed directories...
+[1/29] Building CXX object libultraship/src/CMakeFiles/libultraship.dir/ship/window/gui/resource/GuiTexture.cpp.o
+[2/29] Creating OSX icons ...
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_16x16.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_16x16@2x.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_32x32.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_32x32@2x.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_128x128.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_128x128@2x.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_256x256.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_256x256@2x.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_512x512.png
+[3/29] Building CXX object libultraship/src/CMakeFiles/libultraship.dir/ship/window/gui/resource/GuiTextureFactory.cpp.o
+[4/29] Building C object libultraship/CMakeFiles/stb.dir/__/_deps/stb/stb_impl.c.o
+[5/29] Linking C static library libultraship/libstb.a
+[6/29] Building CXX object libultraship/src/CMakeFiles/libultraship.dir/ship/window/gui/Gui.cpp.o
+[7/29] Building CXX object libultraship/src/CMakeFiles/libultraship.dir/libultraship/window/gui/GfxDebuggerWindow.cpp.o
+[8/29] Building CXX object libultraship/src/CMakeFiles/libultraship.dir/fast/backends/gfx_sdl2.cpp.o
+[9/29] Building CXX object libultraship/src/CMakeFiles/libultraship.dir/fast/Fast3dWindow.cpp.o
+[10/29] Building CXX object libultraship/src/CMakeFiles/libultraship.dir/fast/Fast3dGui.cpp.o
+[11/29] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/TimeDisplay/TimeDisplay.cpp.o
+[12/29] Linking CXX static library libultraship/src/libultraship.a
+[13/29] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/ARPGTheme.cpp.o
+[14/29] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/controls/InputViewer.cpp.o
+[15/29] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/timesplits/TimeSplits.cpp.o
+[16/29] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/controls/Mapper.cpp.o
+[17/29] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/debugger/debugSaveEditor.cpp.o
+[18/29] Building CXX object soh/CMakeFiles/soh.dir/soh/Notification/Notification.cpp.o
+[19/29] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/AdventureJournal.cpp.o
+[20/29] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/randomizer/Plandomizer.cpp.o
+[21/29] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/timesplits/TimeSplitsSettings.cpp.o
+[22/29] Building CXX object soh/CMakeFiles/soh.dir/soh/ResourceManagerHelpers.cpp.o
+[23/29] Building CXX object soh/CMakeFiles/soh.dir/soh/SohGui/ImGuiUtils.cpp.o
+[24/29] Building CXX object soh/CMakeFiles/soh.dir/soh/SohGui/SohMenuStartingItems.cpp.o
+[25/29] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/timesplits/TimeSplitsActions.cpp.o
+[26/29] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/randomizer/randomizer_item_tracker.cpp.o
+[27/29] Building CXX object soh/CMakeFiles/soh.dir/soh/OTRGlobals.cpp.o
+[28/29] Linking CXX executable soh/soh-macos; Copying asset ymls...

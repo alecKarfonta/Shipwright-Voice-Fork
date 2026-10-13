@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-12",
+  "platform": "macOS / Metal",
+  "scope": "Reference-inspired stash and spatial equipment layout, retaining the OoT theme; 18 painted gem icons",
+  "build": {
+    "full_command": "cmake --build build-cmake --target soh GenerateSohOtr -j 6",
+    "full_log": "/tmp/soh-inventory-layout-build.log",
+    "full_result": "passed",
+    "final_source_compile": "ninja -C build-cmake soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/ARPGInventoryWindow.cpp.o",
+    "final_link": "CMake-generated soh/soh-macos link command emitted by ninja -t commands -s",
+    "final_preview_log": "/tmp/soh-inventory-layout-reviewed-link.log",
+    "final_result": "passed",
+    "note": "Concurrent builds in the shared checkout repeatedly invalidated Ninja dependency metadata; final UI iterations compiled the changed object and used the generated link command.",
+    "production_link_log": "/tmp/soh-inventory-layout-production-link.log",
+    "production_result": "passed",
+    "production_executable": "build-cmake/soh/soh-macos"
+  },
+  "art": {
+    "count": 18,
+    "families": [
+      "Ruby",
+      "Sapphire",
+      "Topaz",
+      "Emerald",
+      "Amethyst",
+      "Diamond"
+    ],
+    "grades": [
+      "Rough",
+      "Cut",
+      "Perfect"
+    ],
+    "directory": "soh/assets/custom/textures/arpg/gems",
+    "prompts": "art/gem-icon-prompts.json",
+    "generation": "Built-in image_gen, generate mode",
+    "asset_checks": "18 unique material IDs, RGBA transparency and SHA256 hashes verified against the manifest",
+    "visual_checks": [
+      "All variants reviewed at 96px in color and 48px in grayscale.",
+      "Painted gem cards, grade selectors, material details and refinement input/output loaded in the native application."
+    ],
+    "theme": "Original journal-stone artwork, indigo controls, native OoT glyphs and yellow pause-selection cursors retained."
+  },
+  "native_checks": [
+    "1280x800: Stash and Inventory panels; Gear/Gems/Runes categories; sword and shield flank tunic and boots; bows and hammers sit below.",
+    "1280x800: all 18 gems and their names fit together, aligned by family and grade; switching stash categories leaves equipment visible.",
+    "Selecting a gem opens its artwork, quantity and slot-specific socket bonuses; Socket stone and Refine gem actions are visible together.",
+    "Refine gem preserves the chosen family and grade when entering the forge.",
+    "Rough Ruby refinement: 6 -> 3 -> 0; Cut Ruby 6 -> 8. Empty stack visibly dims and the transaction disables with a reason.",
+    "Selecting Sapphire updates all three grade-button paintings and the before/after conversion preview.",
+    "Rune stash remains available with all six native material IDs.",
+    "Click Equip in the inspector equips Cinderwake, returns displaced gear to the source backpack slot, and preserves the occupied-slot count.",
+    "640x480: compact Change page control expands all eight journal destinations and closes after selecting one.",
+    "640x480: full-width Stash and Equipment views; complete gem cards remain visible; material selection opens a separate readable inspector with socket/refine actions.",
+    "640x480: equipment view shows the four core armor/weapon slots at large scale; additional weapon slots and actions scroll below.",
+    "640x480 forge: large gem artwork and grade controls remain visible; scrolling reaches the refinement preview and combine button while action navigation stays fixed.",
+    "Adventure Items remains reachable through the compact chooser; Escape returns to Equipment.",
+    "Final reviewed preview restored to 1280x800, showing the gem stash alongside equipment."
+  ],
+  "isolation": "Temporary SHIP_HOME profiles with SOH_ARPG_SANDBOX=1 and SOH_ARPG_FORGE_PREVIEW=1; no normal save files modified.",
+  "preview": "/tmp/Ship Inventory Reviewed.app",
+  "limits": [
+    "Physical controller not attached or tested.",
+    "Native automation selected source cards instead of sustaining a drag, so drag-and-drop was not confirmed. Click-to-equip was verified; existing atomic move handlers are retained and active drag sources keep equipment targets visible."
+  ]
+}

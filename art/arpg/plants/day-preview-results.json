@@ -1,0 +1,14 @@
+{
+  "checks": [
+    "Plant preview has a supported native forest floor",
+    "Plant preview has a supported native forest floor",
+    "Plant preview has a supported native forest floor",
+    "Plant preview has a supported native forest floor",
+    "Plant preview has a supported native forest floor",
+    "Plant preview camera created"
+  ],
+  "drawFrames": 120,
+  "error": "",
+  "phase": 97,
+  "status": "visual_review"
+}

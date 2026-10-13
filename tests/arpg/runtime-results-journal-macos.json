@@ -1,0 +1,30 @@
+{
+  "checks": [
+    "Native pause opens exactly one journal",
+    "Journal enables controller navigation",
+    "Assignment rejects invalid slots and buttons",
+    "Disabled D-pad slots cannot be assigned",
+    "Native items assign to C-buttons",
+    "Moving an assigned item swaps the displaced item",
+    "Elemental arrows use the native combined bow slot",
+    "Separate-arrows setting preserves its own slot",
+    "D-pad assignment updates the native extended loadout",
+    "Child cannot assign adult-only equipment",
+    "Base gear rejects invalid equipment",
+    "Iron boots equip through the new journal",
+    "Kokiri boots restore normally",
+    "Assignable equipment uses native C-button loadout",
+    "Equipment assignment honors its enhancement gate",
+    "Temporary adventures cannot overwrite a save slot",
+    "Journal uses native save lifecycle in an isolated slot",
+    "Gameplay stays frozen while the journal is open",
+    "Save request writes the isolated file",
+    "Resume completes native pause teardown",
+    "Gameplay resumes after journal close",
+    "Journal reopens after resume",
+    "Disabling ARPG safely closes the journal without exposing uninitialized native cursor data",
+    "Dungeon pause still prepares both native map textures"
+  ],
+  "error": "",
+  "status": "passed"
+}

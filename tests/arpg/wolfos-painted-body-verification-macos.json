@@ -1,0 +1,166 @@
+{
+  "verified_at_utc": "2026-10-13T15:41:28.030411+00:00",
+  "status": "Painted coat, face and selected body-edge revision verified; complete modern character still pending",
+  "master": {
+    "path": "/Users/alec/git/z64-romhack-tutorials/soh/art/arpg/wolfos/workspace/wolfos-body-refined-v2.blend",
+    "sha256": "f9baf3bf61c74d957018a0cf00dd5cd3cb28ea10cc796c2afd46dcf9bc3877f1",
+    "previous_eye_master_sha256": "3a3faf9b27c42d0deb46dfa5d915d31fff1a68d8eb6cf7a1c3ed3a921f6d0c11"
+  },
+  "pack": {
+    "path": "/Users/alec/git/z64-romhack-tutorials/soh/art/arpg/wolfos/workspace/export/wolfos-painted-body-v2.o2r",
+    "sha256": "573e8e684a2b7f5518d9562fc38d681e6e620dbe79347b2a174c9a702b73f988",
+    "triangles": 913,
+    "species": [
+      "Normal"
+    ],
+    "painted_maps": 7,
+    "original_tongue_map_retained": true
+  },
+  "sources_sha256": {
+    "native_asset.py": "9849b2b3dd08c15ee98d208fdd216b634e87bdb49a971d45b68520638e74f460",
+    "export_master.py": "16c2cd4a53754114d15fe823760bd164e844abd5df2c3a8573a9c37372b74a8a",
+    "apply_paint_maps.py": "7c72e4c81c04fd4a38c8fb44155542131686ddb3860b95fe325152ddd3e06f7b",
+    "author_coat_uv.py": "6bfeb9d2e4c0b021b55a8c42414691b073fbde995fdfdd3dfcda715b287cb1b4",
+    "refine_body_edges.py": "d67ad4fbe556f429c2b873f623f384e3b3a300ed6f222416fe9a58856fc48822",
+    "preview_workspace.py": "25f354f26e3b8c145413cc4b91cc2d074507a6ca144e85b7a24d12b7880ee105",
+    "launch_master_preview.py": "0b6f14e6538b29c19566865cadd697d92cec4040b922c0a59cfa8353442d8f22"
+  },
+  "paint_sources_sha256": {
+    "paint/coat/gray-coat-v1.png": "ee4e740356cd2115daef1da0867d231f52bb3d3ada654d00321adbaa269d9717",
+    "paint/face/keratin-v1.png": "603deb37f301ac1ed8f180aa0ad1f0a1c89f07759d71c21dfc26b78e0ead850a",
+    "paint/face/nostril-v1.png": "ae0cffdacdf82c56bfd730b2de900e7bd9730d52c2c2b2b49ad5ba3406da7602",
+    "paint/face/mouth-v1.png": "dcf82b461c79cd0837c300a11b3d9b53ad233293935a05c434aa5d1a719940c6"
+  },
+  "prompts": "art/arpg/wolfos/paint/material-prompts.json",
+  "generation_tool": "built-in image_gen; four maps produced, tongue generation rejected by image safety filter with no output; original tongue retained",
+  "uv_authoring": {
+    "faces": 266,
+    "original_collapsed_uv_triangles": 14,
+    "minimum_new_uv_area": 0.03937499798834313,
+    "method": "Limb-local box projection with repeat S/T wrapping; UV seams and region-specific coat variation remain art follow-up"
+  },
+  "geometry": {
+    "status": "passed",
+    "pack": "art/arpg/wolfos/workspace/export/wolfos-painted-body-v2.o2r",
+    "pack_sha256": "573e8e684a2b7f5518d9562fc38d681e6e620dbe79347b2a174c9a702b73f988",
+    "triangles": 913,
+    "preserved_mixed_joint_triangles": 108,
+    "preserved_head_eye_geometry_and_winding": true,
+    "coat_wrap": "repeat S and T",
+    "triangle_pose_samples": 114125,
+    "minimum_cross_squared": 3.59999999999869e-07,
+    "collapsed_count": 0
+  },
+  "shape_edit": {
+    "before_vertices": 201,
+    "before_faces": 327,
+    "vertices": 494,
+    "polygons": 502,
+    "triangles": 913,
+    "edits": {
+      "5": {
+        "edges": 5,
+        "width": 0.85,
+        "new_faces": 40
+      },
+      "6": {
+        "edges": 6,
+        "width": 0.55,
+        "new_faces": 41
+      },
+      "11": {
+        "edges": 5,
+        "width": 0.85,
+        "new_faces": 40
+      },
+      "14": {
+        "edges": 3,
+        "width": 0.85,
+        "new_faces": 27
+      },
+      "20": {
+        "edges": 3,
+        "width": 0.85,
+        "new_faces": 27
+      }
+    },
+    "protected": "Head, eyes, teeth, claws and mixed-joint boundary neighborhoods"
+  },
+  "export_regression": {
+    "status": "passed",
+    "checks": [
+      "All 327 native triangles preserve positions, joint assignments, UVs, materials and winding",
+      "All eight paint maps survive within RGBA8 quantization error",
+      "Working paint is independent of locked reference images",
+      "A saved head-vertex and UV edit reaches only the expected exported limb",
+      "A saved paint edit and doubled texture resolution reach the native high-resolution resource",
+      "Unsupported blended weights fail before an asset pack is written",
+      "All fixture edits leave the actual authoring master unchanged"
+    ],
+    "master_sha256": "fa077d48fa539ec1fb7eae72637034befa1d9d3c9ee972da821d5669564afe06",
+    "output": "/var/folders/v6/86zp6_fs76718ycp8mp1g_j40000gn/T/soh-wolfos-master-export-test-8ejretc9",
+    "baseline_sha256": "07246390b8c1774e1a271d32fce1da948cf73d38d8edab3306d6e8aa2632af71",
+    "edited_pack": "/var/folders/v6/86zp6_fs76718ycp8mp1g_j40000gn/T/soh-wolfos-master-export-test-8ejretc9/edited.o2r"
+  },
+  "runtime": {
+    "checks": 32,
+    "status": "passed",
+    "results": "tests/arpg/wolfos-painted-body-runtime-results-macos.json",
+    "profile": "/var/folders/v6/86zp6_fs76718ycp8mp1g_j40000gn/T/soh-arpg-qa-wolfos-master-5ycf7mzi",
+    "executable_sha256": "34c6fa8983f24d782cefe763f20bc32f9c0b1122e9212382d679b7557dc78ca6",
+    "scope": "Existing isolated snapshot executable from eye revision; no new C++ changes. New pack is actually mounted for combat and resource checks."
+  },
+  "visual_review": {
+    "in_game": "art/arpg/wolfos/workspace/body-refined-motion-v2/body-in-game.png",
+    "video": "/Users/alec/git/z64-romhack-tutorials/soh/art/arpg/wolfos/workspace/body-refined-motion-v2/wolfos-painted-body-review.mp4",
+    "video_sha256": "c16499f6e34725ec53ace8efd2387d9b1d29d5393b09907bffa23979fa27ea0d",
+    "video_info": {
+      "width": 960,
+      "height": 720,
+      "duration": "8.250000",
+      "nb_frames": "165"
+    },
+    "reel": {
+      "frames": 165,
+      "fps": 20,
+      "all_vertices_inside_camera": true,
+      "closeups": [
+        {
+          "frame": 126,
+          "label": "open",
+          "blink": 0
+        },
+        {
+          "frame": 131,
+          "label": "half",
+          "blink": 1
+        },
+        {
+          "frame": 136,
+          "label": "narrow",
+          "blink": 2
+        },
+        {
+          "frame": 141,
+          "label": "half-return",
+          "blink": 3
+        }
+      ],
+      "master": "art/arpg/wolfos/workspace/wolfos-body-refined-v2.blend",
+      "keyposes": [],
+      "full_reel_rendered": true
+    },
+    "observation": "Coat detail, recessed nose, graded claws and eye art visible in native lighting. All native clips rendered with new mesh; backflip and rearing poses and face closeups inspected. The retained native body/head silhouette remains visibly angular.",
+    "active_review_profile": "/var/folders/v6/86zp6_fs76718ycp8mp1g_j40000gn/T/soh-arpg-qa-wolfos-master-hv2i1e9x"
+  },
+  "normal_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "legacy_glb_sha256": "a4695dbb17775eccf22d9fc73fd843edf5d460d5c3386d697bdb448e11c964da",
+  "deployment": "Experimental pack in isolated review and combat profiles only; normal profile unchanged",
+  "remaining": [
+    "Head and torso topology, muzzle/paw anatomy and distinctive silhouette need a deeper authored art pass.",
+    "Coat-region length/color variation and projection seams need polish.",
+    "Original tongue map retained; white species and rank fittings not yet authored.",
+    "Current artwork has not received human visual approval.",
+    "Do not expand the enemy roster or regenerate the rejected procedural anatomy."
+  ]
+}

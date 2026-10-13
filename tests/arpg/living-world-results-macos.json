@@ -1,0 +1,161 @@
+{
+  "checks": [
+    "Region populates multiple bounded packs without walking toward them",
+    "Region includes enemies more than the old 2400-unit despawn distance away",
+    "Distant enemies complete emergence and retain extended draw distance",
+    "Ranch and castle approaches each receive two native watch NPCs",
+    "Unassisted NPC combat cannot award player XP or loot",
+    "Watch patrols engage monsters without Link approaching",
+    "Monsters retaliate through native collision and damage the watch",
+    "Watch spear collisions damage living monsters without player attacks",
+    "Distant regional actors persist beyond the old director cleanup interval",
+    "No replacement waves spawn around an idle player",
+    "Joining a monster fight enables normal player rewards",
+    "Disabling population cleans up monsters and watchmen",
+    "Re-enabling populations rebuilds the region once",
+    "A second wilderness region populates from its own collision",
+    "Field watchmen do not leak across scene transitions"
+  ],
+  "error": "",
+  "observations": [
+    {
+      "distance": 2996.229736328125,
+      "enemy": 2,
+      "scaleY": 0.01600000075995922,
+      "x": 915.0406494140625,
+      "y": 300.1647644042969,
+      "z": 4201.96728515625
+    },
+    {
+      "distance": 2847.574462890625,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 1208.8575439453125,
+      "y": 288.8718566894531,
+      "z": 3929.742919921875
+    },
+    {
+      "distance": 2659.533447265625,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 805.9815063476562,
+      "y": 222.7207794189453,
+      "z": 3885.000732421875
+    },
+    {
+      "distance": 4508.70703125,
+      "enemy": 2,
+      "scaleY": 0.01600000075995922,
+      "x": -469.63671875,
+      "y": 190.29005432128906,
+      "z": 5829.0498046875
+    },
+    {
+      "distance": 4189.8232421875,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -589.1976928710938,
+      "y": 224.65948486328125,
+      "z": 5494.431640625
+    },
+    {
+      "distance": 4295.57177734375,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -625.2696533203125,
+      "y": 208.81678771972656,
+      "z": 5596.0166015625
+    },
+    {
+      "distance": 131.32313537597656,
+      "enemy": 2,
+      "scaleY": 0.01600000075995922,
+      "x": -76.0489273071289,
+      "y": 0.0,
+      "z": 1245.2633056640625
+    },
+    {
+      "distance": 136.3525390625,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 50.466033935546875,
+      "y": -0.0,
+      "z": 1474.8837890625
+    },
+    {
+      "distance": 102.50590515136719,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -8.883552551269531,
+      "y": 0.0,
+      "z": 1247.3966064453125
+    },
+    {
+      "distance": 5390.74072265625,
+      "enemy": 2,
+      "scaleY": 0.01600000075995922,
+      "x": -1294.291748046875,
+      "y": 100.0,
+      "z": 6578.31982421875
+    },
+    {
+      "distance": 5479.39501953125,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -1361.9449462890625,
+      "y": 100.0,
+      "z": 6652.61083984375
+    },
+    {
+      "distance": 5409.0791015625,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -1384.2962646484375,
+      "y": 100.0,
+      "z": 6574.04345703125
+    },
+    {
+      "guard": 179,
+      "health": 24,
+      "x": 314.9801025390625,
+      "y": -0.0,
+      "z": 1627.4825439453125
+    },
+    {
+      "guard": 179,
+      "health": 24,
+      "x": 20.897130966186523,
+      "y": 0.0,
+      "z": 1748.785888671875
+    },
+    {
+      "guard": 179,
+      "health": 4,
+      "x": -1285.2208251953125,
+      "y": 100.0,
+      "z": 6665.9501953125
+    },
+    {
+      "guard": 179,
+      "health": 24,
+      "x": -1575.792236328125,
+      "y": 100.0,
+      "z": 6784.6962890625
+    },
+    {
+      "hurtWatchmen": 2,
+      "remaining": 11,
+      "watchAttacks": 10,
+      "watchHits": 8
+    }
+  ],
+  "status": "passed",
+  "date": "2026-10-12",
+  "platform": "macOS arm64",
+  "portable_suites_passed": 8,
+  "visual_checks": [
+    "Observed the remote ranch watch skirmish in the native Metal window while Link remained by the castle entrance.",
+    "Two watchmen and monsters moved and animated independently of Link; Wolfos disappeared after combat and a surviving Stalfos continued fighting a watchman."
+  ],
+  "production_runtime_harnesses": false
+}

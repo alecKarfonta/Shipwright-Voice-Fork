@@ -1,0 +1,24 @@
+{
+  "checks": [
+    "Character claims a quest reward before travelling",
+    "Character accepts next campaign quest",
+    "Initial character checkpoint reaches disk",
+    "Portable host advertises personal inventory and story",
+    "A host enabling legacy sync cannot overwrite character inventory or story",
+    "Disk write failure is reported by the real save worker",
+    "Failed checkpoint leaves connection and character intact",
+    "Checkpoint can be retried successfully",
+    "Old server's queued packets are discarded during transfer",
+    "Previous party membership is cleared on another relay",
+    "Gear, XP, skills, materials, reward history and partial physical objectives travel unchanged",
+    "Native items, story and currency travel unchanged",
+    "Changing servers cannot grant a quest reward twice",
+    "Unfinished quest can be shared with the new server's party",
+    "Destination character checkpoint reaches disk",
+    "Real save-file reload restores the travelled character",
+    "Reward history survives a disk reload"
+  ],
+  "error": "",
+  "phase": 99,
+  "status": "passed"
+}

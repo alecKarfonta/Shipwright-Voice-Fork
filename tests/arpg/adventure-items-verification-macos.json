@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-12T21:13:00.121573-04:00",
+  "platform": "macOS arm64 / Metal",
+  "status": "passed",
+  "build": "Passed on an isolated native build, then on the final regular-launcher executable. Final inventory object and interrupted objects were rebuilt, linked to a separate file and atomically installed. Both QA bundles match the installed executable SHA-256.",
+  "native": {
+    "adventure_items": {
+      "checks": 55,
+      "echo_nodes": 3,
+      "draw_frames": 51,
+      "result": "adventure-items-runtime-results-macos.json",
+      "binary_sha256": "0bde3dbaaa59cd2babaa861bfe2ebca635d3ca532ccaa5073b8ed91e968df452",
+      "isolated_validation_sha256": "68ce38554eec436431a004a02472dfdedb227f7ae84f171dc2fdbcf15a6e50b1"
+    },
+    "bow_hammer_regression": {
+      "checks": 33,
+      "result": "adventure-items-weapon-regression-results-macos.json",
+      "binary_sha256": "0bde3dbaaa59cd2babaa861bfe2ebca635d3ca532ccaa5073b8ed91e968df452",
+      "isolated_validation_sha256": "7621786c741fc75c81d31d0bc2b2b707bd12226cd91c1e45ba21b2e8fd705e8f"
+    }
+  },
+  "portable": {
+    "full_suite": "18/18 passed",
+    "asan_ubsan": "2/2 passed (adventure items and weapon loot)",
+    "frozen_schema_regression": "4/4 passed",
+    "latest_shared_save_codec": "2/2 passed (adventure items and weapon loot)"
+  },
+  "ui_observed": [
+    "OoT theme and native adventure icons retained",
+    "All seven adventure equipment slots visible in two rows at 1280x800 and 1024x720 content sizes",
+    "Goron Powderkeg can be equipped through the journal; displaced satchel remains in backpack",
+    "Winterbud Seeds shows Requires child Link and disables Equip for adult Link",
+    "Unique power description is visible in Overview",
+    "Blast radius, travel distance, setup duration and finisher damage have valid names",
+    "Skyvine comparison against Ironroot shows +50% travel, -25% setup duration and -40% finisher damage",
+    "Overflow in inspector remains scrollable"
+  ],
+  "boundaries": [
+    "Native scripted collision, save and render checks; not a complete game playthrough",
+    "Arsenal roots, marks, tethers and echo collisions currently target Stalfos, Wolfos, Lizalfos/Dinolfos and the custom Cairn Sentinel / Lantern Wraith",
+    "Other enemies use their native damage tables and elemental reactions",
+    "Normal saves were not used or modified",
+    "Drag-and-drop was not manually validated in this pass"
+  ],
+  "source_sha256": {
+    "soh/soh/Enhancements/arpg/AdventureItemRules.h": "cf6715710ac892db2434ef32a6b8a1ab57fbf4aa7eb4dfe2ac97851141e23a4d",
+    "soh/soh/Enhancements/arpg/ArsenalSystem.cpp": "7b5b1b9dc73fdb65d2ef77f53df5475613cf42873620ad6c54979181302e0511",
+    "soh/soh/Enhancements/arpg/ItemModifierSystem.cpp": "37ff0ef37ce5d673004125957ac1a3ea22479384c94499758af92ce4e81b8c85",
+    "soh/soh/Enhancements/arpg/LootCatalog.h": "9bf393b0f069995537cef3f42a141ca8db4bf03707e233d3924a4a7c481e4fc1",
+    "soh/soh/Enhancements/arpg/ARPGInventoryWindow.cpp": "24aefc0db15eec18e19b797a6f1dd944f6ff7c72728cbfee410999b3dd38006c",
+    "tests/arpg/adventure_items_runtime_test.cpp": "4b6a3e6e63619e74f4579e3a9fda0b08cb79e6228adf74d68eb7a35effd1da60"
+  },
+  "launcher": {
+    "path": "/Users/alec/git/z64-romhack-tutorials/soh/build-cmake/soh/soh-macos",
+    "sha256": "0bde3dbaaa59cd2babaa861bfe2ebca635d3ca532ccaa5073b8ed91e968df452",
+    "adventure_checks": 55,
+    "bow_hammer_checks": 33,
+    "status": "passed"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-12",
+  "platform": "macOS arm64 / Metal",
+  "build": "Native soh target succeeded; SOH_ARPG_RUNTIME_TESTS=OFF",
+  "build_log": "/tmp/soh-remaster-build9.log",
+  "preview": "org.shipofharkinian.arpg-inventory-preview31",
+  "preview_home": "/tmp/soh-arpg-remaster-preview",
+  "built_binary_sha256": "34ea353b5937a4d2c96b5f887f94e723620b34a44daa7ccce263ad17f5138bbb",
+  "scope": {
+    "ordinary_equipment_bases": 12,
+    "modifier_appearances": 6,
+    "replaced_geometry": [
+      "swords and scabbards",
+      "shields",
+      "boots",
+      "tunic collectibles"
+    ],
+    "worn_tunics": "Native animated body retained, with new chest ornaments and collar piping; Star-woven also recolors tunic and cap.",
+    "unchanged_world_assets": [
+      "character heads and bodies",
+      "enemies",
+      "buildings",
+      "terrain"
+    ]
+  },
+  "automated_checks": [
+    "All three portable CTest suites passed normally and with AddressSanitizer/UndefinedBehaviorSanitizer.",
+    "Geometry check validated 309,920 nondegenerate triangles across 72 model variants, finite bounded coordinates, unit normals and deterministic appearance selection.",
+    "All twelve ordinary equipment bases resolve to a world appearance; invalid and missing bases retain fallback.",
+    "Root repository and libultraship git diff --check passed."
+  ],
+  "native_visual_checks": [
+    "Inspected enchanted gear and all three ordinary adult preview sets in Hyrule Field: new sword hilts/scabbards, Rootwarden/knight/mirror shields, travel/iron/hover/wind boots, and tunic ornaments.",
+    "Ordinary and enchanted swords, shields, tunics and paired boots appeared as physical collectible meshes, upright and slowly turning.",
+    "Final build showed settled enchanted child-preview drops fully clear of the ground after increasing per-slot lift.",
+    "Adult-to-child and child-to-adult transitions completed; child shield, scabbard, collar ornaments and replacement boots rendered at reduced scale.",
+    "Child ordinary preview equipped Kokiri Sword, Deku Shield, Kokiri Tunic and Kokiri Boots; inventory showed zero rolled bonuses.",
+    "Remastered equipment toggle off restored native shield, sword hilt, boots and green tunic/cap; enabling it restored the custom set.",
+    "Click-to-equip restored the Hylian-based Rootwarden shield while preserving the displaced Deku item; matching preview restored the adult Master Sword set.",
+    "Final preview remains open with adult Link wearing the enchanted matching set.",
+    "HUD and inventory stayed intact with multiple equipment sets visible after the Metal capacity fix.",
+    "Normal player save SHA-256 stayed unchanged."
+  ],
+  "metal_stress_check": {
+    "failure_fixed": "Unchecked writes beyond the fixed frame vertex allocation caused native texture corruption and stray triangles under detailed gear load.",
+    "fix": "Grow each pooled buffer before upload and invalidate framebuffer bindings; previously encoded draws retain their original Metal resources.",
+    "observed_capacity_bytes": [
+      4915200,
+      9830400,
+      19660800
+    ],
+    "stress_log": "/tmp/soh-arpg-inventory-ui30.log",
+    "final_log": "/tmp/soh-arpg-inventory-ui31.log",
+    "result": "Multiple ordinary and enchanted sets rendered together without the previously reproduced corruption or allocation errors."
+  },
+  "limits": [
+    "This is an equipment remaster; character, enemy and environment replacements remain outside this pass.",
+    "Every combat animation/base combination, broken Giant Knife, native pause equipment model and first-person/reflection exclusions still need broader visual acceptance.",
+    "Custom player skeletons and remote Anchor actors are excluded; multiplayer rendering and non-Metal backends were not exercised.",
+    "Earlier native combat regression suites were not rerun for this rendering pass. Save format, combat formulas and equipment abilities were not changed.",
+    "Mouse drag gesture remains a separate manual acceptance check; this pass used the existing click equip alternative."
+  ],
+  "normal_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "signed_preview_binary_sha256": "a631d5824fdc14bfff766986dadccd812d7a32b12229c402bd436b5deb8f61f8"
+}

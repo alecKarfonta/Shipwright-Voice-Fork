@@ -5,8 +5,10 @@
  */
 
 #include "z_en_zf.h"
+#include "soh/Enhancements/arpg/EnemyVisuals.h"
 #include "objects/object_zf/object_zf.h"
 #include "soh/Enhancements/game-interactor/GameInteractor_Hooks.h"
+#include "soh/Enhancements/arpg/ARPGBridge.h"
 #include "soh/Enhancements/savestate_serialize.h"
 
 #define FLAGS (ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_HOSTILE | ACTOR_FLAG_UPDATE_CULLING_DISABLED)
@@ -705,7 +707,27 @@ void func_80B45384(EnZf* this) {
     EnZf_SetupAction(this, func_80B4543C);
 }
 
+
+// [TIME] | [INFO] | EnZf.ARPGNeutral | Native animations and committed attack states remain authoritative.
+static s32 EnZf_ARPGNeutral(EnZf* this, PlayState* play) {
+    int command = ARPG_EnemyTactics(&this->actor, play);
+    if (command == 0) { return false; }
+    if (command == 2) { EnZf_SetupSlash(this); }
+    else if (command == 3) { EnZf_SetupJumpBack(this); }
+    else {
+        if (this->actionFunc != EnZf_ApproachPlayer) {
+            float speed = this->actor.speedXZ;
+            EnZf_SetupApproachPlayer(this, play);
+            this->actor.speedXZ = speed;
+        }
+        this->skelAnime.playSpeed = this->actor.speedXZ > 0.1f ? 1.2f : 0.2f;
+        SkelAnime_Update(&this->skelAnime);
+    }
+    return true;
+}
+
 void func_80B4543C(EnZf* this, PlayState* play) {
+    if (EnZf_ARPGNeutral(this, play)) { return; }
     Player* player = GET_PLAYER(play);
     s32 pad;
     s16 angleToPlayer = (this->actor.yawTowardsPlayer - this->headRot) - this->actor.shape.rot.y;
@@ -775,6 +797,7 @@ void EnZf_SetupApproachPlayer(EnZf* this, PlayState* play) {
 }
 
 void EnZf_ApproachPlayer(EnZf* this, PlayState* play) {
+    if (EnZf_ARPGNeutral(this, play)) { return; }
     s32 sp54;
     s32 sp50;
     s32 temp;
@@ -1769,6 +1792,7 @@ void func_80B483E4(EnZf* this, PlayState* play) {
 }
 
 void EnZf_CircleAroundPlayer(EnZf* this, PlayState* play) {
+    if (EnZf_ARPGNeutral(this, play)) { return; }
     s16 playerRot;
     s16 phi_v0_4;
     Player* player = GET_PLAYER(play);
@@ -2153,6 +2177,7 @@ s32 EnZf_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* po
             break;
     }
 
+    ARPG_OverrideEnemyLimb(play, &this->actor, limbIndex, dList);
     return false;
 }
 

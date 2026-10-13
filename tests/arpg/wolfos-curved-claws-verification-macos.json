@@ -1,0 +1,244 @@
+{
+  "verified_at_utc": "2026-10-13T16:27:33.934928+00:00",
+  "status": "Curved native front claws verified; full character art and visual acceptance remain incomplete",
+  "master": {
+    "path": "/Users/alec/git/z64-romhack-tutorials/soh/art/arpg/wolfos/workspace/wolfos-curved-claws-v1.blend",
+    "sha256": "0f5c7c7a234a50d130a53d754727dac20115d13777e9357fe6694a3a9de6e180"
+  },
+  "pack": {
+    "path": "/Users/alec/git/z64-romhack-tutorials/soh/art/arpg/wolfos/workspace/export/wolfos-curved-claws-v1.o2r",
+    "sha256": "967e5a7e67bff7bd3ad523a36f53dfc286059e873274bfbdc59593a75ba1f4fd",
+    "triangles": 2975
+  },
+  "sources_sha256": {
+    "refine_front_claws.py": "58efdff80aa2cd24a0419c2c94d65f5e7174f7019c84ad4b82789a9a7a88a56d",
+    "preview_paws.py": "9f9ad7df894ba050c848dddf05ee1c323d94f377e1936966ba1bd49bd99e8757",
+    "verify_master_geometry.py": "55fe9561e22464d9254736efa090c40fa013a79f05d0bfe35e4e2cd4017417cd",
+    "export_master.py": "16c2cd4a53754114d15fe823760bd164e844abd5df2c3a8573a9c37372b74a8a",
+    "native_asset.py": "9849b2b3dd08c15ee98d208fdd216b634e87bdb49a971d45b68520638e74f460",
+    "preview_workspace.py": "25f354f26e3b8c145413cc4b91cc2d074507a6ca144e85b7a24d12b7880ee105"
+  },
+  "claw_authoring": {
+    "triangles": 2975,
+    "landmarks": [
+      {
+        "joint": 15,
+        "root": [
+          -1.8499934673309326,
+          0.15001052618026733,
+          2.5299911499023438
+        ],
+        "root_anchors": [
+          [
+            -1.95999276638031,
+            0.2900068759918213,
+            1.0299924612045288
+          ],
+          [
+            -1.7399941682815552,
+            0.010014176368713379,
+            4.029989719390869
+          ]
+        ],
+        "tip": [
+          18.66994857788086,
+          -2.410064935684204,
+          2.5000650882720947
+        ],
+        "rings": 11,
+        "sides": 12,
+        "root_anchor_error": 1.922192036699903e-06,
+        "tip_error": 0.0
+      },
+      {
+        "joint": 15,
+        "root": [
+          -2.234990119934082,
+          -0.364998459815979,
+          -2.4400062561035156
+        ],
+        "root_anchors": [
+          [
+            -2.3799901008605957,
+            -0.2599942684173584,
+            -0.9400080442428589
+          ],
+          [
+            -2.0899901390075684,
+            -0.4700026512145996,
+            -3.940004348754883
+          ]
+        ],
+        "tip": [
+          21.089941024780273,
+          5.969902038574219,
+          -1.9399231672286987
+        ],
+        "rings": 11,
+        "sides": 12,
+        "root_anchor_error": 0.0,
+        "tip_error": 0.0
+      },
+      {
+        "joint": 21,
+        "root": [
+          -2.2349867820739746,
+          -0.3649921417236328,
+          2.439993381500244
+        ],
+        "root_anchors": [
+          [
+            -2.3799901008605957,
+            -0.2599930763244629,
+            0.9399938583374023
+          ],
+          [
+            -2.0899837017059326,
+            -0.46999120712280273,
+            3.939993143081665
+          ]
+        ],
+        "tip": [
+          21.089908599853516,
+          5.9699320793151855,
+          1.940006971359253
+        ],
+        "rings": 11,
+        "sides": 12,
+        "root_anchor_error": 0.0,
+        "tip_error": 0.0
+      },
+      {
+        "joint": 21,
+        "root": [
+          -1.8499948978424072,
+          0.1500028371810913,
+          -2.5300049781799316
+        ],
+        "root_anchors": [
+          [
+            -1.9599920511245728,
+            0.29000425338745117,
+            -1.0300052165985107
+          ],
+          [
+            -1.7399976253509521,
+            0.010001420974731445,
+            -4.030004501342773
+          ]
+        ],
+        "tip": [
+          18.669910430908203,
+          -2.410059690475464,
+          -2.4999914169311523
+        ],
+        "rings": 11,
+        "sides": 12,
+        "root_anchor_error": 0.0,
+        "tip_error": 0.0
+      }
+    ],
+    "preserved": "Native claw roots and tips; every other surface, rig and animation"
+  },
+  "geometry": {
+    "status": "passed",
+    "pack": "art/arpg/wolfos/workspace/export/wolfos-curved-claws-v1.o2r",
+    "pack_sha256": "967e5a7e67bff7bd3ad523a36f53dfc286059e873274bfbdc59593a75ba1f4fd",
+    "triangles": 2975,
+    "preserved_mixed_joint_triangles": 108,
+    "preserved_noncoat_triangles": 29,
+    "edited_limbs": [
+      15,
+      21
+    ],
+    "unchanged_other_limb_geometry_and_winding": true,
+    "preserved_claw_anchors": 12,
+    "coat_wrap": "Clamp S and T",
+    "triangle_pose_samples": 371875,
+    "minimum_cross_squared": 3.59999999999869e-07,
+    "collapsed_count": 0,
+    "collapsed_quantized_coat_uv_triangles": 0,
+    "maximum_head_eye_matrix_difference": 0
+  },
+  "resources": {
+    "changed_resources": [
+      "alt/objects/object_wf/gWolfosNormalFrontLeftClawDL",
+      "alt/objects/object_wf/gWolfosNormalFrontRightClawDL",
+      "arpg/wolfos/master/normal/limb-03.vtx",
+      "arpg/wolfos/master/normal/limb-04.vtx",
+      "arpg/wolfos/master/normal/limb-12.vtx",
+      "arpg/wolfos/master/normal/limb-15.vtx",
+      "arpg/wolfos/master/normal/limb-21.vtx"
+    ],
+    "unchanged_other_positions_uvs_materials_and_joints": true,
+    "maximum_other_normal_byte_change": 1,
+    "other_normals_rounded_differently": 13,
+    "all_paint_maps_byte_identical": true
+  },
+  "runtime": {
+    "status": "passed",
+    "checks": 32,
+    "results": "tests/arpg/wolfos-curved-claws-runtime-results-macos.json",
+    "profile": "/var/folders/v6/86zp6_fs76718ycp8mp1g_j40000gn/T/soh-arpg-qa-wolfos-master-c2n7x2s0",
+    "executable_sha256": "34c6fa8983f24d782cefe763f20bc32f9c0b1122e9212382d679b7557dc78ca6",
+    "exit_code": 0,
+    "shutdown_log": "After all assertions passed, the executable logged mutex lock failed: Invalid argument at ResourceManager.cpp(70), its destructor log statement, and exited 0. No C++ change was made; the cause of this shutdown warning needs separate investigation."
+  },
+  "visual_review": {
+    "video": "/Users/alec/git/z64-romhack-tutorials/soh/art/arpg/wolfos/workspace/curved-claws-motion-v1/wolfos-curved-claws-review.mp4",
+    "video_sha256": "fbf42bbc840349ae404c3732635a56c21275c411cb3c085667d7a5b3697f4531",
+    "video_info": {
+      "width": 960,
+      "height": 720,
+      "duration": "8.250000",
+      "nb_frames": "165"
+    },
+    "reel": {
+      "frames": 165,
+      "fps": 20,
+      "all_vertices_inside_camera": true,
+      "closeups": [
+        {
+          "frame": 126,
+          "label": "open",
+          "blink": 0
+        },
+        {
+          "frame": 131,
+          "label": "half",
+          "blink": 1
+        },
+        {
+          "frame": 136,
+          "label": "narrow",
+          "blink": 2
+        },
+        {
+          "frame": 141,
+          "label": "half-return",
+          "blink": 3
+        }
+      ],
+      "master": "art/arpg/wolfos/workspace/wolfos-curved-claws-v1.blend",
+      "keyposes": [],
+      "full_reel_rendered": true
+    },
+    "in_game": "/Users/alec/git/z64-romhack-tutorials/soh/art/arpg/wolfos/workspace/curved-claws-motion-v1/claws-in-game.png",
+    "details": "art/arpg/wolfos/workspace/curved-claws-detail-v1",
+    "active_profile": "/var/folders/v6/86zp6_fs76718ycp8mp1g_j40000gn/T/soh-arpg-qa-wolfos-master-29mw8vw7",
+    "observation": "Curved, tapered paired claws are visibly seated in the existing front paws in waiting, slash and block detail renders and native game lighting. Original two-claw design and tip reach retained; paws and body still have angular native silhouettes."
+  },
+  "discarded_experiment": {
+    "master": "workspace/wolfos-paws-claws-uv-v1.blend",
+    "triangles": 7703,
+    "reason": "Additional paw subdivision was not a convincing silhouette improvement. Current master retains previous paws."
+  },
+  "normal_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "legacy_glb_sha256": "a4695dbb17775eccf22d9fc73fd843edf5d460d5c3386d697bdb448e11c964da",
+  "deployment": "Experimental temporary review profile only; normal profile unchanged",
+  "remaining": [
+    "Deliberate forepaw and hind-toe anatomy, fangs, muzzle and shoulder silhouette refinement.",
+    "Painted transitions at coat atlas seams, original tongue replacement, white/rank variants.",
+    "Human approval of finished character art; broader game requirements remain partial."
+  ]
+}

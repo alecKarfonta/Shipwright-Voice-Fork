@@ -1,4 +1,5 @@
 #include "z_en_sw.h"
+#include "soh/Enhancements/arpg/ARPGBridge.h"
 #include "objects/object_st/object_st.h"
 #include "soh/Enhancements/game-interactor/GameInteractor_Hooks.h"
 #include <libultraship/bridge/consolevariablebridge.h>
@@ -628,6 +629,7 @@ void func_80B0D878(EnSw* this, PlayState* play) {
             Actor_SpawnAsChild(&play->actorCtx, &this->actor, play, ACTOR_EN_SI, this->actor.world.pos.x + x,
                                this->actor.world.pos.y + y, this->actor.world.pos.z + z, 0, 0, 0, this->actor.params);
         if (temp_v0 != NULL) {
+            ARPG_CopyExplorationSecret(temp_v0, &this->actor);
             temp_v0->parent = NULL;
         }
         Actor_Kill(&this->actor);

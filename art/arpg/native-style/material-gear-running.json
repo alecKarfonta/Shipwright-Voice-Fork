@@ -1,0 +1,11 @@
+{
+  "animation": "__OTR__objects/gameplay_keep/gPlayerAnim_link_normal_run_free",
+  "attackFrames": 0,
+  "drawFrames": 1463,
+  "mode": 7,
+  "movingFrames": 3,
+  "rollingFrames": 0,
+  "scene": 0,
+  "status": "captured-run",
+  "swimmingFrames": 0
+}

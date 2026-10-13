@@ -1,0 +1,30 @@
+{
+  "source_sha256": "a4695dbb17775eccf22d9fc73fd843edf5d460d5c3386d697bdb448e11c964da",
+  "vertices": 17143,
+  "triangles": 54908,
+  "parts": 122,
+  "subpixel_triangles_removed": 36,
+  "triangles_per_actor": {
+    "0:0": 24990,
+    "0:1": 25314,
+    "0:2": 25542,
+    "1:0": 24990,
+    "1:1": 25314,
+    "1:2": 25542
+  },
+  "materials": [
+    "fur",
+    "mane",
+    "muzzle",
+    "skin",
+    "claw",
+    "metal",
+    "eye",
+    "mouth",
+    "pupil",
+    "highlight",
+    "silver"
+  ],
+  "uv": "Authored glTF UVs retained, 32-texel logical tile with 5 fractional bits; split UV seams retained",
+  "space": "Native joint-local XYZ, positions x100; per-vertex joint index preserves 17 mixed-matrix connections; authoring-pose transforms omitted"
+}

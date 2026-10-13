@@ -1,4 +1,6 @@
 #include "z_en_dekubaba.h"
+#include "soh/Enhancements/arpg/EnemyVisuals.h"
+#include "soh/Enhancements/arpg/DekuBabaParts.h"
 #include "objects/object_dekubaba/object_dekubaba.h"
 #include "objects/gameplay_keep/gameplay_keep.h"
 #include "overlays/effects/ovl_Effect_Ss_Hahen/z_eff_ss_hahen.h"
@@ -1152,6 +1154,17 @@ void EnDekubaba_Update(Actor* thisx, PlayState* play) {
 
 // Draw functions
 
+static Gfx* EnDekubaba_ModelDL(EnDekubaba* this, PlayState* play, s32 part, Gfx* native) {
+    ARPG_OverrideEnemyLimb(play, &this->actor, part, &native);
+    return native;
+}
+
+s32 EnDekubaba_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s* rot,
+                              void* thisx) {
+    ARPG_OverrideEnemyLimb(play, (Actor*)thisx, limbIndex, dList);
+    return false;
+}
+
 void EnDekubaba_DrawStemRetracted(EnDekubaba* this, PlayState* play) {
     f32 horizontalScale;
 
@@ -1164,7 +1177,7 @@ void EnDekubaba_DrawStemRetracted(EnDekubaba* this, PlayState* play) {
     Matrix_RotateZYX(this->stemSectionAngle[0], this->actor.shape.rot.y, 0, MTXMODE_APPLY);
     Matrix_Scale(horizontalScale, horizontalScale, horizontalScale, MTXMODE_APPLY);
     gSPMatrix(POLY_OPA_DISP++, MATRIX_NEWMTX(play->state.gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-    gSPDisplayList(POLY_OPA_DISP++, gDekuBabaStemTopDL);
+    gSPDisplayList(POLY_OPA_DISP++, EnDekubaba_ModelDL(this, play, ARPG_BABA_STEM_TOP, (Gfx*)gDekuBabaStemTopDL));
 
     Actor_SetFocus(&this->actor, 0.0f);
 
@@ -1209,7 +1222,7 @@ void EnDekubaba_DrawStemExtended(EnDekubaba* this, PlayState* play) {
         Matrix_RotateZYX(this->stemSectionAngle[i], this->actor.shape.rot.y, 0, MTXMODE_APPLY);
         gSPMatrix(POLY_OPA_DISP++, MATRIX_NEWMTX(play->state.gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 
-        gSPDisplayList(POLY_OPA_DISP++, stemDLists[i]);
+        gSPDisplayList(POLY_OPA_DISP++, EnDekubaba_ModelDL(this, play, ARPG_BABA_STEM_TOP + i, stemDLists[i]));
 
         Collider_UpdateSpheres(51 + 2 * i, &this->collider);
         Collider_UpdateSpheres(52 + 2 * i, &this->collider);
@@ -1242,7 +1255,7 @@ void EnDekubaba_DrawStemBasePruned(EnDekubaba* this, PlayState* play) {
 
     Matrix_RotateZYX(this->stemSectionAngle[2], this->actor.shape.rot.y, 0, MTXMODE_APPLY);
     gSPMatrix(POLY_OPA_DISP++, MATRIX_NEWMTX(play->state.gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-    gSPDisplayList(POLY_OPA_DISP++, gDekuBabaStemBaseDL);
+    gSPDisplayList(POLY_OPA_DISP++, EnDekubaba_ModelDL(this, play, ARPG_BABA_STEM_BASE, (Gfx*)gDekuBabaStemBaseDL));
 
     Collider_UpdateSpheres(55, &this->collider);
     Collider_UpdateSpheres(56, &this->collider);
@@ -1284,7 +1297,7 @@ void EnDekubaba_Draw(Actor* thisx, PlayState* play) {
     Gfx_SetupDL_25Opa(play->state.gfxCtx);
 
     if (this->actionFunc != EnDekubaba_DeadStickDrop) {
-        SkelAnime_DrawSkeletonOpa(play, &this->skelAnime, NULL, EnDekubaba_PostLimbDraw, this);
+        SkelAnime_DrawSkeletonOpa(play, &this->skelAnime, EnDekubaba_OverrideLimbDraw, EnDekubaba_PostLimbDraw, this);
 
         if (this->actionFunc == EnDekubaba_Wait) {
             EnDekubaba_DrawStemRetracted(this, play);
@@ -1297,7 +1310,7 @@ void EnDekubaba_Draw(Actor* thisx, PlayState* play) {
         Matrix_RotateY(this->actor.home.rot.y * (M_PI / 0x8000), MTXMODE_APPLY);
         Matrix_Scale(scale, scale, scale, MTXMODE_APPLY);
         gSPMatrix(POLY_OPA_DISP++, MATRIX_NEWMTX(play->state.gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-        gSPDisplayList(POLY_OPA_DISP++, gDekuBabaBaseLeavesDL);
+        gSPDisplayList(POLY_OPA_DISP++, EnDekubaba_ModelDL(this, play, ARPG_BABA_LEAVES, (Gfx*)gDekuBabaBaseLeavesDL));
 
         if (this->actionFunc == EnDekubaba_PrunedSomersault) {
             EnDekubaba_DrawStemBasePruned(this, play);
@@ -1311,7 +1324,7 @@ void EnDekubaba_Draw(Actor* thisx, PlayState* play) {
     } else if ((this->timer > 40) || ((this->timer % 2) != 0)) {
         Matrix_Translate(0.0f, 0.0f, 200.0f, MTXMODE_APPLY);
         gSPMatrix(POLY_OPA_DISP++, MATRIX_NEWMTX(play->state.gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-        gSPDisplayList(POLY_OPA_DISP++, gDekuBabaStickDropDL);
+        gSPDisplayList(POLY_OPA_DISP++, EnDekubaba_ModelDL(this, play, ARPG_BABA_STICK, (Gfx*)gDekuBabaStickDropDL));
     }
 
     CLOSE_DISPS(play->state.gfxCtx);

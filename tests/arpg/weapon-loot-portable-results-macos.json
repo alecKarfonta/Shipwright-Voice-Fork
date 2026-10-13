@@ -1,0 +1,89 @@
+{
+  "status": "passed",
+  "normal": [
+    {
+      "name": "arpg_rules",
+      "seconds": 0.258219,
+      "passed": true,
+      "output": "ARPG regression checks passed: save roundtrip/snapshot, legacy/corrupt data, RNG continuation, XP cap, damage, 30000 loot rolls, co-op roll parity, enchanted auras."
+    },
+    {
+      "name": "arpg_skill_tree",
+      "seconds": 0.964149,
+      "passed": true,
+      "output": "All 37 skill nodes reachable within earned points; prerequisites, legacy saves, synergies, rank previews and 5094 bounded aura meshes verified."
+    },
+    {
+      "name": "arpg_loot",
+      "seconds": 8.16344,
+      "passed": true,
+      "output": "Loot catalog, all recipes/sets, 30,000 deterministic rolls, crafting conservation and save migration passed."
+    },
+    {
+      "name": "arpg_expedition",
+      "seconds": 27.4177,
+      "passed": true,
+      "output": "10,000 expedition seeds; routes, three-wave completion, duplicate guards, targeting, rewards, atomic capacity, save recovery, depth bounds, oath/lamp/cache presentation passed"
+    },
+    {
+      "name": "arpg_arsenal",
+      "seconds": 0.187594,
+      "passed": true,
+      "output": "Arsenal setup/finisher conservation, native immunity inputs, pause/expiry, family affinities, staggered fault line, all unique/set/runework traits, gear changes, free-cast rotation and healing caps passed"
+    },
+    {
+      "name": "arpg_weapon_loot",
+      "seconds": 6.57356,
+      "passed": true,
+      "output": "Weapon migration, full-pack swaps, combat-stat isolation, 20k deterministic rolls, sockets, recipes, 60 targeted caches and authored mesh invariants passed"
+    }
+  ],
+  "asan_ubsan": [
+    {
+      "name": "arpg_rules",
+      "seconds": 0.282834,
+      "passed": true,
+      "output": "ARPG regression checks passed: save roundtrip/snapshot, legacy/corrupt data, RNG continuation, XP cap, damage, 30000 loot rolls, co-op roll parity, enchanted auras."
+    },
+    {
+      "name": "arpg_skill_tree",
+      "seconds": 1.58795,
+      "passed": true,
+      "output": "All 37 skill nodes reachable within earned points; prerequisites, legacy saves, synergies, rank previews and 5094 bounded aura meshes verified."
+    },
+    {
+      "name": "arpg_loot",
+      "seconds": 8.26951,
+      "passed": true,
+      "output": "Loot catalog, all recipes/sets, 30,000 deterministic rolls, crafting conservation and save migration passed."
+    },
+    {
+      "name": "arpg_expedition",
+      "seconds": 133.192,
+      "passed": true,
+      "output": "10,000 expedition seeds; routes, three-wave completion, duplicate guards, targeting, rewards, atomic capacity, save recovery, depth bounds, oath/lamp/cache presentation passed"
+    },
+    {
+      "name": "arpg_arsenal",
+      "seconds": 0.234635,
+      "passed": true,
+      "output": "Arsenal setup/finisher conservation, native immunity inputs, pause/expiry, family affinities, staggered fault line, all unique/set/runework traits, gear changes, free-cast rotation and healing caps passed"
+    },
+    {
+      "name": "arpg_weapon_loot",
+      "seconds": 7.25439,
+      "passed": true,
+      "output": "Weapon migration, full-pack swaps, combat-stat isolation, 20k deterministic rolls, sockets, recipes, 60 targeted caches and authored mesh invariants passed"
+    }
+  ],
+  "notes": [
+    "All six portable suites passed normally and with AddressSanitizer and UndefinedBehaviorSanitizer.",
+    "The initial normal expedition run exceeded its 45-second timeout during a native build; isolated retry passed with a 240-second timeout.",
+    "LeakSanitizer was disabled on macOS (ASAN_OPTIONS=detect_leaks=0)."
+  ],
+  "logs": [
+    "/tmp/soh-weapon-portable-final.xml",
+    "/tmp/soh-weapon-expedition-retry.xml",
+    "/tmp/soh-weapon-sanitized-final.xml"
+  ]
+}

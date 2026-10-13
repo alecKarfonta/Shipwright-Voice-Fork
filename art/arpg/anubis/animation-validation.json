@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "clips": 5,
+  "frames": 169,
+  "posed_vertex_checks": 1932177,
+  "native_visible_joints": 8,
+  "maximum_envelope_extension_world_units": 0.5994768854879196,
+  "per_clip_extension_world_units": {
+    "gAnubiceAttackingAnim": 0,
+    "gAnubiceFallDownAnim": 0.5994768854879196,
+    "gAnubiceIdleAnim": 0,
+    "gAnubiceLaughingAnim": 0.5443723762903474,
+    "gAnubiceStandUpAnim": 0.5946294344967691
+  },
+  "scope": "All 169 native clip frames at the original .015 actor scale. Original head-eye and fireball callbacks are unchanged; runtime headRot is zero in these clips. Bounds do not establish collision or triangle-clearance correctness."
+}

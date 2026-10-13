@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "clips": 10,
+  "frames": 158,
+  "posed_vertex_checks": 705470,
+  "native_visible_joints": 9,
+  "additional_flower_meshes": 1,
+  "snout_scale_frames": 11,
+  "maximum_envelope_extension_world_units": 5.901044419172614,
+  "per_clip_extension_world_units": {
+    "gDekuNutsBurrowAnim": 3.8219954379531096,
+    "gDekuNutsDamageAnim": 4.500369833953627,
+    "gDekuNutsDieAnim": 5.716608429690702,
+    "gDekuNutsGaspAnim": 5.023132229113152,
+    "gDekuNutsLookAroundAnim": 4.488218616614443,
+    "gDekuNutsRunAnim": 5.534681049507952,
+    "gDekuNutsSpitAnim": 5.901044419172614,
+    "gDekuNutsStandAnim": 0.9330934505207296,
+    "gDekuNutsUnburrowAnim": 5.700772605736063,
+    "gDekuNutsUpAnim": 3.715747620767033
+  },
+  "scope": "All native clip frames; original Matrix_Scale before the limb transform is reconstructed in the parent space. Flower is a separate static actor. Bounds do not establish collision or triangle-clearance correctness."
+}

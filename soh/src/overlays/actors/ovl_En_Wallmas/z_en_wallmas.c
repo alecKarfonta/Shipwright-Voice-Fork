@@ -1,3 +1,4 @@
+#include "soh/Enhancements/arpg/HandmasterVisuals.h"
 /*
  * File: z_en_wallmas
  * Overlay: En_Wallmas
@@ -649,10 +650,13 @@ s32 EnWallMas_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3
             pos->z -= ((1600.0f * (this->skelAnime.endFrame - this->skelAnime.curFrame)) / this->skelAnime.endFrame);
         }
     }
+    ARPG_OverrideHandmasterLimb(play, &this->actor, limbIndex, dList);
     return false;
 }
 
 void EnWallMas_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, void* thisx) {
+    Gfx* finger = (Gfx*)gWallmasterFingerDL;
+    ARPG_OverrideHandmasterLimb(play, (Actor*)thisx, 25, &finger);
     if (limbIndex == 2) {
         OPEN_DISPS(play->state.gfxCtx);
 
@@ -663,7 +667,7 @@ void EnWallMas_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* 
         Matrix_Scale(2.0f, 2.0f, 2.0f, MTXMODE_APPLY);
 
         gSPMatrix(POLY_OPA_DISP++, MATRIX_NEWMTX(play->state.gfxCtx), G_MTX_LOAD);
-        gSPDisplayList(POLY_OPA_DISP++, gWallmasterFingerDL);
+        gSPDisplayList(POLY_OPA_DISP++, finger);
 
         Matrix_Pop();
 

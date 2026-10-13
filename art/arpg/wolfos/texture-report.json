@@ -1,0 +1,12 @@
+{
+  "source_sha256": "6c675babd2ea11c57fd98323abb10ca6331223d00325a074a444864c9fa0683a",
+  "pixels_sha256": "99172f595bf8e15d0c689e1a34389ddb2d4620d9779fd525644d962a4038421d",
+  "width": 512,
+  "height": 512,
+  "encoding": "I8 expanded to RGBA8 at runtime",
+  "logical_tile": [
+    32,
+    32
+  ],
+  "uv": "authored per-corner UV; 5 fractional bits"
+}

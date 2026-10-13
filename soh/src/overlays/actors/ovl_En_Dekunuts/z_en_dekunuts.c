@@ -5,6 +5,7 @@
  */
 
 #include "z_en_dekunuts.h"
+#include "soh/Enhancements/arpg/MadScrubVisuals.h"
 #include "overlays/effects/ovl_Effect_Ss_Hahen/z_eff_ss_hahen.h"
 #include "objects/object_dekunuts/object_dekunuts.h"
 #include "soh/Enhancements/game-interactor/GameInteractor_Hooks.h"
@@ -502,6 +503,7 @@ s32 EnDekunuts_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec
     f32 z;
     f32 curFrame;
 
+    ARPG_OverrideMadScrubLimb(play, &this->actor, limbIndex, dList);
     if ((limbIndex == 7) && (this->actionFunc == EnDekunuts_ThrowNut)) {
         curFrame = this->skelAnime.curFrame;
         if (curFrame <= 6.0f) {
@@ -529,7 +531,9 @@ void EnDekunuts_Draw(Actor* thisx, PlayState* play) {
     EnDekunuts* this = (EnDekunuts*)thisx;
 
     if (this->actor.params == DEKUNUTS_FLOWER) {
-        Gfx_DrawDListOpa(play, gDekuNutsFlowerDL);
+        Gfx* flower = (Gfx*)gDekuNutsFlowerDL;
+        ARPG_OverrideMadScrubLimb(play, &this->actor, 0, &flower);
+        Gfx_DrawDListOpa(play, flower);
     } else {
         SkelAnime_DrawSkeletonOpa(play, &this->skelAnime, EnDekunuts_OverrideLimbDraw, NULL, this);
     }

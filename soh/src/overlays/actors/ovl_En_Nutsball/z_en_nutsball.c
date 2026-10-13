@@ -5,6 +5,7 @@
  */
 
 #include "z_en_nutsball.h"
+#include "soh/ShipUtils.h"
 #include "overlays/effects/ovl_Effect_Ss_Hahen/z_eff_ss_hahen.h"
 #include "objects/object_gi_nuts/object_gi_nuts.h"
 #include "objects/object_dekunuts/object_dekunuts.h"
@@ -78,7 +79,8 @@ void EnNutsball_Init(Actor* thisx, PlayState* play) {
     if (CVarGetInteger(CVAR_ENHANCEMENT("RandomizedEnemies"), 0)) {
         this->objBankIndex = 0;
     } else {
-        this->objBankIndex = Object_GetIndex(&play->objectCtx, sObjectIDs[this->actor.params]);
+        // [TIME] | [INFO] | Nutsball.Init | Match the port's actor spawn fallback when a practice scrub fires outside its native scene.
+        this->objBankIndex = Ship_GetActorSpawnObjectIndex(play, sObjectIDs[this->actor.params], this->actor.id);
     }
 
     if (this->objBankIndex < 0) {

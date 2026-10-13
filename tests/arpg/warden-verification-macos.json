@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-12T21:15:23.089771+00:00",
+  "status": "passed",
+  "scope": "Five oath-specific warden attacks, ground warnings, damage/counter/opening integration, expedition disclosure UX and direct warden testing shortcut.",
+  "portable": {
+    "normal": "Warden, expedition and ritual passed; final warden tessellation retested directly after lane subdivision.",
+    "asan_ubsan": "All three suites passed; final warden tessellation retested directly.",
+    "warden_triangles": 313,
+    "warden_triangle_probes": 313,
+    "coverage": [
+      "Five distinct danger and safe positions",
+      "Harmless warning and opening phases",
+      "Three successive fire pulses",
+      "Ice inner/outer safe zones at every degree",
+      "Nondegenerate geometry and shared-edge precision"
+    ]
+  },
+  "native": {
+    "binary": "/tmp/soh-warden-runtime-binary-v4",
+    "sha256": "b5ce74dbd6e6dc38061cc51add4e77f5c2e1bb236c788765bdebfd215b2e6407",
+    "results": {
+      "warden-runtime-results-macos.json": {
+        "status": "passed",
+        "checks": 160
+      },
+      "warden-ritual-regression-macos.json": {
+        "status": "passed",
+        "checks": 32
+      },
+      "warden-gauntlet-regression-macos.json": {
+        "status": "passed",
+        "checks": 39
+      }
+    }
+  },
+  "production": {
+    "binary": "/tmp/soh-warden-release-binary-v2",
+    "sha256": "d9c83391722d4c033db26579386b2c7628535eb63ad560d6cb0fdf29db90a3a6",
+    "runtime_tests": false,
+    "preview": "/tmp/soh-arpg-inventory-preview-20261011-53/Ship ARPG Inventory.app",
+    "pid": 43946,
+    "ui_checks": [
+      "Release52 journal instructions collapsed by default and expand/collapse on click",
+      "Settings/testing accessible through More",
+      "Test warden attacks skips to Cinder wave 3 with three enemies",
+      "Live Cinder eruption mesh and native player knockback visibly work",
+      "Compact objective HUD and separate region suppression verified",
+      "Final release53 additionally restores a compact lock-on target health bar"
+    ]
+  },
+  "sources": {
+    "WardenPatterns.h": "32f31d108c8a763194ab6e786074e5da72585f05b00952f54093e88528a5cdf4",
+    "WardenCombat.h": "a72cca5f234b57878033585076a6dd90ad4918bbb0a8cea833aac6e58a8f82ea",
+    "WardenCombat.cpp": "369136471639f538162d96e319eacbe371662d0cd814a720f18e9a81eb5f19dc",
+    "ExpeditionSystem.cpp": "c97abe59f91f334f611e87cf31328867ff4fdb0486281c248edf6e9ef0cf7430",
+    "ARPGWindow.cpp": "dc7933cf6c9262935f51c4ac3104f907b4e75e7f886a20c04832874e2cbede58",
+    "ARPGTesting.cpp": "2198a26742157132f724f528a9dc0c10cd7efc97d21b853b87db61f69b0bca7f"
+  },
+  "normal_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "limitations": [
+    "Native damage probes hold enemy AI still and manually advance only warden ticks; rendered native frame advancement is checked separately. This is not a full combat-balance playthrough.",
+    "Native arena acceptance is Hyrule Field; steep terrain, other wilderness regions and crowded combat performance need broader playthroughs.",
+    "QA binary precedes final warning wording, HUD layout/target-health restoration and the test-only shortcut; final production build excludes QA harnesses.",
+    "Opening is an oath vulnerability window; the native enemy can still use its normal attacks.",
+    "All five broad replayability requirements remain partial."
+  ]
+}

@@ -5,6 +5,8 @@
  */
 
 #include "z_en_poh.h"
+#include "soh/ShipUtils.h"
+#include "soh/Enhancements/arpg/PoeVisuals.h"
 #include "objects/object_poh/object_poh.h"
 #include "objects/object_po_composer/object_po_composer.h"
 #include "soh/Enhancements/game-interactor/GameInteractor_Hooks.h"
@@ -233,7 +235,7 @@ void EnPoh_Init(Actor* thisx, PlayState* play) {
         }
     }
     if (this->actor.params < EN_POH_SHARP) {
-        this->objectIdx = Object_GetIndex(&play->objectCtx, OBJECT_POH);
+        this->objectIdx = Ship_GetActorSpawnObjectIndex(play, OBJECT_POH, this->actor.id);
         this->infoIdx = EN_POH_INFO_NORMAL;
         this->actor.naviEnemyId = 0x44;
     } else {
@@ -1041,6 +1043,7 @@ s32 EnPoh_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* p
         gDPPipeSync((*gfxP)++);
         gDPSetEnvColor((*gfxP)++, this->lightColor.r, this->lightColor.g, this->lightColor.b, this->lightColor.a);
     }
+    ARPG_OverridePoeLimb(play, &this->actor, limbIndex, dList);
     return false;
 }
 
@@ -1092,7 +1095,7 @@ void EnPoh_DrawRegular(Actor* thisx, PlayState* play) {
     gDPSetEnvColor(POLY_OPA_DISP++, this->envColor.r, this->envColor.g, this->envColor.b, 255);
     Matrix_Put(&this->unk_368);
     gSPMatrix(POLY_OPA_DISP++, MATRIX_NEWMTX(play->state.gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-    gSPDisplayList(POLY_OPA_DISP++, this->info->lanternDisplayList);
+    gSPDisplayList(POLY_OPA_DISP++, ARPG_PoeLanternDisplayList(play, &this->actor, this->info->lanternDisplayList));
     CLOSE_DISPS(play->state.gfxCtx);
 }
 
@@ -1142,7 +1145,7 @@ void EnPoh_DrawComposer(Actor* thisx, PlayState* play) {
     gDPSetEnvColor(POLY_OPA_DISP++, this->envColor.r, this->envColor.g, this->envColor.b, 255);
     Matrix_Put(&this->unk_368);
     gSPMatrix(POLY_OPA_DISP++, MATRIX_NEWMTX(play->state.gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-    gSPDisplayList(POLY_OPA_DISP++, this->info->lanternDisplayList);
+    gSPDisplayList(POLY_OPA_DISP++, ARPG_PoeLanternDisplayList(play, &this->actor, this->info->lanternDisplayList));
     gSPDisplayList(POLY_OPA_DISP++, gPoeComposerLanternBottomDL);
     gDPPipeSync(POLY_OPA_DISP++);
     gDPSetEnvColor(POLY_OPA_DISP++, sp90->r, sp90->g, sp90->b, 255);
@@ -1171,7 +1174,7 @@ void EnPoh_DrawSoul(Actor* thisx, PlayState* play) {
         Lights_PointGlowSetInfo(&this->lightInfo, this->actor.world.pos.x, this->actor.world.pos.y,
                                 this->actor.world.pos.z, this->envColor.r, this->envColor.g, this->envColor.b, 200);
         gSPMatrix(POLY_OPA_DISP++, MATRIX_NEWMTX(play->state.gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-        gSPDisplayList(POLY_OPA_DISP++, this->info->lanternDisplayList);
+        gSPDisplayList(POLY_OPA_DISP++, ARPG_PoeLanternDisplayList(play, &this->actor, this->info->lanternDisplayList));
         if (this->infoIdx == EN_POH_INFO_COMPOSER) {
             Color_RGBA8* envColor = (this->actor.params == EN_POH_SHARP) ? &D_80AE1B4C : &D_80AE1B50;
             s32 pad;

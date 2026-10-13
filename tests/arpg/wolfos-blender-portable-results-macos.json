@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "scope": "Final Blender-authored Wolfos geometry, including fitted mixed-joint connections",
+  "variants": 126,
+  "wolfos_triangles": 163392,
+  "mixed_matrix_triangles": 4080,
+  "triangles_per_actor_by_rank": [
+    26756,
+    27080,
+    27308
+  ],
+  "checks": [
+    {
+      "mode": "normal",
+      "exit_code": 0,
+      "result": "Finite positions, native bounds, unit normals, integer-safe world-space triangle area, all 17 skin connections, three blink shapes, rank variants and actor triangle budget passed."
+    },
+    {
+      "mode": "address_undefined_sanitized",
+      "exit_code": 0,
+      "result": "Final Wolfos geometry passed without diagnostics. Stalfos and Lizalfos portable regression suites also passed normally and sanitized."
+    }
+  ],
+  "deterministic_export": true,
+  "header_sha256": "0b6a7ca7ec14da581729f5bd5222ec1f6d7ca1ef08d626e93679baf7da81e541"
+}

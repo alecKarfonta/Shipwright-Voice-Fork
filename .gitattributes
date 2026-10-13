@@ -1,1 +1,4 @@
 * text=auto eol=lf
+
+# Wavefront exporters leave harmless spaces after face definitions.
+art/**/*.obj whitespace=-blank-at-eol

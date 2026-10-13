@@ -1,3 +1,5 @@
+#include "soh/Enhancements/arpg/ARPGBridge.h"
+#include "soh/Enhancements/arpg/ARPGTypes.h"
 #include "z_arms_hook.h"
 #include "objects/object_link_boy/object_link_boy.h"
 #include "soh/Enhancements/game-interactor/GameInteractor.h"
@@ -94,7 +96,8 @@ void ArmsHook_Wait(ArmsHook* this, PlayState* play) {
         ArmsHook_SetupAction(this, ArmsHook_Shoot);
         Actor_SetProjectileSpeed(&this->actor, 20.0f);
         this->actor.parent = &GET_PLAYER(play)->actor;
-        this->timer = length;
+        ARPG_AdventureLaunch(&this->actor, ARPG_SLOT_HOOKSHOT);
+        this->timer = ARPG_AdventureTravel(&this->actor, length);
     }
 }
 

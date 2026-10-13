@@ -1,0 +1,11 @@
+{
+  "animation": "__OTR__objects/gameplay_keep/gPlayerAnim_link_swimer_swim_wait",
+  "attackFrames": 0,
+  "drawFrames": 2139,
+  "mode": 8,
+  "movingFrames": 0,
+  "rollingFrames": 0,
+  "scene": 87,
+  "status": "captured-swim",
+  "swimmingFrames": 354
+}

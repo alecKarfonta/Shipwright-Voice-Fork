@@ -1,0 +1,55 @@
+{
+  "status": "passed",
+  "native_checks": 87,
+  "native_result": "tests/arpg/creature-mending-runtime-results-macos.json",
+  "portable": "Creature state, mending limits/counters, pause/cancel and geometry tests passed",
+  "sanitizers": "ASAN and UBSAN passed; LeakSanitizer disabled on macOS",
+  "feature": "Lantern Wraith interruptible healing of wounded melee allies",
+  "rules": {
+    "windup_native_ticks": 44,
+    "charges_per_wraith": 2,
+    "heals_per_recipient": 2,
+    "heal_fraction": 0.2,
+    "maximum_native_heal": 6,
+    "starting_health_fraction": 0.6,
+    "range": 420,
+    "interrupt_spends_charge": true,
+    "wraiths_heal_each_other": false
+  },
+  "native_scope": [
+    "Natural cooldown prioritization and bounded return to attacks",
+    "Native damage-table zero-damage stun interrupts; hard collisions reject the proc",
+    "No early, paused, duplicated or unlimited healing",
+    "Cross-caster target reservation and recipient heal budget",
+    "Native Wolfos health integration",
+    "No resurrection or healing retired actors",
+    "Range and real static terrain cancel a connection",
+    "Actual scene teardown while a healing reservation is active",
+    "Original creature/projectile/shield and native pack-technique regression"
+  ],
+  "visual_checks": [
+    "Actual native healing channel inspected with moving braid geometry, raised-arm caster and wounded Sentinel in Hyrule Field",
+    "Production Practice encounters shows Summon lantern escort",
+    "Summon reports success and both enemies appear after Resume",
+    "I reopens Equipment and pauses the practice fight"
+  ],
+  "build_note": "Recompiled CreatureSystem, CreatureVisuals and EnemySystem against the previously validated isolated game snapshot; separate QA harness linked only into the test executable. Shared build directory has concurrent builds from other ongoing work. This is not verification of all concurrent changes.",
+  "production_binary": "/tmp/soh-creature-mending/production",
+  "production_sha256": "526051b75bf2765c5632305aaecd023715fd10059b4423cb3d0b723c86dd7b84",
+  "production_app": "/tmp/soh-creature-playtest/Creature Adventure.app",
+  "player_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "source_sha256": {
+    "soh/soh/Enhancements/arpg/LanternMendRules.h": "220fd3f1157ea946b1159a3b7afd7934f79b98a1694b290667ac4eba26d364ba",
+    "soh/soh/Enhancements/arpg/CreatureRules.h": "787865bfa27d299928b1a877d3ae85a4df102244f140228bbe9e3543ee57d3d4",
+    "soh/soh/Enhancements/arpg/CreatureSystem.h": "5539895a18a50b4a496c21aa1aa02461fb9befadcca516c9c118cb736b1cd126",
+    "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "e37d58f64018c7cd49411e1d683ac098b666001c2806247edf86329a2efd92fc",
+    "soh/soh/Enhancements/arpg/CreatureVisuals.cpp": "a4e27beb9ba66ec5699ecd6f999001c8a1a31404a501a68f5483766d4847b93f",
+    "tests/arpg/creature_test.cpp": "1041545b94e9bc139370a56bff6dcbb2541c44d11a30f1d9d775eea57962fd86",
+    "tests/arpg/creature_runtime_test.cpp": "30b38c1f2f2400507e625a2b4cdc781a353f8634c84fb8078f7b8c28dfad9bf0"
+  },
+  "remaining": [
+    "Normal-play balance across all regions, terrain and both player ages",
+    "Crowded encounters and cooperative play",
+    "The full replayability objective remains incomplete"
+  ]
+}

@@ -187,6 +187,18 @@ void SohMenu::AddMenuDevTools() {
         .HideInSearch(true)
         .Options(WindowButtonOptions().Tooltip("Enables the separate Collision Viewer Window."));
 
+    // [TIME] | [INFO] | SohMenuDevTools | Entry point for the ARPG character, gear, skills, and tuning panel.
+    path.sidebarName = "ARPG Mod";
+    AddSidebarEntry("Dev Tools", path.sidebarName, 2);
+    AddWidget(path, "Open Loot Inventory", WIDGET_WINDOW_BUTTON)
+        .CVar(CVAR_WINDOW("ARPGInventory"))
+        .WindowName("Loot Inventory")
+        .Options(WindowButtonOptions().Tooltip("Drag loot onto equipment slots, compare modifiers, and manage your backpack."));
+    AddWidget(path, "Open ARPG Mod", WIDGET_WINDOW_BUTTON)
+        .CVar(CVAR_WINDOW("ARPG"))
+        .WindowName("ARPG Mod")
+        .Options(WindowButtonOptions().Tooltip("Configure the Diablo-style ARPG layer, spend skill points, and inspect gear."));
+
     // Actor Viewer
     path.sidebarName = "Actor Viewer";
     AddSidebarEntry("Dev Tools", path.sidebarName, 2);

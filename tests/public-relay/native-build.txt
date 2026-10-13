@@ -1,0 +1,75 @@
+[0/2] Re-checking globbed directories...
+-- GLOB mismatch!
+[1/2] Re-running CMake...
+Suppressing warnings in LUS and src
+fatal: No names found, cannot describe anything.
+-- Darwin
+-- Build spdlog: 1.16.0
+-- Build type: Release
+-- Linking against dependent libraries statically
+CMake Deprecation Warning at build-cmake/_deps/prism-src/CMakeLists.txt:2 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+
+
+-- TLS configured to use secure transport
+-- Could NOT find PkgConfig (missing: PKG_CONFIG_EXECUTABLE)
+-- Configuring done (1.6s)
+-- Generating done (0.4s)
+-- Build files have been written to: /tmp/soh-quests-build
+[0/4] Re-checking globbed directories...
+[1/36] Creating OSX icons ...
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_16x16.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_16x16@2x.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_32x32.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_32x32@2x.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_128x128.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_128x128@2x.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_256x256.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_256x256@2x.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_512x512.png
+[2/36] Building CXX object libultraship/src/CMakeFiles/libultraship.dir/ship/window/gui/resource/GuiTexture.cpp.o
+[3/36] Building CXX object libultraship/src/CMakeFiles/libultraship.dir/ship/window/gui/resource/GuiTextureFactory.cpp.o
+[4/36] Building C object libultraship/CMakeFiles/stb.dir/__/_deps/stb/stb_impl.c.o
+[5/36] Linking C static library libultraship/libstb.a
+[6/36] Building CXX object libultraship/src/CMakeFiles/libultraship.dir/libultraship/window/gui/GfxDebuggerWindow.cpp.o
+[7/36] Building CXX object libultraship/src/CMakeFiles/libultraship.dir/ship/window/gui/Gui.cpp.o
+[8/36] Building CXX object libultraship/src/CMakeFiles/libultraship.dir/fast/backends/gfx_sdl2.cpp.o
+[9/36] Building CXX object libultraship/src/CMakeFiles/libultraship.dir/fast/Fast3dWindow.cpp.o
+[10/36] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/TimeDisplay/TimeDisplay.cpp.o
+[11/36] Building CXX object libultraship/src/CMakeFiles/libultraship.dir/fast/Fast3dGui.cpp.o
+[12/36] Linking CXX static library libultraship/src/libultraship.a
+[13/36] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/ARPGTheme.cpp.o
+[14/36] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/controls/InputViewer.cpp.o
+[15/36] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/controls/Mapper.cpp.o
+[16/36] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/EnemyVisuals.cpp.o
+[17/36] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/debugger/debugSaveEditor.cpp.o
+[18/36] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/ARPGInventoryWindow.cpp.o
+[19/36] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/AdventureJournal.cpp.o
+[20/36] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/InventorySystem.cpp.o
+[21/36] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/timesplits/TimeSplits.cpp.o
+[22/36] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/randomizer/Plandomizer.cpp.o
+[23/36] Building CXX object soh/CMakeFiles/soh.dir/soh/Network/Network.cpp.o
+[24/36] Building CXX object soh/CMakeFiles/soh.dir/soh/Notification/Notification.cpp.o
+[25/36] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/timesplits/TimeSplitsSettings.cpp.o
+[26/36] Building CXX object soh/CMakeFiles/soh.dir/soh/ResourceManagerHelpers.cpp.o
+[27/36] Building CXX object soh/CMakeFiles/soh.dir/soh/SohGui/ImGuiUtils.cpp.o
+[28/36] Building CXX object soh/CMakeFiles/soh.dir/soh/SohGui/SohMenuStartingItems.cpp.o
+[29/36] Building CXX object soh/CMakeFiles/soh.dir/soh/SohGui/SohGui.cpp.o
+[30/36] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/timesplits/TimeSplitsActions.cpp.o
+[31/36] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/randomizer/randomizer_item_tracker.cpp.o
+[32/36] Building CXX object soh/CMakeFiles/soh.dir/soh/OTRGlobals.cpp.o
+[33/36] Linking CXX executable soh/soh-macos; Copying asset ymls...

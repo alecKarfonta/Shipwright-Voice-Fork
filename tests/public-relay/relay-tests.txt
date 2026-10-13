@@ -1,0 +1,3 @@
+ok  	go-anchor	(cached)
+?   	go-anchor/cmd/observer	[no test files]
+ok  	go-anchor/cmd/public-client	1.238s

@@ -1,19 +1,27 @@
 #include <ship/Context.h>
 
+#include <random>
+
 #include "Anchor.h"
+#include "CharacterTravel.h"
+#include "soh/Notification/Notification.h"
 #include "soh/SohGui/SohGui.hpp"
 #include "soh/SohGui/SohMenu.h"
 #include "soh/util.h"
 #include "soh/SohGui/UIWidgets.hpp"
+#include "soh/Enhancements/EnemyDifficulty/EnemyDifficulty.h"
+#include "soh/Network/Anchor/ServerBrowserWindow.h"
 
 namespace SohGui {
 extern std::shared_ptr<SohMenu> mSohMenu;
 extern std::shared_ptr<AnchorRoomWindow> mAnchorRoomWindow;
+extern std::shared_ptr<ServerBrowserWindow> mServerBrowserWindow;
 } // namespace SohGui
 
 static const char* pvpModes[3] = { "Off", "On", "On + Friendly Fire" };
 static std::vector<const char*> teleportModes = { "None", "Team Only", "All" };
 static std::vector<const char*> showLocationsModes = { "None", "Team Only", "All" };
+static std::vector<const char*> difficultyModes = { "Off", "HP Only", "Full (HP + Damage + Aggression)" };
 
 void AnchorMainMenu(WidgetInfo& info) {
     auto anchor = Anchor::Instance;
@@ -23,7 +31,7 @@ void AnchorMainMenu(WidgetInfo& info) {
     std::string anchorTeamId = CVarGetString(CVAR_REMOTE_ANCHOR("TeamId"), "default");
     std::string anchorRoomId = CVarGetString(CVAR_REMOTE_ANCHOR("RoomId"), "");
     std::string anchorName = CVarGetString(CVAR_REMOTE_ANCHOR("Name"), "");
-    bool isFormValid = !SohUtils::IsStringEmpty(host) && port > 1024 && port < 65535 &&
+    bool isFormValid = !SohUtils::IsStringEmpty(host) && port > 0 && port < 65535 &&
                        !SohUtils::IsStringEmpty(anchorRoomId) && !SohUtils::IsStringEmpty(anchorName);
 
     ImGui::SeparatorText("Connection Settings");
@@ -64,7 +72,7 @@ void AnchorMainMenu(WidgetInfo& info) {
         CVarSetString(CVAR_REMOTE_ANCHOR("RoomId"), anchorRoomId.c_str());
         Ship::Context::GetRawInstance()->GetWindow()->GetGui()->SaveConsoleVariablesNextFrame();
     }
-    ImGui::Text("Team ID (Items & Flags Shared)");
+    ImGui::Text("Team ID (Shared Quest Party)");
     ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
     if (UIWidgets::InputString("##TeamId", &anchorTeamId, UIWidgets::InputOptions().Color(THEME_COLOR))) {
         CVarSetString(CVAR_REMOTE_ANCHOR("TeamId"), anchorTeamId.c_str());
@@ -96,16 +104,23 @@ void AnchorMainMenu(WidgetInfo& info) {
         Ship::Context::GetRawInstance()->GetWindow()->GetGui()->SaveConsoleVariablesNextFrame();
     }
 
+    UIWidgets::CVarCheckbox("Portable characters", CVAR_REMOTE_ANCHOR("PortableCharacters"),
+        UIWidgets::CheckboxOptions().DefaultValue(true).Color(THEME_COLOR)
+            .Tooltip("Keep your local character in every server. Gear, skills, story and rewards remain personal; "
+                     "quests can still be shared. Disable only for legacy shared-save play."));
     ImGui::EndDisabled();
 
     ImGui::Spacing();
 
-    ImGui::BeginDisabled(!isFormValid);
-    const char* buttonLabel = anchor->isEnabled ? "Disable" : "Enable";
+    ImGui::BeginDisabled(!isFormValid && !anchor->isEnabled);
+    const char* buttonLabel = anchor->isEnabled ? "Save & Leave Server" : "Join with Character";
     UIWidgets::PushStyleButton(anchor->isEnabled ? UIWidgets::ColorValues.at(UIWidgets::Colors::Red)
                                                  : UIWidgets::ColorValues.at(UIWidgets::Colors::Green));
     if (ImGui::Button(buttonLabel, ImVec2(-1.0f, 0.0f))) {
-        if (anchor->isEnabled) {
+        std::string error;
+        if (!CharacterTravel::Checkpoint(error)) {
+            Notification::Emit({ .message = error });
+        } else if (anchor->isEnabled) {
             CVarClear(CVAR_REMOTE_ANCHOR("Enabled"));
             Ship::Context::GetRawInstance()->GetWindow()->GetGui()->SaveConsoleVariablesNextFrame();
             anchor->Disable();
@@ -119,6 +134,8 @@ void AnchorMainMenu(WidgetInfo& info) {
     ImGui::EndDisabled();
     ImGui::Spacing();
 
+    UIWidgets::WindowButton("Public Games / Server Browser", CVAR_WINDOW("ServerBrowser"), SohGui::mServerBrowserWindow);
+
     if (!anchor->isEnabled) {
         return;
     }
@@ -131,16 +148,23 @@ void AnchorMainMenu(WidgetInfo& info) {
     ImGui::SeparatorText("Current Room");
     ImGui::Text("%s Connected", ICON_FA_CHECK);
 
+    ImGui::BeginDisabled(CharacterTravel::Enabled());
     UIWidgets::PushStyleButton(THEME_COLOR);
     if (ImGui::Button("Request Team State")) {
         anchor->SendPacket_RequestTeamState();
     }
-    UIWidgets::Tooltip("Try this if you are missing items or flags that your team members have collected");
+    UIWidgets::Tooltip("Legacy shared-save mode only. Portable characters keep their own items and story.");
     UIWidgets::PopStyleButton();
+    ImGui::EndDisabled();
 
     ImGui::SameLine();
 
     UIWidgets::WindowButton("Toggle Anchor Room Window", CVAR_WINDOW("AnchorRoom"), SohGui::mAnchorRoomWindow);
+
+    ImGui::Spacing();
+
+    // [TIME] | [INFO] | AnchorMainMenu | Server browser entry point (manage + browse + join)
+
 
     ImGui::Spacing();
 
@@ -174,6 +198,8 @@ void AnchorAdminMenu(WidgetInfo& info) {
     }
 
     ImGui::SeparatorText("Room Settings (Admin Only)");
+    if(UIWidgets::CVarCheckbox("Show in public game list",CVAR_REMOTE_ANCHOR("RoomSettings.Listed"),UIWidgets::CheckboxOptions().Color(THEME_COLOR))) {anchor->SendPacket_UpdateRoomState();}
+
 
     UIWidgets::PushStyleButton(THEME_COLOR);
     if (ImGui::Button("Clear All Team State")) {
@@ -209,16 +235,73 @@ void AnchorAdminMenu(WidgetInfo& info) {
                                     .Color(THEME_COLOR))) {
         anchor->SendPacket_UpdateRoomState();
     }
+    ImGui::BeginDisabled(CharacterTravel::Enabled());
     if (UIWidgets::CVarCheckbox("Sync Items & Flags", CVAR_REMOTE_ANCHOR("RoomSettings.SyncItemsAndFlags"),
                                 UIWidgets::CheckboxOptions().DefaultValue(true).Color(THEME_COLOR))) {
         anchor->SendPacket_UpdateRoomState();
+    }
+    ImGui::EndDisabled();
+    if (CharacterTravel::Enabled()) ImGui::TextWrapped("Portable characters: personal saves protected; campaign quests can be shared.");
+    if (UIWidgets::CVarCombobox("Enemy Difficulty Scaling:", CVAR_REMOTE_ANCHOR("RoomSettings.DifficultyMode"),
+                                difficultyModes,
+                                UIWidgets::ComboboxOptions()
+                                    .DefaultIndex(1)
+                                    .LabelPosition(UIWidgets::LabelPositions::Above)
+                                    .Color(THEME_COLOR)
+                                    .Tooltip("Scales enemies and bosses based on the number of players in the room. "
+                                             "HP Only: +100% HP per extra player. Full: also scales damage dealt to "
+                                             "players, enemy speed and aggression."))) {
+        anchor->SendPacket_UpdateRoomState();
+    }
+
+    // [TIME] | [INFO] | Menu.A RPGCoop | Shared deterministic elite rolls: one seed drives identical
+    // Champion/Elite affixes on every client; loot stays personal per save.
+    ImGui::SeparatorText("ARPG Co-op");
+    if (UIWidgets::CVarCheckbox("Share Elite Rolls (Deterministic ARPG Seed)", CVAR_REMOTE_ANCHOR("RoomSettings.ARPGShared"),
+                                UIWidgets::CheckboxOptions()
+                                    .DefaultValue(false)
+                                    .Color(THEME_COLOR)
+                                    .Tooltip("When enabled, the room owner publishes a seed and every client derives "
+                                             "identical Champion/Elite tiers, stats and affixes from it. Disable for "
+                                             "personal per-save rolls."))) {
+        // Owner rolls a fresh seed when the toggle flips on and none exists yet
+        if (anchor->roomState.ownerClientId == anchor->ownClientId &&
+            CVarGetInteger(CVAR_REMOTE_ANCHOR("RoomSettings.ARPGShared"), 0) != 0 &&
+            CVarGetInteger(CVAR_REMOTE_ANCHOR("RoomSettings.ARPGSeed"), 0) == 0) {
+            CVarSetInteger(CVAR_REMOTE_ANCHOR("RoomSettings.ARPGSeed"), (int)(std::random_device{}() & 0x7FFFFFFF));
+        }
+        anchor->SendPacket_UpdateRoomState();
+    }
+    if (CVarGetInteger(CVAR_REMOTE_ANCHOR("RoomSettings.ARPGShared"), 0) != 0) {
+        int seed = CVarGetInteger(CVAR_REMOTE_ANCHOR("RoomSettings.ARPGSeed"), 0);
+        ImGui::Text("ARPG Seed: %08X", seed);
+        if (anchor->roomState.ownerClientId == anchor->ownClientId) {
+            ImGui::SameLine();
+            if (ImGui::Button("Reroll Seed##arpg")) {
+                CVarSetInteger(CVAR_REMOTE_ANCHOR("RoomSettings.ARPGSeed"), (int)(std::random_device{}() & 0x7FFFFFFF));
+                Ship::Context::GetRawInstance()->GetWindow()->GetGui()->SaveConsoleVariablesNextFrame();
+                anchor->SendPacket_UpdateRoomState();
+            }
+        }
+        if (anchor->roomState.arpgSeed != 0 && (uint32_t)seed != anchor->roomState.arpgSeed) {
+            ImGui::TextColored(ImVec4(1.0f, 0.8f, 0.3f, 1.0f), "Room seed in use: %08X (yours will apply when you own the room)",
+                               anchor->roomState.arpgSeed);
+        }
     }
 }
 
 void AnchorInstructionsMenu(WidgetInfo& info) {
     auto anchor = Anchor::Instance;
 
-    ImGui::SeparatorText("Usage Instructions");
+    if (CharacterTravel::Enabled()) {
+        ImGui::SeparatorText("Portable Characters");
+        ImGui::TextWrapped("Each save slot is a character. Choose the same save when joining any party.");
+        ImGui::TextWrapped("Open Public Games / Server Browser to find a party. While playing, use Save & Switch Server to bring your current character to another game, or Save & Play Solo to continue offline.");
+        ImGui::TextWrapped("Your gear, skills, currency, story and quest rewards stay with you. Use the same Team ID to share campaign quests from the journal. Randomizer characters still need matching seeds to play together.");
+        ImGui::TextWrapped("Characters are saved on this device. They are not stored by the relay.");
+        return;
+    }
+    ImGui::SeparatorText("Legacy Shared-Save Instructions");
 
     ImGui::TextWrapped("1. All players involved should start at the file select screen");
 

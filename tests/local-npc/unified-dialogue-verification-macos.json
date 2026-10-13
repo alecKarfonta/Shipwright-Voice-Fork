@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-12",
+  "platform": "macOS ARM64, Metal, 1280x720",
+  "build": {
+    "native_game": "passed",
+    "feature_disabled_compile": "passed"
+  },
+  "automated_tests": {
+    "dialogue_text": "passed",
+    "npc_client": "passed (43 checks, local HTTP/TTS fixture)",
+    "arpg_quests": "passed",
+    "native_runtime": {
+      "status": "passed",
+      "checks": 18,
+      "report": "unified-dialogue-runtime-results-macos.json"
+    }
+  },
+  "visual_checks": [
+    "Original Kokiri two-choice campaign message renders with native text and choices.",
+    "Campaign continuation hands off to a native custom textbox with speaker heading.",
+    "Custom dialogue hides the minimap and action buttons that could overlap the textbox.",
+    "F7 opens a compact keyboard composer above the native textbox.",
+    "Typing and submitting How is the forest? reaches the native HTTP client fixture.",
+    "The deterministic fixture reply renders and advances across native pages.",
+    "Escape from the composer returns to native three-choice local topics.",
+    "Escape from topics closes the textbox and restores the normal HUD."
+  ],
+  "isolation": "Opt-in runtime harness used a fresh temporary SHIP_HOME and an in-memory debug adventure. No ordinary user save was loaded or written.",
+  "limitations": [
+    "No full default-campaign or randomizer playthrough.",
+    "Generated reply UI check used a deterministic local HTTP fixture, not a live model.",
+    "Voice transport regression tests passed; this change did not add a new listening review.",
+    "Free-text questions require a keyboard."
+  ]
+}

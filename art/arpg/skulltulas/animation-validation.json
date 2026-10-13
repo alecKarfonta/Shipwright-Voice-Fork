@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "native_animation_frames": 111,
+  "native_visible_limbs": 10,
+  "leg_anchor_checks": 888,
+  "maximum_anchor_gap_world_units": 3.552713678800501e-15,
+  "maximum_envelope_extension_world_units": 0.7528383933696574,
+  "normal_actor_scale": 0.04,
+  "big_actor_scale": 0.056,
+  "rig": "Original leg-root rotations and independently animated mandible; no invented knee animation"
+}

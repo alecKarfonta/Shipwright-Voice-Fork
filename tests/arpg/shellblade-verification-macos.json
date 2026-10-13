@@ -1,0 +1,107 @@
+{
+  "status": "passed",
+  "date": "2026-10-13",
+  "feature": "Original Shell Blade articulated valves and native movement integration",
+  "scope": "Original Shell Blade on land and under water. Original rig, animations, movement, collision, attack timing and mouth vulnerability retained.",
+  "art": {
+    "source_sha256": "a4c83342c0668554363c169b4d029b320ded68bc142d25367179728ee7eebc5f",
+    "vertices": 6770,
+    "triangles": 13216,
+    "parts": 12,
+    "subpixel_triangles_removed": 0,
+    "triangles_per_actor": {
+      "0": 13216
+    },
+    "materials": [
+      "shell",
+      "edge",
+      "pearl",
+      "ridge",
+      "flesh",
+      "eye",
+      "pupil"
+    ],
+    "space": "Native joint-local XYZ, positions x100; native normals retained; per-vertex native joint indices; authoring-pose transforms omitted"
+  },
+  "animation": {
+    "status": "passed",
+    "geometry_variants": 1,
+    "native_animation_clips_per_variant": 5,
+    "native_animation_frames_per_variant": 42,
+    "visible_limbs_in_rig": 4,
+    "bridges": 1,
+    "posed_bridge_endpoint_checks": 1512,
+    "maximum_quantized_endpoint_error_world_units": 0.0044160145243591666,
+    "maximum_posed_envelope_extension_world_units": 1.8852530633805797,
+    "actor_scale": 0.006,
+    "scope": "Full native animation poses; quantized endpoints follow their assigned native joints. Native source vertices and authored connection endpoints are transformed under their assigned joints. Native root offsets translate both native and authored geometry equally. Shell valves and the adductor are reviewed in all five clips; no claim of watertight topology."
+  },
+  "portable": {
+    "full_suites_passed": 35,
+    "full_suite_log": "/tmp/shellblade-portable-test.log",
+    "final_geometry_retest": "passed; /tmp/shellblade-final-geometry-test.log",
+    "address_and_undefined_sanitizers": "Final geometry passed, 13,216 triangles"
+  },
+  "native": {
+    "checks_passed": 63,
+    "render_frames": 397,
+    "land_lunges": 4,
+    "land_bounces": 4,
+    "fire_draw_frames": 6,
+    "shell_fragments": 6,
+    "water_fragments": 2,
+    "water_frames": 67,
+    "native_defeats": 3,
+    "authored_fragment_meshes": true,
+    "fragment_capture_ready": true,
+    "results": "tests/arpg/shellblade-runtime-results-macos.json",
+    "scope": "Native approach warning, four-hop land attack, closed armor, mouth frame/height/yaw boundaries, cooldown, fire/filter expiry, original water launch/movement, land/water death fragments and rewards, interrupted allocation cleanup, feature/distance gates, cache stability and practice placement/cap. Final native close-up saved.",
+    "fixture_limits": "Isolated debug save, pinned player/camera, supplied hit damage and positions. Native TurnAround is called with chosen facing for the water launch fixture. The interrupted-allocation check calls the real destructor once and suppresses a duplicate automatic call. Natural underwater encounter and full dungeon coverage are not established."
+  },
+  "production_ui": {
+    "build": "/tmp/soh-shellblade-playtest/Shellblade Adventure.app",
+    "verified": [
+      "Collapsed Shell Blade section and land/water choices",
+      "Ordinary land practice summon",
+      "Approach, native targeting, lunge and knockback",
+      "Journal reopens after encounter"
+    ],
+    "profile_root": "/tmp/soh-shellblade-playtest/profiles",
+    "qa_harness_linked": false,
+    "revision_scope": "Ordinary UI and combat check preceded the final adductor endpoint fitting. Production bundle refreshed with final geometry; final geometry exercised in the 63-check native QA and screenshot. UI, movement and integration code unchanged between these revisions.",
+    "not_claimed": "Successful manual shield block, full manual kill or underwater fight; broad dungeon, terrain and crowded-scene acceptance."
+  },
+  "build": {
+    "method": "Isolated source snapshot and object-link chain from verified Stinger build. Rebuilt Shellblade renderer, native EnSb, CreatureSystem and QA harness. Shared Ninja not run; unrelated concurrent changes are not claimed rebuilt.",
+    "source": "/tmp/soh-shellblade/source",
+    "qa": "/tmp/soh-shellblade/qa",
+    "production": "/tmp/soh-shellblade/production",
+    "source_hashes": {
+      "soh/soh/Enhancements/arpg/ShellbladeBlenderData.h": "0ae683566c8287ef533113908327f3da9f2f942803c89bb80ba58c3492679408",
+      "soh/soh/Enhancements/arpg/ShellbladeGeometry.h": "05c4c5e540f29bc7ad43cb9b1ddaa379a86a64d6bbd019792b93988f82b5b4f5",
+      "soh/soh/Enhancements/arpg/ShellbladeVisuals.h": "4893c8430f49b9289273e2ece6ff45999f638486c3f61415e030c693fc049b02",
+      "soh/soh/Enhancements/arpg/ShellbladeVisuals.cpp": "62dd52ba57cf0bf33ea68c90b1add7b1c54a7d50e220ddf80815cc33d2ca1bc2",
+      "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "caa2d0109cb3d33b9be424c4d86fdc9f2a13af2ba3a1cc28ce28b02e8c211b47",
+      "soh/soh/Enhancements/arpg/CreatureSystem.h": "cc4411ef0767c81710579b9ac09825a01978b5757f16e58c176295eeac5e2cbe",
+      "soh/src/overlays/actors/ovl_En_Sb/z_en_sb.c": "4962cfa6c31e7842dabeeea094fce62e2dee676ca1f7ccf0968af58a6fda0246",
+      "tests/arpg/shellblade_runtime_test.cpp": "9c93309de168fcc0f3a730ff70f77b4541c5c4f01f49c3ed5053ad32fc5bd370"
+    },
+    "source_snapshot_matches": true,
+    "qa_exit_status": 0,
+    "production_exit_status": 0,
+    "production_exit_revision": "Ordinary UI build before final adductor endpoint fitting"
+  },
+  "save": {
+    "path": "/Users/alec/Library/Application Support/shipofharkinian/profiles/player1/Save/file1.sav",
+    "before_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "after_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "unchanged": true
+  },
+  "blender": {
+    "authoring": "Installed Blender 5.1.2 in isolated background processes; live MCP connection unavailable.",
+    "editable_source": "art/arpg/shellblades/shellblades.blend",
+    "user_project_modified": false
+  },
+  "preview": "art/arpg/shellblades/shellblade-native-preview.png",
+  "remaining": "Other native families; natural water, dungeon/terrain and crowded-scene acceptance; full replayability goal remains incomplete."
+}

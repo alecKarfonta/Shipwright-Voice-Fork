@@ -1,0 +1,22 @@
+{
+  "source_sha256": "809b2f59b495b729d96450819f6d165f3b3c7396ccf9706e2a732ca4453d91e9",
+  "vertices": 1570,
+  "triangles": 1096,
+  "parts": 10,
+  "subpixel_triangles_removed": 0,
+  "triangles_per_part": {
+    "0": 896,
+    "1": 64,
+    "2": 136
+  },
+  "materials": [
+    "stone",
+    "edge",
+    "bronze",
+    "gold",
+    "glass",
+    "spirit",
+    "core"
+  ],
+  "space": "Native model-local XYZ, positions x100; native normals retained; studio transforms omitted; beacon and spirit use separate runtime pivots"
+}

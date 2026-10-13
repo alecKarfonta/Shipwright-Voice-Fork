@@ -1,0 +1,1 @@
+PASS: verified TLS/WebSocket connection, public room discovery, two-client joining, shared party size and six-kill completion.

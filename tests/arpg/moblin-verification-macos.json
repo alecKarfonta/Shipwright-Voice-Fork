@@ -1,0 +1,133 @@
+{
+  "status": "passed",
+  "date": "2026-10-13",
+  "feature": "Original spear and club Moblins with fitted anatomy, armor and native movement",
+  "scope": "Original spear guard, larger Meadow patrol and club fighter. Native skeletons, clips, movement, collision, weapon reach, charge/braking, three slam lanes, kneeling and death retained.",
+  "art": {
+    "source_sha256": "ebdead0d0819662c2d7a9ef799119f0eed1486a31777c4eda3221aebec2b09c3",
+    "vertices": 14829,
+    "triangles": 24716,
+    "parts": 102,
+    "subpixel_triangles_removed": 0,
+    "triangles_per_actor": {
+      "0": 11624,
+      "1": 13092
+    },
+    "materials": [
+      "skin",
+      "ridge",
+      "iron",
+      "edge",
+      "leather",
+      "cloth",
+      "cavity",
+      "ivory",
+      "eye",
+      "wood"
+    ],
+    "space": "Native joint-local XYZ, positions x100; native normals retained; per-vertex native joint indices; authoring-pose transforms omitted"
+  },
+  "animation": {
+    "status": "passed",
+    "variants": [
+      {
+        "variant": "spear",
+        "native_clips": 14,
+        "native_frames": 278,
+        "visible_limbs": 15,
+        "joint_connections": 12,
+        "posed_endpoint_checks": 80064,
+        "maximum_quantized_endpoint_error_world_units": 0.005900285160718749,
+        "maximum_posed_envelope_extension_world_units": 4.84354137520404,
+        "patrol_world_scale_multiplier": 1.4
+      },
+      {
+        "variant": "club",
+        "native_clips": 9,
+        "native_frames": 248,
+        "visible_limbs": 15,
+        "joint_connections": 12,
+        "posed_endpoint_checks": 71424,
+        "maximum_quantized_endpoint_error_world_units": 0.012712652848762288,
+        "maximum_posed_envelope_extension_world_units": 10.839301684563281
+      }
+    ],
+    "scope": "Every original animation frame; bridge endpoints use native matrices. Envelope comparison is per axis, not collision proof; motion renders and native combat separately reviewed."
+  },
+  "portable": {
+    "full_suites_passed": 38,
+    "full_suite_log": "/tmp/moblin-portable-test.log",
+    "address_and_undefined_sanitizers": "Passed both geometry variants, correct chest matrix maps, twelve connections each, hidden joints, normalized lighting and bounded weapon reach",
+    "sanitizer_log": "/tmp/moblin-sanitizer.log"
+  },
+  "native": {
+    "checks_passed": 79,
+    "charge_frames": 8,
+    "club_attack_frames": 48,
+    "club_quad": true,
+    "head_rotations": 257,
+    "ice_frames": 78,
+    "native_defeats": 4,
+    "native_foot_positions": true,
+    "patrol_waypoints": 3,
+    "render_frames": 1446,
+    "spear_quad": true,
+    "results": "tests/arpg/moblin-runtime-results-macos.json",
+    "scope": "All three original actor types; embedded rig arrays, every visible limb, cached matrix palettes, feature gates, distance fallback, native scales and body collision. Guard idle/walk/wind-up/charge/braking/recovery; front shielding, immunity, directional recoil, stun, ordinary and frozen deaths. Club middle/right/left lanes, original hand quad, foot positions, kneel/stand-up and deaths. Exactly four native/ARPG rewards, duplicate death guards, owned-grab deletion, unrelated ownership, practice limits and placement, three actual Meadow path waypoints and scene teardown.",
+    "fixture_limits": "Isolated debug save. Player/camera and day time are pinned; other Field enemies are removed after native practice placement succeeds. Collision flags and damage effects are supplied to the original handler. Club lane selection supplies relative yaw at native attack setup. Ownership teardown supplies parent/grab fields. Final Meadow walk check keeps the player diagonally outside the charge corridor and observes three native waypoints without repositioning the patrol. Does not establish full manual kills, every patrol route, broad terrain or crowd performance."
+  },
+  "production_ui": {
+    "build": "/tmp/soh-moblin-playtest/Moblin Adventure.app",
+    "profile_root": "/tmp/soh-moblin-playtest/profiles",
+    "qa_harness_linked": false,
+    "launcher": "/tmp/soh-moblin-production.py",
+    "state": "Open, paused in the adventure journal on the separate practice profile",
+    "verified": [
+      "Collapsed Upgraded Moblins panel and spear/club choices",
+      "Ordinary spear guard summon, native targeting, approach and charge",
+      "Rebuilt spear, armor and hands observed at close range",
+      "Ordinary club summons with larger native scale, wind-up/slam stance, shockwave debris and player knockback",
+      "Journal reopened and paused after the encounters"
+    ],
+    "not_claimed": "Full manual defeat, all three club lanes through manual play, all patrol routes, broad terrain and crowded-scene performance."
+  },
+  "build": {
+    "method": "Isolated source snapshot and object-link chain from the verified Peahat build. Rebuilt Moblin renderer, native EnMb, CreatureSystem and native QA harness. Shared Ninja was not run; unrelated shared-source changes are not claimed rebuilt. The final harness correction isolates Meadow walking from charge behavior.",
+    "source": "/tmp/soh-moblin/source",
+    "qa": "/tmp/soh-moblin/qa",
+    "production": "/tmp/soh-moblin/production",
+    "source_hashes": {
+      "soh/soh/Enhancements/arpg/MoblinBlenderData.h": "c172b84bfdb09d8c7217b38f32cb3d8130d3b99b62999905beeb5a408961444e",
+      "soh/soh/Enhancements/arpg/MoblinGeometry.h": "074b5c984976c43b6ed33123d41897d38969aa1f76b4d539480f8f289b71b068",
+      "soh/soh/Enhancements/arpg/MoblinVisuals.h": "059457293a21d1d24ad10c25f09a898b268dd39cefe9c93d421a36dc21d20a7e",
+      "soh/soh/Enhancements/arpg/MoblinVisuals.cpp": "65c72c04dc3403a5f542b8d1dc1079855ea47e184557ab8de34f25f0b86aaf42",
+      "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "170537b71670af67d32770325497587296cb1ac9eb3d84bb16afc4e863b6b8a5",
+      "soh/soh/Enhancements/arpg/CreatureSystem.h": "37969bbf8c649138a5038fab8f572496b0fdb9d230070e087d9dfe6d73f90c2b",
+      "soh/src/overlays/actors/ovl_En_Mb/z_en_mb.c": "f1b36a55a7fe819d02b5706e476f97bd2c4d5087acf0b002401bac5617db1042",
+      "tests/arpg/moblin_runtime_test.cpp": "d19cf203b52b70bfced596b80531ddbae17b067c3058498bf96de3494addfc17"
+    },
+    "source_snapshot_matches": true,
+    "production_and_packaged_app_macho_uuid": "2FBED94C-E010-373D-BE1E-CB992E29FCE3",
+    "qa_exit_status": 0,
+    "production_exit_status": null,
+    "known_shutdown_log": "QA exited zero. The existing ResourceManager destructor logger emitted a mutex-lock error during shutdown, also present in the prior Peahat, Armos and Shell Blade logs. No shutdown result is claimed for the ordinary build, which remains open."
+  },
+  "save": {
+    "path": "/Users/alec/Library/Application Support/shipofharkinian/profiles/player1/Save/file1.sav",
+    "before_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "after_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "unchanged": true
+  },
+  "blender": {
+    "authoring": "Installed Blender 5.1.2 in isolated background processes; live Blender MCP unavailable.",
+    "editable_source": "art/arpg/moblins/moblins.blend",
+    "user_project_modified": false
+  },
+  "previews": [
+    "art/arpg/moblins/moblins-studio.png",
+    "art/arpg/moblins/moblin-native-preview.png",
+    "art/arpg/moblins/moblin-spear-practice.png",
+    "art/arpg/moblins/moblin-club-practice.png"
+  ],
+  "remaining": "Other native families, environments and characters; broad original-world combat acceptance and crowded-scene performance. All five broader replayability requirements remain partial."
+}

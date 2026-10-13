@@ -5,6 +5,7 @@
  */
 
 #include "z_en_sb.h"
+#include "soh/Enhancements/arpg/ShellbladeVisuals.h"
 #include "vt.h"
 #include "objects/object_sb/object_sb.h"
 #include "soh/Enhancements/game-interactor/GameInteractor_Hooks.h"
@@ -130,6 +131,16 @@ void EnSb_Init(Actor* thisx, PlayState* play) {
 
 void EnSb_Destroy(Actor* thisx, PlayState* play) {
     EnSb* this = (EnSb*)thisx;
+    // [TIME] | [INFO] | EnSb.Destroy | Release successful but interrupted shell-fragment allocations without touching already-freed finished or failed allocations.
+    if (this->bodyBreak.val > 0 || this->bodyBreak.val == BODYBREAK_STATUS_READY) {
+        ZELDA_ARENA_FREE_DEBUG(this->bodyBreak.matrices);
+        ZELDA_ARENA_FREE_DEBUG(this->bodyBreak.dLists);
+        ZELDA_ARENA_FREE_DEBUG(this->bodyBreak.objectIds);
+        this->bodyBreak.matrices = NULL;
+        this->bodyBreak.dLists = NULL;
+        this->bodyBreak.objectIds = NULL;
+        this->bodyBreak.val = BODYBREAK_STATUS_FINISHED;
+    }
     SkelAnime_Free(&this->skelAnime, play);
     Collider_DestroyCylinder(play, &this->collider);
 }
@@ -475,9 +486,18 @@ void EnSb_Update(Actor* thisx, PlayState* play) {
     }
 }
 
+s32 EnSb_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s* rot, void* thisx) {
+    ARPG_OverrideShellbladeLimb(play, &((EnSb*)thisx)->actor, limbIndex, dList);
+    return false;
+}
+
 void EnSb_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, void* thisx) {
     EnSb* this = (EnSb*)thisx;
 
+    // [TIME] | [INFO] | EnSb.Fragments | Flex post callbacks receive the original list; capture the same rigid shell mesh used for drawing.
+    if (limbIndex == 4 || limbIndex == 6) {
+        ARPG_OverrideShellbladeLimb(play, &this->actor, limbIndex, dList);
+    }
     BodyBreak_SetInfo(&this->bodyBreak, limbIndex, 0, 6, 8, dList, BODYBREAK_OBJECT_DEFAULT);
 }
 
@@ -488,12 +508,11 @@ void EnSb_Draw(Actor* thisx, PlayState* play) {
     s16 fireDecr;
 
     func_8002EBCC(&this->actor, play, 1);
-    SkelAnime_DrawSkeletonOpa(play, &this->skelAnime, NULL, EnSb_PostLimbDraw, this);
+    SkelAnime_DrawSkeletonOpa(play, &this->skelAnime, EnSb_OverrideLimbDraw, EnSb_PostLimbDraw, this);
     if (this->fire != 0) {
         this->actor.colorFilterTimer++;
-        fireDecr = this->fire - 1;
-        // this is intended to draw flames after being burned, but the condition is never met to run this code
-        // fire gets set to 4 when burned, decrements to 3 and fails the "& 1" check and never stores the decrement
+        // [TIME] | [INFO] | EnSb.Fire | Advance on every draw so the intended alternating flames execute and the damage filter can expire.
+        fireDecr = --this->fire;
         if ((fireDecr & 1) == 0) {
             offset = &sFlamePosOffsets[(fireDecr & 3)];
             flamePos.x = Rand_CenteredFloat(5.0f) + (this->actor.world.pos.x + offset->x);

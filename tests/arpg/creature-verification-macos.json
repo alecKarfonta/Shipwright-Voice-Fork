@@ -1,0 +1,69 @@
+{
+  "status": "passed",
+  "creatures": [
+    "Cairn Sentinel",
+    "Lantern Wraith"
+  ],
+  "native_techniques": [
+    "Stalfos bone-dart volley",
+    "Wolfos pack-rally howl"
+  ],
+  "native_checks": 47,
+  "portable": "passed",
+  "asan_ubsan": "passed (LeakSanitizer unavailable on macOS)",
+  "geometry": {
+    "source_sha256": "8fce18eae95fd65c8bbd4836551ed87424cfc2e11885d39852c51eb8ab2b2be8",
+    "vertices": 2874,
+    "triangles": 2492,
+    "parts": 49,
+    "subpixel_triangles_removed": 0,
+    "triangles_per_part": {
+      "0": 240,
+      "1": 224,
+      "2": 224,
+      "3": 164,
+      "4": 132,
+      "5": 132,
+      "6": 132,
+      "7": 132,
+      "8": 388,
+      "9": 180,
+      "10": 170,
+      "11": 170,
+      "12": 50,
+      "13": 50,
+      "14": 44,
+      "15": 60
+    },
+    "materials": [
+      "basalt",
+      "stone",
+      "edge",
+      "bronze",
+      "gold",
+      "core",
+      "bone",
+      "dark",
+      "cloth",
+      "trim",
+      "spirit"
+    ],
+    "space": "Native model-local XYZ, positions x100; native normals retained; studio transforms omitted; creatures use sixteen articulated runtime parts"
+  },
+  "build_note": "Rebuilt 1,075 game units against a separate source bundle and private object copies; production excludes all runtime QA harnesses.",
+  "limits": [
+    "Broader terrain/age, long-run encounter balance and performance under maximum regional populations remain to be played.",
+    "The broad replayability goal remains incomplete."
+  ],
+  "player_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "production_binary": "/tmp/soh-creature-production-binary",
+  "production_sha256": "76a8fe76f89fcb7f41f6fa7a6ddca4c96f9f3988921519592238d12ad8545c2e",
+  "production_app": "/tmp/soh-creature-playtest/Creature Adventure.app",
+  "production_ui_checks": [
+    "Temporary adventure opens the native journal",
+    "More / Arsenal & enemy counters exposes collapsed Practice encounters, New creatures and Pack techniques",
+    "Both summon buttons succeed from the paused journal",
+    "Resume shows the articulated Sentinel and hovering Wraith fighting in Hyrule Field",
+    "I returns to the equipment journal and pauses the practice fight"
+  ]
+}

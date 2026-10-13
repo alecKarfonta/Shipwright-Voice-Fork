@@ -16,6 +16,7 @@
 
 #include "soh/Enhancements/game-interactor/GameInteractor.h"
 #include "soh/Enhancements/game-interactor/GameInteractor_Hooks.h"
+#include "soh/Enhancements/arpg/ARPGBridge.h"
 #include "soh/Enhancements/randomizer/randomizer_grotto.h"
 #include "soh/OTRGlobals.h"
 #include "soh/ResourceManagerHelpers.h"
@@ -2912,6 +2913,15 @@ s32 Health_ChangeBy(PlayState* play, s16 healthChange) {
     }
     // clang-format on
 
+    // #region SOH [ARPG]
+    // [TIME] | [INFO] | Health_ChangeBy | ARPG defensive mods/skills reduce
+    // incoming damage (Bulwark % + Toughness/Aegis flat quarter-hearts)
+    if (healthChange < 0 && ARPG_PlayerDamageReduction(&healthChange)) {
+        // fully absorbed by defense
+        return 1;
+    }
+    // #endregion
+
     int32_t giDefenseModifier = GameInteractor_DefenseModifier();
     if (giDefenseModifier != 0 && healthChange < 0) {
         if (giDefenseModifier > 0) {
@@ -3081,6 +3091,11 @@ void Magic_Reset(PlayState* play) {
 }
 
 s32 Magic_RequestChange(PlayState* play, s16 amount, s16 type) {
+    // [TIME] | [INFO] | Magic_RequestChange | Discount consuming requests once; additions and lens upkeep retain vanilla semantics.
+    if (type == MAGIC_CONSUME_NOW || type == MAGIC_CONSUME_NOW_ALT || type == MAGIC_CONSUME_WAIT_PREVIEW ||
+        type == MAGIC_CONSUME_WAIT_NO_PREVIEW) {
+        amount = ARPG_MagicCost(amount);
+    }
     if (!gSaveContext.isMagicAcquired) {
         return false;
     }
@@ -3264,7 +3279,8 @@ void Interface_UpdateMagicBar(PlayState* play) {
 
         case MAGIC_STATE_CONSUME:
             if (!Flags_GetRandomizerInf(RAND_INF_HAS_INFINITE_MAGIC_METER)) {
-                gSaveContext.magic -= 2;
+                // [TIME] | [INFO] | Magic_Update | Preserve the final unit when an odd discounted cost crosses a two-unit animation step.
+                gSaveContext.magic = MAX(0, MAX(gSaveContext.magic - 2, gSaveContext.magicTarget));
                 if (gSaveContext.magic <= 0) {
                     gSaveContext.magic = 0;
                     gSaveContext.magicState = MAGIC_STATE_METER_FLASH_1;
@@ -3273,7 +3289,9 @@ void Interface_UpdateMagicBar(PlayState* play) {
                     } else {
                         sMagicBorder = sMagicBorder_ori;
                     }
-                } else if (gSaveContext.magic == gSaveContext.magicTarget) {
+                } else if (gSaveContext.magic <= gSaveContext.magicTarget) {
+                    // [TIME] | [INFO] | Magic_Update | Discounted spells may cost an odd number of units; stop at their exact target.
+                    gSaveContext.magic = gSaveContext.magicTarget;
                     gSaveContext.magicState = MAGIC_STATE_METER_FLASH_1;
                     if (CVarGetInteger(CVAR_COSMETIC("Consumable.MagicBorder.Changed"), 0)) {
                         sMagicBorder = CVarGetColor24(CVAR_COSMETIC("Consumable.MagicBorder.Value"), sMagicBorder_ori);
@@ -3281,6 +3299,8 @@ void Interface_UpdateMagicBar(PlayState* play) {
                         sMagicBorder = sMagicBorder_ori;
                     }
                 }
+            } else {
+                gSaveContext.magicState = MAGIC_STATE_METER_FLASH_1;
             }
         case MAGIC_STATE_METER_FLASH_1:
         case MAGIC_STATE_METER_FLASH_2:
@@ -4171,26 +4191,23 @@ void Interface_DrawItemButtons(PlayState* play) {
     gDPPipeSync(OVERLAY_DISP++);
     gDPSetPrimColor(OVERLAY_DISP++, 0, 0, cLeftButtonColor.r, cLeftButtonColor.g, cLeftButtonColor.b,
                     interfaceCtx->cLeftAlpha);
-    gSPWideTextureRectangle(OVERLAY_DISP++, C_Left_BTN_Pos[0] << 2, C_Left_BTN_Pos[1] << 2,
-                            (C_Left_BTN_Pos[0] + R_ITEM_BTN_WIDTH(1)) << 2,
-                            (C_Left_BTN_Pos[1] + R_ITEM_BTN_WIDTH(1)) << 2, G_TX_RENDERTILE, 0, 0,
-                            R_ITEM_BTN_DD(1) << 1, R_ITEM_BTN_DD(1) << 1);
+    OVERLAY_DISP = Gfx_TextureIA8(OVERLAY_DISP, gButtonBackgroundTex, 32, 32,
+                                  C_Left_BTN_Pos[0], C_Left_BTN_Pos[1], CLeftScaled, CLeftScaled,
+                                  CLeft_factor, CLeft_factor);
 
     // C-Down Button Color & Texture
     gDPSetPrimColor(OVERLAY_DISP++, 0, 0, cDownButtonColor.r, cDownButtonColor.g, cDownButtonColor.b,
                     interfaceCtx->cDownAlpha);
-    gSPWideTextureRectangle(OVERLAY_DISP++, C_Down_BTN_Pos[0] << 2, C_Down_BTN_Pos[1] << 2,
-                            (C_Down_BTN_Pos[0] + R_ITEM_BTN_WIDTH(2)) << 2,
-                            (C_Down_BTN_Pos[1] + R_ITEM_BTN_WIDTH(2)) << 2, G_TX_RENDERTILE, 0, 0,
-                            R_ITEM_BTN_DD(2) << 1, R_ITEM_BTN_DD(2) << 1);
+    OVERLAY_DISP = Gfx_TextureIA8(OVERLAY_DISP, gButtonBackgroundTex, 32, 32,
+                                  C_Down_BTN_Pos[0], C_Down_BTN_Pos[1], CDownScaled, CDownScaled,
+                                  CDown_factor, CDown_factor);
 
     // C-Right Button Color & Texture
     gDPSetPrimColor(OVERLAY_DISP++, 0, 0, cRightButtonColor.r, cRightButtonColor.g, cRightButtonColor.b,
                     interfaceCtx->cRightAlpha);
-    gSPWideTextureRectangle(OVERLAY_DISP++, C_Right_BTN_Pos[0] << 2, C_Right_BTN_Pos[1] << 2,
-                            (C_Right_BTN_Pos[0] + R_ITEM_BTN_WIDTH(3)) << 2,
-                            (C_Right_BTN_Pos[1] + R_ITEM_BTN_WIDTH(3)) << 2, G_TX_RENDERTILE, 0, 0,
-                            R_ITEM_BTN_DD(3) << 1, R_ITEM_BTN_DD(3) << 1);
+    OVERLAY_DISP = Gfx_TextureIA8(OVERLAY_DISP, gButtonBackgroundTex, 32, 32,
+                                  C_Right_BTN_Pos[0], C_Right_BTN_Pos[1], CRightScaled, CRightScaled,
+                                  CRight_factor, CRight_factor);
 
     if ((pauseCtx->state < 8) || (pauseCtx->state >= 18)) {
         if ((play->pauseCtx.state != 0) || (play->pauseCtx.debugState != 0)) {
@@ -4406,10 +4423,7 @@ void Interface_DrawItemButtons(PlayState* play) {
                                 interfaceCtx->cRightAlpha);
             }
 
-            OVERLAY_DISP = Gfx_TextureIA8(OVERLAY_DISP, ((u8*)gButtonBackgroundTex), 32, 32, ItemIconPos[temp - 1][0],
-                                          ItemIconPos[temp - 1][1], ItemIconWidthFactor[temp - 1][0],
-                                          ItemIconWidthFactor[temp - 1][0], ItemIconWidthFactor[temp - 1][1],
-                                          ItemIconWidthFactor[temp - 1][1]);
+            // The scaled background was already drawn above; empty slots only need their arrow.
 
             const char* cButtonIcons[] = { gButtonBackgroundTex, gEquippedItemOutlineTex, gEmptyCLeftArrowTex,
                                            gEmptyCDownArrowTex, gEmptyCRightArrowTex };
@@ -4966,7 +4980,8 @@ void Interface_DrawActionButton(PlayState* play, f32 x, f32 y) {
     OPEN_DISPS(play->state.gfxCtx);
 
     Matrix_Translate(-137.0f + x, 97.0f - y, XREG(18) / 10.0f, MTXMODE_NEW);
-    Matrix_Scale(1.0f, 1.0f, 1.0f, MTXMODE_APPLY);
+    Matrix_Scale(CLAMP(CVarGetFloat(CVAR_COSMETIC("HUD.AButton.Scale"), 1.0f), 0.3f, 1.5f),
+                     CLAMP(CVarGetFloat(CVAR_COSMETIC("HUD.AButton.Scale"), 1.0f), 0.3f, 1.5f), 1.0f, MTXMODE_APPLY);
     Matrix_RotateX(interfaceCtx->unk_1F4 / 10000.0f, MTXMODE_APPLY);
 
     gSPMatrix(OVERLAY_DISP++, MATRIX_NEWMTX(play->state.gfxCtx), G_MTX_MODELVIEW | G_MTX_LOAD);
@@ -5094,6 +5109,17 @@ void func_8008A994(InterfaceContext* interfaceCtx) {
     func_800AB2C4(&interfaceCtx->view);
 }
 
+static const ALIGN_ASSET(2) char arpgRupeeIcon[] = "__OTR__textures/arpg/hud/gRupeeCounterIconTex";
+static const ALIGN_ASSET(2) char arpgCounter0[] = "__OTR__textures/arpg/hud/gCounterDigit0Tex";
+static const ALIGN_ASSET(2) char arpgCounter1[] = "__OTR__textures/arpg/hud/gCounterDigit1Tex";
+static const ALIGN_ASSET(2) char arpgCounter2[] = "__OTR__textures/arpg/hud/gCounterDigit2Tex";
+static const ALIGN_ASSET(2) char arpgCounter3[] = "__OTR__textures/arpg/hud/gCounterDigit3Tex";
+static const ALIGN_ASSET(2) char arpgCounter4[] = "__OTR__textures/arpg/hud/gCounterDigit4Tex";
+static const ALIGN_ASSET(2) char arpgCounter5[] = "__OTR__textures/arpg/hud/gCounterDigit5Tex";
+static const ALIGN_ASSET(2) char arpgCounter6[] = "__OTR__textures/arpg/hud/gCounterDigit6Tex";
+static const ALIGN_ASSET(2) char arpgCounter7[] = "__OTR__textures/arpg/hud/gCounterDigit7Tex";
+static const ALIGN_ASSET(2) char arpgCounter8[] = "__OTR__textures/arpg/hud/gCounterDigit8Tex";
+static const ALIGN_ASSET(2) char arpgCounter9[] = "__OTR__textures/arpg/hud/gCounterDigit9Tex";
 const char* digitTextures[] = { gCounterDigit0Tex, gCounterDigit1Tex, gCounterDigit2Tex, gCounterDigit3Tex,
                                 gCounterDigit4Tex, gCounterDigit5Tex, gCounterDigit6Tex, gCounterDigit7Tex,
                                 gCounterDigit8Tex, gCounterDigit9Tex, gCounterColonTex,  gCounterDigit1Tex,
@@ -5272,7 +5298,7 @@ void Interface_Draw(PlayState* play) {
                     PosX_RC = PosX_RC_ori;
                 }
                 gDPSetPrimColor(OVERLAY_DISP++, 0, 0, rColor.r, rColor.g, rColor.b, interfaceCtx->magicAlpha);
-                OVERLAY_DISP = Gfx_TextureIA8(OVERLAY_DISP, gRupeeCounterIconTex, 16, 16, PosX_RC, PosY_RC, 16, 16,
+                OVERLAY_DISP = Gfx_TextureIA8(OVERLAY_DISP, CVarGetInteger(CVAR_ENHANCEMENT("ARPG.Enabled"), 1) ? arpgRupeeIcon : gRupeeCounterIconTex, 16, 16, PosX_RC, PosY_RC, 16, 16,
                                               1 << 10, 1 << 10);
             }
 
@@ -5409,7 +5435,8 @@ void Interface_Draw(PlayState* play) {
                 svar5 = rupeeDigitsCount[CUR_UPG_VALUE(UPG_WALLET)];
 
                 for (svar1 = 0, svar3 = 16; svar1 < svar5; svar1++, svar2++, svar3 += 8) {
-                    OVERLAY_DISP = Gfx_TextureI8(OVERLAY_DISP, ((u8*)digitTextures[interfaceCtx->counterDigits[svar2]]),
+                    static const char* arpgDigits[] = { arpgCounter0, arpgCounter1, arpgCounter2, arpgCounter3, arpgCounter4, arpgCounter5, arpgCounter6, arpgCounter7, arpgCounter8, arpgCounter9 };
+                    OVERLAY_DISP = Gfx_TextureI8(OVERLAY_DISP, (u8*)(CVarGetInteger(CVAR_ENHANCEMENT("ARPG.Enabled"), 1) ? arpgDigits[interfaceCtx->counterDigits[svar2]] : digitTextures[interfaceCtx->counterDigits[svar2]]),
                                                  8, 16, PosX_RC + svar3, PosY_RC, 8, 16, 1 << 10, 1 << 10);
                 }
             }
@@ -5745,7 +5772,8 @@ void Interface_Draw(PlayState* play) {
         gDPSetPrimColor(OVERLAY_DISP++, 0, 0, 255, 255, 255, interfaceCtx->aAlpha);
         gDPSetEnvColor(OVERLAY_DISP++, 0, 0, 0, 0);
         Matrix_Translate(-138.0f + rAIconX, rAIconY, WREG(46 + languageOffset) / 10.0f, MTXMODE_NEW);
-        Matrix_Scale(1.0f, 1.0f, 1.0f, MTXMODE_APPLY);
+        Matrix_Scale(CLAMP(CVarGetFloat(CVAR_COSMETIC("HUD.AButton.Scale"), 1.0f), 0.3f, 1.5f),
+                     CLAMP(CVarGetFloat(CVAR_COSMETIC("HUD.AButton.Scale"), 1.0f), 0.3f, 1.5f), 1.0f, MTXMODE_APPLY);
         Matrix_RotateX(interfaceCtx->unk_1F4 / 10000.0f, MTXMODE_APPLY);
         gSPMatrix(OVERLAY_DISP++, MATRIX_NEWMTX(play->state.gfxCtx), G_MTX_MODELVIEW | G_MTX_LOAD);
         gSPVertex(OVERLAY_DISP++, &interfaceCtx->actionVtx[4], 4, 0);

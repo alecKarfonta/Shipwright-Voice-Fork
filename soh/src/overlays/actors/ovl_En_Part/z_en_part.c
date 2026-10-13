@@ -5,6 +5,7 @@
  */
 
 #include "z_en_part.h"
+#include "soh/Enhancements/arpg/IronKnuckleVisuals.h"
 #include "objects/object_tite/object_tite.h"
 #include "objects/object_ik/object_ik.h"
 
@@ -86,7 +87,7 @@ void func_80ACDDE8(EnPart* this, PlayState* play) {
         case 7:
         case 8:
             this->actor.world.rot.y = this->actor.parent->shape.rot.y;
-            if (this->displayList == object_ik_DL_015380) {
+            if (ARPG_IsIronKnuckleRearArmor(this->displayList)) {
                 sign = -1.0f;
             }
             this->actor.velocity.y = 0.0f;

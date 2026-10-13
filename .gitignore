@@ -414,6 +414,9 @@ ReleaseObj/*
 tags
 *.otr
 *.o2r
+
+# Machine-local NPC provider settings (may contain an API key).
+/npc-services.local.json
 *.sav
 shipofharkinian.ini
 shipofharkinian.json
@@ -461,3 +464,23 @@ soh/properties.h
 /clang-format
 /clang-format.exe
 *.o2r
+
+# Authored ARPG mesh previews and Blender backups
+!/art/arpg/*/*-preview.png
+/art/arpg/**/*.blend1
+
+# Local authoring workspace contains original assets decoded from the user's game.
+/art/arpg/wolfos/workspace/
+
+# Authored source artwork and verification images are project assets.
+!/art/**/*.png
+!/art/**/*.obj
+!/art/**/*.mtl
+!/tests/**/*.png
+# Original decoded authoring references remain machine-local.
+/art/arpg/wolfos/workspace/
+
+# Local runtime state and compiled multiplayer servers.
+/SoHTimeSplitData.json
+/mp-server/go-anchor
+/mp-server/deploy/go-anchor

@@ -1,0 +1,24 @@
+{
+  "checks": [
+    "Native Stalfos initializes for rank replacement",
+    "Native Stalfos initializes for rank replacement",
+    "Native Stalfos initializes for rank replacement",
+    "All 24 native visible limbs have stable distinct caches for three ranks",
+    "Model setting immediately restores original display lists",
+    "Master ARPG gate preserves vanilla rendering",
+    "Hidden and empty limb display lists stay hidden",
+    "Invisible Stalfos remains hidden without Lens of Truth",
+    "Lens-revealed Stalfos uses the replacement",
+    "Native animation advances with all replacement limbs",
+    "Native sword attacks activate the original weapon collider",
+    "Native shield collider continues following animated limb matrices",
+    "Native damage hit enters its flash and recoil state",
+    "Freeze attaches native ice effects to the replacement's joint positions",
+    "Native fatal hit completes a single defeat event",
+    "Native break-apart death renders the new cached limb geometry",
+    "Dead actor is destroyed without retaining a renderer actor reference",
+    "Scene teardown safely releases surviving animated enemies"
+  ],
+  "error": "",
+  "status": "passed"
+}

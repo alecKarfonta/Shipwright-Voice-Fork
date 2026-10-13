@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "normal_suites": [
+    "arpg_gear_geometry",
+    "arpg_expedition",
+    "arpg_waystone_geometry"
+  ],
+  "address_undefined_sanitized_suites": [
+    "arpg_gear_geometry",
+    "arpg_expedition",
+    "arpg_waystone_geometry"
+  ],
+  "expedition_seeds": 10000,
+  "components": 13,
+  "oaths": 5,
+  "material_tones": 7,
+  "integer_safe_triangles": 10522,
+  "deterministic_header_sha256": "6b61f6b337af43ec3d50eebe6587fea4b9dec50d9328e0077912d48d15194eb7",
+  "checks": [
+    "Bounds, unit normals and integer-safe area for all Blender components",
+    "Closed, intermediate and open lid pivot envelopes",
+    "Distinct oath emblems and material colors",
+    "Saved expedition states drive cleared-wave lamps and earned/claimed cache states",
+    "Atomic reward capacity and duplicate claims",
+    "Continuation, recovery and depth bounds"
+  ]
+}

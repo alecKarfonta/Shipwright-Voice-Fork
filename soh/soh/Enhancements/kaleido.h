@@ -31,6 +31,8 @@ class KaleidoEntry {
     virtual void Update(PlayState* play) = 0;
     void SetYOffset(int yOffset);
     void SetSelected(bool val);
+    virtual std::string StatusText() const { return mText; }
+    bool Achieved() const { return mAchieved; }
 
   protected:
     int16_t mX = 0;
@@ -144,6 +146,7 @@ class KaleidoEntryIconCountRequired final : public KaleidoEntryIcon {
 class KaleidoEntryOcarinaButtons final : public KaleidoEntryIcon {
   public:
     KaleidoEntryOcarinaButtons();
+    std::string StatusText() const override;
     void Update(PlayState* play) override;
     void Draw(PlayState* play, std::vector<Gfx>* mEntryDl) override;
 
@@ -157,6 +160,7 @@ class KaleidoEntryOcarinaButtons final : public KaleidoEntryIcon {
 class Kaleido {
   public:
     Kaleido();
+    std::vector<std::pair<std::string, bool>> GetStatus(PlayState* play);
     void Draw(PlayState* play);
     void Update(PlayState* play);
 

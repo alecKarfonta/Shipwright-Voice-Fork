@@ -15,7 +15,7 @@ static bool isResultOfHandling = false;
  */
 
 void Anchor::SendPacket_SetCheckStatus(RandomizerCheck rc) {
-    if (!IsSaveLoaded() || isResultOfHandling) {
+    if (!IsSaveLoaded() || !CanSyncTeamSave() || isResultOfHandling) {
         return;
     }
 
@@ -34,7 +34,7 @@ void Anchor::SendPacket_SetCheckStatus(RandomizerCheck rc) {
 }
 
 void Anchor::HandlePacket_SetCheckStatus(nlohmann::json payload) {
-    if (!IsSaveLoaded() || !roomState.syncItemsAndFlags) {
+    if (!IsSaveLoaded() || !CanSyncTeamSave()) {
         return;
     }
 

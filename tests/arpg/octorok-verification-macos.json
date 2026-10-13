@@ -1,0 +1,107 @@
+{
+  "status": "passed",
+  "verified_at_utc": "2026-10-13T03:36:10.954646+00:00",
+  "feature": "Native Octorok art and movement integration",
+  "scope": "Upgrade existing original Octorok, retaining native AI, collisions, water behavior and projectile rules. New species remain deferred.",
+  "assets": {
+    "source_sha256": "19d2fa0889ec7fa769f493f573e85cb3e2c9929fcd04b1868d67357932b63327",
+    "vertices": 2975,
+    "triangles": 9138,
+    "parts": 36,
+    "subpixel_triangles_removed": 0,
+    "triangles_per_actor": {
+      "0": 9138
+    },
+    "materials": [
+      "mantle",
+      "ridge",
+      "mottle",
+      "skin",
+      "sucker",
+      "mouth",
+      "eye",
+      "iris",
+      "pupil",
+      "glint"
+    ],
+    "space": "Native joint-local XYZ, positions x100; native normals retained; authoring-pose transforms omitted"
+  },
+  "animation": {
+    "status": "passed",
+    "native_animation_frames": 100,
+    "held_death_frames": 11,
+    "posed_envelope_checks": 111,
+    "tentacle_anchor_checks": 888,
+    "maximum_anchor_gap_world_units": 0,
+    "envelope_tolerance_world_units": 3.2,
+    "includes_native_head_and_snout_scale": true
+  },
+  "portable": {
+    "cmake_build": "/tmp/arpg-octorok-portable",
+    "ctest": "arpg_octorok_geometry",
+    "result": "passed",
+    "asan_ubsan": "passed; leak detection disabled on macOS"
+  },
+  "native_runtime": {
+    "checks": 89,
+    "render_frames": 241,
+    "frozen_frames": 83,
+    "projectiles": 11,
+    "results": "tests/arpg/octorok-runtime-results-macos.json",
+    "qa_profile": "/tmp/soh-arpg-qa-creatures-octo04",
+    "coverage": [
+      "15 authored joints and cache stability",
+      "every native fallback limb for both feature toggles",
+      "camera-distance fallback",
+      "native floating, firing, head/snout scales and tentacle movement",
+      "close-range hiding removes drawing and targeting",
+      "zero-damage immunity",
+      "80-tick freeze followed by native death",
+      "ordinary hit/death route",
+      "one-time defeat rewards and scene transition",
+      "projectile render exclusion",
+      "Deku/adult Hylian reflection and child Hylian shatter branches"
+    ],
+    "limitations": [
+      "Shield collision flags are injected to exercise native response branches; no full manual reflected-shot kill is claimed.",
+      "This verifies the family in a real river fixture, not all scenes or crowded-scene performance."
+    ]
+  },
+  "visual_acceptance": {
+    "studio": "CPU Cycles studio and six native motion frames inspected; mantle recoil envelope and suction-disc contact corrected.",
+    "native": "River QA view and production summon/firing observed with native water, fog and lighting.",
+    "practice": "More / Arsenal & enemy counters / Practice encounters / Upgraded Octoroks. Native river contains eight Octoroks; changed practice limits to four within 700 units and sixteen scene-wide. Final production summon succeeds.",
+    "paused": "Equipment journal pause verified in production. Both test processes subsequently exited with status 0; neither is running at the final check."
+  },
+  "build": {
+    "production": "/tmp/soh-octorok/production",
+    "production_sha256": "5c3739f155f2f73c25380f48ccd99d0f56ed8c656ff0a0ee543c169e9c6e7283",
+    "qa": "/tmp/soh-octorok/qa",
+    "qa_sha256": "bf7f381aa56f325856a23d153ea8494f165d69baca2ab6c2c28ba7e6916063a3",
+    "app": "/tmp/soh-octorok-playtest/Octorok Adventure.app",
+    "launcher": "/tmp/soh-octorok-production.py",
+    "production_has_no_qa_harness": true,
+    "scope": "Isolated snapshot based on the previously verified Deku Baba build, recompiling this pass\u2019s renderer, practice controls and native Octorok. This is not a claim that all concurrent worktree changes were rebuilt.",
+    "verified_source_sha256": {
+      "soh/soh/Enhancements/arpg/EnemyVisuals.cpp": "2c5e4cc46b76be707d37b201ff23515d3f0e200019bfa3f3c3babee7a98af589",
+      "soh/soh/Enhancements/arpg/NativeMaterials.h": "50c831a1aa3b28f206c6c56a339004ee3878901947e25f7f7670f7b0184cfdac",
+      "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "b295765fcfc33f88dc020f52e20977f77842cabebd93ac6515e7be2481493488",
+      "soh/soh/Enhancements/arpg/OctorokGeometry.h": "b78d5cd82f67be0a584f74fbc57ff03da6a3b0172fa55e2f4b4bdbe3215d123d",
+      "soh/soh/Enhancements/arpg/OctorokBlenderData.h": "0a7f8ef23e87423b048a8a0e2b9c31574465c089533bc72951bb777269e527fb",
+      "soh/src/overlays/actors/ovl_En_Okuta/z_en_okuta.c": "0ea268e43ed4d568a2e516723404265b91705ed6fafdca028c9fb73b2caff653",
+      "tests/arpg/octorok_runtime_test.cpp": "4b6198f4ace81d45908233f8995a72f15c3a12d36fdccff0c7b33f140d96bea8"
+    },
+    "adventure_process_running_at_final_check": false,
+    "shutdown_note": "Both production and QA returned exit 0. Their shutdown logs include a ResourceManager.cpp mutex-lock warning; no runtime crash was observed during the completed tests."
+  },
+  "blender": {
+    "version": "5.1.2",
+    "initial_authoring": "Local Blender MCP, isolated ARPG Octorok Workshop scene.",
+    "preview_failure": "MCP material viewport capture crashed the live Blender process after the GLB export succeeded. Continued with isolated background Blender and CPU Cycles.",
+    "unrelated_project": "Never saved or overwritten by this pass.",
+    "editable_source": "art/arpg/octoroks/octoroks.blend",
+    "source_sha256": "ea0e77c85a7000ffb590ee1b17d229e05d5c709d0d5e66222eeab04ee35bbd49"
+  },
+  "normal_save_unchanged_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "goal_status": "active; broad replayability, world activity, content, balance and remaining asset requirements remain incomplete."
+}

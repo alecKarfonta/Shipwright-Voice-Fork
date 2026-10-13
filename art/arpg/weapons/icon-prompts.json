@@ -1,0 +1,13 @@
+{
+  "generator": "built-in image_gen",
+  "assets": [
+    {
+      "path": "soh/assets/custom/textures/arpg/weapons/recurve-bow.png",
+      "prompt": "Use case: stylized-concept. Asset type: transparent inventory item painting for an Ocarina of Time inspired fantasy action RPG. One original elegant recurved bow, no arrow. Dark walnut curved limbs, two swept ivory horn tips, slender bronze bindings, forest-green wrapped central grip, small turquoise diamond jewel above the grip, taut pale bowstring. Strong readable silhouette at 64px. Painterly hand-painted fantasy item icon with rich material highlights and crisp edges, three-quarter view, centered, full weapon from tip to tip on transparent background with generous padding. Long axis diagonally bottom-left to top-right. No background, no frame, no text, no extra objects. This painting will be matched by a detailed 3D model using the same shape and materials."
+    },
+    {
+      "path": "soh/assets/custom/textures/arpg/weapons/war-hammer.png",
+      "prompt": "Use case: stylized-concept. Asset type: transparent inventory item painting for an Ocarina of Time inspired fantasy action RPG. One original substantial two-handed war hammer. Long dark oak handle, burgundy leather grip winding, bronze collar and pommel, chunky rectangular dark iron hammerhead with chamfered edges, bronze end caps and a small orange diamond jewel in the center of its broad side. Recognizable hammer silhouette, restrained carved geometric detailing. Strong readable shape at 64px. Painterly hand-painted fantasy item icon with rich material highlights and crisp edges, three-quarter view, centered, full weapon with generous padding, diagonally bottom-left handle to top-right hammerhead. Transparent background. No text, no frame, no extra objects. This painting will be matched by a detailed 3D model using the same shape and materials."
+    }
+  ]
+}

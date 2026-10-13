@@ -1,3 +1,4 @@
+#include "soh/Enhancements/arpg/ARPGBridge.h"
 #include "z_kaleido_scope.h"
 #include <stdlib.h>
 #include <string.h>
@@ -2687,6 +2688,14 @@ static s16* D_8082B048[] = {
     D_8082AFC4, D_8082AFC8, D_8082AFCC, D_8082AFF0, D_8082AB2C, D_8082AFF4,
 };
 
+// Journal map uses the same cloud and location geometry as the native map.
+void KaleidoScope_GetWorldMapRect(int index, int* x, int* y, int* width, int* height) {
+    *x = D_8082AEC0[index] + 108;
+    *y = 58 - D_8082AF78[index];
+    *width = D_8082AAEC[index];
+    *height = D_8082AB2C[index];
+}
+
 static s16 D_8082B060[] = {
     0xFFC6, 0x000B, 0x001E, 0x001E, 0x000F, 0x0026, 0xFFC2, 0x003C, 0x003D, 0xFFB2, 0xFED4,
     0xFFAA, 0xFFBF, 0xFED4, 0xFED4, 0xFFEB, 0x000E, 0x000D, 0x0014, 0xFFDE, 0xFED4, 0x0000,
@@ -3498,6 +3507,9 @@ void KaleidoScope_DrawGameOver(PlayState* play) {
 }
 
 void KaleidoScope_Draw(PlayState* play) {
+    // Native drawing also handles item, equipment and song input. Do not run it
+    // behind the journal; the engine still owns pause setup and teardown.
+    if (ARPG_CustomPauseActive()) { return; }
     Input* input = &play->state.input[0];
     PauseContext* pauseCtx = &play->pauseCtx;
     InterfaceContext* interfaceCtx = &play->interfaceCtx;
@@ -3850,7 +3862,7 @@ void KaleidoScope_Update(PlayState* play) {
     s16 stepA;
     s32 pad;
 
-    if ((R_PAUSE_MENU_MODE >= 3) && (((pauseCtx->state >= 4) && (pauseCtx->state <= 7)) ||
+    if (!ARPG_CustomPauseActive() && (R_PAUSE_MENU_MODE >= 3) && (((pauseCtx->state >= 4) && (pauseCtx->state <= 7)) ||
                                      ((pauseCtx->state >= 0xA) && (pauseCtx->state <= 0x12)))) {
 
         if ((!pauseCtx->unk_1E4 || (pauseCtx->unk_1E4 == 8)) && (pauseCtx->state == 6)) {
@@ -4259,6 +4271,16 @@ void KaleidoScope_Update(PlayState* play) {
             break;
 
         case 6:
+            if (ARPG_CustomPauseActive()) {
+                if (GameInteractor_Should(VB_CLOSE_PAUSE_MENU, false)) {
+                    Interface_SetDoAction(play, DO_ACTION_NONE);
+                    pauseCtx->state = 0x12;
+                    pauseCtx->unk_1E4 = 0;
+                    WREG(2) = -6240;
+                    func_800F64E0(0);
+                }
+                break;
+            }
             switch (pauseCtx->unk_1E4) {
                 case 0:
                     if (GameInteractor_Should(VB_CLOSE_PAUSE_MENU, CHECK_BTN_ALL(input->press.button, BTN_START))) {

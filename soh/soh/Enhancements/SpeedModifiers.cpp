@@ -5,6 +5,7 @@
 #include "soh/ShipInit.hpp"
 #include "soh/OTRGlobals.h"
 #include "soh/Enhancements/BunnyHood.h"
+#include "soh/Enhancements/Sprint/Sprint.h"
 
 extern "C" {
 #include "z64.h"
@@ -47,21 +48,23 @@ static f32 GetSpeedModifierJumpFactor() {
 }
 
 static bool ShouldAmplifyJump(Player* player) {
-    return Ship_GetBunnyHoodJumpFactor(player) != 1.0f || GetSpeedModifierJumpFactor() != 1.0f;
+    return Ship_GetBunnyHoodJumpFactor(player) != 1.0f || Ship_GetSprintJumpFactor() != 1.0f ||
+           GetSpeedModifierJumpFactor() != 1.0f;
 }
 
 static void RegisterSpeedModifiers() {
     bool speedModifierActive = CVarGetFloat(CVAR_SPEED_MODIFIER_VALUE_NAME, 1.0f) != 1.0f;
     bool bunnyHoodActive = Ship_GetBunnyHoodMode() != BUNNY_HOOD_VANILLA;
-    bool jumpsClamped =
-        Ship_GetBunnyHoodMode() == BUNNY_HOOD_FAST || (CVarGetFloat(CVAR_SPEED_MODIFIER_VALUE_NAME, 1.0f) != 1.0f &&
-                                                       CVarGetInteger(CVAR_SPEED_MODIFIER_JUMP_TOGGLE, 0) == 1);
+    bool sprintActive = Sprint_Enabled();
+    bool jumpsClamped = Ship_GetBunnyHoodMode() == BUNNY_HOOD_FAST ||
+                        (CVarGetFloat(CVAR_SPEED_MODIFIER_VALUE_NAME, 1.0f) != 1.0f &&
+                         CVarGetInteger(CVAR_SPEED_MODIFIER_JUMP_TOGGLE, 0) == 1);
 
     static f32 lastRunSpeed = 0.0f;
 
     // Airborne (jump) velocity. z_player clamps linearVelocity to the vanilla run speed limit when this returns true;
     // skip that clamp so the amplified running velocity carries into the jump.
-    COND_VB_SHOULD(VB_PLAYER_LIMIT_JUMP_SPEED, speedModifierActive || bunnyHoodActive, {
+    COND_VB_SHOULD(VB_PLAYER_LIMIT_JUMP_SPEED, speedModifierActive || bunnyHoodActive || sprintActive, {
         Player* player = va_arg(args, Player*);
         if (ShouldAmplifyJump(player)) {
             *should = false;
@@ -81,12 +84,13 @@ static void RegisterSpeedModifiers() {
     });
 
     // Ground run speed target, multiplied in place.
-    COND_VB_SHOULD(VB_PLAYER_MODIFY_RUN_SPEED, speedModifierActive || bunnyHoodActive, {
+    COND_VB_SHOULD(VB_PLAYER_MODIFY_RUN_SPEED, speedModifierActive || bunnyHoodActive || sprintActive, {
         Player* player = va_arg(args, Player*);
         f32* speedTarget = va_arg(args, f32*);
         s16* yawTarget = va_arg(args, s16*);
 
-        *speedTarget *= Ship_GetBunnyHoodRunFactor(player) * GetSpeedModifierFactor(true);
+        *speedTarget *= Ship_GetBunnyHoodRunFactor(player) * Ship_GetSprintRunFactor() *
+                        GetSpeedModifierFactor(true);
 
         func_8083DF68(player, *speedTarget, *yawTarget);
         func_8083DDC8(player, gPlayState);
@@ -105,5 +109,6 @@ static void RegisterSpeedModifiers() {
     });
 }
 
-static RegisterShipInitFunc initFunc(RegisterSpeedModifiers, { "IS_RANDO", CVAR_SPEED_MODIFIER_VALUE_NAME,
-                                                               CVAR_BUNNY_HOOD_NAME, CVAR_SPEED_MODIFIER_JUMP_TOGGLE });
+static RegisterShipInitFunc initFunc(RegisterSpeedModifiers,
+                                     { "IS_RANDO", CVAR_SPEED_MODIFIER_VALUE_NAME, CVAR_BUNNY_HOOD_NAME,
+                                       CVAR_SPEED_MODIFIER_JUMP_TOGGLE, CVAR_SPRINT_ENABLED_NAME });

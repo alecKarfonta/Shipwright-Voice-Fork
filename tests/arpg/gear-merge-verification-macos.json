@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-12",
+  "scope": "Gear merges native items and custom equipment; direct custom C-button and enabled D-pad assignment",
+  "native_build": {
+    "status": "passed",
+    "executable": "/Users/alec/git/z64-romhack-tutorials/soh/build-cmake/soh/soh-macos",
+    "sha256": "d82fc0d180ad51c6dac07eb952a37cd7a7d867b73035fb4035c9d7d6f9e6f313",
+    "method": "CMake-generated native compile and link commands; refreshed ARPG, save/runtime, and GUI allocation objects"
+  },
+  "native_runtime": {
+    "status": "passed",
+    "checks": 110,
+    "usable_families": 12,
+    "unique_usable_variants": 19,
+    "result": "gear-assignment-runtime-results-macos.json"
+  },
+  "portable_regressions": {
+    "status": "passed",
+    "suites": 22,
+    "configuration": "Debug"
+  },
+  "ui_verified": [
+    "Gear replaces both the Equipment and Items top-level destinations",
+    "Native 24-slot inventory remains reachable inside Gear",
+    "Direct stash assignment equips Windpiercer and displays its custom name on C-Left and C-Down",
+    "Assigning Stormthread to C-Right returns Windpiercer to the backpack and swaps displaced native button contents",
+    "Compact 1024x720 inspector shows all three C-button controls in one row",
+    "Wide 1280x800 loadout and details controls remain visible while their contents scroll",
+    "Selecting a different custom item resets the details scroll to the top",
+    "Custom bottle details offer each owned bottle and preserve the selected contents"
+  ],
+  "isolation": "Temporary SHIP_HOME /tmp/soh-arpg-qa-gear-merge; test harness writes isolated slot 2. Player saves were not used.",
+  "limits": [
+    "Physical controller and manual drag-and-drop were not exercised",
+    "One active custom variant per native item family is retained"
+  ],
+  "source_sha256": {
+    "soh/soh/Enhancements/arpg/ARPGInventoryWindow.cpp": "4973498941b94febc3c99ebadde1f02346bdd668738502cbebef418390e1900b",
+    "soh/soh/Enhancements/arpg/ARPGInventoryWindow.h": "5d90a4f75c50d5f2687d15510348be884573127efcf944ed5fa34500419d204b",
+    "soh/soh/Enhancements/arpg/AdventureJournal.cpp": "f58217cab407b097c0f03616536737c6f4f4fb9bdc2a6a309cfa56425c3b2735",
+    "soh/soh/Enhancements/arpg/AdventureJournal.h": "b5f87a08338f65d93797e55c52569978c70240ac1b46ab0333060812cb19980a",
+    "soh/soh/Enhancements/arpg/InventorySystem.cpp": "c3fbbda9f3465fcaf026406bd076547fea53a2a1f8f241e7b8b293294dfa79cd",
+    "soh/soh/Enhancements/arpg/InventorySystem.h": "a8ee6fb0a0c9f3a144616e0a4061f7c47bb5ed03dce2e928b53b15715b384af4",
+    "tests/arpg/journal_runtime_test.cpp": "97c377cb24ae78073ee7c284e39f28d087e543b6339d3f1ccd7a4ced585f95f4"
+  }
+}

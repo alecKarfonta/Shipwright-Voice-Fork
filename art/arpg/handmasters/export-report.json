@@ -1,0 +1,22 @@
+{
+  "source_sha256": "a50f1c19f3ee7e4a98211caad13425f82a173daa8d268fae0c18647192222032",
+  "vertices": 3037,
+  "triangles": 11828,
+  "parts": 86,
+  "subpixel_triangles_removed": 0,
+  "triangles_per_actor": {
+    "0": 5914,
+    "1": 5914
+  },
+  "materials": [
+    "skin",
+    "callus",
+    "tendon",
+    "crease",
+    "nail",
+    "nail_edge",
+    "bone",
+    "marrow"
+  ],
+  "space": "Native joint-local XYZ, positions x100; native normals retained; per-vertex native joint indices; authoring-pose transforms omitted"
+}

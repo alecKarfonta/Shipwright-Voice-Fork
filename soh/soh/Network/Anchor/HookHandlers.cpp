@@ -1,6 +1,7 @@
 #include "Anchor.h"
 #include "soh/Enhancements/cosmetics/cosmeticsTypes.h"
 #include "soh/Enhancements/game-interactor/GameInteractor.h"
+#include "soh/Enhancements/EnemyDifficulty/EnemyDifficulty.h"
 #include "soh/frame_interpolation.h"
 
 extern "C" {
@@ -93,12 +94,22 @@ void Anchor::RegisterHooks() {
         if (shouldRefreshActors) {
             shouldRefreshActors = false;
             RefreshClientActors();
+
+            // [TIME] | [INFO] | Anchor.RegisterHooks | Roster/own-save state changed -> difficulty recount
+            EnemyDifficulty::RecountAndRescale();
         }
 
+        // Refresh the public campaign summary even when a party stays in one scene.
+        static uint32_t directoryFrames=0;
+        if(++directoryFrames>=100) { directoryFrames=0; SendPacket_UpdateClientState(); }
         SendPacket_PlayerUpdate();
     });
 
-    COND_HOOK(OnGameFrameUpdate, isConnected, [&]() { ProcessIncomingPacketQueue(); });
+    static HOOK_ID networkPump = 0;
+    if (!networkPump) {
+        networkPump = GameInteractor::Instance->RegisterGameHook<GameInteractor::OnGameFrameUpdate>(
+            [this]() { ProcessIncomingPacketQueue(); });
+    }
 
     COND_HOOK(OnPlayerSfx, isConnected, [&](u16 sfxId) { SendPacket_PlayerSfx(sfxId); });
     COND_HOOK(OnOcarinaNote, isConnected,

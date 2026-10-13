@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "clips": 6,
+  "frames": 98,
+  "posed_vertex_checks": 416990,
+  "native_visible_joints": 9,
+  "maximum_envelope_extension_world_units": 6.772282468616908,
+  "per_clip_extension_world_units": {
+    "gPoeAppearAnim": 4.954913128556875,
+    "gPoeAttackAnim": 6.772282468616908,
+    "gPoeDamagedAnim": 3.6656000699142837,
+    "gPoeDisappearAnim": 3.22172036747439,
+    "gPoeFleeAnim": 0.4667469199152876,
+    "gPoeFloatAnim": 2.8955560735983923
+  },
+  "scope": "All 98 native clip frames at the original .01 actor scale. Held-lantern geometry is included. Original per-actor fade, collision and point-light callbacks remain authoritative. Bounds do not establish collision or triangle-clearance correctness."
+}

@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "native_animation_frames": 100,
+  "held_death_frames": 11,
+  "posed_envelope_checks": 111,
+  "tentacle_anchor_checks": 888,
+  "maximum_anchor_gap_world_units": 0,
+  "envelope_tolerance_world_units": 3.2,
+  "includes_native_head_and_snout_scale": true
+}

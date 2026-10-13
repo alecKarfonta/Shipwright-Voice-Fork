@@ -1,0 +1,84 @@
+{
+  "verified_at_utc": "2026-10-13T14:56:16.334604+00:00",
+  "status": "passed; native master export pipeline verified; visual remaster pending",
+  "user_feedback": "Animation preview looks good; preserve the accepted original-motion reference. No replacement-art acceptance inferred.",
+  "source_sha256": {
+    "art/arpg/wolfos/native_asset.py": "9849b2b3dd08c15ee98d208fdd216b634e87bdb49a971d45b68520638e74f460",
+    "art/arpg/wolfos/create_workspace.py": "ba055a5cff23b59ea505d4311e7f47187706412a862e4680151f335c57cea718",
+    "art/arpg/wolfos/prepare_master.py": "b9017963aa693369407d25dbdd85e46cabe4f481a6b27ba9783529cd3e35ef34",
+    "art/arpg/wolfos/export_master.py": "5a46dc45f0e61af9b1aedb93258ef35084a54da220d3c7ac934085cf45fab7c6",
+    "art/arpg/wolfos/preview_workspace.py": "4514065afa49ec8eaa7f12331a1fb7d210eeef52882c36252271830ec90d8f4d",
+    "art/arpg/wolfos/launch_master_preview.py": "64982e0e10fae98ade0015f8f3bd89079a46ff3170bb5f9cb7f316ef53ec07d1",
+    "soh/soh/Enhancements/arpg/WolfosMasterAssets.h": "6f1d5852021eda8d4c9a9ae7159a90db3c380a94ef1b03708a6b034bf78255dd",
+    "soh/soh/Enhancements/arpg/EnemyVisuals.cpp": "60bd40a93538b0f67ebfc0c5ca77a7e6633548f684c97cc2ed1f004ef8746135",
+    "tests/arpg/wolfos_master_pipeline_test.py": "1eaf1cec6ecf4b5addd81e5fd5e5b99706c4501cab9e24c4e30d7259fc379182",
+    "tests/arpg/wolfos_models_runtime_test.cpp": "05c59da5987413c1b426c1ddafd8e0c5e002d5ff442e24998080f6d20f2e2ebe"
+  },
+  "authoring_master": {
+    "path": "/Users/alec/git/z64-romhack-tutorials/soh/art/arpg/wolfos/workspace/wolfos-authoring.blend",
+    "sha256": "fa077d48fa539ec1fb7eae72637034befa1d9d3c9ee972da821d5669564afe06",
+    "state": "Prepared, independently paintable brown master; original anatomy, original animation"
+  },
+  "asset_pack": {
+    "path": "/Users/alec/git/z64-romhack-tutorials/soh/art/arpg/wolfos/workspace/export/wolfos-master.o2r",
+    "sha256": "07246390b8c1774e1a271d32fce1da948cf73d38d8edab3306d6e8aa2632af71",
+    "species": [
+      "Normal"
+    ],
+    "visible_limbs": 19,
+    "triangles": 327,
+    "paint_maps": 8,
+    "resources": 46
+  },
+  "pipeline_test": {
+    "status": "passed",
+    "checks": [
+      "All 327 native triangles preserve positions, joint assignments, UVs, materials and winding",
+      "All eight paint maps survive within RGBA8 quantization error",
+      "Working paint is independent of locked reference images",
+      "A saved head-vertex and UV edit reaches only the expected exported limb",
+      "A saved paint edit and doubled texture resolution reach the native high-resolution resource",
+      "Unsupported blended weights fail before an asset pack is written",
+      "All fixture edits leave the actual authoring master unchanged"
+    ],
+    "master_sha256": "fa077d48fa539ec1fb7eae72637034befa1d9d3c9ee972da821d5669564afe06",
+    "output": "/var/folders/v6/86zp6_fs76718ycp8mp1g_j40000gn/T/soh-wolfos-master-export-test-6qmyhc1z",
+    "baseline_sha256": "07246390b8c1774e1a271d32fce1da948cf73d38d8edab3306d6e8aa2632af71",
+    "edited_pack": "/var/folders/v6/86zp6_fs76718ycp8mp1g_j40000gn/T/soh-wolfos-master-export-test-6qmyhc1z/edited.o2r"
+  },
+  "native_runtime": {
+    "status": "passed",
+    "checks": 32,
+    "results": "tests/arpg/wolfos-master-runtime-results-macos.json",
+    "profile": "/var/folders/v6/86zp6_fs76718ycp8mp1g_j40000gn/T/soh-arpg-qa-wolfos-master-hj2fi_tf",
+    "qa_executable_sha256": "baeb7246bc1f3b32edeca81d42768e19b9b24809b97257108d2aa2027262883f",
+    "production_executable_sha256": "ae85b69ceb6ad527aee300c11fca038a5443faf6c8d1e79d5b7980be249c6c28"
+  },
+  "visual_smoke": {
+    "pack": "/var/folders/v6/86zp6_fs76718ycp8mp1g_j40000gn/T/soh-wolfos-master-export-test-6qmyhc1z/edited.o2r",
+    "scope": "Disposable vertex/UV/paint edit pack loaded in a temporary native comparison profile. Open and narrow eye states inspected. This is export evidence, not a finished-art preview.",
+    "images": [
+      "art/arpg/wolfos/workspace/preview/edited-export-smoke-in-game.png",
+      "art/arpg/wolfos/workspace/preview/edited-export-blink-in-game.png"
+    ]
+  },
+  "build": {
+    "status": "Isolated production and QA executables compiled and linked; current-root EnemyVisuals.cpp compiled separately",
+    "log": "/tmp/wolfos-master-qa-build2.log",
+    "scope": "Frozen Guay snapshot uses three-byte GearGeometryColor; current checkout uses four bytes. New priority integration and harness were applied to the snapshot. Current-root EnemyVisuals object was not linked with incompatible snapshot objects. No shared Ninja build or installed app replacement."
+  },
+  "unchanged": {
+    "legacy_runtime_glb_sha256": "a4695dbb17775eccf22d9fc73fd843edf5d460d5c3386d697bdb448e11c964da",
+    "player_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "normal_profile_pack_installed": false
+  },
+  "cleanup": "Temporary combat and visual review apps closed after checks.",
+  "limitations": [
+    "Initial exported brown anatomy remains native and low polygon; white is still a locked reference with procedural runtime fallback.",
+    "Reference motion accepted; pupil/iris painting, convincing eyelids, anatomy and texture quality still need an art pass and human review.",
+    "One bone per vertex is required by the native renderer; mixed-joint triangles are supported, blended weights are rejected.",
+    "Blender PBR shader edits are preview-only; export retains native material templates.",
+    "Runtime coverage uses an isolated snapshot build and temporary profile, not a full current-checkout build or normal-save deployment.",
+    "Native-derived working files and packs stay local in the ignored workspace."
+  ]
+}

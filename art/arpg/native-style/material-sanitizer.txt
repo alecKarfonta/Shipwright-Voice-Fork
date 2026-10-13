@@ -1,0 +1,1 @@
+Material identity preserved across 2983335 authored vertices and recolors

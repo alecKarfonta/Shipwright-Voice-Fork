@@ -1,0 +1,289 @@
+{
+  "Enemy": {
+    "exporter": "art/arpg/stalfos/export_runtime.py",
+    "adapter": "soh/soh/Enhancements/arpg/EnemyGeometry.h",
+    "slots": {
+      "bone": "Bone",
+      "shadow": "Bone",
+      "armor": "Metal",
+      "trim": "Metal",
+      "cloth": "Cloth",
+      "eye": "Glow",
+      "steel": "Metal",
+      "edge": "Metal",
+      "cavity": "Flat",
+      "strap": "Leather",
+      "inlay": "Metal"
+    }
+  },
+  "Wolfos": {
+    "exporter": "art/arpg/wolfos/export_runtime.py",
+    "adapter": "soh/soh/Enhancements/arpg/WolfosGeometry.h",
+    "slots": {
+      "fur": "Fur",
+      "mane": "Fur",
+      "muzzle": "Fur",
+      "skin": "Flat",
+      "claw": "Bone",
+      "metal": "Metal",
+      "eye": "Glow",
+      "mouth": "Flat",
+      "pupil": "Flat",
+      "highlight": "Flat",
+      "silver": "Metal"
+    }
+  },
+  "Lizalfos": {
+    "exporter": "art/arpg/reptiles/export_runtime.py",
+    "adapter": "soh/soh/Enhancements/arpg/LizalfosGeometry.h",
+    "slots": {
+      "skin": "Scales",
+      "belly": "Scales",
+      "scale": "Scales",
+      "armor": "Metal",
+      "trim": "Metal",
+      "leather": "Leather",
+      "claw": "Bone",
+      "eye": "Glow",
+      "steel": "Metal",
+      "edge": "Metal",
+      "mouth": "Flat",
+      "pupil": "Flat",
+      "scute": "Scales"
+    }
+  },
+  "Tektite": {
+    "exporter": "art/arpg/tektites/export_runtime.py",
+    "adapter": "soh/soh/Enhancements/arpg/TektiteGeometry.h",
+    "slots": {
+      "shell": "Scales",
+      "edge": "Scales",
+      "seam": "Flat",
+      "belly": "Skin",
+      "joint": "Skin",
+      "claw": "Bone",
+      "sclera": "Flat",
+      "iris": "Flat",
+      "pupil": "Flat",
+      "glint": "Glow"
+    }
+  },
+  "DekuBaba": {
+    "exporter": "art/arpg/dekubabas/export_runtime.py",
+    "adapter": "soh/soh/Enhancements/arpg/DekuBabaGeometry.h",
+    "slots": {
+      "skin": "Skin",
+      "ridge": "Skin",
+      "spot": "Flat",
+      "lip": "Skin",
+      "interior": "Flat",
+      "gum": "Skin",
+      "tooth": "Bone",
+      "stem": "Plant",
+      "leaf": "Plant",
+      "vein": "Plant",
+      "bark": "Wood"
+    }
+  },
+  "Keese": {
+    "exporter": "art/arpg/keese/export_runtime.py",
+    "adapter": "soh/soh/Enhancements/arpg/KeeseGeometry.h",
+    "slots": {
+      "fur": "Fur",
+      "ruff": "Fur",
+      "membrane": "Wing",
+      "web": "Wing",
+      "rib": "Bone",
+      "ear": "Skin",
+      "claw": "Bone",
+      "eye": "Glow",
+      "pupil": "Flat",
+      "mouth": "Flat",
+      "accent": "Gem"
+    }
+  },
+  "Octorok": {
+    "exporter": "art/arpg/octoroks/export_runtime.py",
+    "adapter": "soh/soh/Enhancements/arpg/OctorokGeometry.h",
+    "slots": {
+      "mantle": "Skin",
+      "ridge": "Skin",
+      "mottle": "Skin",
+      "skin": "Skin",
+      "sucker": "Skin",
+      "mouth": "Flat",
+      "eye": "Flat",
+      "iris": "Flat",
+      "pupil": "Flat",
+      "glint": "Flat"
+    }
+  },
+  "Skulltula": {
+    "exporter": "art/arpg/skulltulas/export_runtime.py",
+    "adapter": "soh/soh/Enhancements/arpg/SkulltulaGeometry.h",
+    "slots": {
+      "shell": "Bone",
+      "edge": "Bone",
+      "socket": "Flat",
+      "belly": "Skin",
+      "fold": "Skin",
+      "leg": "Skin",
+      "band": "Bone",
+      "fang": "Bone"
+    }
+  },
+  "Bubble": {
+    "exporter": "art/arpg/bubbles/export_runtime.py",
+    "adapter": "soh/soh/Enhancements/arpg/BubbleGeometry.h",
+    "slots": {
+      "bone": "Bone",
+      "edge": "Bone",
+      "cavity": "Flat",
+      "membrane": "Wing",
+      "vein": "Wing",
+      "eye": "Glow",
+      "tooth": "Bone",
+      "suture": "Bone"
+    }
+  },
+  "Waystone": {
+    "exporter": "art/arpg/waystone/export_runtime.py",
+    "adapter": "soh/soh/Enhancements/arpg/WaystoneGeometry.h",
+    "slots": {
+      "stone": "Stone",
+      "cut": "Stone",
+      "bronze": "Metal",
+      "gold": "Metal",
+      "wood": "Wood",
+      "grain": "Wood",
+      "iron": "Metal",
+      "velvet": "Cloth",
+      "oath": "Gem",
+      "gem": "Gem",
+      "shadow": "Stone"
+    }
+  },
+  "Relay": {
+    "exporter": "art/arpg/relay/export_runtime.py",
+    "adapter": "soh/soh/Enhancements/arpg/RelayGeometry.h",
+    "slots": {
+      "stone": "Stone",
+      "edge": "Metal",
+      "bronze": "Metal",
+      "gold": "Metal",
+      "glass": "Gem",
+      "spirit": "Gem",
+      "core": "Gem"
+    }
+  },
+  "Relic": {
+    "exporter": "art/arpg/relics/export_runtime.py",
+    "adapter": "soh/soh/Enhancements/arpg/RelicGeometry.h",
+    "table_prefix": "surfaces[]={",
+    "slots": {
+      "iron": "Metal",
+      "edge": "Metal",
+      "bronze": "Metal",
+      "gold": "Metal",
+      "ember": "Gem",
+      "red": "Leather",
+      "navy": "Leather",
+      "cyan": "Gem",
+      "blue": "Gem",
+      "ivory": "Bone",
+      "green": "Wood",
+      "emerald": "Gem",
+      "leather": "Leather",
+      "teal": "Leather",
+      "apricot": "Gem",
+      "sole": "Leather"
+    }
+  },
+  "Creature": {
+    "exporter": "art/arpg/creatures/export_runtime.py",
+    "adapter": "soh/soh/Enhancements/arpg/CreatureVisuals.cpp",
+    "table_prefix": "surfaces[]={",
+    "slots": {
+      "basalt": "Stone",
+      "stone": "Stone",
+      "edge": "Stone",
+      "bronze": "Metal",
+      "gold": "Metal",
+      "core": "Gem",
+      "bone": "Bone",
+      "dark": "Cloth",
+      "cloth": "Cloth",
+      "trim": "Cloth",
+      "spirit": "Gem"
+    }
+  },
+  "Beamos": {
+    "exporter": "art/arpg/beamos/export_runtime.py",
+    "adapter": "soh/soh/Enhancements/arpg/BeamosGeometry.h",
+    "slots": {
+      "stone": "Stone",
+      "edge": "Stone",
+      "shadow": "Metal",
+      "bronze": "Metal",
+      "iron": "Metal",
+      "eye": "Glow",
+      "crack": "Stone"
+    }
+  },
+  "MadScrub": {
+    "exporter": "art/arpg/mad-scrub/export_runtime.py",
+    "adapter": "soh/soh/Enhancements/arpg/MadScrubGeometry.h",
+    "slots": {
+      "bark": "Wood",
+      "edge": "Wood",
+      "recess": "Wood",
+      "leaf": "Plant",
+      "vein": "Plant",
+      "rust": "Plant",
+      "eye": "Glow"
+    }
+  },
+  "Anubis": {
+    "exporter": "art/arpg/anubis/export_runtime.py",
+    "adapter": "soh/soh/Enhancements/arpg/AnubisGeometry.h",
+    "slots": {
+      "linen": "Cloth",
+      "fold": "Cloth",
+      "recess": "Cloth",
+      "mask": "Wood",
+      "edge": "Wood",
+      "gold": "Metal",
+      "lapis": "Metal",
+      "jewel": "Gem"
+    }
+  },
+  "Poe": {
+    "exporter": "art/arpg/poes/export_runtime.py",
+    "adapter": "soh/soh/Enhancements/arpg/PoeGeometry.h",
+    "slots": {
+      "cloth": "Cloth",
+      "fold": "Cloth",
+      "recess": "Cloth",
+      "seam": "Cloth",
+      "skin": "Skin",
+      "knuckle": "Skin",
+      "bronze": "Metal",
+      "edge": "Metal",
+      "eye": "Glow"
+    }
+  },
+  "Guay": {
+    "exporter": "art/arpg/guays/export_runtime.py",
+    "adapter": "soh/soh/Enhancements/arpg/GuayGeometry.h",
+    "slots": {
+      "plumage": "Feather",
+      "coverts": "Feather",
+      "primaries": "Feather",
+      "quill": "Feather",
+      "beak": "Bone",
+      "edge": "Bone",
+      "eye": "Eye",
+      "pupil": "Eye"
+    }
+  }
+}

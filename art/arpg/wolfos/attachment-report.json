@@ -1,0 +1,408 @@
+{
+  "attachments": [
+    {
+      "part": "Timber.05.fitted ivory talon",
+      "host": "Timber.05.articulated toe",
+      "max_root_signed_distance": -0.23627982661128044
+    },
+    {
+      "part": "Timber.05.fitted ivory talon.001",
+      "host": "Timber.05.articulated toe.001",
+      "max_root_signed_distance": -0.23627730086445808
+    },
+    {
+      "part": "Timber.05.fitted ivory talon.002",
+      "host": "Timber.05.articulated toe.002",
+      "max_root_signed_distance": -0.23627730086445808
+    },
+    {
+      "part": "Timber.05.fitted ivory talon.003",
+      "host": "Timber.05.articulated toe.003",
+      "max_root_signed_distance": -0.23627973347902298
+    },
+    {
+      "part": "Timber.11.fitted ivory talon",
+      "host": "Timber.11.articulated toe",
+      "max_root_signed_distance": -0.23627982661128044
+    },
+    {
+      "part": "Timber.11.fitted ivory talon.001",
+      "host": "Timber.11.articulated toe.001",
+      "max_root_signed_distance": -0.23627730086445808
+    },
+    {
+      "part": "Timber.11.fitted ivory talon.002",
+      "host": "Timber.11.articulated toe.002",
+      "max_root_signed_distance": -0.23627730086445808
+    },
+    {
+      "part": "Timber.11.fitted ivory talon.003",
+      "host": "Timber.11.articulated toe.003",
+      "max_root_signed_distance": -0.23627973347902298
+    },
+    {
+      "part": "Timber.15.fitted ivory talon",
+      "host": "Timber.15.articulated toe",
+      "max_root_signed_distance": -0.23627737909555435
+    },
+    {
+      "part": "Timber.15.fitted ivory talon.001",
+      "host": "Timber.15.articulated toe.001",
+      "max_root_signed_distance": -0.23627318814396858
+    },
+    {
+      "part": "Timber.15.fitted ivory talon.002",
+      "host": "Timber.15.articulated toe.002",
+      "max_root_signed_distance": -0.23627667501568794
+    },
+    {
+      "part": "Timber.15.fitted ivory talon.003",
+      "host": "Timber.15.articulated toe.003",
+      "max_root_signed_distance": -0.2362806722521782
+    },
+    {
+      "part": "Timber.15.fitted dewclaw",
+      "host": "Timber.15.flat metacarpal palm",
+      "max_root_signed_distance": -1.108569324016571
+    },
+    {
+      "part": "Timber.17.upper premolar",
+      "host": "Timber.17.tapered nasal bridge",
+      "max_root_signed_distance": -0.6390215642750263
+    },
+    {
+      "part": "Timber.17.lower premolar",
+      "host": "Timber.17.separate lower mandible",
+      "max_root_signed_distance": -0.9507080705370754
+    },
+    {
+      "part": "Timber.17.upper premolar.001",
+      "host": "Timber.17.tapered nasal bridge",
+      "max_root_signed_distance": -0.9569672728430305
+    },
+    {
+      "part": "Timber.17.lower premolar.001",
+      "host": "Timber.17.separate lower mandible",
+      "max_root_signed_distance": -0.8758647128706798
+    },
+    {
+      "part": "Timber.17.upper premolar.002",
+      "host": "Timber.17.tapered nasal bridge",
+      "max_root_signed_distance": -0.7611170560121536
+    },
+    {
+      "part": "Timber.17.lower premolar.002",
+      "host": "Timber.17.separate lower mandible",
+      "max_root_signed_distance": -0.7180418153293431
+    },
+    {
+      "part": "Timber.17.upper premolar.003",
+      "host": "Timber.17.tapered nasal bridge",
+      "max_root_signed_distance": -0.7666696645319462
+    },
+    {
+      "part": "Timber.17.lower premolar.003",
+      "host": "Timber.17.separate lower mandible",
+      "max_root_signed_distance": -0.5437592584639788
+    },
+    {
+      "part": "Timber.17.upper premolar.004",
+      "host": "Timber.17.tapered nasal bridge",
+      "max_root_signed_distance": -0.7492756485007703
+    },
+    {
+      "part": "Timber.17.curved canine",
+      "host": "Timber.17.tapered nasal bridge",
+      "max_root_signed_distance": -1.0972713567316532
+    },
+    {
+      "part": "Timber.17.lower canine",
+      "host": "Timber.17.separate lower mandible",
+      "max_root_signed_distance": -0.8215455524623394
+    },
+    {
+      "part": "Timber.17.upper premolar.005",
+      "host": "Timber.17.tapered nasal bridge",
+      "max_root_signed_distance": -0.6977970544248819
+    },
+    {
+      "part": "Timber.17.lower premolar.004",
+      "host": "Timber.17.separate lower mandible",
+      "max_root_signed_distance": -0.9545682328753173
+    },
+    {
+      "part": "Timber.17.upper premolar.006",
+      "host": "Timber.17.tapered nasal bridge",
+      "max_root_signed_distance": -0.9583617754777833
+    },
+    {
+      "part": "Timber.17.lower premolar.005",
+      "host": "Timber.17.separate lower mandible",
+      "max_root_signed_distance": -0.8760484820231795
+    },
+    {
+      "part": "Timber.17.upper premolar.007",
+      "host": "Timber.17.tapered nasal bridge",
+      "max_root_signed_distance": -0.7588319024071097
+    },
+    {
+      "part": "Timber.17.lower premolar.006",
+      "host": "Timber.17.separate lower mandible",
+      "max_root_signed_distance": -0.7270400733686984
+    },
+    {
+      "part": "Timber.17.upper premolar.008",
+      "host": "Timber.17.tapered nasal bridge",
+      "max_root_signed_distance": -0.7670803107321262
+    },
+    {
+      "part": "Timber.17.lower premolar.007",
+      "host": "Timber.17.separate lower mandible",
+      "max_root_signed_distance": -0.5471219029277563
+    },
+    {
+      "part": "Timber.17.upper premolar.009",
+      "host": "Timber.17.tapered nasal bridge",
+      "max_root_signed_distance": -0.7493560118600726
+    },
+    {
+      "part": "Timber.17.curved canine.001",
+      "host": "Timber.17.tapered nasal bridge",
+      "max_root_signed_distance": -1.0970350243151188
+    },
+    {
+      "part": "Timber.17.lower canine.001",
+      "host": "Timber.17.separate lower mandible",
+      "max_root_signed_distance": -0.8165057115256786
+    },
+    {
+      "part": "Timber.21.fitted ivory talon",
+      "host": "Timber.21.articulated toe",
+      "max_root_signed_distance": -0.23627836257219315
+    },
+    {
+      "part": "Timber.21.fitted ivory talon.001",
+      "host": "Timber.21.articulated toe.001",
+      "max_root_signed_distance": -0.2362728752195835
+    },
+    {
+      "part": "Timber.21.fitted ivory talon.002",
+      "host": "Timber.21.articulated toe.002",
+      "max_root_signed_distance": -0.23627735301852226
+    },
+    {
+      "part": "Timber.21.fitted ivory talon.003",
+      "host": "Timber.21.articulated toe.003",
+      "max_root_signed_distance": -0.23628146573901176
+    },
+    {
+      "part": "Timber.21.fitted dewclaw",
+      "host": "Timber.21.flat metacarpal palm",
+      "max_root_signed_distance": -1.1085694432258606
+    },
+    {
+      "part": "Frost.05.fitted ivory talon",
+      "host": "Frost.05.articulated toe",
+      "max_root_signed_distance": -0.23627982661128044
+    },
+    {
+      "part": "Frost.05.fitted ivory talon.001",
+      "host": "Frost.05.articulated toe.001",
+      "max_root_signed_distance": -0.23627730086445808
+    },
+    {
+      "part": "Frost.05.fitted ivory talon.002",
+      "host": "Frost.05.articulated toe.002",
+      "max_root_signed_distance": -0.23627730086445808
+    },
+    {
+      "part": "Frost.05.fitted ivory talon.003",
+      "host": "Frost.05.articulated toe.003",
+      "max_root_signed_distance": -0.23627973347902298
+    },
+    {
+      "part": "Frost.11.fitted ivory talon",
+      "host": "Frost.11.articulated toe",
+      "max_root_signed_distance": -0.23627982661128044
+    },
+    {
+      "part": "Frost.11.fitted ivory talon.001",
+      "host": "Frost.11.articulated toe.001",
+      "max_root_signed_distance": -0.23627730086445808
+    },
+    {
+      "part": "Frost.11.fitted ivory talon.002",
+      "host": "Frost.11.articulated toe.002",
+      "max_root_signed_distance": -0.23627730086445808
+    },
+    {
+      "part": "Frost.11.fitted ivory talon.003",
+      "host": "Frost.11.articulated toe.003",
+      "max_root_signed_distance": -0.23627973347902298
+    },
+    {
+      "part": "Frost.15.fitted ivory talon",
+      "host": "Frost.15.articulated toe",
+      "max_root_signed_distance": -0.23627737909555435
+    },
+    {
+      "part": "Frost.15.fitted ivory talon.001",
+      "host": "Frost.15.articulated toe.001",
+      "max_root_signed_distance": -0.23627318814396858
+    },
+    {
+      "part": "Frost.15.fitted ivory talon.002",
+      "host": "Frost.15.articulated toe.002",
+      "max_root_signed_distance": -0.23627667501568794
+    },
+    {
+      "part": "Frost.15.fitted ivory talon.003",
+      "host": "Frost.15.articulated toe.003",
+      "max_root_signed_distance": -0.2362806722521782
+    },
+    {
+      "part": "Frost.15.fitted dewclaw",
+      "host": "Frost.15.flat metacarpal palm",
+      "max_root_signed_distance": -1.108569324016571
+    },
+    {
+      "part": "Frost.17.upper premolar",
+      "host": "Frost.17.tapered nasal bridge",
+      "max_root_signed_distance": -0.6390215642750263
+    },
+    {
+      "part": "Frost.17.lower premolar",
+      "host": "Frost.17.separate lower mandible",
+      "max_root_signed_distance": -0.9507080705370754
+    },
+    {
+      "part": "Frost.17.upper premolar.001",
+      "host": "Frost.17.tapered nasal bridge",
+      "max_root_signed_distance": -0.9569672728430305
+    },
+    {
+      "part": "Frost.17.lower premolar.001",
+      "host": "Frost.17.separate lower mandible",
+      "max_root_signed_distance": -0.8758647128706798
+    },
+    {
+      "part": "Frost.17.upper premolar.002",
+      "host": "Frost.17.tapered nasal bridge",
+      "max_root_signed_distance": -0.7611170560121536
+    },
+    {
+      "part": "Frost.17.lower premolar.002",
+      "host": "Frost.17.separate lower mandible",
+      "max_root_signed_distance": -0.7180418153293431
+    },
+    {
+      "part": "Frost.17.upper premolar.003",
+      "host": "Frost.17.tapered nasal bridge",
+      "max_root_signed_distance": -0.7666696645319462
+    },
+    {
+      "part": "Frost.17.lower premolar.003",
+      "host": "Frost.17.separate lower mandible",
+      "max_root_signed_distance": -0.5437592584639788
+    },
+    {
+      "part": "Frost.17.upper premolar.004",
+      "host": "Frost.17.tapered nasal bridge",
+      "max_root_signed_distance": -0.7492756485007703
+    },
+    {
+      "part": "Frost.17.curved canine",
+      "host": "Frost.17.tapered nasal bridge",
+      "max_root_signed_distance": -1.0972713567316532
+    },
+    {
+      "part": "Frost.17.lower canine",
+      "host": "Frost.17.separate lower mandible",
+      "max_root_signed_distance": -0.8215455524623394
+    },
+    {
+      "part": "Frost.17.upper premolar.005",
+      "host": "Frost.17.tapered nasal bridge",
+      "max_root_signed_distance": -0.6977970544248819
+    },
+    {
+      "part": "Frost.17.lower premolar.004",
+      "host": "Frost.17.separate lower mandible",
+      "max_root_signed_distance": -0.9545682328753173
+    },
+    {
+      "part": "Frost.17.upper premolar.006",
+      "host": "Frost.17.tapered nasal bridge",
+      "max_root_signed_distance": -0.9583617754777833
+    },
+    {
+      "part": "Frost.17.lower premolar.005",
+      "host": "Frost.17.separate lower mandible",
+      "max_root_signed_distance": -0.8760484820231795
+    },
+    {
+      "part": "Frost.17.upper premolar.007",
+      "host": "Frost.17.tapered nasal bridge",
+      "max_root_signed_distance": -0.7588319024071097
+    },
+    {
+      "part": "Frost.17.lower premolar.006",
+      "host": "Frost.17.separate lower mandible",
+      "max_root_signed_distance": -0.7270400733686984
+    },
+    {
+      "part": "Frost.17.upper premolar.008",
+      "host": "Frost.17.tapered nasal bridge",
+      "max_root_signed_distance": -0.7670803107321262
+    },
+    {
+      "part": "Frost.17.lower premolar.007",
+      "host": "Frost.17.separate lower mandible",
+      "max_root_signed_distance": -0.5471219029277563
+    },
+    {
+      "part": "Frost.17.upper premolar.009",
+      "host": "Frost.17.tapered nasal bridge",
+      "max_root_signed_distance": -0.7493560118600726
+    },
+    {
+      "part": "Frost.17.curved canine.001",
+      "host": "Frost.17.tapered nasal bridge",
+      "max_root_signed_distance": -1.0970350243151188
+    },
+    {
+      "part": "Frost.17.lower canine.001",
+      "host": "Frost.17.separate lower mandible",
+      "max_root_signed_distance": -0.8165057115256786
+    },
+    {
+      "part": "Frost.21.fitted ivory talon",
+      "host": "Frost.21.articulated toe",
+      "max_root_signed_distance": -0.23627836257219315
+    },
+    {
+      "part": "Frost.21.fitted ivory talon.001",
+      "host": "Frost.21.articulated toe.001",
+      "max_root_signed_distance": -0.2362728752195835
+    },
+    {
+      "part": "Frost.21.fitted ivory talon.002",
+      "host": "Frost.21.articulated toe.002",
+      "max_root_signed_distance": -0.23627735301852226
+    },
+    {
+      "part": "Frost.21.fitted ivory talon.003",
+      "host": "Frost.21.articulated toe.003",
+      "max_root_signed_distance": -0.23628146573901176
+    },
+    {
+      "part": "Frost.21.fitted dewclaw",
+      "host": "Frost.21.flat metacarpal palm",
+      "max_root_signed_distance": -1.1085694432258606
+    }
+  ],
+  "root_rings_inside_hosts": 80,
+  "eye_vertices": 3084,
+  "max_eye_distance": 0.12000398337841034,
+  "units": "one-hundredth native model units"
+}

@@ -1,4 +1,5 @@
 #include "z_en_rd.h"
+#include "soh/Enhancements/arpg/RedeadVisuals.h"
 #include "objects/object_rd/object_rd.h"
 #include "soh/Enhancements/game-interactor/GameInteractor_Hooks.h"
 #include <libultraship/bridge/consolevariablebridge.h>
@@ -860,6 +861,7 @@ s32 EnRd_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* po
     } else if (limbIndex == 12) {
         rot->y += this->upperBodyYRotation;
     }
+    ARPG_OverrideRedeadLimb(play, thisx, limbIndex, dList);
     return false;
 }
 

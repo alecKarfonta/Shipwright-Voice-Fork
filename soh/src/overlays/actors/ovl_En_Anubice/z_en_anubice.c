@@ -5,6 +5,7 @@
  */
 
 #include "z_en_anubice.h"
+#include "soh/Enhancements/arpg/AnubisVisuals.h"
 #include "objects/object_anubice/object_anubice.h"
 #include "overlays/actors/ovl_En_Anubice_Tag/z_en_anubice_tag.h"
 #include "overlays/actors/ovl_Bg_Hidan_Curtain/z_bg_hidan_curtain.h"
@@ -160,14 +161,16 @@ void EnAnubice_Destroy(Actor* thisx, PlayState* play) {
 
     Collider_DestroyCylinder(play, &this->collider);
 
-    if (this->actor.params != 0) {
-        if (this->actor.parent) {}
-
-        tag = (EnAnubiceTag*)this->actor.parent;
-        if (tag != NULL && tag->actor.update != NULL) {
-            tag->anubis = NULL;
+    // [TIME] | [INFO] | Anubis.Destroy | The native controller spawns params zero; clear its custom child pointer before this body is freed.
+    for (Actor* parent = play->actorCtx.actorLists[ACTORCAT_SWITCH].head; parent != NULL; parent = parent->next) {
+        if (parent == this->actor.parent && parent->id == ACTOR_EN_ANUBICE_TAG) {
+            tag = (EnAnubiceTag*)parent;
+            if (tag->anubis == this) tag->anubis = NULL;
+            if (parent->child == thisx) parent->child = NULL;
+            break;
         }
     }
+    this->actor.parent = NULL;
 }
 
 void EnAnubice_FindFlameCircles(EnAnubice* this, PlayState* play) {
@@ -368,7 +371,15 @@ void EnAnubice_Update(Actor* thisx, PlayState* play) {
         (this->actor.shape.yOffset == 0.0f)) {
         EnAnubice_Hover(this, play);
         for (i = 0; i < ARRAY_COUNT(this->flameCircles); i++) {
-            flameCircle = this->flameCircles[i];
+            flameCircle = NULL;
+            // [TIME] | [INFO] | Anubis.Flames | A cached circle may have been removed by room teardown or practice cleanup.
+            for (Actor* prop = play->actorCtx.actorLists[ACTORCAT_PROP].head; prop != NULL; prop = prop->next) {
+                if (prop == (Actor*)this->flameCircles[i] && prop->id == ACTOR_BG_HIDAN_CURTAIN && prop->update != NULL) {
+                    flameCircle = (BgHidanCurtain*)prop;
+                    break;
+                }
+            }
+            this->flameCircles[i] = flameCircle;
 
             if ((flameCircle != NULL) && (fabsf(flameCircle->actor.world.pos.x - this->actor.world.pos.x) < 60.0f) &&
                 (fabsf(this->flameCircles[i]->actor.world.pos.z - this->actor.world.pos.z) < 60.0f) &&
@@ -471,6 +482,7 @@ s32 EnAnubice_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3
         rot->z += this->headRot;
     }
 
+    ARPG_OverrideAnubisLimb(play, &this->actor, limbIndex, dList);
     return false;
 }
 

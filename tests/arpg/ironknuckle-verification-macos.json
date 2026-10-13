@@ -1,0 +1,108 @@
+{
+  "status": "passed",
+  "date": "2026-10-13",
+  "feature": "Original Iron Knuckle armor, axe and native armor-break integration",
+  "scope": "Ordinary ivory, black and silver guards (params 1..3). Native combat and animation retained; Nabooru story/cutscene geometry stays original.",
+  "art": {
+    "source_sha256": "d9e43d012d6e9b6ba3741e61b20bde06ef5a8a65dd80d7f5c09a0c3e5ec46f40",
+    "vertices": 8951,
+    "triangles": 15674,
+    "parts": 61,
+    "subpixel_triangles_removed": 0,
+    "triangles_per_actor": {
+      "0": 15674
+    },
+    "materials": [
+      "plate",
+      "edge",
+      "gold",
+      "mail",
+      "leather",
+      "cloth",
+      "socket",
+      "gem"
+    ],
+    "space": "Native joint-local XYZ, positions x100; native normals retained; per-vertex native joint indices; authoring-pose transforms omitted",
+    "triangles_per_state": {
+      "armored": 14926,
+      "exposed": 12918
+    }
+  },
+  "animation": {
+    "status": "passed",
+    "geometry_variants": 1,
+    "armor_palettes": 3,
+    "native_animation_clips_per_variant": 12,
+    "native_animation_frames_per_variant": 279,
+    "visible_limbs_in_rig": 24,
+    "bridges": 8,
+    "posed_bridge_endpoint_checks": 53568,
+    "maximum_quantized_endpoint_error_world_units": 0.00843156402636709,
+    "maximum_posed_envelope_extension_world_units": 4.939127824677163,
+    "actor_scale": 0.012,
+    "scope": "Full native animation poses; quantized endpoints follow their assigned native joints. Native source vertices with mixed flex matrices are transformed under their own joints. Rigid armor plates are visually reviewed in attack, run, block, wake and death poses; no claim of watertight topology."
+  },
+  "portable": {
+    "full_suites_passed": 33,
+    "address_and_undefined_sanitizers": "passed",
+    "log": "/tmp/iron-portable-test.log"
+  },
+  "native": {
+    "checks_passed": 79,
+    "draw_frames": 470,
+    "armored_frames": 325,
+    "exposed_frames": 145,
+    "vertical_active_frames": 4,
+    "horizontal_active_frames": [
+      14,
+      5
+    ],
+    "defeats": 1,
+    "results": "tests/arpg/ironknuckle-runtime-results-macos.json",
+    "scope": "Native wake/walk, vertical and two horizontal attack windows and recovery, block bounce, armored damage filters, detached front/rear chest plates, exposed torso/run/arrow weakness, death/reward, three palettes, distance and feature gates, Nabooru gate, interrupted BodyBreak cleanup, eight summon/despawn cycles, practice placement, cleared-room rejection and teardown.",
+    "fixture_limits": "Isolated debug save and pinned player/camera. Damage/collision stimuli and attack setup functions are invoked by the harness. The interrupted-break test calls the real destructor once and suppresses its second automatic invocation before actor removal. Nabooru gate is tested by temporary params override, not the complete story encounter."
+  },
+  "production_ui": {
+    "build": "/tmp/soh-ironknuckle-playtest/Iron Knuckle Adventure.app",
+    "verified": [
+      "Collapsed native guard controls and three armor options",
+      "Successful ordinary-menu ivory guard summon alongside room enemies",
+      "Normal sword contact wakes the native guard",
+      "Native targeting, pursuit, axe damage and knockback",
+      "Scene exit after knockback and journal reopening"
+    ],
+    "profile_root": "/tmp/soh-ironknuckle-playtest/profiles",
+    "qa_harness_linked": false
+  },
+  "build": {
+    "method": "Isolated immutable source snapshot and object-link chain from verified ReDead build. Rebuilt dedicated Iron Knuckle renderer, native EnIk and EnPart, practice menu and harness. Shared Ninja not run; unrelated concurrent changes are not claimed rebuilt.",
+    "source": "/tmp/soh-ironknuckle/source",
+    "qa": "/tmp/soh-ironknuckle/qa",
+    "production": "/tmp/soh-ironknuckle/production",
+    "source_hashes": {
+      "soh/soh/Enhancements/arpg/IronKnuckleBlenderData.h": "8e211d1a9a64a16318e5d520ad052e5df52b402e4ed5fc1f4808e7e26a9658f8",
+      "soh/soh/Enhancements/arpg/IronKnuckleGeometry.h": "d6429e7bd0a8b93c9a5df946ca1d70aeb25bdcb296613e7091db7357e09a33fe",
+      "soh/soh/Enhancements/arpg/IronKnuckleVisuals.cpp": "ef77ad79af373d82a4ca6cd13a9470e6d61188f1305043f25d81ec46a5618697",
+      "soh/soh/Enhancements/arpg/IronKnuckleVisuals.h": "69affb251cadcc202d5f10aaae3165bbbfe97c06c19d20bed43b47aa64926ab0",
+      "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "3a27aae581915389a9890af8481e5ef97fcf6e86a64a51af01b7df4ecc8fd5a4",
+      "soh/soh/Enhancements/arpg/CreatureSystem.h": "cd1dc69c4886de3195ab8f6f3dbee7e20bed515d028f138244c9b3ea657028aa",
+      "soh/src/overlays/actors/ovl_En_Ik/z_en_ik.c": "65da33c3210e57d26cb81464e74e71d101e62e6c5b58319059d36f12354d5cbf",
+      "soh/src/overlays/actors/ovl_En_Part/z_en_part.c": "edea985c6b0d8e6f08c5730f549617d46be41645486950ce637ca213629f0484",
+      "tests/arpg/ironknuckle_runtime_test.cpp": "7dc5789e807bc16511ed75d4267ecaae483cb133e55f4f3dbbc865223d947979"
+    },
+    "qa_exit_status": 0,
+    "production_exit_status": 0
+  },
+  "save": {
+    "path": "/Users/alec/Library/Application Support/shipofharkinian/profiles/player1/Save/file1.sav",
+    "before_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "after_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "unchanged": true
+  },
+  "blender": {
+    "authoring": "Installed Blender 5.1.2 in isolated background authoring processes; live MCP connection unavailable.",
+    "editable_source": "art/arpg/ironknuckles/ironknuckles.blend",
+    "user_project_modified": false
+  },
+  "remaining": "Additional native families, Spirit Temple/age/terrain acceptance, crowded-scene performance and the full replayability requirements remain open."
+}

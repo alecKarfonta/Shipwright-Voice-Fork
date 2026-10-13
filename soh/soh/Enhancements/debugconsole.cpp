@@ -7,6 +7,7 @@
 #include "savestates.h"
 #include "soh/ActorDB.h"
 #include "soh/OTRGlobals.h"
+#include "soh/Enhancements/arpg/ARPGConsole.h"
 #include <soh/Enhancements/item-tables/ItemTableManager.h>
 #include "soh/Enhancements/game-interactor/GameInteractor.h"
 #include "soh/Enhancements/cosmetics/CosmeticsEditor.h"
@@ -1774,6 +1775,11 @@ void DebugConsole_Init(void) {
                      { "starting_region", Ship::ArgumentType::NUMBER, true },
                      { "ChildDay|ChildNight|AdultDay|AdultNight", Ship::ArgumentType::TEXT, true },
                  } });
+
+    // #region SOH [ARPG]
+    // [TIME] | [INFO] | DebugConsole_Init | ARPG QA commands (arpggive etc.)
+    ARPG_RegisterConsoleCommands();
+    // #endregion
 
     Ship::Context::GetRawInstance()->GetWindow()->GetGui()->SaveConsoleVariablesNextFrame();
 }

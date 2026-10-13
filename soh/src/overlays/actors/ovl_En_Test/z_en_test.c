@@ -7,6 +7,8 @@
 #include "z_en_test.h"
 #include "objects/object_sk2/object_sk2.h"
 #include "soh/Enhancements/game-interactor/GameInteractor_Hooks.h"
+#include "soh/Enhancements/arpg/ARPGBridge.h"
+#include "soh/Enhancements/arpg/EnemyVisuals.h"
 
 #define FLAGS (ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_HOSTILE | ACTOR_FLAG_UPDATE_CULLING_DISABLED)
 
@@ -436,7 +438,7 @@ void EnTest_SetupWaitGround(EnTest* this) {
 void EnTest_WaitGround(EnTest* this, PlayState* play) {
     SkelAnime_Update(&this->skelAnime);
 
-    if ((this->timer == 0) && (ABS(this->actor.yDistToPlayer) < 150.0f)) {
+    if ((this->timer == 0) && (ARPG_IsRegionalEnemy(&this->actor) || ABS(this->actor.yDistToPlayer) < 150.0f)) {
         this->unk_7C8 = 3;
         EnTest_SetupAction(this, EnTest_Rise);
         this->actor.world.rot.y = this->actor.yawTowardsPlayer;
@@ -484,7 +486,25 @@ void EnTest_SetupIdle(EnTest* this) {
     EnTest_SetupAction(this, EnTest_Idle);
 }
 
+void EnTest_SetupWalkAndBlock(EnTest* this);
+// [TIME] | [INFO] | EnTest.ARPGNeutral | Native animations and committed attack states remain authoritative.
+static s32 EnTest_ARPGNeutral(EnTest* this, PlayState* play) {
+    int command = ARPG_EnemyTactics(&this->actor, play);
+    if (command == 0) { return false; }
+    if (command == 2) { EnTest_SetupSlashDown(this); }
+    else if (command == 3) { EnTest_SetupJumpBack(this); }
+    else {
+        if (this->actionFunc != EnTest_WalkAndBlock) { EnTest_SetupWalkAndBlock(this); }
+        this->skelAnime.playSpeed = this->actor.speedXZ > 0.1f ? 1.1f : 0.2f;
+        if (this->actor.speedXZ < 0.1f && this->unk_7DE == 0) { this->unk_7DE = 1; }
+        else if (this->actor.speedXZ > 0.1f) { this->unk_7DE = 0; }
+        SkelAnime_Update(&this->skelAnime);
+    }
+    return true;
+}
+
 void EnTest_Idle(EnTest* this, PlayState* play) {
+    if (EnTest_ARPGNeutral(this, play)) { return; }
     Player* player = GET_PLAYER(play);
     s16 yawDiff;
 
@@ -566,6 +586,7 @@ void EnTest_SetupWalkAndBlock(EnTest* this) {
 }
 
 void EnTest_WalkAndBlock(EnTest* this, PlayState* play) {
+    if (EnTest_ARPGNeutral(this, play)) { return; }
     s32 pad;
     f32 checkDist = 0.0f;
     s32 pad1;
@@ -1362,6 +1383,7 @@ void func_808627C4(EnTest* this, PlayState* play) {
 
 // a variation of sidestep
 void func_808628C8(EnTest* this, PlayState* play) {
+    if (EnTest_ARPGNeutral(this, play)) { return; }
     s32 pad;
     Player* player = GET_PLAYER(play);
     s32 pad1;
@@ -1843,6 +1865,7 @@ s32 EnTest_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* 
         *dList = NULL;
     }
 
+    ARPG_OverrideEnemyLimb(play, &this->actor, limbIndex, dList);
     return false;
 }
 

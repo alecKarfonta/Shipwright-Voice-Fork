@@ -1,0 +1,21 @@
+{
+  "source_sha256": "d9e43d012d6e9b6ba3741e61b20bde06ef5a8a65dd80d7f5c09a0c3e5ec46f40",
+  "vertices": 8951,
+  "triangles": 15674,
+  "parts": 61,
+  "subpixel_triangles_removed": 0,
+  "triangles_per_actor": {
+    "0": 15674
+  },
+  "materials": [
+    "plate",
+    "edge",
+    "gold",
+    "mail",
+    "leather",
+    "cloth",
+    "socket",
+    "gem"
+  ],
+  "space": "Native joint-local XYZ, positions x100; native normals retained; per-vertex native joint indices; authoring-pose transforms omitted"
+}

@@ -1,3 +1,5 @@
+#include "soh/Enhancements/arpg/ARPGBridge.h"
+#include "soh/Enhancements/arpg/ARPGTypes.h"
 /*
  * File: z_en_bom.c
  * Overlay: ovl_En_Bom
@@ -201,9 +203,11 @@ void EnBom_Explode(EnBom* this, PlayState* play) {
 
     if (CVarGetInteger(CVAR_ENHANCEMENT("StaticExplosionRadius"), 0)) {
         // 72 is the maximum radius of an OoT bomb explosion
-        this->explosionCollider.elements[0].dim.worldSphere.radius = 72;
+        this->explosionCollider.elements[0].dim.worldSphere.radius = 72 * ARPG_AdventureBlastScale(&this->actor);
     } else {
-        this->explosionCollider.elements[0].dim.worldSphere.radius += this->actor.shape.rot.z + 8;
+        // Reconstruct the ten-tick native expansion before scaling; integer rounding must not accumulate.
+        this->explosionCollider.elements[0].dim.worldSphere.radius =
+            (10 - this->timer) * (this->actor.shape.rot.z + 8) * ARPG_AdventureBlastScale(&this->actor);
     }
 
     if (this->actor.params == BOMB_EXPLOSION) {
@@ -338,7 +342,7 @@ void EnBom_Update(Actor* thisx, PlayState* play2) {
                 effPos.y += 30.0f;
             }
 
-            EffectSsBomb2_SpawnLayered(play, &effPos, &effVelocity, &bomb2Accel, 100, (thisx->shape.rot.z * 6) + 19);
+            EffectSsBomb2_SpawnLayered(play, &effPos, &effVelocity, &bomb2Accel, 100 * ARPG_AdventureBlastScale(thisx), ((thisx->shape.rot.z * 6) + 19) * ARPG_AdventureBlastScale(thisx));
 
             effPos.y = thisx->floorHeight;
             if (thisx->floorHeight > BGCHECK_Y_MIN) {
@@ -352,6 +356,7 @@ void EnBom_Update(Actor* thisx, PlayState* play2) {
             play->envCtx.adjAmbientColor[0] = play->envCtx.adjAmbientColor[1] = play->envCtx.adjAmbientColor[2] = 250;
 
             Camera_AddQuake(&play->mainCamera, 2, 0xB, 8);
+            ARPG_AdventureDetonate(thisx);
             thisx->params = BOMB_EXPLOSION;
             this->timer = 10;
             thisx->flags |= ACTOR_FLAG_DRAW_CULLING_DISABLED;

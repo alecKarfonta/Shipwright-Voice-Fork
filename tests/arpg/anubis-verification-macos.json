@@ -1,0 +1,194 @@
+{
+  "status": "passed",
+  "feature": "Original Anubis upgrade",
+  "date": "2026-10-13",
+  "portable_tests": {
+    "suites": 43,
+    "passed": 43,
+    "log": "/tmp/anubis-portable.log"
+  },
+  "geometry_sanitizers": "ASAN and UBSAN passed",
+  "semantic_materials": {
+    "adapters": 16,
+    "native_resource_references": 47
+  },
+  "animation": {
+    "status": "passed",
+    "clips": 5,
+    "frames": 169,
+    "posed_vertex_checks": 1932177,
+    "native_visible_joints": 8,
+    "maximum_envelope_extension_world_units": 0.5994768854879196,
+    "per_clip_extension_world_units": {
+      "gAnubiceAttackingAnim": 0,
+      "gAnubiceFallDownAnim": 0.5994768854879196,
+      "gAnubiceIdleAnim": 0,
+      "gAnubiceLaughingAnim": 0.5443723762903474,
+      "gAnubiceStandUpAnim": 0.5946294344967691
+    },
+    "scope": "All 169 native clip frames at the original .015 actor scale. Original head-eye and fireball callbacks are unchanged; runtime headRot is zero in these clips. Bounds do not establish collision or triangle-clearance correctness."
+  },
+  "export": {
+    "source_sha256": "3c315ebe088fd4fb66f1627d498a4772793e4331617d6a8b781629370b670568",
+    "vertices": 11433,
+    "triangles": 7009,
+    "parts": 24,
+    "subpixel_triangles_removed": 0,
+    "triangles_per_actor": {
+      "0": 7009
+    },
+    "materials": [
+      "linen",
+      "fold",
+      "recess",
+      "mask",
+      "edge",
+      "gold",
+      "lapis",
+      "jewel"
+    ],
+    "space": "Native joint-local XYZ, positions x100; native normals retained; per-vertex native joint indices; authoring-pose transforms omitted"
+  },
+  "native": {
+    "attack_frames": 60,
+    "checks": [
+      "Practice places a native mirror anchor on safe ground",
+      "Original sixteen-entry rig keeps embedded animation tables",
+      "Native invisible pivot remains invisible",
+      "Native invisible pivot remains invisible",
+      "Native invisible pivot remains invisible",
+      "Native invisible pivot remains invisible",
+      "Native invisible pivot remains invisible",
+      "Native invisible pivot remains invisible",
+      "Native invisible pivot remains invisible",
+      "Eight original meshes use cached authored geometry",
+      "Every semantic material part binds a scene-lit texture",
+      "Feature gate restores every original mesh",
+      "Feature gate restores every original mesh",
+      "Distance fallback restores original anatomy",
+      "Original scale and full-height body collision remain unchanged",
+      "Practice uses the original zero-parameter owned child",
+      "Head override preserves the native rotational callback",
+      "Original post-draw head anchor follows the floating body",
+      "Native emergence makes the hovering mummy targetable",
+      "Original controller mirrors Link across its anchor in both axes",
+      "A melee windup triggers the original frame-twelve fireball at the native head anchor; projectile is excluded from enemy rewards",
+      "One sword swing produces one fireball and returns to hover without rewards",
+      "Real native arrow initializes toward the body cylinder",
+      "A real ordinary arrow causes the native nonlethal spinning knockback",
+      "Knockback recovers without bypassing the fire weakness",
+      "Leaving range completes native retreat and hidden idle",
+      "Returning to range raises the original mummy again",
+      "Real native arrow initializes toward the body cylinder",
+      "A real fire arrow starts native burning death and awards one ARPG defeat after the category change",
+      "Dying controller detaches but preserves the burning body's death animation",
+      "Original burning collapse and collectible drop finish without a second reward",
+      "Original mirroring controller initializes",
+      "Cleanup fixture owns a native body",
+      "Removing the zero-parameter body clears its controller safely without defeat credit",
+      "Original mirroring controller initializes",
+      "Reverse cleanup fixture owns a native body",
+      "Removing a live controller removes its owned body without defeat credit",
+      "Original switched flame circle initializes",
+      "Original mirroring controller initializes",
+      "Native activation discovers a real scene flame circle",
+      "Removed flame circles are cleared before cached pointers are read",
+      "Original switched flame circle initializes",
+      "Original mirroring controller initializes",
+      "Inactive native fire-circle timer does not defeat the mummy",
+      "A switched native flame circle exploits the original fire weakness and grants one reward",
+      "Flame-circle death completes normally",
+      "Original mirroring controller initializes",
+      "Original mirroring controller initializes",
+      "Original mirroring controller initializes",
+      "Original mirroring controller initializes",
+      "Practice obeys the four-controller nearby cap before children spawn",
+      "Matched four-mummy draw cadence samples captured",
+      "Scene teardown adds no defeats for live controllers or projectiles",
+      "Original mirroring controller initializes",
+      "Original hover and attack articulation remain active in the darker dungeon"
+    ],
+    "death_frames": 60,
+    "distinct_poses": 141,
+    "error": "",
+    "fireball_spawns": 1,
+    "four_actor_paced_draw_interval_native": {
+      "median_ms": 49.971791,
+      "p95_ms": 50.56025,
+      "samples": 139
+    },
+    "four_actor_paced_draw_interval_upgraded": {
+      "median_ms": 49.99,
+      "p95_ms": 50.490708,
+      "samples": 139
+    },
+    "frames": 121,
+    "hover_frames": 833,
+    "knockback_frames": 10,
+    "native_defeats": 2,
+    "phase": 98,
+    "render_frames": 1085,
+    "status": "passed"
+  },
+  "build": {
+    "method": "Isolated source snapshot and direct object/link commands; shared Ninja not run. Extends the verified Mad Scrub snapshot.",
+    "production": "/tmp/soh-anubis/production",
+    "production_uuid": "2141F654-87E1-32AC-832B-43AC0F264916",
+    "qa": "/tmp/soh-anubis/qa",
+    "qa_fixture_in_production": false,
+    "current_material_api_renderer_compile": "passed /tmp/anubis-current-material-api.o",
+    "baseline_note": "Frozen three-byte Color material ABI retained for earlier linked consumers. Explicit local semantic slots compile against current and frozen APIs.",
+    "ordinary_app_uuid": "2141F654-87E1-32AC-832B-43AC0F264916"
+  },
+  "source_hashes": {
+    "soh/soh/Enhancements/arpg/AnubisVisuals.cpp": "7a60cbce6c8fddf631ad1b769cef9d2b14fe1caa001fc1c368db71008906a3e7",
+    "soh/soh/Enhancements/arpg/AnubisVisuals.h": "b8de6a08610573265ab3bf968fc40069a6d50e6d9de8c9a1a4b0d9409bc4588d",
+    "soh/soh/Enhancements/arpg/AnubisGeometry.h": "222fe3d80b7d072b7c63bfe6659be8923c4153a060e4dc25d87cbe6067c7bbfe",
+    "soh/soh/Enhancements/arpg/AnubisBlenderData.h": "17835a82738fc9b0bd2a928f9c3ff1a884c2794d48e305bad1109f81f2248fe8",
+    "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "cc6ac1ee98ba238a43c590016e91885b8994bc353466043518c6e5ba7a22bfac",
+    "soh/soh/Enhancements/arpg/CreatureSystem.h": "045441cdb1339c09271e2e29d787b4050e5f2373f80da656853f46e577183369",
+    "soh/src/overlays/actors/ovl_En_Anubice/z_en_anubice.c": "ede5f011dbb2fc12279a4613ca885b1257e5edf6b7dc0cb07a1d6b89c987fe57",
+    "soh/src/overlays/actors/ovl_En_Anubice_Tag/z_en_anubice_tag.c": "58d394fb88d5cc106300d7c6de79704d36b18d6fd0ffbc666c6d54daf293f72d",
+    "soh/soh/Enhancements/EnemyDifficulty/EnemyDifficulty.cpp": "600b05ec7a7b661fab27fc3b3f7b501be47310a23b220d35f27a35d4ea30c556",
+    "tests/arpg/anubis_runtime_test.cpp": "a4a6bd1b0c556529441a7fc33a326914e19f5cf4189bc1d0d025f549aba6207b"
+  },
+  "tested_sources_byte_identical": true,
+  "normal_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "fixtures": [
+    "Adult Link, position, camera, health and time pinned; unrelated custom spawns disabled.",
+    "One melee-state pulse starts native retaliation. Real ordinary and fire arrows are spawned and launched through EnArrow_Shoot; they collide naturally with the original body cylinder.",
+    "Native flame-circle type 4 discovers through original activation, then its switch activates the native timer and fire weakness.",
+    "Both body/controller removal orders, removed cached flame props, four simultaneous controllers, two original deaths with exactly two ARPG defeat credits and dungeon transition verified.",
+    "First fixture used a premature five-frame cleanup assertion during the native finishing-blow freeze. Final fixture waits twelve frames; both cleanup orders and burning body preservation pass."
+  ],
+  "limitations": [
+    "Capped approximately 50 ms draw intervals are not an uncapped GPU performance measurement.",
+    "Original Spirit Temple puzzle rooms, child Link and mirror-shield AnubisFix variants were not exhaustively playtested.",
+    "Broader terrain, co-op and third-party texture packs remain additional acceptance coverage.",
+    "Known ResourceManager shutdown logger mutex warning persists from the baseline."
+  ],
+  "ordinary_play": {
+    "app": "/tmp/soh-anubis-playtest/Anubis Adventure.app",
+    "observed": [
+      "Collapsed practice menu creates original controller and body",
+      "Movement around the native mirror anchor and visible sword-triggered fireball retaliation",
+      "Native spiral eyes remain visible; daylight, dawn/night and dungeon appearance inspected",
+      "Fire-arrow and Din's Fire assignments in the journal",
+      "Close-range Din's Fire defeats Anubis and grants 115 XP",
+      "Rough Ruby loot appears at the original defeat site",
+      "Second practice spawn succeeds after death and rolls a champion"
+    ],
+    "manual_defeat": true,
+    "xp_before": 31160,
+    "xp_after": 31275,
+    "final_state": "Equipment journal paused in Hyrule Field with a champion Anubis nearby, fire arrows on C-Left and Din's Fire on C-Down; separate practice profile.",
+    "screenshots": [
+      "art/arpg/anubis/ingame-fire-death.png",
+      "art/arpg/anubis/ingame-dungeon.png",
+      "art/arpg/anubis/ordinary-approach.png",
+      "art/arpg/anubis/ordinary-fire-reward.png",
+      "art/arpg/anubis/ordinary-loot.png",
+      "art/arpg/anubis/ordinary-champion.png"
+    ]
+  }
+}

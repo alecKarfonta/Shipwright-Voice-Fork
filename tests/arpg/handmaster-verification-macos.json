@@ -1,0 +1,133 @@
+{
+  "status": "passed",
+  "date": "2026-10-13",
+  "feature": "Original Wallmasters and Floormasters with articulated Blender anatomy and original movement",
+  "scope": "New palm, connected fingers, thumb, separate curled fifth digit, shaped nails and hollow wrist anatomy on the original rig. Native AI, movement, collision, Lens, green armor, split/merge, shadow warning, drop/recovery and defeat behavior retained.",
+  "art": {
+    "source_sha256": "a50f1c19f3ee7e4a98211caad13425f82a173daa8d268fae0c18647192222032",
+    "vertices": 3037,
+    "triangles": 11828,
+    "parts": 86,
+    "subpixel_triangles_removed": 0,
+    "triangles_per_actor": {
+      "0": 5914,
+      "1": 5914
+    },
+    "materials": [
+      "skin",
+      "callus",
+      "tendon",
+      "crease",
+      "nail",
+      "nail_edge",
+      "bone",
+      "marrow"
+    ],
+    "space": "Native joint-local XYZ, positions x100; native normals retained; per-vertex native joint indices; authoring-pose transforms omitted"
+  },
+  "animation": {
+    "status": "passed",
+    "variants": [
+      {
+        "variant": "wall",
+        "native_clips": 12,
+        "native_frames": 346,
+        "visible_limbs": 14,
+        "post_draw_digits": 1,
+        "joint_connections": 13,
+        "posed_endpoint_checks": 149472,
+        "maximum_quantized_endpoint_error_world_units": 0.008659813627369279,
+        "maximum_posed_envelope_extension_world_units": 4.667061511843286
+      },
+      {
+        "variant": "floor",
+        "native_clips": 12,
+        "native_frames": 346,
+        "visible_limbs": 14,
+        "post_draw_digits": 1,
+        "joint_connections": 13,
+        "posed_endpoint_checks": 149472,
+        "maximum_quantized_endpoint_error_world_units": 0.008659813627369279,
+        "maximum_posed_envelope_extension_world_units": 4.667061511843286,
+        "split_world_scale_multiplier": 0.4
+      }
+    ],
+    "scope": "Every original animation frame; bridge endpoints use native matrices. Envelope comparison is per axis, not collision proof; motion renders and native combat separately reviewed."
+  },
+  "portable": {
+    "full_suites_passed": 39,
+    "full_suite_log": "/tmp/hand-portable-test.log",
+    "address_and_undefined_sanitizers": "Passed both variants, native palette bounds, separate scaled digit, thirteen skin connections, unit lighting normals and bounded anatomy.",
+    "sanitizer_binary": "/tmp/handmaster-geometry-sanitize"
+  },
+  "native": {
+    "checks_passed": 99,
+    "charge_frames": 50,
+    "drop_frames": 16,
+    "finger_rotations": 189,
+    "lens_frames": 81,
+    "native_defeats": 5,
+    "render_frames": 1317,
+    "shadow_warning_frames": 131,
+    "small_hand_frames": 143,
+    "results": "tests/arpg/handmaster-runtime-results-macos.json",
+    "scope": "Native floor family creation, original rigs and all visible geometry, matrix palette and extra-digit isolation, feature gates and distance fallback. Natural idle/walk/hover/armored charge/landing, native damage rejection and recoil, eighty-frame stun, ordinary and light-stun splitting, small-hand motion, intermediate/full merge scale and collider restoration, three small-hand rewards and retirement. Lens callback and flags retained. Proximity Wallmaster warning, drop, miss, walking recovery, ceiling return/rearm, nonlethal recoil, stun, ordinary/frozen death. Five earned defeats persist across scene teardown. Practice placement and six-actor cap include hidden siblings.",
+    "fixture_limits": "Separate debug save, player/camera and time pinned. Other Field enemies are cleared after placement succeeds. Damage flags are supplied to original native collision handlers. Merge checks explicitly call native merge setup and put each sibling into the original absorbed wait state; this checks staged growth and restoration, not an unassisted capture/merge encounter. Draw-frame counts are draw-end observations with a live actor, not GPU draw-call counts. Lens callback/flags and geometry routing are checked; a full manual Lens fight is not claimed. Grab/carry/respawn behavior was left unchanged and not exercised by the harness."
+  },
+  "production_ui": {
+    "build": "/tmp/soh-handmaster-playtest/Handmaster Adventure.app",
+    "profile_root": "/tmp/soh-handmaster-playtest/profiles",
+    "qa_harness_linked": false,
+    "launcher": "/tmp/soh-handmaster-production.py",
+    "state": "Open and paused in the adventure journal on the separate practice profile",
+    "verified": [
+      "Collapsed handmaster section with Floormaster and Wallmaster choices and short counter hints",
+      "Both ordinary practice summons; Wallmaster proximity activation retains its hidden body",
+      "Floormaster targeting, finger articulation, green armor, lunge and native knockback seen in direct play",
+      "Configured C sword input and learned technique effects observed; normal gear stays equipped",
+      "Journal reopened after combat and game left paused"
+    ],
+    "not_claimed": "Full manual defeat, natural split/merge fight, full Wallmaster capture/respawn, full Lens fight, original dungeon traversal or crowded-scene performance. Near-bridge play pushed Link into the moat; reset through the region shortcut and moved into open field. The inherited isolated baseline still displays an ARPG nameplate during the hidden Wallmaster warning; current shared source already has a separate default-off enemy-nameplate setting, but this baseline does not include that unrelated UI update."
+  },
+  "build": {
+    "method": "Isolated object-link build from the verified Moblin snapshot; rebuilt hand renderer, both native actors, CreatureSystem and QA harness. Shared Ninja was not run. Unrelated shared-source changes are not claimed rebuilt. Harness v1 observed a stationary single joint axis; v2 correctly records full finger poses and passes.",
+    "source": "/tmp/soh-handmaster/source",
+    "qa": "/tmp/soh-handmaster/qa",
+    "production": "/tmp/soh-handmaster/production",
+    "source_hashes": {
+      "soh/soh/Enhancements/arpg/HandmasterBlenderData.h": "80c38c6f5ee36d15c6942e174b4256d1c5e5f83feecb3cfd5ba4c61038ff4137",
+      "soh/soh/Enhancements/arpg/HandmasterGeometry.h": "71033be717b4bb121fbfc3c26a048f3988ad4b670e00be4271da0c87633c78df",
+      "soh/soh/Enhancements/arpg/HandmasterVisuals.h": "a5a1c90a117052e3db9a6f51ad1d17049e892046fe45e1c2edfcc57ba672f160",
+      "soh/soh/Enhancements/arpg/HandmasterVisuals.cpp": "f99f4a9d7d7860be097a260d2d5b663d8f39592134a753e90bd72d4cf97edd72",
+      "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "b5d81f885bb4bee0c77129d958900dcd7adeeafaaf8cb2199c45105067e890b2",
+      "soh/soh/Enhancements/arpg/CreatureSystem.h": "bd8172164ea2bd65e02bca0cd79c5913a5999fcc392490e53ee5ef00cceaad8b",
+      "soh/src/overlays/actors/ovl_En_Floormas/z_en_floormas.c": "b7842bfb96cea6cea75924a6fd3b32742ca3e97701cc978750b6d172a324a6b9",
+      "soh/src/overlays/actors/ovl_En_Floormas/z_en_floormas.h": "1698b32c838a06f8796bcfa079430094fd9b5c35b0aba3b43a923a447dc0871d",
+      "soh/src/overlays/actors/ovl_En_Wallmas/z_en_wallmas.c": "458af2854f5f6c015d4540253799f1a31bab3792b0fc61886a7aff0904d5e93f",
+      "tests/arpg/handmaster_runtime_test.cpp": "f5444ccd462130924efc5d03bafd62222eb5d151c7efccb145bfe87a502ebf25"
+    },
+    "source_snapshot_matches": true,
+    "production_and_packaged_app_macho_uuid": "FFF1A2AA-D5C3-3070-8DF1-73776C736758",
+    "qa_exit_status": 0,
+    "production_exit_status": null,
+    "known_shutdown_log": "QA exits zero. The pre-existing ResourceManager.cpp:70 logger mutex error repeats only at shutdown, as in Moblin and earlier family QA. Ordinary build remains open."
+  },
+  "save": {
+    "path": "/Users/alec/Library/Application Support/shipofharkinian/profiles/player1/Save/file1.sav",
+    "before_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "after_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "unchanged": true
+  },
+  "blender": {
+    "authoring": "Installed Blender 5.1.2 in isolated background processes; live Blender MCP was disconnected.",
+    "editable_source": "art/arpg/handmasters/handmasters.blend",
+    "user_project_modified": false
+  },
+  "previews": [
+    "art/arpg/handmasters/handmasters-studio.png",
+    "art/arpg/handmasters/handmaster-native-preview.png",
+    "art/arpg/handmasters/handmaster-practice-menu.png",
+    "art/arpg/handmasters/handmaster-ordinary-combat.png"
+  ],
+  "remaining": "Other original families, environment and character assets; broader dungeon, manual combat and crowd acceptance. All five broader replayability requirements remain partial."
+}

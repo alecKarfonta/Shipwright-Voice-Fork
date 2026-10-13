@@ -50,6 +50,7 @@ typedef enum {
 #include <functional>
 #include <vector>
 #include <filesystem>
+#include <future>
 
 #define BS_THREAD_POOL_ENABLE_PRIORITY
 #define BS_THREAD_POOL_ENABLE_PAUSE
@@ -84,6 +85,8 @@ class SaveManager {
     void Init();
     void InitFile(bool isDebug);
     void SaveFile(int fileNum);
+    // Completion of the snapshot most recently submitted on the game thread.
+    std::shared_future<bool> LastSaveResult() const { return lastSaveResult; }
     void SaveSection(int fileNum, int sectionID, bool threaded);
     int GetSaveSectionID(std::string& name);
     void SaveGlobal();
@@ -161,7 +164,8 @@ class SaveManager {
     void ConvertFromUnversioned();
     void CreateDefaultGlobal();
 
-    void SaveFileThreaded(int fileNum, const SaveContext& saveContext, int sectionID);
+    std::shared_future<bool> lastSaveResult;
+    bool SaveFileThreaded(int fileNum, const SaveContext& saveContext, int sectionID);
 
     void InitMeta(int slotNum);
     void StartupCheckAndInitMeta(int slotNum);

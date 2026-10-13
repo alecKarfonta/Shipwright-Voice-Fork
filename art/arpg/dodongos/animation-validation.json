@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "native_animation_frames": 405,
+  "native_visible_limbs": 12,
+  "joint_anchor_checks": 2835,
+  "maximum_anchor_gap_authoring_units": 0.0,
+  "maximum_envelope_extension_world_units": 9.01119638125242,
+  "normal_actor_scale": 0.01875,
+  "procedural_swelling_checks": 18,
+  "rig": "Original upper head, lower jaw, torso, three-part tail and two three-part legs; native draw-time torso/tail swelling retained"
+}

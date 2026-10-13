@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "native_jaw_frames": 140,
+  "variant_frame_checks": 280,
+  "studio_stem_endpoint_checks": 280,
+  "native_head_envelope_tolerance_world_units": 2.6,
+  "note": "Quantized jaw meshes checked through all native animation frames; stem preview endpoint checks are supplemented by native live growth/lunge/pruning tests."
+}

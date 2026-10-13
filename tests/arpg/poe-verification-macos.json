@@ -1,0 +1,211 @@
+{
+  "status": "passed",
+  "feature": "Original roaming Poe upgrade",
+  "date": "2026-10-13",
+  "portable_tests": {
+    "suites": 44,
+    "passed": 44,
+    "log": "/tmp/poe-portable.log"
+  },
+  "geometry_sanitizers": "ASAN and UBSAN passed",
+  "semantic_materials": {
+    "adapters": 17,
+    "native_resource_references": 47
+  },
+  "animation": {
+    "status": "passed",
+    "clips": 6,
+    "frames": 98,
+    "posed_vertex_checks": 416990,
+    "native_visible_joints": 9,
+    "maximum_envelope_extension_world_units": 6.772282468616908,
+    "per_clip_extension_world_units": {
+      "gPoeAppearAnim": 4.954913128556875,
+      "gPoeAttackAnim": 6.772282468616908,
+      "gPoeDamagedAnim": 3.6656000699142837,
+      "gPoeDisappearAnim": 3.22172036747439,
+      "gPoeFleeAnim": 0.4667469199152876,
+      "gPoeFloatAnim": 2.8955560735983923
+    },
+    "scope": "All 98 native clip frames at the original .01 actor scale. Held-lantern geometry is included. Original per-actor fade, collision and point-light callbacks remain authoritative. Bounds do not establish collision or triangle-clearance correctness."
+  },
+  "export": {
+    "source_sha256": "173f5cee460b6574091a302bd938093212056f5eef101765283ad2b90881fe30",
+    "vertices": 4255,
+    "triangles": 7905,
+    "parts": 22,
+    "subpixel_triangles_removed": 0,
+    "triangles_per_actor": {
+      "0": 7905
+    },
+    "materials": [
+      "cloth",
+      "fold",
+      "recess",
+      "seam",
+      "skin",
+      "knuckle",
+      "bronze",
+      "edge",
+      "eye"
+    ],
+    "space": "Native joint-local XYZ, positions x100; native normals retained; per-vertex native joint indices; authoring-pose transforms omitted"
+  },
+  "native": {
+    "arpg_defeats": 1,
+    "attack_frames": 25,
+    "burn_frames": 28,
+    "checks": [
+      "Practice places the original roaming Poe on safe ground",
+      "Original twenty-one-entry skeleton retains embedded joint tables",
+      "Eight body meshes follow native joints; lamp and invisible pivots remain suppressed in the skeleton",
+      "Authored material wrappers bind native painted textures",
+      "Lantern wrapper draws the original luminous core before its fitted frame",
+      "Feature gate restores original body and lamp",
+      "Feature gate restores original body and lamp",
+      "Distance fallback restores native art",
+      "Composer skeleton is excluded from the regular-Poe adapter",
+      "Flat's distinct native head remains excluded",
+      "Frame-owned wrappers retain independent actor tint and opacity",
+      "Invisible ghost hides all body geometry while the upgraded lamp stays visible",
+      "Original scale, body cylinder and lantern attack sphere remain unchanged",
+      "Original post-draw lantern matrix still positions the attack sphere",
+      "Native emergence enables targeting after the appearance animation",
+      "Native pursuit reaches the lantern windup, then accelerates the attack after three loops",
+      "Lantern contact flag enters native recoil rather than continuing to attack",
+      "Native contact recoil recovers without defeat credit",
+      "Original visibility timer starts the native vanish turn",
+      "Natural fade reaches a hidden body with visible fitted lantern",
+      "Original invisible interval and both fade directions complete",
+      "Real native arrow is launched at the body cylinder",
+      "A real arrow deals native damage and disables body AC during recoil",
+      "Surviving damage enters original fast zigzag flight",
+      "Native flight opens distance and returns to roaming",
+      "Real native arrow is launched at the body cylinder",
+      "Second real arrow starts original burn death and grants exactly one ARPG defeat",
+      "Original burn collapse transfers the upgraded lamp to the falling actor",
+      "Lamp impact releases the original collectible soul and bottle prompt",
+      "Original Poe initializes with its native object dependency",
+      "Original Poe initializes with its native object dependency",
+      "Original Poe initializes with its native object dependency",
+      "Surviving soul counts toward the nearby practice cap",
+      "Uncollected soul expires, removes its light and cleans up without duplicate rewards",
+      "Original Poe initializes with its native object dependency",
+      "Native rupee Poe uses the same authored rig and completes emergence",
+      "Original Poe initializes with its native object dependency",
+      "Original Poe initializes with its native object dependency",
+      "Original Poe initializes with its native object dependency",
+      "Original Poe initializes with its native object dependency",
+      "Practice respects the four-Poe nearby cap",
+      "Matched four-Poe draw cadence samples captured",
+      "Scene teardown adds no defeat credit for living ghosts",
+      "Original Poe initializes with its native object dependency",
+      "Original articulation and upgraded model remain active in the darker dungeon"
+    ],
+    "damage_frames": 34,
+    "distinct_poses": 69,
+    "error": "",
+    "fade_frames": 169,
+    "fall_frames": 7,
+    "flee_frames": 25,
+    "four_actor_paced_draw_interval_native": {
+      "median_ms": 49.990917,
+      "p95_ms": 50.543916,
+      "samples": 139
+    },
+    "four_actor_paced_draw_interval_upgraded": {
+      "median_ms": 49.992208,
+      "p95_ms": 50.520375,
+      "samples": 139
+    },
+    "frames": 101,
+    "invisible_frames": 160,
+    "native_defeats": 1,
+    "phase": 98,
+    "render_frames": 1158,
+    "soul_frames": 200,
+    "status": "passed"
+  },
+  "ordinary_play": {
+    "status": "smoke_passed",
+    "observed": [
+      "Normal production startup without QA fixture",
+      "Poe practice menu expands and summons a native level-14 Poe",
+      "Native emergence, floating pursuit and circling lantern attacks in the field",
+      "Sword and technique inputs, camera movement and journal reopening",
+      "Authored cloak and fitted luminous lamp in daylight and night",
+      "Separate practice adventure left open with Equipment journal paused"
+    ],
+    "manual_defeat_confirmed": false,
+    "manual_bottle_capture_confirmed": false
+  },
+  "build": {
+    "method": "Isolated source snapshot and direct compile/link from verified Anubis chain; shared Ninja not run",
+    "source_snapshot": "/tmp/soh-poe/source",
+    "source_matches_snapshot": [
+      "soh/soh/Enhancements/arpg/PoeVisuals.cpp",
+      "soh/soh/Enhancements/arpg/PoeVisuals.h",
+      "soh/soh/Enhancements/arpg/PoeGeometry.h",
+      "soh/soh/Enhancements/arpg/PoeBlenderData.h",
+      "soh/soh/Enhancements/arpg/CreatureSystem.cpp",
+      "soh/soh/Enhancements/arpg/CreatureSystem.h",
+      "soh/src/overlays/actors/ovl_En_Poh/z_en_poh.c",
+      "tests/arpg/poe_runtime_test.cpp"
+    ],
+    "production": "/tmp/soh-poe/production",
+    "production_sha256": "0cd5a2acdf80f1b4aec0c399a4d0c0b3b8fb1ad59110ff77cfd65941ff78969f",
+    "production_uuid": "EB0A6C1D-C647-31F1-B568-BE701FD50EAC",
+    "production_app": "/tmp/soh-poe-playtest/Poe Adventure.app",
+    "qa": "/tmp/soh-poe/qa",
+    "qa_sha256": "f00b50828e493b2de6f4fadde0edfdb77edcf279e41167024d5866e096b30dc5",
+    "qa_run": "/tmp/soh-arpg-qa-creatures-poe-v3",
+    "production_contains_poe_harness": false,
+    "current_material_api_compile": "Passed /tmp/Poe-current-api.o; frozen executable uses its existing three-byte material ABI"
+  },
+  "normal_save": {
+    "path": "/Users/alec/Library/Application Support/shipofharkinian/profiles/player1/Save/file1.sav",
+    "before_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "after_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+    "unchanged": true
+  },
+  "screenshots": [
+    "art/arpg/poes/runtime-daylight.png",
+    "art/arpg/poes/runtime-dungeon.png",
+    "art/arpg/poes/ordinary-practice-menu.png"
+  ],
+  "blender": {
+    "version": "5.1.2",
+    "mcp": "Not connected",
+    "fallback": "Isolated background authoring and packaging; live scene unchanged"
+  },
+  "limitations": [
+    "Capped 20-Hz draw intervals establish a matched four-actor smoke comparison, not uncapped GPU cost.",
+    "Native QA pins Link, camera and time; contact recoil uses an injected AT_HIT flag and visibility uses a shortened native timer. Arrow damage, death, soul emergence and expiry use real native updates/collision.",
+    "Ordinary manual defeat and bottle capture were not confirmed; the harness verifies the native soul prompt and expiry.",
+    "Composer actors and separate field riding/Big Poes retain native art; composer exclusion is predicate-tested, not a full composer encounter.",
+    "Natural graveyard spawns, child Link, wider terrain and third-party texture packs remain additional acceptance coverage."
+  ],
+  "source_sha256": {
+    "soh/soh/Enhancements/arpg/PoeVisuals.cpp": "5f27860c5c795f93cf9a731d6f09cb62fe5e045bb3dbcc34c998386cc0025823",
+    "soh/soh/Enhancements/arpg/PoeVisuals.h": "43e8c70eb4ace822ab95bb6fd8aeeb068a44989728ffb3b119897ed620490e36",
+    "soh/soh/Enhancements/arpg/PoeGeometry.h": "1fdbc7e78a4c0466fa0f47af790ec51780c9f1a6edcbb69f041a1923ac3701a8",
+    "soh/soh/Enhancements/arpg/PoeBlenderData.h": "60411fe7300618b0c1d3870da756b6169f9a7e071bbd8df80de4ffae69cfd5d5",
+    "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "a8e9038e63d514ae0157a0bb8f9e32c97ad607b8c82f8b5810306e8d72d8cd27",
+    "soh/soh/Enhancements/arpg/CreatureSystem.h": "b95b9e5f1dff624dfd15b71be5a7d74b871e87ef5af283f6748ed5f5bae212b2",
+    "soh/src/overlays/actors/ovl_En_Poh/z_en_poh.c": "7bca3eff8b84bc90fd2bd7bd48aa9fa375237bcadf87785bc74c992994d864f6",
+    "tests/arpg/poe_runtime_test.cpp": "11a62ddaf851c5cc02e255e4bd01ea14d6a8e49ccecd769a1ed44533487110fb",
+    "tests/arpg/poe_geometry_test.cpp": "b1a9859802356b10d0219a62825b2b4d31956a81d820df3e6ae9db57c011cf00",
+    "tests/arpg/CMakeLists.txt": "66c1311dfa5c39d475de7858c63da4b444ab641e1e3e44841804ff5415e35134",
+    "soh/CMakeLists.txt": "ddea9485278c526b2ff4e1672d0f34580ce7bdc440219237227d3fee909fcd61",
+    "art/arpg/native-style/material-slots.json": "d54445a80132e78c52dd66dade961e98a288adecc3438b5b51df62ffa2a02364",
+    "art/arpg/poes/author_blender.py": "0471faeb30ad6b341e75efb0ade0e5c7de150dcd1343b3e9c87ea169fe156f88",
+    "art/arpg/poes/extract_native_rig.py": "efe3b124fef844261edeab8927f0264b8cea5917d7a8128a1b91690ed22aefbd",
+    "art/arpg/poes/export_runtime.py": "a35f46da960c1d176af24e503c6697499cdc4d9efdd15398703fb9d250c53000",
+    "art/arpg/poes/package_blend.py": "4d0d25c0e93dfd58cb6bc0044a9cefc2b01b4f856ac04532fdfb1e6e3c0ad3af",
+    "art/arpg/poes/validate_animation.py": "212e0d62857736ea3182d0234fa0166f1301c6249f02396c207eca853143d874",
+    "art/arpg/poes/preview_states.py": "2728f775843f2a35b78d67355c6571c6e249e4f72593309b885ab64c94004ed4",
+    "art/arpg/poes/native_rig.json": "8aa64e41c71b0a7d6607c2c72604356701ed2fab7e5127b5df5f306abd161d59",
+    "art/arpg/poes/poe.glb": "173f5cee460b6574091a302bd938093212056f5eef101765283ad2b90881fe30",
+    "art/arpg/poes/poe.blend": "3eae569842ec8546566bf57824af04f7bd123b2346e67491ca51dda3cbc41b03"
+  }
+}

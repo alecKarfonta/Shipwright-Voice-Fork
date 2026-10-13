@@ -6,6 +6,7 @@
 
 #include <libultraship/libultra.h>
 #include "global.h"
+#include "soh/Enhancements/arpg/ARPGBridge.h"
 
 #include "overlays/actors/ovl_Bg_Heavy_Block/z_bg_heavy_block.h"
 #include "overlays/actors/ovl_Door_Shutter/z_door_shutter.h"
@@ -2277,6 +2278,7 @@ void Player_InitExplosiveIA(PlayState* play, Player* this) {
         Actor_SpawnAsChild(&play->actorCtx, &this->actor, play, explosiveInfo->actorId, this->actor.world.pos.x,
                            this->actor.world.pos.y, this->actor.world.pos.z, 0, this->actor.shape.rot.y, 0, 0);
     if (spawnedActor != NULL) {
+        ARPG_AdventureLaunch(spawnedActor, explosiveType == 0 ? ARPG_SLOT_BOMBS : ARPG_SLOT_BOMBCHU);
         if ((explosiveType != 0) && (play->bombchuBowlingStatus != 0)) {
             if (!CVarGetInteger(CVAR_CHEAT("InfiniteAmmo"), 0)) {
                 play->bombchuBowlingStatus--;
@@ -3258,7 +3260,8 @@ s32 func_808359FC(Player* this, PlayState* play) {
 
         if (boomerang != NULL) {
             boomerang->moveTo = this->focusActor;
-            boomerang->returnTimer = 20;
+            ARPG_AdventureLaunch(&boomerang->actor, ARPG_SLOT_BOOMERANG);
+            boomerang->returnTimer = ARPG_AdventureTravel(&boomerang->actor, 20);
             this->stateFlags1 |= PLAYER_STATE1_BOOMERANG_THROWN;
 
             if (!Player_CheckHostileLockOn(this)) {
@@ -4787,6 +4790,7 @@ s32 func_808382DC(Player* this, PlayState* play) {
                           this->knockbackYVelocity, this->knockbackRot, 20);
         } else {
             sp64 = (this->shieldQuad.base.acFlags & AC_BOUNCED) != 0;
+            if (sp64) ARPG_RelicShieldBlock();
 
             //! @bug The second set of conditions here seems intended as a way for Link to "block" hits by rolling.
             // However, `Collider.atFlags` is a byte so the flag check at the end is incorrect and cannot work.
@@ -9083,7 +9087,9 @@ void func_80842A88(PlayState* play, Player* this) {
 s32 func_80842AC4(PlayState* play, Player* this) {
     if ((this->heldItemAction == PLAYER_IA_DEKU_STICK) && (this->unk_85C > 0.5f)) {
 
+        if (ARPG_RelicPreserveStick()) return 1;
         if (GameInteractor_Should(VB_DEKU_STICK_BREAK, AMMO(ITEM_STICK) != 0)) {
+            ARPG_RelicStickBroken();
             EffectSsStick_Spawn(play, &this->bodyPartsPos[PLAYER_BODYPART_R_HAND], this->actor.shape.rot.y + 0x8000);
             this->unk_85C = 0.5f;
             func_80842A88(play, this);
@@ -12198,6 +12204,7 @@ void Player_Update(Actor* thisx, PlayState* play) {
     s32 pad;
     Input input;
 
+    ARPG_SkillInput(play);
     if (Player_UpdateNoclip(this, play)) {
         if (gSaveContext.dogParams < 0) {
             // Disable object dependency to prevent losing dog in scenes other than market
@@ -14561,6 +14568,7 @@ void Player_Action_8084EFC0(Player* this, PlayState* play) {
     if (LinkAnimation_OnFrame(&this->skelAnime, 76.0f)) {
         BottleDropInfo* dropInfo = &D_80854A28[this->itemAction - PLAYER_IA_BOTTLE_FISH];
 
+        if (dropInfo->actorId == ACTOR_EN_ICE_HONO) ARPG_RelicBottleReleased();
         Actor_Spawn(&play->actorCtx, play, dropInfo->actorId,
                     (Math_SinS(this->actor.shape.rot.y) * 5.0f) + this->leftHandPos.x, this->leftHandPos.y,
                     (Math_CosS(this->actor.shape.rot.y) * 5.0f) + this->leftHandPos.z, 0x4000, this->actor.shape.rot.y,

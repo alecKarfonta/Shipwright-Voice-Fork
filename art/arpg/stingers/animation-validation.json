@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "geometry_variants": 1,
+  "habitat_palettes": 2,
+  "native_animation_clips_per_variant": 5,
+  "native_animation_frames_per_variant": 208,
+  "visible_limbs_in_rig": 11,
+  "bridges": 8,
+  "posed_bridge_endpoint_checks": 79872,
+  "maximum_quantized_endpoint_error_world_units": 0.004137571056781817,
+  "maximum_posed_envelope_extension_world_units": 1.8260887248045634,
+  "maximum_actor_scale": 0.005,
+  "scope": "Full native animation poses; quantized endpoints follow their assigned native joints. Native source vertices and authored connection endpoints are transformed under their assigned joints. Native root offsets translate both native and authored geometry equally. Fins and tail are reviewed in all five clips; no claim of watertight topology."
+}

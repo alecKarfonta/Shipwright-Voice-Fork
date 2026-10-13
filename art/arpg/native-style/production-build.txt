@@ -1,0 +1,72 @@
+[0/2] Re-checking globbed directories...
+[1/54] Creating OSX icons ...
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_16x16.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_16x16@2x.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_32x32.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_32x32@2x.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_128x128.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_128x128@2x.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_256x256.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_256x256@2x.png
+/Users/alec/git/z64-romhack-tutorials/soh/soh/macosx/sohIcon.png
+  /private/tmp/soh-quests-build/macosx/soh.iconset/icon_512x512.png
+[2/54] Building CXX object libultraship/src/CMakeFiles/libultraship.dir/ship/window/gui/resource/GuiTexture.cpp.o
+[3/54] Building CXX object libultraship/src/CMakeFiles/libultraship.dir/ship/window/gui/resource/GuiTextureFactory.cpp.o
+[4/54] Building C object libultraship/CMakeFiles/stb.dir/__/_deps/stb/stb_impl.c.o
+[5/54] Linking C static library libultraship/libstb.a
+[6/54] Building CXX object libultraship/src/CMakeFiles/libultraship.dir/libultraship/window/gui/GfxDebuggerWindow.cpp.o
+[7/54] Building CXX object libultraship/src/CMakeFiles/libultraship.dir/ship/window/gui/Gui.cpp.o
+[8/54] Building CXX object libultraship/src/CMakeFiles/libultraship.dir/fast/backends/gfx_sdl2.cpp.o
+[9/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/TimeDisplay/TimeDisplay.cpp.o
+[10/54] Building CXX object libultraship/src/CMakeFiles/libultraship.dir/fast/Fast3dWindow.cpp.o
+[11/54] Building CXX object libultraship/src/CMakeFiles/libultraship.dir/fast/Fast3dGui.cpp.o
+[12/54] Linking CXX static library libultraship/src/libultraship.a
+[13/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/ARPGConsole.cpp.o
+[14/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/ARPGTheme.cpp.o
+[15/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/ARPGSave.cpp.o
+[16/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/ARPG.cpp.o
+[17/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/ARPGWindow.cpp.o
+[18/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/ARPGTesting.cpp.o
+[19/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/ARPGInventoryWindow.cpp.o
+[20/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/AdventureJournal.cpp.o
+[21/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/AdventureRelics.cpp.o
+[22/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/AffixSystem.cpp.o
+[23/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/ArsenalSystem.cpp.o
+[24/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/BroodSystem.cpp.o
+[25/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/CreatureSystem.cpp.o
+[26/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/ExpeditionSystem.cpp.o
+[27/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/ExplorationSystem.cpp.o
+[28/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/EnemySystem.cpp.o
+[29/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/GearVisuals.cpp.o
+[30/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/SkillVfx.cpp.o
+[31/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/InventorySystem.cpp.o
+[32/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/ItemModifierSystem.cpp.o
+[33/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/QuestSystem.cpp.o
+[34/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/SkillAuras.cpp.o
+[35/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/controls/InputViewer.cpp.o
+[36/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/SkillCombat.cpp.o
+[37/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/SkillUI.cpp.o
+[38/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/SkillSystem.cpp.o
+[39/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/controls/Mapper.cpp.o
+[40/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/arpg/XPSystem.cpp.o
+[41/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/debugger/debugSaveEditor.cpp.o
+[42/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/timesplits/TimeSplits.cpp.o
+[43/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Notification/Notification.cpp.o
+[44/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/timesplits/TimeSplitsSettings.cpp.o
+[45/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/randomizer/Plandomizer.cpp.o
+[46/54] Building CXX object soh/CMakeFiles/soh.dir/soh/ResourceManagerHelpers.cpp.o
+[47/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/local-npc/NpcDialogue.cpp.o
+[48/54] Building CXX object soh/CMakeFiles/soh.dir/soh/SohGui/ImGuiUtils.cpp.o
+[49/54] Building CXX object soh/CMakeFiles/soh.dir/soh/SohGui/SohMenuStartingItems.cpp.o
+[50/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/timesplits/TimeSplitsActions.cpp.o
+[51/54] Building CXX object soh/CMakeFiles/soh.dir/soh/Enhancements/randomizer/randomizer_item_tracker.cpp.o
+[52/54] Building CXX object soh/CMakeFiles/soh.dir/soh/OTRGlobals.cpp.o
+[53/54] Linking CXX executable soh/soh-macos; Copying asset ymls...

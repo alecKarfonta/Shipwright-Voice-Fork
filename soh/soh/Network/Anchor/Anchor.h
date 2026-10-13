@@ -68,6 +68,10 @@ typedef struct {
     u8 showLocationsMode; // 0 = none, 1 = team, 2 = all
     u8 teleportMode;      // 0 = off, 1 = team, 2 = all
     u8 syncItemsAndFlags; // 0 = off, 1 = on
+    u8 difficultyMode;    // 0 = off, 1 = enemy/boss HP scaling, 2 = HP + damage + speed/aggression
+    // [TIME] | [INFO] | RoomState.A RPGSeed | Shared ARPG roll seed; every client derives identical
+    // Champion/Elite rolls from hash(seed, actor identity) so co-op worlds match without extra traffic.
+    uint32_t arpgSeed;    // 0 = disabled (personal per-save stream rolls)
 } RoomState;
 
 class Anchor : public Network {
@@ -77,18 +81,25 @@ class Anchor : public Network {
     bool justLoadedSave = false;
     bool isHandlingUpdateTeamState = false;
     bool isProcessingIncomingPacket = false;
-    std::queue<nlohmann::json> incomingPacketQueue;
+    struct QueuedPacket { uint64_t epoch; nlohmann::json payload; size_t bytes; };
+    std::atomic<uint64_t> transportEpoch{0};
+    uint64_t appliedTransportEpoch = 0;
+    size_t incomingBytes = 0, outgoingBytes = 0;
+    std::queue<QueuedPacket> incomingPacketQueue;
+    void ApplyTransportState();
     std::mutex incomingPacketQueueMutex;
-    std::queue<nlohmann::json> outgoingPacketQueue;
+    std::queue<QueuedPacket> outgoingPacketQueue;
     std::mutex outgoingPacketQueueMutex;
 
     nlohmann::json PrepClientState();
     nlohmann::json PrepRoomState();
     void RegisterHooks();
+    void ClearPacketQueues();
     void RefreshClientActors();
     void SetDummyPlayerClientId(const Actor* actor, uint32_t clientId);
 
     void HandlePacket_AllClientState(nlohmann::json payload);
+    void HandlePacket_ArpgEnemyKill(nlohmann::json payload);
     void HandlePacket_ConsumeAdultTradeItem(nlohmann::json payload);
     void HandlePacket_DamagePlayer(nlohmann::json payload);
     void HandlePacket_DisableAnchor(nlohmann::json payload);
@@ -112,11 +123,12 @@ class Anchor : public Network {
     void HandlePacket_UpdateTeamState(nlohmann::json payload);
 
   public:
-    uint32_t ownClientId;
+    uint32_t ownClientId = 0;
     inline static const std::string clientVersion = (char*)gGitCommitHash;
 
     // Packet types //
     inline static const std::string ALL_CLIENT_STATE = "ALL_CLIENT_STATE";
+    inline static const std::string ARPG_ENEMY_KILL = "ARPG_ENEMY_KILL";
     inline static const std::string DAMAGE_PLAYER = "DAMAGE_PLAYER";
     inline static const std::string DISABLE_ANCHOR = "DISABLE_ANCHOR";
     inline static const std::string ENTRANCE_DISCOVERED = "ENTRANCE_DISCOVERED";
@@ -153,6 +165,7 @@ class Anchor : public Network {
     void ProcessIncomingPacketQueue();
     void SendJsonToRemote(nlohmann::json packet);
     bool IsSaveLoaded();
+    bool CanSyncTeamSave() const;
     bool CanTeleportTo(uint32_t clientId);
     uint32_t GetDummyPlayerClientId(const Actor* actor);
 
@@ -165,6 +178,7 @@ class Anchor : public Network {
     void SendPacket_OcarinaSfx(uint8_t note, float modulator, int8_t bend);
     void SendPacket_PlayerSfx(u16 sfxId);
     void SendPacket_PlayerUpdate();
+    void SendPacket_ArpgEnemyKill(u32 xp, u8 tier, u8 level, u16 actorId);
     void SendPacket_RequestTeamState();
     void SendPacket_RequestTeleport(u32 clientId);
     void SendPacket_SetCheckStatus(RandomizerCheck rc);

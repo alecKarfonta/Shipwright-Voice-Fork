@@ -1,0 +1,31 @@
+{
+  "source_sha256": "7b92cd5b4f600a5f65dfc03393bb8e0d008c3b1fc95011c92efcc440bb6832c0",
+  "vertices": 29854,
+  "triangles": 59678,
+  "parts": 212,
+  "subpixel_triangles_removed": 10,
+  "triangles_per_actor": {
+    "0:0": 28381,
+    "0:1": 29215,
+    "0:2": 29483,
+    "1:0": 28831,
+    "1:1": 29735,
+    "1:2": 30003
+  },
+  "materials": [
+    "skin",
+    "belly",
+    "scale",
+    "armor",
+    "trim",
+    "leather",
+    "claw",
+    "eye",
+    "steel",
+    "edge",
+    "mouth",
+    "pupil",
+    "scute"
+  ],
+  "space": "Native joint-local XYZ, positions x100; native normals retained; authoring-pose transforms omitted"
+}

@@ -9,6 +9,8 @@
 #include "overlays/actors/ovl_En_Encount1/z_en_encount1.h"
 #include "objects/object_wf/object_wf.h"
 #include "soh/Enhancements/game-interactor/GameInteractor_Hooks.h"
+#include "soh/Enhancements/arpg/ARPGBridge.h"
+#include "soh/Enhancements/arpg/EnemyVisuals.h"
 #include <libultraship/bridge/consolevariablebridge.h>
 
 #define FLAGS (ACTOR_FLAG_ATTENTION_ENABLED | ACTOR_FLAG_HOSTILE | ACTOR_FLAG_UPDATE_CULLING_DISABLED)
@@ -385,7 +387,7 @@ void EnWf_WaitToAppear(EnWf* this, PlayState* play) {
     if (this->actionTimer >= 6) {
         this->actor.world.pos.y = this->actor.home.pos.y - 5.0f;
 
-        if (this->actor.xzDistToPlayer < 240.0f) {
+        if (this->actor.xzDistToPlayer < ARPG_EnemyAwareness(&this->actor)) {
             this->actionTimer = 5;
             this->actor.flags |= ACTOR_FLAG_ATTENTION_ENABLED;
 
@@ -423,7 +425,26 @@ void EnWf_SetupWait(EnWf* this) {
     EnWf_SetupAction(this, EnWf_Wait);
 }
 
+void EnWf_SetupRunAtPlayer(EnWf* this, PlayState* play);
+void EnWf_SetupSlash(EnWf* this);
+void EnWf_SetupBackflipAway(EnWf* this);
+// [TIME] | [INFO] | EnWf.ARPGNeutral | Native animations and committed attack states remain authoritative.
+static s32 EnWf_ARPGNeutral(EnWf* this, PlayState* play) {
+    int command = ARPG_EnemyTactics(&this->actor, play);
+    if (command == 0) { return false; }
+    if (command == 2) { EnWf_SetupSlash(this); }
+    else if (command == 3) { EnWf_SetupBackflipAway(this); }
+    else {
+        if (this->actor.speedXZ > 0.1f && this->actionFunc != EnWf_RunAtPlayer) { EnWf_SetupRunAtPlayer(this, play); }
+        if (this->actor.speedXZ < 0.1f && this->actionFunc != EnWf_Wait) { EnWf_SetupWait(this); }
+        this->skelAnime.playSpeed = this->actor.speedXZ > 0.1f ? 1.2f : 1.0f;
+        SkelAnime_Update(&this->skelAnime);
+    }
+    return true;
+}
+
 void EnWf_Wait(EnWf* this, PlayState* play) {
+    if (EnWf_ARPGNeutral(this, play)) { return; }
     Player* player;
     s32 pad;
     s16 angle;
@@ -496,6 +517,7 @@ void EnWf_SetupRunAtPlayer(EnWf* this, PlayState* play) {
 }
 
 void EnWf_RunAtPlayer(EnWf* this, PlayState* play) {
+    if (EnWf_ARPGNeutral(this, play)) { return; }
     s32 animPrevFrame;
     s32 sp58;
     s32 pad;
@@ -577,6 +599,7 @@ void EnWf_SetupSearchForPlayer(EnWf* this) {
 }
 
 void EnWf_SearchForPlayer(EnWf* this, PlayState* play) {
+    if (EnWf_ARPGNeutral(this, play)) { return; }
     s16 yawDiff;
     s16 phi_v1;
     f32 phi_f2;
@@ -634,6 +657,7 @@ void EnWf_SetupRunAroundPlayer(EnWf* this) {
 }
 
 void EnWf_RunAroundPlayer(EnWf* this, PlayState* play) {
+    if (EnWf_ARPGNeutral(this, play)) { return; }
     s16 angle1;
     s16 angle2;
     s32 pad;
@@ -1364,6 +1388,8 @@ s32 EnWf_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* po
         rot->y -= this->unk_4D4.y;
     }
 
+    ARPG_OverrideEnemyLimb(play, &this->actor, limbIndex, dList);
+
     return false;
 }
 
@@ -1408,9 +1434,8 @@ void EnWf_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, 
             case WOLFOS_LIMB_BACK_RIGHT_SHIN:
                 bodyPartIndex = 6;
                 break;
-            case 37:
-                //! @bug There is no limb with index this large, so bodyPartsPos[7] is uninitialised. Thus a flame will
-                //! be drawn at 0,0,0 when the Wolfos is on fire.
+            // [TIME] | [INFO] | EnWf.PostLimbDraw | The eighth fire attachment follows the left shin instead of an invalid limb index.
+            case WOLFOS_LIMB_BACK_LEFT_SHIN:
                 bodyPartIndex = 7;
                 break;
             case WOLFOS_LIMB_BACK_RIGHT_PASTERN:

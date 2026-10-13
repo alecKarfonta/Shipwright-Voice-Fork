@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-12",
+  "platform": "macOS arm64 / Metal",
+  "status": "passed",
+  "build_log": "/tmp/soh-expeditions-final-build.log",
+  "runtime_harnesses_in_production": false,
+  "built_binary_sha256": "86b5858007c1293adb908b0f90f2a2cc434f6c5551bcfe2c4c4e4cf2a5266d98",
+  "preview": "org.shipofharkinian.arpg-inventory-preview35",
+  "preview_home": "/tmp/soh-arpg-remaster-preview",
+  "preview_state": "Temporary level-20 testing adventure, Cinder oath depth 1 wave 1; three real enemies and waystone rendered in daylight; safely paused in equipment journal.",
+  "normal_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "implemented": [
+    "Three-wave solo wilderness expeditions with safe complete-pack placement",
+    "Five combat oaths; three deterministic route offers per depth",
+    "Persistent depth, best clear, run count, clears and targeted equipment cache",
+    "Atomic equipment/rune/gem reward choice, with unique or set gear every third depth",
+    "Continuation and restart; death, region exit, distance, feature-gate and despawn handling",
+    "Version-seven SaveManager persistence with old-save migration and interrupted-depth recovery",
+    "Original scene-lit waystone mesh, 5,440 triangles in each of two color states, safe placement beside Link",
+    "Native journal navigation and production build integration"
+  ],
+  "automated_evidence": {
+    "portable": "expedition-portable-results-macos.json",
+    "portable_suites": 5,
+    "normal_and_sanitized": true,
+    "expedition_seeds": 10000,
+    "expedition_native": "expedition-runtime-results-macos.json",
+    "expedition_native_checks": 31,
+    "regression_native": "runtime-results-expedition-regression-macos.json",
+    "regression_native_checks": 93
+  },
+  "native_ui_observations": [
+    "Reward page showed three clear choices with specific sword modifiers, rune and gem quantities.",
+    "Claiming equipment switched the journal to a completed checkpoint and produced exactly one backpack sword.",
+    "Backpack inspection showed the earned level-14 rare sword, 26% light-hit chance and 7% critical chance.",
+    "Continue advanced the journal to depth 2 and displayed Wild hunt, Iron procession and Cinder oath.",
+    "Waystone no longer overlaps Link; blue and earned gold states appeared in the game world.",
+    "Production preview35 began an expedition through the journal and spawned a Cinder oath wave beside the waystone in daylight.",
+    "Production entry help text and disabled-requirement handling were inspected; actor systems enabled in the isolated preview profile."
+  ],
+  "final_presentation_changes_after_native_suites": [
+    "Cache previews use the shared modifier descriptions.",
+    "Return-to-waystone HUD warning and plain-language help text.",
+    "Continuation button shows its gameplay restriction when unavailable."
+  ],
+  "limits": [
+    "Solo wilderness only; expedition co-op is explicitly gated.",
+    "The waystone is a visual landmark without blocking collision.",
+    "Repeated waves use the existing native enemy rigs and geometry; enemy and environment remaster work remains.",
+    "Depth has bounded numerical scaling and still needs long-run balance testing and varied objectives.",
+    "Native completion harness uses scripted defeat callbacks after observing real attacks; this does not establish player-driven full-run combat balance."
+  ],
+  "concurrent_checkout_work": "Another process added the optional Local NPC module during this turn. Its work was preserved. A temporary duplicate CURL dependency added to unblock linking was removed after that module supplied its own conditional dependency.",
+  "follow_up_verification": "waystone-blender-verification-macos.json"
+}

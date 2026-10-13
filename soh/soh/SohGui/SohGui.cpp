@@ -22,6 +22,7 @@
 #include "soh/Enhancements/TimeDisplay/TimeDisplay.h"
 #include "soh/Enhancements/mod_menu.h"
 #include "soh/Network/Anchor/Anchor.h"
+#include "soh/Network/Anchor/ServerBrowserWindow.h"
 #include "soh/Enhancements/audio/AudioEditor.h"
 #include "soh/Enhancements/controls/InputViewer.h"
 #include "soh/Enhancements/cosmetics/CosmeticsEditor.h"
@@ -42,6 +43,10 @@
 #include "soh/Enhancements/timesplits/TimeSplits.h"
 #include "soh/Enhancements/timesplits/TimeSplitsSettings.h"
 #include "soh/Enhancements/randomizer/Plandomizer.h"
+#include "soh/Enhancements/arpg/ARPGWindow.h"
+#include "soh/Enhancements/arpg/ARPGInventoryWindow.h"
+// [TIME] | [INFO] | SohGui | sprint stamina bar overlay window
+#include "soh/Enhancements/Sprint/SprintWindow.h"
 #include "soh/SohGui/SohModals.h"
 
 namespace SohGui {
@@ -110,7 +115,13 @@ std::shared_ptr<PlandomizerWindow> mPlandomizerWindow;
 std::shared_ptr<SohModalWindow> mModalWindow;
 std::shared_ptr<Notification::Window> mNotificationWindow;
 std::shared_ptr<TimeDisplayWindow> mTimeDisplayWindow;
+// [TIME] | [INFO] | SohGui | sprint stamina bar overlay window
+std::shared_ptr<SprintWindow> mSprintWindow;
 std::shared_ptr<AnchorRoomWindow> mAnchorRoomWindow;
+std::shared_ptr<ServerBrowserWindow> mServerBrowserWindow;
+// [TIME] | [INFO] | mARPGWindow | ARPG mod config/skill/gear window
+std::shared_ptr<ARPGWindow> mARPGWindow;
+std::shared_ptr<ARPGInventoryWindow> mARPGInventoryWindow;
 
 UIWidgets::Colors GetMenuThemeColor() {
     return mSohMenu->GetMenuThemeColor();
@@ -147,13 +158,17 @@ std::vector<std::shared_ptr<Ship::GuiWindow>> GetAllGuiWindows() {
         mHintTrackerSettingsWindow,
         mItemTrackerWindow,
         mItemTrackerSettingsWindow,
-        mTimeSplitsWindow,
-        mPlandomizerWindow,
-        mModalWindow,
-        mNotificationWindow,
-        mTimeDisplayWindow,
-        mAnchorRoomWindow,
-        // Registered outside SohGui.
+    mTimeSplitsWindow,
+    mPlandomizerWindow,
+    mModalWindow,
+    mNotificationWindow,
+    mTimeDisplayWindow,
+    mSprintWindow,
+    mAnchorRoomWindow,
+    mServerBrowserWindow,
+    mARPGWindow,
+    mARPGInventoryWindow,
+    // Registered outside SohGui.
         gui->GetGuiWindow("Configure Controller"),
         gui->GetGuiWindow("Console"),
         gui->GetGuiWindow("Stats"),
@@ -268,8 +283,20 @@ void SetupGuiElements() {
     mNotificationWindow->Show();
     mTimeDisplayWindow = std::make_shared<TimeDisplayWindow>(CVAR_WINDOW("TimeDisplayEnabled"), "Additional Timers");
     gui->AddGuiWindow(mTimeDisplayWindow);
+    // [TIME] | [INFO] | SohGui | stamina bar registered hidden-by-state; SprintWindow::Draw() gates on
+    // the cvar directly (default on), so no Show() here - that would force-write the cvar each boot
+    mSprintWindow = std::make_shared<SprintWindow>(CVAR_WINDOW("SprintBarEnabled"), "Sprint Stamina Bar");
+    gui->AddGuiWindow(mSprintWindow);
     mAnchorRoomWindow = std::make_shared<AnchorRoomWindow>(CVAR_WINDOW("AnchorRoom"), "Anchor Room");
     gui->AddGuiWindow(mAnchorRoomWindow);
+    mServerBrowserWindow =
+        std::make_shared<ServerBrowserWindow>(CVAR_WINDOW("ServerBrowser"), "Server Browser");
+    gui->AddGuiWindow(mServerBrowserWindow);
+    // [TIME] | [INFO] | ARPGWindow | registered last; opened via dev tools menu
+    mARPGWindow = std::make_shared<ARPGWindow>(CVAR_WINDOW("ARPG"), "ARPG Mod", ImVec2(520, 620));
+    gui->AddGuiWindow(mARPGWindow);
+    mARPGInventoryWindow = std::make_shared<ARPGInventoryWindow>(CVAR_WINDOW("ARPGInventory"), "Loot Inventory");
+    gui->AddGuiWindow(mARPGInventoryWindow);
 }
 
 void Destroy() {
@@ -278,6 +305,8 @@ void Destroy() {
 
     mNotificationWindow = nullptr;
     mModalWindow = nullptr;
+    mServerBrowserWindow = nullptr;
+    mAnchorRoomWindow = nullptr;
     mItemTrackerWindow = nullptr;
     mItemTrackerSettingsWindow = nullptr;
     mEntranceTrackerWindow = nullptr;
@@ -306,7 +335,10 @@ void Destroy() {
     mTimeSplitSettingsWindow = nullptr;
     mPlandomizerWindow = nullptr;
     mTimeDisplayWindow = nullptr;
+    mSprintWindow = nullptr;
     mAnchorRoomWindow = nullptr;
+    mARPGWindow = nullptr;
+    mARPGInventoryWindow = nullptr;
 }
 
 void RegisterPopup(std::string title, std::string message, std::string button1, std::string button2,

@@ -1,0 +1,23 @@
+{
+  "source_sha256": "19d2fa0889ec7fa769f493f573e85cb3e2c9929fcd04b1868d67357932b63327",
+  "vertices": 2975,
+  "triangles": 9138,
+  "parts": 36,
+  "subpixel_triangles_removed": 0,
+  "triangles_per_actor": {
+    "0": 9138
+  },
+  "materials": [
+    "mantle",
+    "ridge",
+    "mottle",
+    "skin",
+    "sucker",
+    "mouth",
+    "eye",
+    "iris",
+    "pupil",
+    "glint"
+  ],
+  "space": "Native joint-local XYZ, positions x100; native normals retained; authoring-pose transforms omitted"
+}

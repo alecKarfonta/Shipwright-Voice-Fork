@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-12",
+  "platform": "macOS arm64, Metal, native CoreAudio game backend",
+  "source_reference": "Lastwall/Source/Lastwall/LWDialogue.cpp: profiles, grounded prompts, request nonces, caption-first voice lifecycle and exact-text speech caching",
+  "automated": {
+    "native_build": "passed",
+    "http_fixture": "passed: bounded history, malformed/truncated/oversized replies, HTTP failure, caption-first delivery, TTS failure, exact-content caching, voice cache separation, cancellation, stale replies, shutdown, credential separation",
+    "address_and_undefined_behavior_sanitizers": "passed",
+    "launcher_configuration": "passed: mode-0600 output, allowlisted fields, environment precedence, refuses overwrite, shell syntax and Python compilation"
+  },
+  "live_services": {
+    "llm": "Lastwall's configured chat-completions gateway and model returned valid NPC dialogue",
+    "tts": "http://192.168.50.64:8013/tts",
+    "tts_health": "OpenMOSS-Team/MOSS-TTS-v1.5, ready, 24000 Hz",
+    "builtin_voice": "passed: live generated dialogue returned mono 24000 Hz WAV",
+    "saved_voice": "passed: voice_name=loli_15s returned WAV through the production C++ client"
+  },
+  "native_observations": {
+    "profile": "/tmp/soh-npc-qa-profile/arpg-testing",
+    "scene": "Kakariko Village, adult Link, cucco keeper; ARPG gameplay disabled",
+    "f7": "opened the conversation panel for the nearby supported actor",
+    "suggested_topic": "displayed a generated reply and Preparing voice status",
+    "typed_question": "submitted What do you like about cuccos? and displayed the generated answer",
+    "audio": "production SDL playback queued 3809280 bytes of float stereo audio at 48000 Hz; Speaking status cleared after playback",
+    "escape": "closed the panel and returned directly to the game with the nearby-speaker hint, without opening the main menu",
+    "fixes_from_native_check": [
+      "Initialize SDL audio independently when the game uses CoreAudio or WASAPI",
+      "Consume the shared GUI Escape menu toggle while closing NPC dialogue"
+    ],
+    "save_scope": "All native play used an isolated temporary profile; ordinary saves were not loaded or changed"
+  },
+  "not_certified": [
+    "A complete story or randomizer playthrough",
+    "Every NPC profile and native authored-dialogue page",
+    "Human listening review of voice identity, delivery and loudness",
+    "Controller-only free-text entry",
+    "Persistent social memory, NPC actions or co-op voice replication"
+  ]
+}

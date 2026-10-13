@@ -1,0 +1,32 @@
+{
+  "checks": [
+    "Native reptile initializes for species and rank replacement",
+    "Native reptile initializes for species and rank replacement",
+    "Native reptile initializes for species and rank replacement",
+    "Native reptile initializes for species and rank replacement",
+    "Native reptile initializes for species and rank replacement",
+    "Native reptile initializes for species and rank replacement",
+    "Both species and three ranks cache all limbs, weapon states and two alpha pipelines",
+    "Fade shares one immutable mesh for every partial alpha",
+    "Fade display lists blend the native environment alpha instead of forcing opacity",
+    "Model setting restores the original reptile model",
+    "Master ARPG gate preserves vanilla reptile rendering",
+    "Head tracking remains on the empty native head root",
+    "Native sheathing override selects the new empty-hand or stored-sword model",
+    "Native sheathing override selects the new empty-hand or stored-sword model",
+    "Native lone-Lizalfos entrance fades in through the translucent model pipeline",
+    "Native slash timing and sword collision quad follow the replacement weapon",
+    "Native sword trails continue receiving animated blade positions",
+    "Native feet and landing attachments follow the new feet",
+    "Native forward and backward jumps animate both reptile species",
+    "Damage enters native recoil and color flash",
+    "Dinolfos retains its native stun response",
+    "Ice starts the native nine-point freezing effect",
+    "All nine ice attachment positions are initialized on the native rig",
+    "Fatal hit emits one native defeat event",
+    "Native death fades the new model and destroys the actor",
+    "Scene teardown releases all surviving reptiles"
+  ],
+  "error": "",
+  "status": "passed"
+}

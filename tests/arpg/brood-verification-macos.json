@@ -1,0 +1,72 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-12T21:36:07.011407-04:00",
+  "feature": "Gohma Broodfall: destructible falling cocoons, finite utility delay, native larvae, stun cancellation and bounded additional brood",
+  "native_checks": 56,
+  "native_result": "tests/arpg/brood-runtime-results-macos.json",
+  "native_render_frames_with_pods": 148,
+  "portable": "Lifecycle boundaries, pause, one-time delay, cancellation, single hatch and articulated shell geometry passed",
+  "sanitizers": "Portable suite passed ASAN and UBSAN; LeakSanitizer disabled on macOS",
+  "rules": {
+    "fall_warning_ticks": 30,
+    "incubation_ticks": 100,
+    "one_time_delay_ticks": 40,
+    "wave_cooldown_ticks": 300,
+    "additional_brood_cap": 2,
+    "new_hatch_blocked_at_total_larvae": 3,
+    "native_original_brood_preserved": true,
+    "pod_health": 3
+  },
+  "native_scope": [
+    "Real Gohma arena and original AI with the unattended player fixture held in the arena center",
+    "Native cylinder narrow phase, player alignment, hard collision, slingshot, boomerang, nut, bomb, fire and ice",
+    "Real Flame Burst skill and hammer fault-line collision geometry",
+    "Shared pod/additional-larva budget and preservation of native indexed children",
+    "Boss stun cancellation; defeat, feature toggle and actual scene teardown cleanup",
+    "Global actor ceiling and unsupported floor rejection"
+  ],
+  "visual_checks": [
+    "Pointed shell plates, exposed amber spindle, crossed silk and web markers inspected in the native Gohma arena",
+    "Production Practice encounters includes Summon brood pods and Clear practice brood",
+    "Practice summon succeeds at the default Hyrule Field spawn after fitting web rings to gentle ground slopes",
+    "Two pods, their supported web markings and native attention targeting inspected in the field",
+    "Pods hatch into two native larvae, which approach and attack the player",
+    "I reopens Equipment and pauses the practice fight"
+  ],
+  "asset_authorship": "Original procedural C++ cocoon and terrain-fitted spiderweb geometry; hatchlings retain native Gohma larva assets",
+  "production_binary": "/tmp/soh-brood/production",
+  "production_sha256": "9f955c6cc491dcf874ef14b6c4ca31bda94c6adcc0a46421cd07aea6ae5edc2d",
+  "qa_harness_excluded_from_production": true,
+  "production_app": "/tmp/soh-creature-playtest/Creature Adventure.app",
+  "production_profile": "/tmp/soh-creature-playtest/profiles/arpg-testing",
+  "production_launcher": "/tmp/soh-brood-production.py",
+  "player_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309",
+  "build_note": "Targeted native build uses the previously verified isolated game snapshot, recompiling the brood module, skill targeting and guide/practice integrations. Shared build-cmake has other ongoing builds. Frozen EnemySystem and ArsenalSystem contain only the relevant integration patches, so this does not validate every concurrent change in the shared worktree.",
+  "compiled_source_sha256": {
+    "soh/soh/Enhancements/arpg/BroodRules.h": "642fb4d328d99bc8ba04708a96f62ee54dff37f3723f14c706a5b6a400d000b2",
+    "soh/soh/Enhancements/arpg/BroodSystem.h": "d4316957f725af3b2fe416dbd914d185c6b9598c8a31c6709c4cd6b978b6716d",
+    "soh/soh/Enhancements/arpg/BroodSystem.cpp": "b8057fb29b8264c3ce9de75b7084c9f042252c8b6862ca332d333ca467241cfb",
+    "soh/soh/Enhancements/arpg/BroodGeometry.h": "a623a8110fcf75d4c00c8667157673bc313660bf8c692a5d623e3cebbfd1bafa",
+    "soh/soh/Enhancements/arpg/SkillCombat.cpp": "b56847798fa444d7cb032fd3fe2bfdce7294553028bb90c4a7d5a4285c5a009e",
+    "soh/soh/Enhancements/arpg/ArsenalSystem.cpp": "480907bf0f93ee8ac541b8da4ca0617246f2142eb45da9cc993f4f9328a7425d",
+    "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "947aea6cff3f05e5a5896204b892acaa78b5827031c1a7f5b0a44e6ec4dd3c8c",
+    "soh/soh/Enhancements/arpg/EnemySystem.cpp": "3ad867a382791af50eff2af3915c7369a65d5836618287266753d9ee303e3b16",
+    "tests/arpg/brood_runtime_test.cpp": "b3c5e0e97d1c34b6e5b771320b5d7ae48f9670c027ab86c9cd818a3383347784"
+  },
+  "workspace_source_sha256": {
+    "soh/soh/Enhancements/arpg/BroodRules.h": "642fb4d328d99bc8ba04708a96f62ee54dff37f3723f14c706a5b6a400d000b2",
+    "soh/soh/Enhancements/arpg/BroodSystem.h": "d4316957f725af3b2fe416dbd914d185c6b9598c8a31c6709c4cd6b978b6716d",
+    "soh/soh/Enhancements/arpg/BroodSystem.cpp": "b8057fb29b8264c3ce9de75b7084c9f042252c8b6862ca332d333ca467241cfb",
+    "soh/soh/Enhancements/arpg/BroodGeometry.h": "a623a8110fcf75d4c00c8667157673bc313660bf8c692a5d623e3cebbfd1bafa",
+    "soh/soh/Enhancements/arpg/SkillCombat.cpp": "b56847798fa444d7cb032fd3fe2bfdce7294553028bb90c4a7d5a4285c5a009e",
+    "soh/soh/Enhancements/arpg/ArsenalSystem.cpp": "37acfa89b84758448daf29880907dc5dc21127b6c7bd4cb215b435fb81a362fb",
+    "soh/soh/Enhancements/arpg/CreatureSystem.cpp": "947aea6cff3f05e5a5896204b892acaa78b5827031c1a7f5b0a44e6ec4dd3c8c",
+    "soh/soh/Enhancements/arpg/EnemySystem.cpp": "32b8e1b832fd02f8ac32355185ae20df7ef290e08e5716e2d1d4d94c562120f0",
+    "tests/arpg/brood_runtime_test.cpp": "b3c5e0e97d1c34b6e5b771320b5d7ae48f9670c027ab86c9cd818a3383347784"
+  },
+  "remaining": [
+    "Normal-play boss balance and a complete player-driven Gohma clear",
+    "Broader terrain, age and cooperative acceptance",
+    "Additional enemy species, boss mechanics and the full replayability objective remain incomplete"
+  ]
+}

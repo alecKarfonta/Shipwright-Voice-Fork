@@ -5,6 +5,7 @@
 #include <ship/window/Window.h>
 #include "soh/OTRGlobals.h"
 #include "soh/Notification/Notification.h"
+#include "soh/Enhancements/EnemyDifficulty/EnemyDifficulty.h"
 
 /**
  * ALL_CLIENT_STATE
@@ -17,6 +18,9 @@
 void Anchor::HandlePacket_AllClientState(nlohmann::json payload) {
     std::vector<AnchorClient> newClients = payload["state"].get<std::vector<AnchorClient>>();
     bool isGlobalRoom = (std::string("soh-global") == CVarGetString(CVAR_REMOTE_ANCHOR("RoomId"), ""));
+
+    // [TIME] | [INFO] | Anchor.HandlePacket_AllClientState | Recount players for difficulty scaling
+    // (runs after the clients map is updated below, see RecountAndRescale at the end)
 
     // add new clients
     for (auto& client : newClients) {
@@ -52,6 +56,7 @@ void Anchor::HandlePacket_AllClientState(nlohmann::json payload) {
         clients[client.clientId].isSaveLoaded = client.isSaveLoaded;
         clients[client.clientId].isGameComplete = client.isGameComplete;
         clients[client.clientId].sceneNum = client.sceneNum;
+        clients[client.clientId].curRoomNum = client.curRoomNum;
         clients[client.clientId].entranceIndex = client.entranceIndex;
     }
 
@@ -69,4 +74,7 @@ void Anchor::HandlePacket_AllClientState(nlohmann::json payload) {
     }
 
     shouldRefreshActors = true;
+
+    // [TIME] | [INFO] | Anchor.HandlePacket_AllClientState | Live rescale on roster change
+    EnemyDifficulty::RecountAndRescale();
 }

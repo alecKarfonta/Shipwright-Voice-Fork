@@ -1,0 +1,163 @@
+{
+  "checks": [
+    "Region populates multiple bounded packs without walking toward them",
+    "Region includes enemies more than the old 2400-unit despawn distance away",
+    "Distant enemies complete emergence and retain extended draw distance",
+    "Ranch and castle approaches each receive two native watch NPCs",
+    "Unassisted NPC combat cannot award player XP or loot",
+    "Watch patrols engage monsters without Link approaching",
+    "Monsters retaliate through native collision and damage the watch",
+    "Watch spear collisions damage living monsters without player attacks",
+    "Distant regional actors persist beyond the old director cleanup interval",
+    "No replacement waves spawn around an idle player",
+    "Joining a monster fight enables normal player rewards",
+    "Disabling population cleans up monsters and watchmen",
+    "Re-enabling populations rebuilds the region once",
+    "A second wilderness region populates from its own collision",
+    "Field watchmen are replaced by the destination region expedition",
+    "Destination has a safe resident fixture location",
+    "Native resident fixture initializes without pack membership",
+    "Existing native residents wake with the region population",
+    "Disabling living populations restores native residents without deleting them"
+  ],
+  "error": "",
+  "observations": [
+    {
+      "distance": 2999.594482421875,
+      "enemy": 2,
+      "scaleY": 0.01600000075995922,
+      "x": 916.5499267578125,
+      "y": 300.98394775390625,
+      "z": 4205.01220703125
+    },
+    {
+      "distance": 2847.712646484375,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 1209.564208984375,
+      "y": 289.03125,
+      "z": 3930.012939453125
+    },
+    {
+      "distance": 2660.059326171875,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 804.9569702148438,
+      "y": 222.67794799804688,
+      "z": 3885.660400390625
+    },
+    {
+      "distance": 4512.1103515625,
+      "enemy": 2,
+      "scaleY": 0.01600000075995922,
+      "x": -470.16705322265625,
+      "y": 189.81517028808594,
+      "z": 5832.41259765625
+    },
+    {
+      "distance": 4190.47998046875,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -588.8281860351562,
+      "y": 224.5943145751953,
+      "z": 5495.1484375
+    },
+    {
+      "distance": 4296.30126953125,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -624.750732421875,
+      "y": 208.75001525878906,
+      "z": 5596.83251953125
+    },
+    {
+      "distance": 121.33712005615234,
+      "enemy": 2,
+      "scaleY": 0.01600000075995922,
+      "x": -59.40013885498047,
+      "y": 0.0,
+      "z": 1252.68017578125
+    },
+    {
+      "distance": 134.0970916748047,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 58.73508834838867,
+      "y": -0.0,
+      "z": 1473.4671630859375
+    },
+    {
+      "distance": 88.68219757080078,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": 39.02760314941406,
+      "y": -0.0,
+      "z": 1264.01416015625
+    },
+    {
+      "distance": 4904.71728515625,
+      "enemy": 2,
+      "scaleY": 0.01600000075995922,
+      "x": -2306.916259765625,
+      "y": 313.0,
+      "z": 5670.9111328125
+    },
+    {
+      "distance": 5069.3232421875,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -2369.164794921875,
+      "y": 313.0,
+      "z": 5824.26806640625
+    },
+    {
+      "distance": 5128.224609375,
+      "enemy": 431,
+      "scaleY": 0.007499999832361937,
+      "x": -2360.359130859375,
+      "y": 313.0,
+      "z": 5895.4580078125
+    },
+    {
+      "guard": 179,
+      "health": 24,
+      "x": 179.7364959716797,
+      "y": -0.0,
+      "z": 1717.099853515625
+    },
+    {
+      "guard": 179,
+      "health": 24,
+      "x": 20.897130966186523,
+      "y": 0.0,
+      "z": 1748.785888671875
+    },
+    {
+      "guard": 179,
+      "health": 24,
+      "x": -2134.322509765625,
+      "y": 313.0,
+      "z": 5815.83984375
+    },
+    {
+      "guard": 179,
+      "health": 8,
+      "x": -2270.3203125,
+      "y": 313.0,
+      "z": 5905.08154296875
+    },
+    {
+      "hurtWatchmen": 2,
+      "remaining": 12,
+      "watchAttacks": 14,
+      "watchHits": 4
+    }
+  ],
+  "status": "passed",
+  "verification": {
+    "date": "2026-10-12",
+    "platform": "macOS arm64",
+    "scope": "Regional populations, NPC combat, persistence, reward eligibility, toggles, and native resident restoration",
+    "portableSuitesPassed": 9
+  }
+}

@@ -1248,7 +1248,7 @@ void SaveManager::InitFileMaxed() {
 
 // Threaded SaveFile takes copy of gSaveContext for local unmodified storage
 
-void SaveManager::SaveFileThreaded(int fileNum, const SaveContext& saveContext, int sectionID) {
+bool SaveManager::SaveFileThreaded(int fileNum, const SaveContext& saveContext, int sectionID) {
     std::lock_guard<std::mutex> guard(saveMtx);
     SPDLOG_INFO("Save File - fileNum: {}", fileNum);
     // Needed for first time save, hasn't changed in forever anyway
@@ -1295,17 +1295,19 @@ void SaveManager::SaveFileThreaded(int fileNum, const SaveContext& saveContext, 
     }
 
     if (!WriteFileSafely(GetFileName(fileNum), saveBlock.dump(1))) {
-        return;
+        return false;
     }
 
     InitMeta(fileNum);
     GameInteractor::Instance->ExecuteHooks<GameInteractor::OnSaveFile>(fileNum, sectionID);
     SPDLOG_INFO("Save File Finish - fileNum: {}", fileNum);
+    return true;
 }
 
 // SaveSection creates a copy of gSaveContext to prevent mid-save data modification, and passes its reference to
 // SaveFileThreaded This should never be called with threaded == false except during file creation
 void SaveManager::SaveSection(int fileNum, int sectionID, bool threaded) {
+    lastSaveResult = {};
     // Don't save in Boss rush.
     if (fileNum == 0xFF || fileNum == 0xFE) {
         return;
@@ -1318,10 +1320,12 @@ void SaveManager::SaveSection(int fileNum, int sectionID, bool threaded) {
 
     auto saveContext = std::make_shared<SaveContext>(gSaveContext);
     if (threaded) {
-        smThreadPool->detach_task(
-            [this, fileNum, saveContext, sectionID] { SaveFileThreaded(fileNum, *saveContext, sectionID); });
+        lastSaveResult = smThreadPool->submit_task(
+            [this, fileNum, saveContext, sectionID] { return SaveFileThreaded(fileNum, *saveContext, sectionID); }).share();
     } else {
-        SaveFileThreaded(fileNum, *saveContext, sectionID);
+        std::promise<bool> result;
+        lastSaveResult = result.get_future().share();
+        result.set_value(SaveFileThreaded(fileNum, *saveContext, sectionID));
     }
 }
 

@@ -1,0 +1,1626 @@
+[
+  {
+    "chapter": "Roots of Courage",
+    "id": 1,
+    "objectives": [
+      {
+        "count": 4,
+        "kind": 1,
+        "nodes": false,
+        "ordered": false,
+        "scene": 85
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Bite Before Breakfast"
+  },
+  {
+    "chapter": "Roots of Courage",
+    "id": 2,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 3,
+        "nodes": true,
+        "ordered": false,
+        "scene": 85
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "A Pocketful of Spring"
+  },
+  {
+    "chapter": "Roots of Courage",
+    "id": 3,
+    "objectives": [
+      {
+        "count": 1,
+        "kind": 5,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "The Heart Beneath the Bark"
+  },
+  {
+    "chapter": "Roots of Courage",
+    "id": 4,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 4,
+        "nodes": true,
+        "ordered": true,
+        "scene": 85
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "For Every Fallen Leaf"
+  },
+  {
+    "chapter": "The Long Road Home",
+    "id": 5,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 7,
+        "nodes": true,
+        "ordered": false,
+        "scene": 81
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Milk Run, Monster Run"
+  },
+  {
+    "chapter": "The Long Road Home",
+    "id": 6,
+    "objectives": [
+      {
+        "count": 6,
+        "kind": 2,
+        "nodes": false,
+        "ordered": false,
+        "scene": 81
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "The Scarecrow's Missing Supper"
+  },
+  {
+    "chapter": "The Long Road Home",
+    "id": 7,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 3,
+        "nodes": true,
+        "ordered": false,
+        "scene": 99
+      },
+      {
+        "count": 3,
+        "kind": 4,
+        "nodes": true,
+        "ordered": true,
+        "scene": 81
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Room at the Stable"
+  },
+  {
+    "chapter": "The Long Road Home",
+    "id": 8,
+    "objectives": [
+      {
+        "count": 1,
+        "kind": 6,
+        "nodes": false,
+        "ordered": false,
+        "scene": 82
+      },
+      {
+        "count": 1,
+        "kind": 6,
+        "nodes": false,
+        "ordered": false,
+        "scene": 87
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "A Song for the Road"
+  },
+  {
+    "chapter": "Bread of the Mountain",
+    "id": 9,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 3,
+        "nodes": true,
+        "ordered": false,
+        "scene": 96
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "A Very Crunchy Shortage"
+  },
+  {
+    "chapter": "Bread of the Mountain",
+    "id": 10,
+    "objectives": [
+      {
+        "count": 4,
+        "kind": 1,
+        "nodes": false,
+        "ordered": false,
+        "scene": 1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Hot Feet, Cold Dinner"
+  },
+  {
+    "chapter": "Bread of the Mountain",
+    "id": 11,
+    "objectives": [
+      {
+        "count": 1,
+        "kind": 5,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "King of an Empty Table"
+  },
+  {
+    "chapter": "Bread of the Mountain",
+    "id": 12,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 4,
+        "nodes": true,
+        "ordered": true,
+        "scene": 96
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Warm Lights, Full Bellies"
+  },
+  {
+    "chapter": "A River Remembers",
+    "id": 13,
+    "objectives": [
+      {
+        "count": 4,
+        "kind": 1,
+        "nodes": false,
+        "ordered": false,
+        "scene": 84
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Not a Drop to Drink"
+  },
+  {
+    "chapter": "A River Remembers",
+    "id": 14,
+    "objectives": [
+      {
+        "count": 5,
+        "kind": 2,
+        "nodes": false,
+        "ordered": false,
+        "scene": 89
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Pearls Before Monsters"
+  },
+  {
+    "chapter": "A River Remembers",
+    "id": 15,
+    "objectives": [
+      {
+        "count": 1,
+        "kind": 5,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "The Belly of the Problem"
+  },
+  {
+    "chapter": "A River Remembers",
+    "id": 16,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 4,
+        "nodes": true,
+        "ordered": true,
+        "scene": 84
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Let the River Breathe"
+  },
+  {
+    "chapter": "The Village Watch",
+    "id": 17,
+    "objectives": [
+      {
+        "count": 4,
+        "kind": 1,
+        "nodes": false,
+        "ordered": false,
+        "scene": 83
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Feathers in the Dark"
+  },
+  {
+    "chapter": "The Village Watch",
+    "id": 18,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 3,
+        "nodes": true,
+        "ordered": false,
+        "scene": 82
+      },
+      {
+        "count": 3,
+        "kind": 4,
+        "nodes": true,
+        "ordered": true,
+        "scene": 82
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "No One Sleeps Outside"
+  },
+  {
+    "chapter": "The Village Watch",
+    "id": 19,
+    "objectives": [
+      {
+        "count": 6,
+        "kind": 1,
+        "nodes": false,
+        "ordered": false,
+        "scene": 96
+      },
+      {
+        "count": 6,
+        "kind": 2,
+        "nodes": false,
+        "ordered": false,
+        "scene": 96
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "The Road Has Teeth"
+  },
+  {
+    "chapter": "The Village Watch",
+    "id": 20,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 4,
+        "nodes": true,
+        "ordered": true,
+        "scene": 83
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Someone Will Remember"
+  },
+  {
+    "chapter": "What the Forest Kept",
+    "id": 21,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 7,
+        "nodes": true,
+        "ordered": false,
+        "scene": 91
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Seven Years of Thorns"
+  },
+  {
+    "chapter": "What the Forest Kept",
+    "id": 22,
+    "objectives": [
+      {
+        "count": 1,
+        "kind": 5,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "A Friend Beyond the Door"
+  },
+  {
+    "chapter": "What the Forest Kept",
+    "id": 23,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 3,
+        "nodes": true,
+        "ordered": false,
+        "scene": 91
+      },
+      {
+        "count": 3,
+        "kind": 4,
+        "nodes": true,
+        "ordered": true,
+        "scene": 86
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Roots Remember Rain"
+  },
+  {
+    "chapter": "Embers of Hope",
+    "id": 24,
+    "objectives": [
+      {
+        "count": 6,
+        "kind": 2,
+        "nodes": false,
+        "ordered": false,
+        "scene": 4
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Ashes of the Lunch Bell"
+  },
+  {
+    "chapter": "Embers of Hope",
+    "id": 25,
+    "objectives": [
+      {
+        "count": 1,
+        "kind": 5,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "No More Sacrifices"
+  },
+  {
+    "chapter": "Embers of Hope",
+    "id": 26,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 4,
+        "nodes": true,
+        "ordered": true,
+        "scene": 98
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "A Hearth for the Survivors"
+  },
+  {
+    "chapter": "The Thaw",
+    "id": 27,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 3,
+        "nodes": true,
+        "ordered": false,
+        "scene": 9
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Cold Case at the Lake"
+  },
+  {
+    "chapter": "The Thaw",
+    "id": 28,
+    "objectives": [
+      {
+        "count": 1,
+        "kind": 5,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "The Thing Below the Surface"
+  },
+  {
+    "chapter": "The Thaw",
+    "id": 29,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 4,
+        "nodes": true,
+        "ordered": true,
+        "scene": 87
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "First Water, Then Life"
+  },
+  {
+    "chapter": "Names in the Dark",
+    "id": 30,
+    "objectives": [
+      {
+        "count": 5,
+        "kind": 2,
+        "nodes": false,
+        "ordered": false,
+        "scene": 8
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "What the Well Kept"
+  },
+  {
+    "chapter": "Names in the Dark",
+    "id": 31,
+    "objectives": [
+      {
+        "count": 1,
+        "kind": 5,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "A Drum No One Should Hear"
+  },
+  {
+    "chapter": "Names in the Dark",
+    "id": 32,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 4,
+        "nodes": true,
+        "ordered": true,
+        "scene": 82
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Leave a Light On"
+  },
+  {
+    "chapter": "Across the Divide",
+    "id": 33,
+    "objectives": [
+      {
+        "count": 1,
+        "kind": 5,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Measure Twice, Rescue Once"
+  },
+  {
+    "chapter": "Across the Divide",
+    "id": 34,
+    "objectives": [
+      {
+        "count": 6,
+        "kind": 2,
+        "nodes": false,
+        "ordered": false,
+        "scene": 90
+      },
+      {
+        "count": 3,
+        "kind": 4,
+        "nodes": true,
+        "ordered": true,
+        "scene": 90
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "The Last Supply Wagon"
+  },
+  {
+    "chapter": "Across the Divide",
+    "id": 35,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 4,
+        "nodes": true,
+        "ordered": true,
+        "scene": 94
+      },
+      {
+        "count": 1,
+        "kind": 6,
+        "nodes": false,
+        "ordered": false,
+        "scene": 92
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "A Light the Sand Cannot Bury"
+  },
+  {
+    "chapter": "Across the Divide",
+    "id": 36,
+    "objectives": [
+      {
+        "count": 1,
+        "kind": 5,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Sisters of the Stolen Sun"
+  },
+  {
+    "chapter": "Hyrule Reborn",
+    "id": 37,
+    "objectives": [
+      {
+        "count": 1,
+        "kind": 6,
+        "nodes": false,
+        "ordered": false,
+        "scene": 85
+      },
+      {
+        "count": 1,
+        "kind": 6,
+        "nodes": false,
+        "ordered": false,
+        "scene": 98
+      },
+      {
+        "count": 1,
+        "kind": 6,
+        "nodes": false,
+        "ordered": false,
+        "scene": 88
+      }
+    ],
+    "title": "Five Lights, One Promise"
+  },
+  {
+    "chapter": "Hyrule Reborn",
+    "id": 38,
+    "objectives": [
+      {
+        "count": 8,
+        "kind": 1,
+        "nodes": false,
+        "ordered": false,
+        "scene": 13
+      },
+      {
+        "count": 8,
+        "kind": 2,
+        "nodes": false,
+        "ordered": false,
+        "scene": 13
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Before the Last March"
+  },
+  {
+    "chapter": "Hyrule Reborn",
+    "id": 39,
+    "objectives": [
+      {
+        "count": 1,
+        "kind": 5,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "The Sixfold Lock"
+  },
+  {
+    "chapter": "Hyrule Reborn",
+    "id": 40,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 4,
+        "nodes": true,
+        "ordered": true,
+        "scene": 81
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "A Dawn Worth Coming Home To"
+  },
+  {
+    "chapter": "Roots of Courage",
+    "id": 41,
+    "objectives": [
+      {
+        "count": 1,
+        "kind": 8,
+        "nodes": false,
+        "ordered": true,
+        "scene": 91
+      },
+      {
+        "count": 3,
+        "kind": 10,
+        "nodes": true,
+        "ordered": true,
+        "scene": 85
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "The Forest Has an Echo"
+  },
+  {
+    "chapter": "Roots of Courage",
+    "id": 42,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 3,
+        "nodes": true,
+        "ordered": false,
+        "scene": 85
+      },
+      {
+        "count": 1,
+        "kind": 9,
+        "nodes": false,
+        "ordered": true,
+        "scene": 98
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Special Delivery: Do Not Eat"
+  },
+  {
+    "chapter": "The Long Road Home",
+    "id": 43,
+    "objectives": [
+      {
+        "count": 1,
+        "kind": 8,
+        "nodes": false,
+        "ordered": true,
+        "scene": 99
+      },
+      {
+        "count": 20,
+        "kind": 11,
+        "nodes": false,
+        "ordered": true,
+        "scene": 99
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Lullaby for a Light Sleeper"
+  },
+  {
+    "chapter": "The Long Road Home",
+    "id": 44,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 3,
+        "nodes": true,
+        "ordered": false,
+        "scene": 99
+      },
+      {
+        "count": 1,
+        "kind": 9,
+        "nodes": false,
+        "ordered": true,
+        "scene": 82
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Feathers, Not Sneezes"
+  },
+  {
+    "chapter": "The Village Watch",
+    "id": 45,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 10,
+        "nodes": true,
+        "ordered": true,
+        "scene": 83
+      },
+      {
+        "count": 1,
+        "kind": 9,
+        "nodes": false,
+        "ordered": true,
+        "scene": 56
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "A Rubbing, Not a Robbery"
+  },
+  {
+    "chapter": "The Village Watch",
+    "id": 46,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 10,
+        "nodes": true,
+        "ordered": true,
+        "scene": 83
+      },
+      {
+        "count": 1,
+        "kind": 8,
+        "nodes": false,
+        "ordered": true,
+        "scene": 83
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "The Gravest Night Shift"
+  },
+  {
+    "chapter": "Bread of the Mountain",
+    "id": 47,
+    "objectives": [
+      {
+        "count": 1,
+        "kind": 8,
+        "nodes": false,
+        "ordered": true,
+        "scene": 98
+      },
+      {
+        "count": 3,
+        "kind": 10,
+        "nodes": true,
+        "ordered": true,
+        "scene": 96
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "A Rock With Rhythm"
+  },
+  {
+    "chapter": "Embers of Hope",
+    "id": 48,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 10,
+        "nodes": true,
+        "ordered": true,
+        "scene": 96
+      },
+      {
+        "count": 3,
+        "kind": 4,
+        "nodes": true,
+        "ordered": true,
+        "scene": 98
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "The Lunch Bell Rings Again"
+  },
+  {
+    "chapter": "A River Remembers",
+    "id": 49,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 10,
+        "nodes": true,
+        "ordered": true,
+        "scene": 84
+      },
+      {
+        "count": 3,
+        "kind": 10,
+        "nodes": true,
+        "ordered": true,
+        "scene": 84
+      },
+      {
+        "count": 1,
+        "kind": 9,
+        "nodes": false,
+        "ordered": true,
+        "scene": 56
+      }
+    ],
+    "title": "The River's Two Faces"
+  },
+  {
+    "chapter": "The Thaw",
+    "id": 50,
+    "objectives": [
+      {
+        "count": 1,
+        "kind": 9,
+        "nodes": false,
+        "ordered": true,
+        "scene": 99
+      },
+      {
+        "count": 1,
+        "kind": 9,
+        "nodes": false,
+        "ordered": true,
+        "scene": 88
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Strictly Not for Soup"
+  },
+  {
+    "chapter": "The Thaw",
+    "id": 51,
+    "objectives": [
+      {
+        "count": 1,
+        "kind": 8,
+        "nodes": false,
+        "ordered": true,
+        "scene": 87
+      },
+      {
+        "count": 3,
+        "kind": 10,
+        "nodes": true,
+        "ordered": true,
+        "scene": 87
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Rain Check"
+  },
+  {
+    "chapter": "What the Forest Kept",
+    "id": 52,
+    "objectives": [
+      {
+        "count": 1,
+        "kind": 8,
+        "nodes": false,
+        "ordered": true,
+        "scene": 86
+      },
+      {
+        "count": 30,
+        "kind": 11,
+        "nodes": false,
+        "ordered": true,
+        "scene": 86
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "A Reply Without Words"
+  },
+  {
+    "chapter": "Across the Divide",
+    "id": 53,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 10,
+        "nodes": true,
+        "ordered": true,
+        "scene": 90
+      },
+      {
+        "count": 1,
+        "kind": 9,
+        "nodes": false,
+        "ordered": true,
+        "scene": 93
+      },
+      {
+        "count": 3,
+        "kind": 4,
+        "nodes": true,
+        "ordered": true,
+        "scene": 90
+      }
+    ],
+    "title": "The Bridge Inspector's Bad Day"
+  },
+  {
+    "chapter": "Across the Divide",
+    "id": 54,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 10,
+        "nodes": true,
+        "ordered": true,
+        "scene": 94
+      },
+      {
+        "count": 20,
+        "kind": 11,
+        "nodes": false,
+        "ordered": true,
+        "scene": 94
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "Reading the Dunes"
+  },
+  {
+    "chapter": "Across the Divide",
+    "id": 55,
+    "objectives": [
+      {
+        "count": 1,
+        "kind": 9,
+        "nodes": false,
+        "ordered": true,
+        "scene": 56
+      },
+      {
+        "count": 3,
+        "kind": 3,
+        "nodes": true,
+        "ordered": true,
+        "scene": 87
+      },
+      {
+        "count": 1,
+        "kind": 9,
+        "nodes": false,
+        "ordered": true,
+        "scene": 93
+      }
+    ],
+    "title": "Water Without a War"
+  },
+  {
+    "chapter": "Names in the Dark",
+    "id": 56,
+    "objectives": [
+      {
+        "count": 3,
+        "kind": 10,
+        "nodes": true,
+        "ordered": true,
+        "scene": 82
+      },
+      {
+        "count": 30,
+        "kind": 11,
+        "nodes": false,
+        "ordered": true,
+        "scene": 82
+      },
+      {
+        "count": 3,
+        "kind": 4,
+        "nodes": true,
+        "ordered": true,
+        "scene": 82
+      }
+    ],
+    "title": "The Quiet Watch"
+  },
+  {
+    "chapter": "The Long Road Home",
+    "id": 57,
+    "objectives": [
+      {
+        "count": 1,
+        "kind": 9,
+        "nodes": false,
+        "ordered": true,
+        "scene": 85
+      },
+      {
+        "count": 1,
+        "kind": 9,
+        "nodes": false,
+        "ordered": true,
+        "scene": 98
+      },
+      {
+        "count": 0,
+        "kind": 0,
+        "nodes": false,
+        "ordered": false,
+        "scene": -1
+      }
+    ],
+    "title": "No Rocks in the Milk"
+  },
+  {
+    "chapter": "Hyrule Reborn",
+    "id": 58,
+    "objectives": [
+      {
+        "count": 1,
+        "kind": 9,
+        "nodes": false,
+        "ordered": true,
+        "scene": 90
+      },
+      {
+        "count": 1,
+        "kind": 9,
+        "nodes": false,
+        "ordered": true,
+        "scene": 93
+      },
+      {
+        "count": 1,
+        "kind": 9,
+        "nodes": false,
+        "ordered": true,
+        "scene": 99
+      }
+    ],
+    "title": "A Table With Room for Everyone"
+  }
+]

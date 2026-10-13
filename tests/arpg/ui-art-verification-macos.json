@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-11",
+  "platform": "macOS arm64",
+  "build": "soh and GenerateSohOtr succeeded; SOH_ARPG_RUNTIME_TESTS=OFF",
+  "preview": "org.shipofharkinian.arpg-inventory-preview18",
+  "checks": [
+    "All five PNGs in soh.o2r match workspace assets byte-for-byte.",
+    "Native journal displays original crest, skill paintings, rank pips, OoT glyphs and arrow choices.",
+    "Choosing Reaping Arc changes selected arrow and Crescent Cleave power from 218% to 174%.",
+    "Equipment page displays all four new paintings and modifier symbols alongside customized native icons.",
+    "Equip item moves Ember-forged sword to equipment and preserves displaced sword in backpack; count stays 12/48.",
+    "Active bonuses update from 12% melee to 26% melee plus 24% fire-hit chance.",
+    "Searching wind returns both Wind-stride boots; clearing search restores the grid.",
+    "Resume returns to Hyrule Field with native button action bar; I reopens inventory.",
+    "Rootwarden inspector preserves base Hylian Shield name and reports exact powers and equip deltas.",
+    "Normal player save SHA-256 remains unchanged."
+  ],
+  "limits": [
+    "No new combat or save-format changes; prior skill/gear regression suites were not rerun for this artwork pass.",
+    "Native mouse drag gesture remains a manual acceptance check; click-to-equip was verified.",
+    "New paintings are menu artwork; existing world equipment models remain."
+  ],
+  "normal_save_sha256": "ff60ad4ddfdd6b78e2233d453b067ee6e20cf3eb4d28f4c74bf28c003cbed309"
+}

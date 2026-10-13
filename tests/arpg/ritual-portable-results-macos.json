@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-12T20:26:55.060297+00:00",
+  "status": "passed",
+  "runs": {
+    "normal": {
+      "status": "passed",
+      "results": [
+        {
+          "suite": "arpg_rules",
+          "seconds": 0.36
+        },
+        {
+          "suite": "arpg_expedition",
+          "seconds": 44.09
+        },
+        {
+          "suite": "arpg_waystone_geometry",
+          "seconds": 0.2
+        },
+        {
+          "suite": "arpg_ritual",
+          "seconds": 74.37
+        }
+      ]
+    },
+    "asan_ubsan": {
+      "status": "passed",
+      "results": [
+        {
+          "suite": "arpg_rules",
+          "seconds": 0.43
+        },
+        {
+          "suite": "arpg_expedition",
+          "seconds": 225.42
+        },
+        {
+          "suite": "arpg_waystone_geometry",
+          "seconds": 0.47
+        },
+        {
+          "suite": "arpg_ritual",
+          "seconds": 176.52
+        }
+      ]
+    }
+  },
+  "seed_counts": {
+    "gauntlet": 10000,
+    "ritual": 10000
+  },
+  "coverage": [
+    "Deterministic route offers with both objectives",
+    "Three-wave regression and ritual completion",
+    "Damage/attack/range channel interruption and cooldown",
+    "Out-of-order seals and matching lamps",
+    "Protected warden and duplicate defeat guards",
+    "One-time atomic reward claims",
+    "v7 migration and v8 reward/retry recovery",
+    "15 Blender parts, 7 tones, normals, quantization and lid envelopes"
+  ]
+}

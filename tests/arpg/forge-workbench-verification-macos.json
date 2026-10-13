@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-12",
+  "platform": "macOS / Metal",
+  "scope": "Dedicated forge workbench and responsive crafting UI",
+  "build": {
+    "command": "cmake --build build-cmake --target soh GenerateSohOtr -j 6",
+    "log": "/tmp/soh-forge-final-build.log",
+    "status": "passed"
+  },
+  "portable": {
+    "test": "tests/arpg/loot_test.cpp",
+    "result": "passed",
+    "coverage": "All recipes and sets, 30,000 deterministic loot rolls, crafting conservation and save migration"
+  },
+  "native_checks": [
+    "1280x800: visual gear picker, large selected gear and socket preview, six operation tabs, material icons and visible transaction cost.",
+    "640x480: dedicated forge page; fixed collapsible action chooser; full-width gear strip and separate picker; workbench scroll reaches the craft button.",
+    "Add socket: Essence 200 -> 188; selected rare sword 0 -> 1 socket.",
+    "Insert Rough Ruby: material count 6 -> 5, filled socket artwork appears, insertion disables when full.",
+    "Socketed gear: salvage disabled with extraction requirement.",
+    "Extract: Essence 188 -> 180; socket empties; Rough Ruby returns to 6.",
+    "Refine: Rough Ruby 6 -> 3; Cut Ruby 6 -> 7.",
+    "Runeworks: ordered icons and bonuses shown; Prepare these runes selects Em and the Runes category for Kindling.",
+    "Salvage: first click shows item-specific confirmation and Keep this item; cancellation leaves item and Essence intact; confirmed salvage removes the test sword and Essence 180 -> 190.",
+    "Compact: action switching, item chooser, item selection and Add socket transaction observed.",
+    "Compact: recipe chooser replaces always-visible recipe list.",
+    "Escape returns to Equipment."
+  ],
+  "art": "Code-native faceted gem icons, engraved rune tablets and Essence emblem; existing OoT-style stone backdrop, native lettering and yellow selection cursors retained.",
+  "isolation": "Temporary SHIP_HOME profiles with SOH_ARPG_SANDBOX=1 and SOH_ARPG_FORGE_PREVIEW=1; no player saves modified.",
+  "limits": [
+    "Physical controller not attached; controller input not physically tested.",
+    "Short windows scroll the workbench; primary action navigation remains fixed."
+  ]
+}
