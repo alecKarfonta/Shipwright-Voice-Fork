@@ -2,14 +2,18 @@
 #ifdef SOH_LOCAL_NPC
 #include "NpcClient.h"
 #include "DialogueText.h"
+#include "soh/Enhancements/mixamo/NpcConsequences.h"
+#include "soh/Notification/Notification.h"
 #include <functional>
 #include "soh/ShipInit.hpp"
+#include "soh/SaveManager.h"
 #include "soh/Enhancements/game-interactor/GameInteractor.h"
 #include "soh/Enhancements/arpg/ARPG.h"
 #include "soh/Enhancements/arpg/QuestSystem.h"
 #include "soh/Enhancements/arpg/ARPGTheme.h"
 #include "soh/Enhancements/arpg/ARPGSave.h"
 #include "soh/Enhancements/arpg/EnemyRegions.h"
+#include "soh/Enhancements/arpg/EnemySystem.h"
 #include "soh/SohGui/UIWidgets.hpp"
 #include <libultraship/libultraship.h>
 #include <SDL.h>
@@ -18,6 +22,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <cstring>
+#include <filesystem>
 #include <sstream>
 #include <spdlog/spdlog.h>
 
@@ -25,11 +30,14 @@ extern "C" {
 #include "variables.h"
 #include "functions.h"
 #include "macros.h"
+#include "overlays/actors/ovl_En_Tg/z_en_tg.h"
 extern PlayState* gPlayState;
 extern float sFontWidths[144];
 void Player_StartTalking(PlayState*, Actor*);
 }
 std::string Message_TTS_Decode(uint8_t*, uint16_t, uint16_t);
+std::string decodeNTSCPlayerNameChar(int code);
+char z2ASCII(int code);
 
 namespace LocalNpc {
 namespace {
@@ -58,12 +66,103 @@ const Profile profiles[] = {
     {ACTOR_EN_MK, "lakeside_scientist", "Lakeside scientist", "The elderly scientist at Lake Hylia's laboratory. Curious, practical, and fascinated by water and wildlife.", "thoughtful, lively, scholarly"},
     {ACTOR_EN_TORYO, "carpenter", "Head carpenter", "The head carpenter of Gerudo Valley. Gruff, loyal to your crew, and proud of building things that last.", "gruff, hearty, direct"},
     {ACTOR_EN_GE1, "gerudo", "Gerudo guard", "A Gerudo guard. Proud, watchful and concise. Protect your people's privacy.", "confident, steady, direct"},
+    {ACTOR_EN_GE2, "gerudo", "Gerudo guard", "A Gerudo guard on patrol. Watchful and direct.", "confident, steady, direct"},
+    {ACTOR_EN_GE3, "gerudo", "Gerudo guard", "A Gerudo guard on duty. Watchful and direct.", "confident, steady, direct"},
     {ACTOR_EN_OSSAN, "shopkeeper", "Shopkeeper", "A Hyrule shopkeeper. Friendly and businesslike. Actual prices and purchases use the shop menu.", "lively, welcoming, clear"},
 };
 const Profile* FindProfile(Actor* actor) {
     if (!actor) return nullptr;
     for (const auto& profile : profiles) if (actor->id == profile.actor) return &profile;
     return nullptr;
+}
+// IDs match the selected cast manifest. Actor parameters disambiguate residents
+// and merchants that share message IDs and the same text.
+std::string RecordedCharacter(Actor* actor) {
+    if (!actor) return "";
+    if (ARPG::Enemies::IsWatchman(actor)) return "castle-patrol-guard";
+    auto numbered=[](const char* prefix,int n) { char value[64];std::snprintf(value,sizeof(value),"%s%02d",prefix,n);return std::string(value); };
+    switch(actor->id) {
+        case ACTOR_EN_KO:return numbered("kokiri-child-",actor->params&0xFF);
+        case ACTOR_EN_HY:return numbered("hylian-resident-",actor->params&0x7F);
+        case ACTOR_EN_ZO:return numbered("zora-resident-",actor->params&0x3F);
+        case ACTOR_EN_GO2:
+            if((actor->params&0x1F)==1)return "goron-link";
+            if((actor->params&0x1F)==2)return "biggoron";
+            if((actor->params&0x1F)==3)return numbered("fire-goron-",(actor->params>>10)&0x3F);
+            return numbered("goron-resident-",actor->params&0x1F);
+        case ACTOR_EN_GE1:
+            switch(actor->params&0xFF) {
+                case 0:return "gerudo-gate-guard";case 1:return "gerudo-gate-operator";
+                case 4:return "gerudo-fortress-resident";case 5:return "gerudo-valley-resident";
+                case 0x45:return "gerudo-archery-host";case 0x46:return "gerudo-training-guard";
+            }break;
+        case ACTOR_EN_OSSAN: {
+            static const char* ids[]={"kokiri-shopkeeper","kakariko-potion-shopkeeper","bombchu-shopkeeper",
+                "market-potion-shopkeeper","bazaar-shopkeeper","bazaar-shopkeeper","talon","zora-shopkeeper",
+                "goron-shopkeeper","ingo","happy-mask-salesman"};
+            if(actor->params>=0 && actor->params<11)return ids[actor->params];break;
+        }
+        case ACTOR_EN_MA1:return "malon-child";
+        case ACTOR_EN_MA2:case ACTOR_EN_MA3:return "malon-adult";
+        case ACTOR_EN_RU1:return "ruto-child";case ACTOR_EN_RU2:return "ruto-adult";
+        case ACTOR_EN_ZL1:case ACTOR_EN_ZL4:return "zelda-child";
+        case ACTOR_EN_ZL2:case ACTOR_EN_ZL3:return "zelda-adult";
+        case ACTOR_EN_KZ:return "king-zora";case ACTOR_EN_MK:return "lake-scientist";
+        case ACTOR_EN_TORYO:return "mutoh";
+        case ACTOR_EN_OWL:return "kaepora-gaebora";
+        case ACTOR_EN_DNS:return numbered("deku-merchant-",actor->params);
+        case ACTOR_EN_POH:
+            if(actor->params==2)return "sharp";
+            if(actor->params==3)return "flat";
+            break;
+        case ACTOR_EN_GE2:
+            switch(actor->params&0xFF) {
+                case 0:return "gerudo-patrol";case 1:return "gerudo-stationary-guard";
+                case 2:return "gerudo-membership-officer";
+            }break;
+        case ACTOR_EN_GE3:return "gerudo-membership-officer";
+        case ACTOR_EN_SYATEKI_MAN:return "shooting-gallery-owner";
+        case ACTOR_EN_BOM_BOWL_MAN:return "bombchu-bowling-owner";
+        case ACTOR_EN_TAKARA_MAN:return "treasure-chest-owner";
+        case ACTOR_EN_DIVING_GAME:return "zora-diving-host";
+        case ACTOR_EN_NIW_GIRL:return "cucco-chasing-girl";
+        case ACTOR_EN_DS:return "potion-granny";
+        case ACTOR_EN_TG:return reinterpret_cast<EnTg*>(actor)->nextDialogue&1 ? "dancing-man" : "dancing-woman";
+        case ACTOR_EN_HEISHI2:
+            if((actor->params&0xFF)==2)return "castle-gate-guard";
+            if((actor->params&0xFF)==5)return "kakariko-gate-guard";
+            if((actor->params&0xFF)==9)return "castle-window-guard";
+            break;
+        case ACTOR_EN_HEISHI3:return "castle-patrol-guard";
+        case ACTOR_EN_HEISHI4:
+            switch(actor->params&0xFF) {
+                case 0:return "kakariko-entrance-guard";case 4:return "impas-house-guard";
+                case 7:return "dying-guard";case 8:return "market-guard";
+            }break;
+        case ACTOR_EN_DAIKU: {
+            static const char* ids[]={"ichiro","jiro","saburo","shiro"};
+            return ids[actor->params&3];
+        }
+        case ACTOR_EN_DAIKU_KAKARIKO: {
+            static const char* ids[]={"ichiro","saburo","jiro","shiro"};
+            return ids[actor->params&3];
+        }
+        case ACTOR_EN_SSH:case ACTOR_EN_STH:
+            return actor->params==0?"skulltula-father":numbered("skulltula-son-",actor->params*10);
+        default:break;
+    }
+    if(const auto* p=FindProfile(actor))return p->id;
+    return "";
+}
+PackQuery Recording(Actor* actor,bool quest,uint16_t message=0) {
+    PackQuery q;q.authored=true;q.quest=quest;q.character=RecordedCharacter(actor);
+    q.age=LINK_IS_ADULT?"adult":"child";
+    char id[5];std::snprintf(id,sizeof(id),"%04X",message);q.messageId=id;
+    for (int i=0;i<8;++i) {
+        if(gSaveContext.ship.filenameLanguage==NAME_LANGUAGE_PAL) q.playerName+=z2ASCII(gSaveContext.playerName[i]);
+        else q.playerName+=decodeNTSCPlayerNameChar(gSaveContext.playerName[i]);
+    }
+    return q;
 }
 std::unique_ptr<Client> client;
 SDL_AudioDeviceID device = 0;
@@ -72,6 +171,7 @@ SDL_AudioSpec outputSpec{};
 uint64_t activeSerial = 0;
 bool open = false, busy = false, nativePagePending = false, focusInput = false;
 bool composing = false, mouseCaptured = false, ownsPlayer = false;
+bool justiceConversation = false;
 Actor* followupSpeaker = nullptr;
 int followupFrames = 0;
 constexpr uint16_t conversationTextId = 0xF700;
@@ -84,6 +184,7 @@ size_t replyPage = 0, menuPage = 0;
 std::string encodedMessage, menuTitle, lastReply;
 std::function<void()> afterReply;
 void Hub();
+void JusticeMenu();
 void ShowReply(const std::string&, std::function<void()> = Hub, bool = true);
 void ShowMenu(const std::string&, std::vector<Option>);
 void ShowMenuPage();
@@ -93,11 +194,11 @@ void QuestList();
 void QuestMenu(int);
 bool OwnsTextbox() { return open && gPlayState && gPlayState->msgCtx.textId == conversationTextId; }
 float GlyphWidth(unsigned char c) { return int(sFontWidths[c - ' '] * .75f); }
-Actor *speaker = nullptr, *nativeSpeaker = nullptr;
+Actor *speaker = nullptr, *nativeSpeaker = nullptr, *reactionSpeaker = nullptr;
 std::string status, authoredText;
 std::vector<Turn> transcript;
 char input[601]{};
-enum class Mode { None, Conversation, Native, Preview };
+enum class Mode { None, Conversation, Native, Preview, Reaction };
 Mode mode = Mode::None;
 constexpr int32_t inputBlock = 0x4E504344;
 
@@ -121,6 +222,11 @@ Provider Settings(const Profile* profile) {
     p.model = setting(CVAR_ENHANCEMENT("LocalNpc.Model"), Env("SOH_NPC_LLM_MODEL", Env("CHAT_MODEL", defaults.model.c_str())));
     p.key = Env("SOH_NPC_LLM_API_KEY", Env("CHAT_API_KEY", defaults.key.c_str()));
     p.ttsEndpoint = setting(CVAR_ENHANCEMENT("LocalNpc.TtsEndpoint"), Env("SOH_NPC_TTS_ENDPOINT", defaults.ttsEndpoint.c_str()));
+    p.voicePack = Env("SOH_NPC_VOICE_PACK", defaults.voicePack.c_str());
+    if (p.voicePack.empty()) {
+        const auto installed=Ship::Context::GetPathRelativeToAppDirectory("voice-packs/qwen-en-v1");
+        p.voicePack=std::filesystem::exists(std::filesystem::path(installed)/"manifest.json") ? installed : "voice-packs/qwen-en-v1";
+    }
     p.voice = CVarGetString(CVAR_ENHANCEMENT("LocalNpc.DefaultVoice"), "");
     if (profile) {
         const auto key = std::string(CVAR_ENHANCEMENT("LocalNpc.Voice.")) + profile->id;
@@ -133,7 +239,7 @@ Provider Settings(const Profile* profile) {
 void StopAudio() { if (device) SDL_ClearQueuedAudio(device); }
 void Cancel() {
     if (client) activeSerial = client->Cancel();
-    StopAudio(); busy = false; mode = Mode::None;
+    StopAudio(); busy = false; mode = Mode::None; reactionSpeaker = nullptr;
 }
 void EndComposer() {
     if (!composing) return;
@@ -151,7 +257,7 @@ void Close() {
     if (ownsPlayer && Loaded() && GET_PLAYER(gPlayState)->csAction == PLAYER_CSACTION_8 &&
         GET_PLAYER(gPlayState)->csActor == speaker)
         Player_SetCsActionWithHaltedActors(gPlayState, nullptr, PLAYER_CSACTION_7);
-    ownsPlayer = false; open = false; followupSpeaker = nullptr;
+    ownsPlayer = false; open = false; justiceConversation = false; followupSpeaker = nullptr;
     options.clear(); visibleOptions.clear(); replyPages.clear(); afterReply = {};
 }
 void Reset() {
@@ -186,7 +292,8 @@ Actor* Nearest() {
     if (!player) return nullptr;
     for (int category = 0; category < ACTORCAT_MAX; ++category) {
         for (Actor* actor = gPlayState->actorCtx.actorLists[category].head; actor; actor = actor->next) {
-            if (!FindProfile(actor) || !Nearby(actor, distance)) continue;
+            if (!FindProfile(actor) || !Nearby(actor, distance) || Mixamo::Consequences::Health(actor) <= 0) continue;
+            if (Mixamo::Consequences::Wanted() && !Mixamo::Consequences::CanSettleCharges(actor)) continue;
             if (!InSight(actor)) continue;
             distance = std::hypot(player->actor.world.pos.x - actor->world.pos.x,
                                   player->actor.world.pos.z - actor->world.pos.z); best = actor;
@@ -213,6 +320,14 @@ std::string Context() {
     out << "Place: " << place << ". Link is " << (LINK_IS_ADULT ? "an adult" : "a child")
         << ". It is " << (gSaveContext.nightFlag ? "night" : "day") << ".";
     if (ARPG::Enabled()) out << " Adventure level: " << int(gARPGSave.level) << ".";
+    // Only completed milestones are supplied; an unset bit is not proof of an alternate story.
+    out << "\nRecorded story milestones (do not assume NPCs know every secret):";
+    if (Flags_GetEventChkInf(EVENTCHKINF_OBTAINED_KOKIRI_EMERALD_DEKU_TREE_DEAD)) out << " The Great Deku Tree has died.";
+    if (Flags_GetEventChkInf(EVENTCHKINF_OBTAINED_ZELDAS_LETTER)) out << " Link has obtained Zelda's letter.";
+    if (Flags_GetEventChkInf(EVENTCHKINF_ZELDA_FLED_HYRULE_CASTLE)) out << " Zelda has fled Hyrule Castle.";
+    if (Flags_GetEventChkInf(EVENTCHKINF_OPENED_THE_DOOR_OF_TIME)) out << " The Door of Time has been opened.";
+    if (Flags_GetEventChkInf(EVENTCHKINF_TIME_TRAVELED_TO_ADULT)) out << " Link has traveled forward in time.";
+    if (Flags_GetEventChkInf(EVENTCHKINF_EPONA_OBTAINED)) out << " Link has freed Epona.";
     if (!authoredText.empty()) out << "\nYour most recent authored dialogue page: " << authoredText;
     out << ARPG::Quests::DialogueContext(speaker);
     out << "\nNo quest progress or promises beyond these facts are known. Reply in English.";
@@ -229,6 +344,9 @@ void Present(const std::string& encoded) {
 }
 void Speak(const std::string& text) {
     Request request; request.provider = Settings(FindProfile(speaker)); request.text = text;
+    request.recording = Recording(speaker,true);
+    request.context = Context();
+    if (const auto* profile = FindProfile(speaker)) request.persona = profile->persona;
     if (request.provider.speak && !CVarGetInteger(CVAR_SETTING("A11yTTS"), 0)) {
         status = "Preparing voice..."; Submit(std::move(request), Mode::Conversation);
     }
@@ -261,6 +379,25 @@ void ShowMenuPage() {
 void ShowMenu(const std::string& title, std::vector<Option> next) {
     EndComposer(); Cancel(); status.clear(); screen = Screen::Menu;
     menuTitle = title; options = std::move(next); menuPage = 0; ShowMenuPage();
+}
+void JusticeMenu() {
+    using namespace Mixamo::Consequences;
+    if (!CanSettleCharges(speaker)) { Close(); return; }
+    const int cost = Bounty(), seconds = SentenceSeconds();
+    const bool affordable = !gSaveContext.rupeeAccumulator && gSaveContext.rupees >= cost;
+    ShowMenu("Settle this town's charges", {
+        {"Pay " + std::to_string(cost) + " rupees" + (affordable ? "" : " (too poor)"), [] {
+            if (PayBounty(speaker)) Close(); else JusticeMenu();
+        }},
+        {"Prison: " + std::to_string(seconds) + " seconds", [] {
+            // A second, explicit choice prevents accidental transport. The exact
+            // duration and price are revalidated against the live ledger.
+            ShowMenu("Serve " + std::to_string(SentenceSeconds()) + " seconds in prison?", {
+                {"Serve my sentence", [] { if (!ServeSentence(speaker)) JusticeMenu(); }},
+                {"Back", JusticeMenu}});
+        }},
+        {"Refuse arrest", Close}
+    });
 }
 void QuestMenu(int id) {
     std::vector<Option> choices;
@@ -308,10 +445,11 @@ void History() {
     ShowMenu("Conversation history", std::move(choices));
 }
 void Hub() {
+    if (justiceConversation) { JusticeMenu(); return; }
     std::vector<Option> choices = {{"How are things here?", [] { Topic(false); }}};
     if (ARPG::Quests::HasQuests(speaker)) choices.push_back({"Local quests", QuestList});
     choices.push_back({"Any advice?", [] { Topic(true); }});
-    choices.push_back({"Ask a question [F7]", Compose});
+    choices.push_back({"Ask a question", Compose});
     if (!transcript.empty()) choices.push_back({"Conversation history", History});
     if (!lastReply.empty()) choices.push_back({"Hear that again", [] { ShowReply(lastReply); }});
     choices.push_back({"Stop voice", [] { Cancel(); status.clear(); }});
@@ -347,13 +485,7 @@ void Ask(const std::string& text) {
     Submit(std::move(request), Mode::Conversation);
     if (!busy) ShowReply(status, Hub, false);
 }
-bool Play(const std::vector<uint8_t>& wav) {
-    SDL_AudioSpec source{}; Uint8* raw = nullptr; Uint32 length = 0;
-    if (!SDL_LoadWAV_RW(SDL_RWFromConstMem(wav.data(), static_cast<int>(wav.size())), 1, &source, &raw, &length)) return false;
-    std::unique_ptr<Uint8, decltype(&SDL_FreeWAV)> owned(raw, SDL_FreeWAV);
-    if (source.freq < 8000 || source.freq > 96000 || source.channels < 1 || source.channels > 2 ||
-        length == 0 || length > 16 * 1024 * 1024 ||
-        length / (double(source.freq) * source.channels * (SDL_AUDIO_BITSIZE(source.format)/8)) > 90) return false;
+bool PrepareAudioDevice() {
     if (!device) {
         // CoreAudio/WASAPI game backends need not have initialized SDL's audio subsystem.
         if (!audioInitialized) {
@@ -366,6 +498,16 @@ bool Play(const std::vector<uint8_t>& wav) {
         device = SDL_OpenAudioDevice(nullptr, 0, &wanted, &outputSpec, 0);
         if (!device) { SPDLOG_WARN("[LocalNpc] Voice device unavailable: {}", SDL_GetError()); return false; }
     }
+    return true;
+}
+bool Play(const std::vector<uint8_t>& wav) {
+    SDL_AudioSpec source{}; Uint8* raw = nullptr; Uint32 length = 0;
+    if (!SDL_LoadWAV_RW(SDL_RWFromConstMem(wav.data(), static_cast<int>(wav.size())), 1, &source, &raw, &length)) return false;
+    std::unique_ptr<Uint8, decltype(&SDL_FreeWAV)> owned(raw, SDL_FreeWAV);
+    if (source.freq < 8000 || source.freq > 96000 || source.channels < 1 || source.channels > 2 ||
+        length == 0 || length > 16 * 1024 * 1024 ||
+        length / (double(source.freq) * source.channels * (SDL_AUDIO_BITSIZE(source.format)/8)) > 90) return false;
+    if (!PrepareAudioDevice()) return false;
     SDL_AudioCVT conversion{};
     if (SDL_BuildAudioCVT(&conversion, source.format, source.channels, source.freq,
                          outputSpec.format, outputSpec.channels, outputSpec.freq) < 0) return false;
@@ -388,11 +530,25 @@ bool Play(const std::vector<uint8_t>& wav) {
     return true;
 }
 void Update() {
-    if (!Enabled()) { if (open || speaker || nativeSpeaker || followupSpeaker || mode != Mode::None) Reset(); return; }
-    if (mode != Mode::Preview && (!Loaded() || gPlayState->transitionTrigger != TRANS_TRIGGER_OFF || gSaveContext.health <= 0)) {
-        if (speaker || nativeSpeaker || open || busy) Reset(); return;
+    if (!Enabled() && !justiceConversation) { if (open || speaker || nativeSpeaker || followupSpeaker || mode != Mode::None) Reset(); return; }
+    static bool prepared = false;
+    if (!prepared && CVarGetInteger(CVAR_ENHANCEMENT("LocalNpc.Voices"), 1) &&
+        !CVarGetInteger(CVAR_SETTING("A11yTTS"), 0)) {
+        prepared = true;
+        try {
+            if (!client) client = std::make_unique<Client>();
+            client->PrepareVoicePack(Settings(nullptr).voicePack);
+        } catch (const std::exception&) { /* A later dialogue request can retry. */ }
+        PrepareAudioDevice();
     }
-    if (open && (!Nearby(speaker) || gPlayState->pauseCtx.state ||
+    if (mode != Mode::Preview && (!Loaded() || gPlayState->transitionTrigger != TRANS_TRIGGER_OFF || gSaveContext.health <= 0)) {
+        if (speaker || nativeSpeaker || open || busy || mode != Mode::None) Reset(); return;
+    }
+    if (mode == Mode::Reaction && (!Nearby(reactionSpeaker, 650) || GameInteractor::IsGameplayPaused() ||
+        gPlayState->msgCtx.msgMode != MSGMODE_NONE || gPlayState->csCtx.state != CS_STATE_IDLE ||
+        Mixamo::Consequences::Failed() || Mixamo::Consequences::Health(reactionSpeaker) <= 0)) Cancel();
+    if (open && (!Nearby(speaker) || Mixamo::Consequences::Failed() || Mixamo::Consequences::InCustody() ||
+                 Mixamo::Consequences::Health(speaker) <= 0 || gPlayState->pauseCtx.state ||
                  (gPlayState->msgCtx.msgMode != MSGMODE_NONE && !OwnsTextbox()))) Close();
     if (open && gPlayState->msgCtx.msgMode == MSGMODE_NONE) Close();
     if (open) Interface_ChangeHudVisibilityMode(HUD_VISIBILITY_A_HEARTS_MAGIC_FORCE);
@@ -422,9 +578,12 @@ void Update() {
         }
     }
     if (!busy && device && status == "Speaking..." && SDL_GetQueuedAudioSize(device) == 0) status.clear();
+    if (mode == Mode::Reaction && !busy && (!device || SDL_GetQueuedAudioSize(device) == 0)) {
+        mode = Mode::None; reactionSpeaker = nullptr; status.clear();
+    }
 }
 void NativeDialogue() {
-    if (!Enabled() || !Loaded()) return;
+    if ((!Enabled() && !justiceConversation) || !Loaded()) return;
     auto& message = gPlayState->msgCtx;
     if (OwnsTextbox()) {
         if (composing) return;
@@ -480,7 +639,7 @@ void NativeDialogue() {
         message.msgMode == MSGMODE_TEXT_AWAIT_NEXT || message.msgMode == MSGMODE_TEXT_DONE)) return;
     nativePagePending = false;
     const auto* profile = FindProfile(message.talkActor);
-    if (!profile || gSaveContext.language == LANGUAGE_JPN) return;
+    if (gSaveContext.language == LANGUAGE_JPN) return;
     if (speaker != message.talkActor) { transcript.clear(); authoredText.clear(); lastReply.clear(); }
     speaker = nativeSpeaker = message.talkActor;
     const auto length = static_cast<uint16_t>(std::min<size_t>(message.decodedTextLen, sizeof(message.msgBufDecoded)));
@@ -490,6 +649,9 @@ void NativeDialogue() {
     if (!CVarGetInteger(CVAR_ENHANCEMENT("LocalNpc.ReadScripted"), 1) ||
         CVarGetInteger(CVAR_SETTING("A11yTTS"), 0)) return;
     Request request; request.provider = Settings(profile); request.text = authoredText;
+    request.recording = Recording(message.talkActor,false,message.textId);
+    request.recordedOnly = !profile;
+    request.context = Context(); if(profile) request.persona = profile->persona;
     request.provider.language = gSaveContext.language == LANGUAGE_FRA ? "fr" : gSaveContext.language == LANGUAGE_GER ? "de" : "en";
     if (request.provider.speak) { status = "Preparing voice..."; Submit(std::move(request), Mode::Native); }
 }
@@ -537,26 +699,61 @@ void DrawSettings() {
     }
     ImGui::SameLine(); if (ImGui::Button("Stop voice")) { Cancel(); status.clear(); }
     ImGui::EndDisabled();
-    ImGui::TextWrapped("Talk normally to continue into local topics after the story dialogue. F7 talks nearby or opens question entry during a custom conversation. Use the normal game controls for pages and choices; B or Escape leaves custom dialogue.");
+    ImGui::TextWrapped("Talk normally to continue into local topics after the story dialogue. Choose Ask a question to type a reply. Use the normal game controls for pages and choices; B or Escape leaves custom dialogue.");
     if (!status.empty()) ImGui::TextWrapped("%s", status.c_str());
 }
 
 bool OpenConversation(Actor* actor) {
-    if (!Enabled() || !Loaded() || !FindProfile(actor) || !Nearby(actor, 220) || !InSight(actor) ||
+    const bool justice = Mixamo::Consequences::CanSettleCharges(actor);
+    if ((!Enabled() && !justice) || !Loaded() || Mixamo::Consequences::Failed() || Mixamo::Consequences::InCustody() ||
+        Mixamo::Consequences::Health(actor) <= 0 || !FindProfile(actor) || !Nearby(actor, 220) || !InSight(actor) ||
         !GameInteractor::IsPlayerInControl() || gPlayState->transitionTrigger != TRANS_TRIGGER_OFF) return false;
     Cancel();
     if (speaker != actor) { transcript.clear(); authoredText.clear(); lastReply.clear(); }
     speaker = actor; followupSpeaker = nullptr; open = true; status.clear();
+    justiceConversation = justice;
     nativePagePending = false;
     Player_SetCsActionWithHaltedActors(gPlayState, actor, PLAYER_CSACTION_8); ownsPlayer = true;
     if (auto menu = Ship::Context::GetRawInstance()->GetWindow()->GetGui()->GetMenu()) menu->Hide();
-    if (transcript.empty() && ARPG::Quests::HasQuests(actor)) {
+    if (justiceConversation) JusticeMenu();
+    else if (transcript.empty() && ARPG::Quests::HasQuests(actor)) {
         auto greeting = ARPG::Quests::AuthoredGreeting(actor);
         Remember("assistant", greeting); ShowReply(greeting);
     } else Hub();
     return true;
 }
+bool CanReact(Actor* actor, Mixamo::TownReactions::Event event) {
+    return actor && Mixamo::TownReactions::VoiceAllows(RecordedCharacter(actor), event);
+}
+bool TryTownReaction(Actor* actor, Mixamo::TownReactions::Event event) {
+    if (!Enabled() || !Loaded() || !CanReact(actor, event) || !Nearby(actor, 650) || !InSight(actor) ||
+        Mixamo::Consequences::Failed() || Mixamo::Consequences::Health(actor) <= 0 ||
+        !GameInteractor::IsPlayerInControl() || GameInteractor::IsGameplayPaused() ||
+        gPlayState->transitionTrigger != TRANS_TRIGGER_OFF || gPlayState->csCtx.state != CS_STATE_IDLE ||
+        gPlayState->msgCtx.msgMode != MSGMODE_NONE || open || busy || mode == Mode::Preview ||
+        (device && SDL_GetQueuedAudioSize(device))) return false;
+    const auto& line = Mixamo::TownReactions::Script(event);
+    const auto* profile = FindProfile(actor);
+    Notification::Emit({.message = std::string(profile ? profile->name : "Town resident") + ": " + line.text, .remainingTime = 3.f});
+    Request request; request.provider = Settings(profile); request.text = line.text;
+    request.provider.voicePack = Env("SOH_NPC_REACTION_PACK", "");
+    if (request.provider.voicePack.empty()) {
+        const auto installed = Ship::Context::GetPathRelativeToAppDirectory("voice-packs/town-reactions-en-v1");
+        request.provider.voicePack = std::filesystem::exists(std::filesystem::path(installed) / "manifest.json") ?
+            installed : "voice-packs/town-reactions-en-v1";
+    }
+    request.recording = Recording(actor, false); request.recording.reaction = line.id;
+    // Ambient reactions must never start a slow network request or borrow another NPC's voice.
+    request.recordedOnly = true;
+    if (request.provider.speak && !CVarGetInteger(CVAR_SETTING("A11yTTS"), 0)) {
+        Submit(std::move(request), Mode::Reaction); reactionSpeaker = actor;
+    }
+    SPDLOG_INFO("[TownReaction] {} character={}", line.id, RecordedCharacter(actor));
+    return true;
+}
 bool TalkTo(Actor* actor) {
+    if (Mixamo::Consequences::CanSettleCharges(actor)) return OpenConversation(actor);
+    if (Mixamo::Consequences::Failed() || Mixamo::Consequences::InCustody() || Mixamo::Consequences::Health(actor) <= 0) return false;
     if (!Enabled() || !Loaded() || !FindProfile(actor) || !Nearby(actor, 220) || !GameInteractor::IsPlayerInControl()) return false;
     auto* player = GET_PLAYER(gPlayState);
     if (player->talkActor == actor && (player->stateFlags2 & PLAYER_STATE2_CAN_ACCEPT_TALK_OFFER) &&
@@ -569,9 +766,10 @@ bool TalkTo(Actor* actor) {
 bool IsOpen() { return open; }
 void EndConversation() { Close(); }
 void Draw() {
-    if (!Enabled() || !Loaded()) return;
+    if ((!Enabled() && !justiceConversation && !Mixamo::Consequences::Wanted()) || !Loaded() ||
+        Mixamo::Consequences::InCustody() || Mixamo::Consequences::Failed()) return;
     if (!ImGui::GetIO().WantTextInput && ImGui::IsKeyPressed(ImGuiKey_F7, false)) {
-        if (open) Compose();
+        if (open) { if (!justiceConversation) Compose(); }
         else if (gPlayState->msgCtx.msgMode == MSGMODE_NONE) { if (auto* actor = Nearest()) TalkTo(actor); }
         else if (FindProfile(gPlayState->msgCtx.talkActor)) {
             // A story event or choice must finish before opening custom topics.
@@ -584,10 +782,12 @@ void Draw() {
         return;
     }
     std::string hint;
-    if (open) hint = composing ? "Enter: Speak   Esc: Back" :
-        screen == Screen::Waiting ? "B: Cancel reply   F7: Ask something else" : "A: Continue / Choose   B: Leave   R: Quiet   F7: Ask";
+    if (justiceConversation) hint = "A: Choose   B: Refuse arrest";
+    else if (open) hint = composing ? "Enter: Speak   Esc: Back" :
+        screen == Screen::Waiting ? "B: Cancel reply" : "A: Continue / Choose   B: Leave   R: Quiet";
     else if (followupSpeaker && gPlayState->msgCtx.msgMode != MSGMODE_NONE) hint = "Continue the conversation for local topics";
-    else if (auto* actor = Nearest()) hint = std::string("F7: Talk to ") + FindProfile(actor)->name;
+    // Nearby NPCs already offer the native Talk action. Do not cover the
+    // combat dock with a second prompt for an optional keyboard shortcut.
     if (hint.empty()) return;
     // The game draws every dialogue page and choice. Only keyboard composition
     // and service status need an ImGui accessory, below the native textbox.
@@ -621,6 +821,21 @@ void Shutdown() {
 }
 static void Register() {
     auto* hooks = GameInteractor::Instance;
+    hooks->RegisterGameHook<GameInteractor::ShouldActorUpdate>([](void* ref, bool*) {
+        using namespace Mixamo::Consequences;
+        if (!Loaded() || ref != GET_PLAYER(gPlayState) || !Wanted() || InCustody() || Failed() || open ||
+            !GameInteractor::IsPlayerInControl()) return;
+        auto* player = GET_PLAYER(gPlayState);
+        auto& input = gPlayState->state.input[0];
+        if (!(input.press.button & BTN_A) || player->heldActor || player->meleeWeaponState) return;
+        Actor* guard = Nearest();
+        if (!CanSettleCharges(guard)) return;
+        if (player->focusActor != guard &&
+            std::abs(s16(Math_Vec3f_Yaw(&player->actor.world.pos, &guard->world.pos) - player->actor.shape.rot.y)) > 0x3000) return;
+        if (OpenConversation(guard)) {
+            input.cur.button &= ~BTN_A; input.press.button &= ~BTN_A;
+        }
+    });
     hooks->RegisterGameHookForID<GameInteractor::OnOpenText>(conversationTextId, [](uint16_t*, bool* load) {
         if (!open || encodedMessage.empty()) return;
         auto& message = gPlayState->msgCtx;
@@ -635,7 +850,10 @@ static void Register() {
     hooks->RegisterGameHook<GameInteractor::OnSceneInit>([](int16_t) { Reset(); });
     hooks->RegisterGameHook<GameInteractor::OnLoadGame>([](int32_t) { Reset(); });
     hooks->RegisterGameHook<GameInteractor::OnExitGame>([](int32_t) { Reset(); });
-    const auto destroyed = [](void* actor) { if (actor == speaker || actor == nativeSpeaker || actor == followupSpeaker) Reset(); };
+    const auto destroyed = [](void* actor) {
+        if (actor == reactionSpeaker) Cancel();
+        if (actor == speaker || actor == nativeSpeaker || actor == followupSpeaker) Reset();
+    };
     hooks->RegisterGameHook<GameInteractor::OnActorDestroy>(destroyed);
     hooks->RegisterGameHook<GameInteractor::OnActorKill>(destroyed);
 }
@@ -643,6 +861,8 @@ static RegisterShipInitFunc init(Register);
 }
 #else
 namespace LocalNpc {
+bool CanReact(Actor*, Mixamo::TownReactions::Event) { return false; }
+bool TryTownReaction(Actor*, Mixamo::TownReactions::Event) { return false; }
 bool OpenConversation(Actor*) { return false; }
 bool TalkTo(Actor*) { return false; }
 bool IsOpen() { return false; }

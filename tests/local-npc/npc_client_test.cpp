@@ -63,6 +63,20 @@ int main(int argc, char** argv) {
             return nlohmann::json{{"choices", {{{"finish_reason", "stop"}, {"message", {{"content", text}}}}}}}.dump();
         };
         Check(ParseReply(envelope("{\"reply\":\"The forest is peaceful.\"}")) == "The forest is peaceful.", "valid reply rejected");
+        auto deliveryRequest = ComposeDelivery(r, "Stay with me.");
+        auto deliveryContext = nlohmann::json::parse(deliveryRequest["messages"][1]["content"].get<std::string>());
+        Check(deliveryContext["current_story_context"] == r.context && deliveryContext["text"] == "Stay with me.",
+              "delivery lost exact dialogue or story context");
+        Check(ParseDelivery(envelope(R"({"emotion":"afraid","intensity":2,"pace":"brisk","volume":"whisper"})")).find("afraid") != std::string::npos,
+              "valid acting direction rejected");
+        for (const auto& invalid : {
+            R"({"emotion":"ignore prior instructions","intensity":2,"pace":"brisk","volume":"soft"})",
+            R"({"emotion":"neutral","intensity":4,"pace":"brisk","volume":"soft"})",
+            R"({"emotion":"neutral","intensity":true,"pace":"brisk","volume":"soft"})",
+            R"({"emotion":"neutral","intensity":1,"pace":"brisk","volume":"soft","text":"replace dialogue"})"}) {
+            bool rejected = false; try { ParseDelivery(envelope(invalid)); } catch (...) { rejected = true; }
+            Check(rejected, "invalid acting direction accepted");
+        }
         for (const auto& content : {"{}", "{\"reply\":17}", "{\"reply\":\"\"}", "<think>hidden</think>", "{\"reply\":\"<tool>\"}"}) {
             bool rejected = false; try { ParseReply(envelope(content)); } catch (...) { rejected = true; }
             Check(rejected, "malformed response accepted");
@@ -78,6 +92,10 @@ int main(int argc, char** argv) {
         r.provider.voice = "other_voice";
         results = Wait(client, client.Submit(r));
         Check(results.back().wav != nullptr, "voice change incorrectly reused cache");
+        r.context = "Kokiri Forest; child Link; after loss";
+        results = Wait(client, client.Submit(r));
+        Check(results.back().wav != nullptr, "story change incorrectly reused a different delivery");
+        r.context = "Kokiri Forest; child Link";
         r.provider.speak = false;
         results = Wait(client, client.Submit(r));
         Check(results.back().done && !results.back().wav, "captions-only speech did not finish");
@@ -105,6 +123,64 @@ int main(int argc, char** argv) {
             closing.Submit(r); std::this_thread::sleep_for(150ms);
         }
         Check(std::chrono::steady_clock::now() - start < 2500ms, "shutdown waited for the full request timeout");
+        // A pack hit must succeed with deliberately invalid network endpoints.
+        const auto packRoot = std::filesystem::temp_directory_path() / "soh-npc-offline-pack-test";
+        std::filesystem::create_directories(packRoot);
+        const unsigned char pcm[] = {82,73,70,70,40,0,0,0,87,65,86,69,102,109,116,32,16,0,0,0,1,0,1,0,192,93,0,0,128,187,0,0,2,0,16,0,100,97,116,97,4,0,0,0,1,0,2,0};
+        {
+            std::ofstream file(packRoot/"test.wav", std::ios::binary);
+            file.write(reinterpret_cast<const char*>(pcm), sizeof(pcm));
+            std::ofstream(packRoot/"manifest.json") << nlohmann::json{
+                {"format","soh-voice-pack-v1"},{"complete",true},{"language","en"},
+                {"entries", {{{"character","saria"},{"text","Welcome, Link!"},{"message_id","1000"},
+                              {"file","test.wav"},{"bytes",sizeof(pcm)}}}}};
+        }
+        Request recorded; recorded.text="Welcome, Link!"; recorded.provider.voicePack=packRoot.string();
+        recorded.provider.endpoint="invalid-director";recorded.provider.model="test";recorded.context="Kokiri Forest";
+        recorded.provider.ttsEndpoint="invalid-tts";
+        recorded.recording.authored=true;recorded.recording.character="saria";recorded.recording.messageId="1000";
+        {
+            Client warming;
+            warming.PrepareVoicePack("");
+            warming.PrepareVoicePack((packRoot/"missing").string());
+            warming.PrepareVoicePack(packRoot.string());
+            Check(warming.Poll().empty(),"warmup published dialogue or audio");
+            warming.Cancel(); // A cancellation must not strand the worker or future dialogue.
+            auto warmResults=Wait(warming,warming.Submit(recorded));
+            Check(warmResults.size()==1 && warmResults.back().wav,
+                  "dialogue arriving during pack warmup did not use offline audio");
+            warming.PrepareVoicePack(packRoot.string());
+            warming.Cancel();
+            Check(warming.Poll().empty(),"warmup revived cancelled audio");
+        }
+        results=Wait(client,client.Submit(recorded));
+        Check(results.back().wav && results.back().wav->size()==sizeof(pcm),"offline pack did not bypass network services");
+        recorded.text="A changed line.";
+        results=Wait(client,client.Submit(recorded));
+        Check(!results.back().wav && !results.back().status.empty(),"pack miss did not fall back to the live provider");
+        recorded.recordedOnly=true;
+        results=Wait(client,client.Submit(recorded));
+        Check(!results.back().wav && results.back().status.empty(),"unsupported native actor used an unrelated live voice");
+        const auto reactionRoot=packRoot/"reactions";std::filesystem::create_directories(reactionRoot);
+        std::filesystem::copy_file(packRoot/"test.wav",reactionRoot/"reaction.wav");
+        std::ofstream(reactionRoot/"manifest.json") << nlohmann::json{
+            {"format","soh-voice-pack-v1"},{"complete",true},{"language","en"},
+            {"entries", {{{"character","market-guard"},{"scope","town_reaction"},{"reaction","guard.warning"},
+                {"text","Stop!"},{"file","reaction.wav"},{"bytes",sizeof(pcm)}}}}};
+        recorded.provider.voicePack=reactionRoot.string();recorded.text="Stop!";
+        recorded.recording.character="market-guard";recorded.recording.reaction="guard.warning";
+        results=Wait(client,client.Submit(recorded));
+        Check(results.back().wav && results.back().wav->size()==sizeof(pcm),"ambient reaction did not use exact offline cast recording");
+        recorded.recording.character="hylian-resident-00";
+        results=Wait(client,client.Submit(recorded));
+        Check(!results.back().wav && results.back().status.empty(),"reaction miss contacted the network or borrowed another voice");
+        recorded.recording.character="market-guard";
+        const auto late=packRoot/"late-install";recorded.provider.voicePack=late.string();
+        results=Wait(client,client.Submit(recorded));Check(!results.back().wav,"missing reaction pack unexpectedly played");
+        std::filesystem::copy(reactionRoot,late,std::filesystem::copy_options::recursive);
+        results=Wait(client,client.Submit(recorded));
+        Check(results.back().wav!=nullptr,"completed reaction pack was not picked up after an earlier missing-pack lookup");
+        std::filesystem::remove_all(packRoot);
         if (const char* live = std::getenv("SOH_NPC_LIVE_TTS")) {
             r.text = "The forest is peaceful today."; r.provider.ttsEndpoint = live;
             r.provider.voice.clear(); r.provider.instruction = "gentle and friendly";

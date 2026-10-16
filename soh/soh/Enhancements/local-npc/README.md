@@ -1,12 +1,23 @@
 # Unified NPC conversations
 
-Talk to an NPC using the normal game controls. After the original conversation finishes, supported speakers continue into local topics in the **same native textbox**. **F7** uses the NPC's offered campaign interaction when available, or opens local topics within speaking distance. Campaign choices, item exchanges, shops, cutscenes, ocarina messages and story events remain owned by their original scripts; custom topics wait until the player is free.
+Speech now has a separate acting-director request before synthesis when a dialogue provider and current
+context are available. It uses scene, present age, time of day, recorded story milestones, the local quest
+ledger and authored dialogue to select emotion, intensity, pace and volume. The response cannot rewrite
+the spoken line; only validated vocabulary is compiled into `instruction`. The existing configured
+dialogue provider is used; no provider configuration is changed. The director times out after 12 seconds
+and falls back to restrained speech. Delivery and audio caches are bounded and distinguish story context.
+Native source and portable fixtures cover this path; a new game build must be installed to activate it.
+The approved Qwen pack uses the auditioned emotional-reference/selected-identity route.
+Recorded authored lines bypass live direction and synthesis when the pack matches.
+See the recorded-pack section below and root `voice-production/README.md` for provenance.
 
-Use the normal **A / C-Up** confirmation and stick selection for pages and choices. **More topics** cycles through additional options. **B / Escape** leaves custom dialogue; **R** stops voice; B cancels a pending generated reply and returns to topics. **F7** or **Ask a question** opens a small keyboard composer above the textbox; Enter submits and Escape returns to topics. Finishing an ordinary final campaign page with B returns directly to play; confirming with A continues into local topics. Custom conversations hold Link and other actors with the native cutscene action, and only text entry captures game input. Nearby speakers must be in the current room, within 220 units and visible with a clear line of sight.
+Talk to an NPC using the normal game controls. After the original conversation finishes, supported speakers continue into local topics in the **same native textbox**. Campaign choices, item exchanges, shops, cutscenes, ocarina messages and story events remain owned by their original scripts; custom topics wait until the player is free.
+
+Use the normal **A / C-Up** confirmation and stick selection for pages and choices. **More topics** cycles through additional options. **B / Escape** leaves custom dialogue; **R** stops voice; B cancels a pending generated reply and returns to topics. **Ask a question** opens a small keyboard composer above the textbox; Enter submits and Escape returns to topics. Finishing an ordinary final campaign page with B returns directly to play; confirming with A continues into local topics. Custom conversations hold Link and other actors with the native cutscene action, and only text entry captures game input. Nearby speakers must be in the current room, within 220 units and visible with a clear line of sight.
 
 Open **Dev Tools → ARPG Mod → Open ARPG Mod → NPC dialogue** for the enable switch, voices, scripted dialogue narration, volume, service endpoints, model, and per-character saved voices. This feature also works with ARPG gameplay disabled. English dynamic conversations are supported; original English, French and German NPC text can be voiced. Japanese native text uses a different encoding and is excluded. Existing accessibility narration takes priority over this feature's native-text narration.
 
-Profiles cover Saria, Mido, Kokiri villagers, Malon, Talon, Ingo, Darunia, Gorons, Zoras, Ruto, the cucco keeper, Hyrule guards, Hylian villagers, Gerudo guards and shopkeepers. Unknown actors, signs and item messages are not automatically given voices. The same actor family can share a voice; generic villagers do not acquire invented names. Each profile supplies a delivery instruction. A blank voice name uses the model's built-in voice; set a saved reference name to clone it.
+Live profiles cover Saria, Mido, Kokiri villagers, Malon, Talon, Ingo, Darunia, Gorons, Zoras, Ruto, the cucco keeper, Hyrule guards, Hylian villagers, Gerudo guards and shopkeepers. Other native actors, signs and item messages can use explicitly indexed pack recordings; they do not acquire an arbitrary live voice. Live actor families can share a voice, while the recorded pack resolves individual cast members. Each live profile supplies a delivery instruction. A blank live voice name uses the model's built-in voice; set a saved reference name to clone it.
 
 Original story dialogue, authored quest replies and generated replies use the game's renderer, glyphs, typewriter, choice arrows and page controls. The separate scrolling chat window has been removed. **Local quests** supports explanations, acceptance, objective advice, explicit deliveries, tracking and both gear rewards directly in conversation. The journal remains available for reviewing the campaign. **Conversation history**, **Hear that again**, saved character voices and voice cancellation remain available; questions and replies are remembered for the current speaker.
 
@@ -63,3 +74,30 @@ Set `SOH_NPC_LIVE_VOICE` to exercise a saved reference instead of the built-in v
 Build with `-DSOH_ARPG_RUNTIME_TESTS=ON` and launch with `SOH_DIALOGUE_QA=1` and a fresh `SHIP_HOME` directory whose name starts with `soh-dialogue-qa-`. Seed only the normal assets and window configuration; no user save is required. The opt-in harness creates a debug adventure in memory and writes `dialogue-results.json` inside that profile. It exercises a real Kokiri campaign choice and continuation, automatic topic handoff, native quest acceptance and rewards, duplicate transaction rejection, cancellation, actor invalidation, disabled ARPG gameplay and the feature enable switch. It never writes an ordinary save.
 
 [Unified dialogue verification on macOS](../../../../tests/local-npc/unified-dialogue-verification-macos.json) records the native build, regression tests, 18 in-game checks and visual review of campaign handoff, question entry, generated reply pagination, native topics and HUD restoration. The [runtime report](../../../../tests/local-npc/unified-dialogue-runtime-results-macos.json) lists every in-game assertion.
+
+## Recorded Qwen pack v1
+
+The offline pack loader runs on the client worker before either network service.
+The index is prepared on that worker during startup, and the SDL voice device is opened before the first conversation. Playback skips only leading near-silence, using a conservative -60 dBFS RMS threshold and retaining 80 ms of pre-roll for breaths and quiet syllables. Original mastered files, internal pauses, delivery and loudness remain unchanged.
+Install `voice-packs/qwen-en-v1` in the app/profile directory or set
+`SOH_NPC_VOICE_PACK` to its absolute folder; `voice_pack` in the private service
+JSON is also supported. Restart after changing the pack. The pack must have a
+complete `soh-voice-pack-v1` manifest. English authored pages match message ID and
+text, with actor parameters resolving shared villagers, shops, guards and family
+members. A decoded page can concatenate speech and narrator choice recordings.
+Player names match the recorded Link wording. The approved numeric templates
+speak general wording while retaining live displayed values.
+
+Authored quest recordings match the speaker, player age and exact authored
+sentence; quest titles and live reward/gear details stay visible. Generated chat
+continues to use the configured live TTS service. Ambiguous, changed or missing
+recordings fall back to existing online behavior for supported live profiles;
+other native actors use recorded audio only. Playback honors the existing voice,
+volume, cancellation and accessibility settings. No game state is changed by a
+pack match. Pack WAVs are bounded 24 kHz mono PCM; path traversal, escaping
+symlinks, invalid formats and oversized data are rejected.
+
+`voice_pack_test /absolute/path/qwen-en-v1` exercises the native loader against
+every shipped entry and decodes its WAV. Portable tests also cover offline hits
+with both service endpoints disabled, live fallback, actor ambiguity, age,
+choice concatenation, numeric templates and unsafe paths.

@@ -48,6 +48,13 @@ class Handler(BaseHTTPRequestHandler):
                 time.sleep(3)
             body = json.dumps({"choices": [{"finish_reason": "stop", "message": {
                 "content": json.dumps({"reply": "The forest is peaceful today."})}}]}).encode()
+            if payload.get('messages', [{}])[0].get('content', '').startswith('Direct the vocal performance'):
+                context = json.loads(payload['messages'][1]['content'])
+                if 'after loss' in context['current_story_context']:
+                    direction = dict(emotion='sorrowful', intensity=1, pace='slow', volume='soft')
+                else:
+                    direction = dict(emotion='reassuring', intensity=1, pace='measured', volume='conversational')
+                body = json.dumps({'choices':[{'finish_reason':'stop','message':{'content':json.dumps(direction)}}]}).encode()
             if self.path == "/fail":
                 code = 503
             elif self.path == "/bad":
@@ -71,5 +78,7 @@ threading.Thread(target=server.serve_forever, daemon=True).start()
 result = subprocess.run([sys.argv[1], f"http://127.0.0.1:{server.server_port}"], timeout=130 if os.getenv("SOH_NPC_LIVE_TTS") else 25)
 server.shutdown()
 assert not failures, failures
-assert len(seen) == 2, "voice changes must create distinct speech requests"
+assert len(seen) == 3, "voice and story delivery changes must create distinct speech requests"
+assert any('sorrowful' in x for x in seen), "director instruction never reached TTS"
+assert all('current_story_context' not in x for x in seen), "story context must not be sent as spoken text"
 sys.exit(result.returncode)

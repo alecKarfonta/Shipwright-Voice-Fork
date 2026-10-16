@@ -11,19 +11,24 @@
 #include <thread>
 #include <vector>
 #include <nlohmann/json.hpp>
+#include "VoicePack.h"
 
 namespace LocalNpc {
 struct Provider {
     std::string endpoint, model, key;
     std::string ttsEndpoint = "http://192.168.50.64:8013/tts";
     std::string voice, instruction, language = "en";
+    std::string voicePack;
     bool speak = true;
+    bool directSpeech = true;
 };
 struct Turn { std::string role, text; };
 struct Request {
     Provider provider;
     std::string persona, context, playerText, text;
     std::vector<Turn> history;
+    PackQuery recording;
+    bool recordedOnly = false;
 };
 struct Result {
     uint64_t serial = 0;
@@ -33,6 +38,8 @@ struct Result {
 };
 
 nlohmann::json Compose(const Request& request);
+nlohmann::json ComposeDelivery(const Request& request, const std::string& text);
+std::string ParseDelivery(const std::string& body);
 std::string ParseReply(const std::string& body);
 bool HttpEndpoint(const std::string& url);
 Provider LoadProviderDefaults(const std::vector<std::string>& paths);
@@ -44,6 +51,8 @@ class Client {
     ~Client();
     uint64_t Submit(Request request);
     uint64_t Cancel();
+    // Load metadata ahead of dialogue without speaking or contacting any service.
+    void PrepareVoicePack(std::string directory);
     std::vector<Result> Poll();
   private:
     struct Job { uint64_t serial; Request request; };
@@ -56,6 +65,7 @@ class Client {
     std::mutex mutex;
     std::condition_variable ready;
     std::optional<Job> pending;
+    std::optional<std::string> packToPrepare;
     std::vector<Result> results;
     std::thread worker;
 };
